@@ -18,8 +18,8 @@ Depending on your preferences and/or tooling, you may choose to use one or more 
 Other API Definition Formats
 -----------------------------------
 
-### ![OpenAPI Logo](img/json-schema-logo.png) JSON Schema
+### ![JSON Schema Logo](img/json-schema-logo.png) JSON Schema
 If you need to validate API requests and responses, then you may want to use [our JSON Schema definitions](https://github.com/shipengine/JSON-Schema).
 
-### ![OpenAPI Logo](img/postman-logo.png) Postman
+### ![Postman Logo](img/postman-logo.png) Postman
 An official ShipEngine [Postman](https://getpostman.com) collection is **coming soon!**
