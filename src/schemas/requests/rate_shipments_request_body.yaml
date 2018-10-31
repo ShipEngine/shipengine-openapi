@@ -1,0 +1,15 @@
+title: rate_shipments_request_body
+type: object
+properties:
+  shipment_ids:
+    type: array
+    items:
+      type: string
+  rate_options:
+    allOf:
+      - $ref: ../requests/rate_request_body.yaml
+  shipments:
+    type: array
+    items:
+      allOf:
+        - $ref: ../address_validating_shipment.yaml

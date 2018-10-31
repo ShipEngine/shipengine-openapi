@@ -1,0 +1,61 @@
+- name: address_validation
+  description: |
+    No matter your shipping volume, failed deliveries and address change surcharges cut into your bottom line and damage perception with customers. Our address validation services ensure your packages make it to the right place the first time. [Learn how to leverage our address validation services here.](https://docs.shipengine.com/docs/address-validation)
+
+    ShipEngine supports address validation for virtually every country on Earth, including the United States, Canada, Great Britain, Australia, Germany, France, Norway, Spain, Sweden, Israel, Italy, and over 160 others.
+  externalDocs:
+    url: 'https://docs.shipengine.com/docs/address-validation'
+    description: |
+      Address validation ensures accurate addresses and can lead to reduced shipping costs by preventing address correction surcharges. ShipEngine cross references multiple databases to validate addresses and identify potential deliverability issues.
+- name: labels
+  description: |
+    Print shipping labels for any of the top global carriers in minutes—instead of weeks. Simply [connect your existing carrier accounts](https://docs.shipengine.com/docs/setup-a-carrier) in the API dashboard, and then [begin creating labels](https://docs.shipengine.com/docs/use-a-specific-service).
+  externalDocs:
+    url: 'https://docs.shipengine.com/docs/quickstart-create-a-label'
+    description: Follow this quick start guide to create your first shipping label with ShipEngine
+- name: rates
+  description: |
+    Make sure you ship as cost-effectively as possible by [quickly comparing rates](https://docs.shipengine.com/docs/get-shipping-rates) using the ShipEngine Rates API. As long as you have the carrier connected to your account, you'll be able to see and compare different rates and services.
+  externalDocs:
+    url: 'https://docs.shipengine.com/docs/get-shipping-rates'
+    description: |
+      This quick start guide shows you how to get shipping rates for multiple carriers so you can choose the fastest, cheapest, or most reliable option.
+- name: tracking
+  description: |
+    [Track packages](https://docs.shipengine.com/docs/track-a-package) across any of our 20+ supported carrier accounts and create tracking events to keep your customers up-to-date. Easily integrate real-time tracking information for shipments into your app, email, or SMS.
+  externalDocs:
+    url: 'https://docs.shipengine.com/docs/track-a-package'
+    description: Learn how to use ShipEngine to track any package with a carrier and a tracking number
+- name: batches
+  description: |
+    batches
+- name: carrier_accounts
+  description: |
+    carrier_accounts
+- name: carriers
+  description: |
+    carriers
+- name: environment
+  description: |
+    environment
+- name: insurance
+  description: |
+    insurance
+- name: manifests
+  description: |
+    manifests
+- name: marketplace_accounts
+  description: |
+    marketplace_accounts
+- name: packages
+  description: |
+    packages
+- name: shipments
+  description: |
+    shipments
+- name: tags
+  description: |
+    tags
+- name: warehouses
+  description: |
+    warehouses

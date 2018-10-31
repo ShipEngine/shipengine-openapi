@@ -1,0 +1,18 @@
+title: batch_errors_response_body
+type: object
+properties:
+  errors:
+    type: array
+    items:
+      title: batch_response_error
+      type: object
+      properties:
+        error:
+          type: string
+        shipment_id:
+          allOf:
+            - $ref: '../primitives.yaml#/se_id'
+          description: A string that uniquely identifies the shipment id
+  links:
+    allOf:
+      - $ref: ../pagination_link.yaml

@@ -1,0 +1,6 @@
+title: balance_response_body
+type: object
+properties:
+  balance:
+    allOf:
+      - $ref: ../money.yaml

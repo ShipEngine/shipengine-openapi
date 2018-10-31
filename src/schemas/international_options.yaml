@@ -1,0 +1,31 @@
+title: international_options
+type: object
+properties:
+  contents:
+    allOf:
+      - $ref: 'enums.yaml#/contents'
+  customs_items:
+    type: array
+    items:
+      title: customs_item
+      type: object
+      properties:
+        customs_item_id:
+          allOf:
+            - $ref: 'primitives.yaml#/se_id'
+          description: A string that uniquely identifies the customs item id
+        description:
+          type: string
+        quantity:
+          type: integer
+          format: int32
+        value:
+          type: number
+          format: double
+        harmonized_tariff_code:
+          type: string
+        country_of_origin:
+          type: string
+  non_delivery:
+    allOf:
+      - $ref: 'enums.yaml#/non_delivery'

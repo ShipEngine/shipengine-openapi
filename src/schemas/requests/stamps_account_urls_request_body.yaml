@@ -1,0 +1,8 @@
+title: stamps_account_urls_request_body
+type: object
+properties:
+  url_types:
+    type: array
+    items:
+      allOf:
+        - $ref: '../enums.yaml#/url_type'

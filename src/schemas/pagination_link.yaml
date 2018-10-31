@@ -1,0 +1,19 @@
+title: pagination_link
+type: object
+properties:
+  first:
+    allOf:
+      - $ref: link.yaml
+  last:
+    allOf:
+      - $ref: link.yaml
+  prev:
+    allOf:
+      - $ref: link.yaml
+  next:
+    allOf:
+      - $ref: link.yaml
+  href:
+    type: string
+  type:
+    type: string

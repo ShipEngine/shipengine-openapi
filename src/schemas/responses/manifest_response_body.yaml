@@ -1,0 +1,35 @@
+title: manifest_response_body
+type: object
+properties:
+  manifest_id:
+    allOf:
+      - $ref: '../primitives.yaml#/se_id'
+    description: A string that uniquely identifies the manifest id
+  form_id:
+    allOf:
+      - $ref: '../primitives.yaml#/se_id'
+    description: A string that uniquely identifies the form id
+  created_at:
+    type: string
+    format: date-time
+  ship_date:
+    type: string
+    format: date-time
+  shipments:
+    type: integer
+    format: int32
+  warehouse_id:
+    allOf:
+      - $ref: '../primitives.yaml#/se_id'
+    description: A string that uniquely identifies the warehouse id
+  submission_id:
+    allOf:
+      - $ref: '../primitives.yaml#/se_id'
+    description: A string that uniquely identifies the submission id
+  carrier_id:
+    allOf:
+      - $ref: '../primitives.yaml#/se_id'
+    description: A string that uniquely identifies the carrier id
+  manifest_download:
+    allOf:
+      - $ref: ../link.yaml

@@ -1,0 +1,17 @@
+title: error_response_body
+type: object
+properties:
+  request_id:
+    allOf:
+      - $ref: '../primitives.yaml#/uuid'
+    description: A UUID that uniquely identifies the request id
+  errors:
+    type: array
+    items:
+      title: api_error
+      type: object
+      properties:
+        error_code:
+          type: string
+        message:
+          type: string

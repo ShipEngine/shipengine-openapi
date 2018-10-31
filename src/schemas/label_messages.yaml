@@ -1,0 +1,9 @@
+title: label_messages
+type: object
+properties:
+  reference1:
+    type: string
+  reference2:
+    type: string
+  reference3:
+    type: string

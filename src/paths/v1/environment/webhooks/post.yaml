@@ -1,0 +1,22 @@
+tags:
+  - environment
+operationId: environment.create_webhook
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: ../../../../schemas/requests/create_webhook_request_body.yaml
+responses:
+  '200':
+    description: The request was a success.
+    content:
+      application/json:
+        schema:
+          $ref: ../../../../schemas/responses/webhook_response_body.yaml
+  '400':
+    $ref: ../../../../responses/bad_request.yaml
+  '409':
+    $ref: ../../../../responses/conflict.yaml
+  '500':
+    $ref: ../../../../responses/server_error.yaml

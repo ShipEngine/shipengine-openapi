@@ -1,0 +1,68 @@
+title: shipment
+type: object
+properties:
+  shipment_id:
+    allOf:
+      - $ref: 'primitives.yaml#/se_id'
+    description: A string that uniquely identifies the shipment id
+  carrier_id:
+    allOf:
+      - $ref: 'primitives.yaml#/se_id'
+    description: A string that uniquely identifies the carrier id
+  service_code:
+    type: string
+  external_shipment_id:
+    allOf:
+      - $ref: 'primitives.yaml#/se_id'
+    description: A string that uniquely identifies the external shipment id
+  ship_date:
+    type: string
+    format: date-time
+  created_at:
+    type: string
+    format: date-time
+  modified_at:
+    type: string
+    format: date-time
+  shipment_status:
+    allOf:
+      - $ref: 'enums.yaml#/shipment_status'
+  ship_to:
+    allOf:
+      - $ref: address.yaml
+  ship_from:
+    allOf:
+      - $ref: address.yaml
+  warehouse_id:
+    allOf:
+      - $ref: 'primitives.yaml#/se_id'
+    description: A string that uniquely identifies the warehouse id
+  return_to:
+    allOf:
+      - $ref: address.yaml
+  confirmation:
+    allOf:
+      - $ref: 'enums.yaml#/confirmation'
+  customs:
+    allOf:
+      - $ref: international_options.yaml
+  advanced_options:
+    allOf:
+      - $ref: advanced_options.yaml
+  insurance_provider:
+    allOf:
+      - $ref: 'enums.yaml#/insurance_provider'
+  tags:
+    type: array
+    items:
+      allOf:
+        - $ref: responses/tag_response_body.yaml
+  packages:
+    type: array
+    items:
+      allOf:
+        - $ref: shipment_package.yaml
+  total_weight:
+    readOnly: true
+    allOf:
+      - $ref: weight.yaml

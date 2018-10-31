@@ -1,0 +1,8 @@
+title: warehouse_list_response_body
+type: object
+properties:
+  warehouses:
+    type: array
+    items:
+      allOf:
+        - $ref: ../warehouse.yaml

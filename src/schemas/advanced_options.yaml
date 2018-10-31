@@ -1,0 +1,30 @@
+title: advanced_options
+type: object
+properties:
+  bill_to_account:
+    type: string
+  bill_to_country_code:
+    type: string
+  bill_to_party:
+    allOf:
+      - $ref: 'enums.yaml#/bill_to_party'
+  bill_to_postal_code:
+    type: string
+  contains_alcohol:
+    type: boolean
+  delivered_duty_paid:
+    type: boolean
+  non_machinable:
+    type: boolean
+  saturday_delivery:
+    type: boolean
+  use_ups_ground_freight_pricing:
+    type: boolean
+  freight_class:
+    type: string
+  custom_field1:
+    type: string
+  custom_field2:
+    type: string
+  custom_field3:
+    type: string

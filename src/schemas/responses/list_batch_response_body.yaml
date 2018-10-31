@@ -1,0 +1,20 @@
+title: list_batch_response_body
+type: object
+properties:
+  batches:
+    type: array
+    items:
+      allOf:
+        - $ref: ../batch.yaml
+  total:
+    type: integer
+    format: int64
+  page:
+    type: integer
+    format: int32
+  pages:
+    type: integer
+    format: int32
+  links:
+    allOf:
+      - $ref: ../pagination_link.yaml

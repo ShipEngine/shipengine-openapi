@@ -1,0 +1,431 @@
+carrier_code:
+  title: carrier_code
+  type: string
+  pattern: '^[a-z0-9]+(_[a-z0-9]+)*$'
+  description: |
+    A [shipping carrier](https://docs.shipengine.com/docs/setup-a-carrier), such as `fedex`, `dhl_express`, `stamps_com`, etc.
+label_format:
+  title: label_format
+  type: string
+  enum:
+    - pdf
+    - png
+    - zpl
+  description: |
+    The possible file formats in which shipping labels can be downloaded.  We recommend `pdf` format because it is supported by all carriers, whereas some carriers do not support the `png` or `zpl` formats.
+
+    |Label Format  | Supported Carriers
+    |--------------|-----------------------------------
+    |`pdf`         | All carriers
+    |`png`         | `fedex` <br> `stamps_com` <br> `ups` <br> `usps`
+    |`zpl`         | `access_worldwide` <br> `apc` <br> `asendia` <br> `dhl_global_mail` <br> `dhl_express` <br> `dhl_express_australia` <br> `dhl_express_canada` <br> `dhl_express_worldwide` <br> `dhl_express_uk` <br> `dpd` <br> `endicia` <br> `fedex` <br> `fedex_uk` <br> `firstmile` <br> `globegistics` <br> `imex` <br> `newgistics` <br> `ontrac` <br> `rr_donnelley` <br> `stamps_com` <br> `ups` <br> `usps`
+label_layout:
+  title: label_layout
+  type: string
+  enum:
+    - 4x6
+    - letter
+  description: |
+    The available layouts (sizes) in which shipping labels can be downloaded.  The label format determines which sizes are supported.  `4x6` is supported for all label formats, whereas `letter` (8.5" x 11") is only supported for `pdf` format.
+label_status:
+  title: label_status
+  type: string
+  enum:
+    - processing
+    - completed
+    - error
+    - voided
+  description: |
+    The possible statuses that a [shipping label](https://docs.shipengine.com/docs/quickstart-create-a-label) can be in.
+
+    |Status       |Description
+    |:------------|:-----------------------------------------------------
+    |`processing` |When labels are created in a [batch](https://docs.shipengine.com/docs/using-batches), it may take a few minutes for all of the labels in the batch to be created.  During this period, they will be in `processing` status.
+    |`completed`  |The label was successfully created
+    |`error`      |The label could not be created due to an error, such as an invalid delivery address
+    |`voided`     |The label has been [voided](https://docs.shipengine.com/docs/void-a-label)
+service_code:
+  title: service_code
+  type: string
+  pattern: '^[a-z0-9]+(_[a-z0-9-]+)* ?$'
+  description: |
+    A [carrier service](https://docs.shipengine.com/docs/use-a-specific-service), such as `fedex_ground`, `usps_first_class_mail`, `flat_rate_envelope`, etc.
+tracking_status:
+  title: tracking_status
+  type: string
+  enum:
+    - unknown
+    - in_transit
+    - error
+    - delivered
+  description: The different statuses that can apply to a shipment.
+sort_dir:
+  title: sort_dir
+  type: string
+  enum:
+    - asc
+    - desc
+  description: |
+    Controls the sort order of queries
+
+    |Value     |Description
+    |:---------|:-----------------------------------------------------
+    |`asc`     |Return results in ascending order
+    |`desc`    |Return results in descending order
+address_residential_indicator:
+  title: address_residential_indicator
+  type: string
+  enum:
+    - unknown
+    - 'yes'
+    - 'no'
+  description: The possible address residential indicator values
+address_validation_status:
+  title: address_validation_status
+  type: string
+  enum:
+    - unverified
+    - verified
+    - warning
+    - error
+  description: The possible address validation status values
+amazon_product_identifier:
+  title: amazon_product_identifier
+  type: string
+  enum:
+    - sku
+    - asin
+  description: The possible amazon product identifier values
+batch_status:
+  title: batch_status
+  type: string
+  enum:
+    - open
+    - queued
+    - processing
+    - completed
+    - completed_with_errors
+    - archived
+    - notifying
+    - invalid
+  description: The possible batch status values
+batches_sort_by:
+  title: batches_sort_by
+  type: string
+  enum:
+    - ship_date
+    - processed_at
+  description: The possible batches sort by values
+bill_to_party:
+  title: bill_to_party
+  type: string
+  enum:
+    - recipient
+    - third_party
+  description: The possible bill to party values
+capture_payment:
+  title: capture_payment
+  type: string
+  enum:
+    - when_order_is_shipped
+    - when_order_is_placed
+  description: The possible capture payment values
+channel_advisor_product_identifier:
+  title: channel_advisor_product_identifier
+  type: string
+  enum:
+    - client_order_number
+    - channel_advisor_order_number
+  description: The possible channel advisor product identifier values
+code:
+  title: code
+  type: string
+  enum:
+    - a1000
+    - a1001
+    - a1002
+    - a1003
+    - a1004
+    - a1005
+    - a1006
+    - a1007
+    - a1008
+    - r1000
+    - r1001
+    - r1002
+    - r1003
+  description: The possible code values
+confirmation:
+  title: confirmation
+  type: string
+  enum:
+    - none
+    - delivery
+    - signature
+    - adult_signature
+    - direct_signature
+  description: The possible confirmation values
+contents:
+  title: contents
+  type: string
+  enum:
+    - merchandise
+    - documents
+    - gift
+    - returned_goods
+    - sample
+  description: The possible contents values
+currency:
+  title: currency
+  type: string
+  enum:
+    - usd
+    - cad
+    - aud
+    - gbp
+    - eur
+  description: The possible currency values
+detail_code:
+  title: detail_code
+  type: string
+  enum:
+    - non_supported_country
+    - minimum_postal_code_verification_failed
+    - street_does_not_match_unique_street_name
+    - multiple_directionals
+    - multiple_matches
+    - suite_not_valid
+    - suite_missing
+    - invalid_house_number
+    - missing_house_number
+    - invalid_box_number
+    - missing_box_number
+    - missing_cmra_or_private_mail_box_number
+    - suite_has_no_secondaries
+    - postal_code_changed_or_added
+    - state_province_changed_or_added
+    - city_locality_changed_or_added
+    - urbanization_changed
+    - street_name_spelling_changed_or_added
+    - street_name_type_changed_or_added
+    - street_direction_changed_or_added
+    - suite_type_changed_or_added
+    - suite_unit_number_changed_or_added
+    - double_dependent_locality_changed_or_added
+    - subadministrative_area_changed_or_added
+    - subnational_area_changed_or_added
+    - p_o_box_changed_or_added
+    - premise_type_changed_or_added
+    - house_number_changed
+    - organization_changed_or_added
+    - partially_verified_to_state_level
+    - partially_verified_to_city_level
+    - partially_verified_to_street_level
+    - partially_verified_to_premise_level
+    - verified_to_state_level
+    - verified_to_city_level
+    - verified_to_street_level
+    - verified_to_premise_level
+    - verified_to_suite_level
+    - coded_to_street_lavel
+    - coded_to_neighborhood_level
+    - coded_to_community_level
+    - coded_to_state_level
+    - coded_to_rooftop_level
+    - coded_to_rooftop_interpolation_level
+  description: The possible detail code values
+dimension_unit:
+  title: dimension_unit
+  type: string
+  enum:
+    - inch
+    - centimeter
+  description: The possible dimension unit values
+event:
+  title: event
+  type: string
+  enum:
+    - rate
+    - track
+    - batch
+    - store_refresh_complete
+    - sales_orders_imported
+    - carrier_connected
+  description: The possible event values
+fedex_pickup_type:
+  title: fedex_pickup_type
+  type: string
+  enum:
+    - none
+    - regular_pickup
+    - request_courier
+    - drop_box
+    - business_service_center
+    - station
+  description: The possible fedex pickup type values
+insurance_provider:
+  title: insurance_provider
+  type: string
+  enum:
+    - none
+    - shipsurance
+    - carrier
+  description: The possible insurance provider values
+labels_sort_by:
+  title: labels_sort_by
+  type: string
+  enum:
+    - modified_at
+    - created_at
+  description: The possible labels sort by values
+mail_innovations_endorsement:
+  title: mail_innovations_endorsement
+  type: string
+  enum:
+    - none
+    - return_service_requested
+    - forwarding_service_requested
+    - address_service_requested
+    - change_service_requested
+    - leave_if_no_response
+  description: The possible mail innovations endorsement values
+non_delivery:
+  title: non_delivery
+  type: string
+  enum:
+    - return_to_sender
+    - treat_as_abandoned
+  description: The possible non delivery values
+rate_response_status:
+  title: rate_response_status
+  type: string
+  enum:
+    - working
+    - completed
+    - partial
+    - error
+  description: The possible rate response status values
+rate_type:
+  title: rate_type
+  type: string
+  enum:
+    - check
+    - shipment
+  description: The possible rate type values
+shipment_status:
+  title: shipment_status
+  type: string
+  enum:
+    - pending
+    - processing
+    - label_purchased
+    - cancelled
+  description: The possible shipment status values
+shipments_sort_by:
+  title: shipments_sort_by
+  type: string
+  enum:
+    - modified_at
+    - created_at
+  description: The possible shipments sort by values
+smart_post_endorsement:
+  title: smart_post_endorsement
+  type: string
+  enum:
+    - none
+    - return_service_requested
+    - forwarding_service_requested
+    - address_service_requested
+    - change_service_requested
+    - leave_if_no_response
+  description: The possible smart post endorsement values
+smart_post_hub:
+  title: smart_post_hub
+  type: string
+  enum:
+    - none
+    - allentown_pa
+    - atlanta_ga
+    - baltimore_md
+    - charlotte_nc
+    - chino_ca
+    - dallas_tx
+    - denver_co
+    - detroit_mi
+    - edison_nj
+    - grove_city_oh
+    - groveport_oh
+    - houston_tx
+    - indianapolis_in
+    - kansas_city_ks
+    - los_angeles_ca
+    - martinsburg_wv
+    - memphis_tn
+    - minneapolis_mn
+    - new_berlin_wi
+    - northborough_ma
+    - orlando_fl
+    - phoneix_az
+    - pittsburgh_pa
+    - reno_nv
+    - sacramento_ca
+    - salt_lake_city_ut
+    - seattle_wa
+    - st_louis_mo
+    - windsor_ct
+    - newark_ny
+    - south_brunswick_nj
+    - scranton_pa
+    - wheeling_il
+  description: The possible smart post hub values
+type:
+  title: type
+  type: string
+  enum:
+    - error
+    - warning
+    - info
+  description: The possible type values
+ups_pickup_type:
+  title: ups_pickup_type
+  type: string
+  enum:
+    - daily_pickup
+    - occasional_pickup
+    - customer_counter
+  description: The possible ups pickup type values
+url_type:
+  title: url_type
+  type: string
+  enum:
+    - account_settings
+    - report_balances
+    - manifest_form
+    - payment_methods
+  description: The possible url type values
+validate_address:
+  title: validate_address
+  type: string
+  enum:
+    - no_validation
+    - validate_only
+    - validate_and_clean
+  description: The possible validate address values
+validation_status:
+  title: validation_status
+  type: string
+  enum:
+    - valid
+    - invalid
+    - has_warnings
+    - unknown
+  description: The possible validation status values
+weight_unit:
+  title: weight_unit
+  type: string
+  enum:
+    - pound
+    - ounce
+    - gram
+    - kilogram
+  description: The possible weight unit values

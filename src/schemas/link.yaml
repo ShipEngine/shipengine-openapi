@@ -1,0 +1,7 @@
+title: link
+type: object
+properties:
+  href:
+    type: string
+  type:
+    type: string

@@ -1,0 +1,10 @@
+title: create_shipments_response_body
+type: object
+properties:
+  has_errors:
+    type: boolean
+  shipments:
+    type: array
+    items:
+      allOf:
+        - $ref: ../responses/create_shipment_response_body.yaml

@@ -1,0 +1,23 @@
+tags:
+  - tracking
+operationId: tracking.start_tracking
+parameters:
+  - name: carrier_code
+    in: query
+    required: false
+    schema:
+      type: string
+  - name: tracking_number
+    in: query
+    required: false
+    schema:
+      type: string
+responses:
+  '204':
+    $ref: ../../../../responses/no_content.yaml
+  '400':
+    $ref: ../../../../responses/bad_request.yaml
+  '404':
+    $ref: ../../../../responses/not_found.yaml
+  '500':
+    $ref: ../../../../responses/server_error.yaml

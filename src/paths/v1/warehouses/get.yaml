@@ -1,0 +1,16 @@
+tags:
+  - warehouses
+operationId: warehouses.find
+responses:
+  '200':
+    description: The request was a success.
+    content:
+      application/json:
+        schema:
+          $ref: ../../../schemas/responses/warehouse_list_response_body.yaml
+  '400':
+    $ref: ../../../responses/bad_request.yaml
+  '404':
+    $ref: ../../../responses/not_found.yaml
+  '500':
+    $ref: ../../../responses/server_error.yaml

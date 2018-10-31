@@ -1,0 +1,31 @@
+title: royal_mail_account_information_request_body
+type: object
+properties:
+  account_number:
+    type: string
+  oba_email:
+    allOf:
+      - $ref: '../primitives.yaml#/email'
+    description: The oba email address
+  contact_name:
+    type: string
+  email:
+    allOf:
+      - $ref: '../primitives.yaml#/email'
+    description: The email address
+  company_name:
+    type: string
+  street_line1:
+    type: string
+  street_line2:
+    type: string
+  street_line3:
+    type: string
+  city:
+    type: string
+  postal_code:
+    type: string
+  phone:
+    type: string
+  nickname:
+    type: string

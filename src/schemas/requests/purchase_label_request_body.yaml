@@ -1,0 +1,20 @@
+title: purchase_label_request_body
+type: object
+properties:
+  shipment:
+    allOf:
+      - $ref: ../shipment.yaml
+  is_return_label:
+    type: boolean
+  rma_number:
+    type: string
+  test_label:
+    type: boolean
+  validate_address:
+    allOf:
+      - $ref: '../enums.yaml#/validate_address'
+  label_layout:
+    type: string
+  label_format:
+    allOf:
+      - $ref: '../enums.yaml#/label_format'

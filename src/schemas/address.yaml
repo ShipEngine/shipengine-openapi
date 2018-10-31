@@ -1,0 +1,26 @@
+title: address
+type: object
+properties:
+  name:
+    type: string
+  phone:
+    type: string
+  company_name:
+    type: string
+  address_line1:
+    type: string
+  address_line2:
+    type: string
+  address_line3:
+    type: string
+  city_locality:
+    type: string
+  state_province:
+    type: string
+  postal_code:
+    type: string
+  country_code:
+    type: string
+  address_residential_indicator:
+    allOf:
+      - $ref: 'enums.yaml#/address_residential_indicator'

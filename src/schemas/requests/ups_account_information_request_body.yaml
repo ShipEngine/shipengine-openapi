@@ -1,0 +1,42 @@
+title: ups_account_information_request_body
+type: object
+properties:
+  nickname:
+    type: string
+  account_number:
+    type: string
+  account_country_code:
+    type: string
+  account_postal_code:
+    type: string
+  title:
+    type: string
+  first_name:
+    type: string
+  last_name:
+    type: string
+  company:
+    type: string
+  address1:
+    type: string
+  address2:
+    type: string
+  city:
+    type: string
+  state:
+    type: string
+  postal_code:
+    type: string
+  country_code:
+    type: string
+  email:
+    allOf:
+      - $ref: '../primitives.yaml#/email'
+    description: The email address
+  phone:
+    type: string
+  invoice:
+    allOf:
+      - $ref: ../ups_invoice.yaml
+  agree_to_technology_agreement:
+    type: boolean

@@ -1,0 +1,8 @@
+title: create_shipments_request_body
+type: object
+properties:
+  shipments:
+    type: array
+    items:
+      allOf:
+        - $ref: ../address_validating_shipment.yaml

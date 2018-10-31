@@ -1,0 +1,52 @@
+date:
+  title: date
+  type: string
+  format: date-time
+  pattern: '^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[-+]\d{2}:\d{2}))?$'
+  example: 2018-09-23T00:00:00.000Z
+  description: |
+    An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string that represents a date, but not a specific time.  The value _may_ contain a time component, but it will be set to `00:00:00` UTC by ShipEngine.
+date_time:
+  title: date_time
+  type: string
+  format: date-time
+  pattern: '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[-+]\d{2}:\d{2})$'
+  example: 2018-09-23T15:00:00.000Z
+  description: |
+    An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string that represents a date and time.
+email:
+  title: email
+  type: string
+  format: email
+  minLength: 1
+  example: john.doe@example.com
+  description: An email address.
+se_id:
+  title: se_id
+  type: string
+  minLength: 1
+  maxLength: 25
+  pattern: '^se(-[a-z0-9]+)+$'
+  example: se-28529731
+  description: 'A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.'
+service_code:
+  title: service_code
+  type: string
+  minLength: 1
+  maxLength: 100
+  pattern: '^[a-z0-9]+([_-][a-z0-9]+)*\s*$'
+  example: usps_first_class_mail
+url:
+  title: url
+  type: string
+  format: url
+  minLength: 1
+uuid:
+  title: uuid
+  type: string
+  format: uuid
+  minLength: 36
+  maxLength: 36
+  pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+  example: aa3d8e8e-462b-4476-9618-72db7f7b7009
+  description: A UUID (a.k.a. GUID) that uniquely identifies a resource

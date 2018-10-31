@@ -1,0 +1,16 @@
+tags:
+  - environment
+operationId: environment.webhooks
+responses:
+  '200':
+    description: The request was a success.
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: ../../../../schemas/responses/webhook_response_body.yaml
+  '400':
+    $ref: ../../../../responses/bad_request.yaml
+  '500':
+    $ref: ../../../../responses/server_error.yaml

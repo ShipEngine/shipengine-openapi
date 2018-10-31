@@ -1,0 +1,15 @@
+title: dimensions
+type: object
+properties:
+  unit:
+    allOf:
+      - $ref: 'enums.yaml#/dimension_unit'
+  length:
+    type: number
+    format: double
+  width:
+    type: number
+    format: double
+  height:
+    type: number
+    format: double

@@ -1,0 +1,7 @@
+title: rate_request_body
+type: object
+properties:
+  carrier_ids:
+    type: array
+    items:
+      type: string

@@ -1,0 +1,24 @@
+tags:
+  - address_validation
+operationId: addresses.validate_addresses
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: array
+        items:
+          $ref: ../../../../schemas/address.yaml
+responses:
+  '200':
+    description: The request was a success.
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: ../../../../schemas/address_validation_result.yaml
+  '400':
+    $ref: ../../../../responses/bad_request.yaml
+  '500':
+    $ref: ../../../../responses/server_error.yaml

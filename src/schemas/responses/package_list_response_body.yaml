@@ -1,0 +1,8 @@
+title: package_list_response_body
+type: object
+properties:
+  packages:
+    type: array
+    items:
+      allOf:
+        - $ref: ../package.yaml

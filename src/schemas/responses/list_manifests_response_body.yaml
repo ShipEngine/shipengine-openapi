@@ -1,0 +1,20 @@
+title: list_manifests_response_body
+type: object
+properties:
+  manifests:
+    type: array
+    items:
+      allOf:
+        - $ref: ../responses/manifest_response_body.yaml
+  total:
+    type: integer
+    format: int64
+  page:
+    type: integer
+    format: int32
+  pages:
+    type: integer
+    format: int32
+  links:
+    allOf:
+      - $ref: ../pagination_link.yaml

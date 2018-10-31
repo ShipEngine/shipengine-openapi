@@ -1,0 +1,9 @@
+title: rr_donnelley_account_information_request_body
+type: object
+properties:
+  nickname:
+    type: string
+  username:
+    type: string
+  password:
+    type: string

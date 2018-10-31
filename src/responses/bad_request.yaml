@@ -1,0 +1,5 @@
+description: The request contained errors.
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/responses/error_response_body.yaml

@@ -1,0 +1,41 @@
+title: carrier
+type: object
+properties:
+  carrier_id:
+    allOf:
+      - $ref: 'primitives.yaml#/se_id'
+    description: A string that uniquely identifies the carrier id
+  carrier_code:
+    type: string
+  account_number:
+    type: string
+  requires_funded_amount:
+    type: boolean
+  balance:
+    type: number
+    format: double
+  nickname:
+    type: string
+  friendly_name:
+    type: string
+  primary:
+    type: boolean
+  has_multi_package_supporting_services:
+    type: boolean
+  supports_label_messages:
+    type: boolean
+  services:
+    type: array
+    items:
+      allOf:
+        - $ref: service.yaml
+  packages:
+    type: array
+    items:
+      allOf:
+        - $ref: package.yaml
+  options:
+    type: array
+    items:
+      allOf:
+        - $ref: carrier_advanced_option.yaml

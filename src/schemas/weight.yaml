@@ -1,0 +1,9 @@
+title: weight
+type: object
+properties:
+  value:
+    type: number
+    format: double
+  unit:
+    allOf:
+      - $ref: 'enums.yaml#/weight_unit'

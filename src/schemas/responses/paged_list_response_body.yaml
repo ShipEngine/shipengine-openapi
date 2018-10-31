@@ -1,0 +1,66 @@
+title: paged_list_response_body
+type: object
+required:
+  - total
+  - page
+  - pages
+  - links
+properties:
+  total:
+    type: integer
+    minimum: 0
+    example: 2750
+    description: The total number of items across all pages of results
+  page:
+    type: integer
+    minimum: 1
+    example: 1
+    description: 'The current page number of results.  For example, if there are 80 results, and the page size is 25, then `page` could be 1, 2, 3, or 4.  The first three pages would contain 25 items each, and the fourth page would contain the five remaining items.'
+  pages:
+    type: integer
+    minimum: 0
+    example: 4
+    description: 'The total number of pages of results.  For example, if there are 80 results, and the page size is 25, then `pages` would be 4.  The first three pages would contain 25 items each, and the fourth page would contain the five remaining items.  If there are no results, then `pages` will be zero.'
+  links:
+    description: Helpful links to other pages of results
+    type: object
+    required:
+      - first
+      - last
+      - prev
+      - next
+    properties:
+      first:
+        type: object
+        required:
+          - href
+        properties:
+          href:
+            $ref: '../primitives.yaml#/url'
+        description: |
+          The link to the first page of results.  This object will _always_ have an `href` property. If there are no results, then the first page will contain an empty array of items.
+      last:
+        type: object
+        required:
+          - href
+        properties:
+          href:
+            $ref: '../primitives.yaml#/url'
+        description: |
+          The link to the final page of results.  This object will _always_ have an `href` property. If there are no results, then the final page will contain an empty array of items.
+      prev:
+        type: object
+        properties:
+          href:
+            $ref: '../primitives.yaml#/url'
+        description: |
+          The link to the previous page of results.  The `href` property will only be set when the `page` is 2 or greater.
+      next:
+        type: object
+        properties:
+          href:
+            $ref: '../primitives.yaml#/url'
+        description: |
+          The link to the next page of results.  The `href` property will only be set when the `page` is less than `pages`.
+description: |
+  Many ShipEngine endpoints return a paged list of items.  In addition to the returned items, these responses also include information about the total number of items, the number of pages of results, and URLs of other pages of results.

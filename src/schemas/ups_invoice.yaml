@@ -1,0 +1,15 @@
+title: ups_invoice
+type: object
+properties:
+  invoice_date:
+    type: string
+    format: date-time
+  invoice_number:
+    type: string
+  control_id:
+    allOf:
+      - $ref: 'primitives.yaml#/se_id'
+    description: A string that uniquely identifies the control id
+  invoice_amount:
+    type: number
+    format: double

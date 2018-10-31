@@ -1,0 +1,208 @@
+label_status:
+  $ref: 'enums.yaml#/label_status'
+paged_list_response_body:
+  $ref: responses/paged_list_response_body.yaml
+se_id:
+  $ref: 'primitives.yaml#/se_id'
+service_code:
+  $ref: 'primitives.yaml#/service_code'
+sort_dir:
+  $ref: 'enums.yaml#/sort_dir'
+access_worldwide_account_information_request_body:
+  $ref: requests/access_worldwide_account_information_request_body.yaml
+address:
+  $ref: address.yaml
+address_validating_shipment:
+  $ref: address_validating_shipment.yaml
+address_validation_result:
+  $ref: address_validation_result.yaml
+advanced_options:
+  $ref: advanced_options.yaml
+amazon_account_information_request_body:
+  $ref: requests/amazon_account_information_request_body.yaml
+apc_account_information_request_body:
+  $ref: requests/apc_account_information_request_body.yaml
+asendia_account_information_request_body:
+  $ref: requests/asendia_account_information_request_body.yaml
+balance_response_body:
+  $ref: responses/balance_response_body.yaml
+batch:
+  $ref: batch.yaml
+batch_errors_response_body:
+  $ref: responses/batch_errors_response_body.yaml
+bulk_rate_response_body:
+  $ref: responses/bulk_rate_response_body.yaml
+carrier:
+  $ref: carrier.yaml
+carrier_advanced_option:
+  $ref: carrier_advanced_option.yaml
+carrier_list_options_response_body:
+  $ref: responses/carrier_list_options_response_body.yaml
+carrier_list_response_body:
+  $ref: responses/carrier_list_response_body.yaml
+carrier_list_services_response_body:
+  $ref: responses/carrier_list_services_response_body.yaml
+channel_advisor_account_information_request_body:
+  $ref: requests/channel_advisor_account_information_request_body.yaml
+connect_account_response_body:
+  $ref: responses/connect_account_response_body.yaml
+connect_marketplace_response_body:
+  $ref: responses/connect_marketplace_response_body.yaml
+create_batch_request_body:
+  $ref: requests/create_batch_request_body.yaml
+create_manifest_request_body:
+  $ref: requests/create_manifest_request_body.yaml
+create_shipment_response_body:
+  $ref: responses/create_shipment_response_body.yaml
+create_shipments_request_body:
+  $ref: requests/create_shipments_request_body.yaml
+create_shipments_response_body:
+  $ref: responses/create_shipments_response_body.yaml
+create_webhook_request_body:
+  $ref: requests/create_webhook_request_body.yaml
+default_account_settings_request_body:
+  $ref: requests/default_account_settings_request_body.yaml
+dhl_ecommerce_account_information_request_body:
+  $ref: requests/dhl_ecommerce_account_information_request_body.yaml
+dhl_express_account_information_request_body:
+  $ref: requests/dhl_express_account_information_request_body.yaml
+dhl_express_account_settings:
+  $ref: dhl_express_account_settings.yaml
+dhl_express_uk_account_information_request_body:
+  $ref: requests/dhl_express_uk_account_information_request_body.yaml
+dimensions:
+  $ref: dimensions.yaml
+dpd_account_information_request_body:
+  $ref: requests/dpd_account_information_request_body.yaml
+ebay_access_token_request_body:
+  $ref: requests/ebay_access_token_request_body.yaml
+endicia_account_information_request_body:
+  $ref: requests/endicia_account_information_request_body.yaml
+error_response_body:
+  $ref: responses/error_response_body.yaml
+etsy_access_token_request_body:
+  $ref: requests/etsy_access_token_request_body.yaml
+fedex_account_information_request_body:
+  $ref: requests/fedex_account_information_request_body.yaml
+fedex_account_settings_request_body:
+  $ref: requests/fedex_account_settings_request_body.yaml
+fedex_uk_account_information_request_body:
+  $ref: requests/fedex_uk_account_information_request_body.yaml
+first_mile_account_information_request_body:
+  $ref: requests/first_mile_account_information_request_body.yaml
+globegistics_account_information_request_body:
+  $ref: requests/globegistics_account_information_request_body.yaml
+imex_account_information_request_body:
+  $ref: requests/imex_account_information_request_body.yaml
+international_options:
+  $ref: international_options.yaml
+label:
+  $ref: label.yaml
+label_messages:
+  $ref: label_messages.yaml
+link:
+  $ref: link.yaml
+list_batch_response_body:
+  $ref: responses/list_batch_response_body.yaml
+list_label_response_body:
+  $ref: responses/list_label_response_body.yaml
+list_manifests_request_body:
+  $ref: requests/list_manifests_request_body.yaml
+list_manifests_response_body:
+  $ref: responses/list_manifests_response_body.yaml
+list_shipment_response_body:
+  $ref: responses/list_shipment_response_body.yaml
+list_tag_response_body:
+  $ref: responses/list_tag_response_body.yaml
+magento_account_information_request_body:
+  $ref: requests/magento_account_information_request_body.yaml
+magento_account_settings_request_body:
+  $ref: requests/magento_account_settings_request_body.yaml
+manifest_response_body:
+  $ref: responses/manifest_response_body.yaml
+modify_batch_request_body:
+  $ref: requests/modify_batch_request_body.yaml
+money:
+  $ref: money.yaml
+newgistics_account_information_request_body:
+  $ref: requests/newgistics_account_information_request_body.yaml
+newgistics_account_settings_request_body:
+  $ref: requests/newgistics_account_settings_request_body.yaml
+ontrac_account_information_request_body:
+  $ref: requests/ontrac_account_information_request_body.yaml
+package:
+  $ref: package.yaml
+package_list_response_body:
+  $ref: responses/package_list_response_body.yaml
+pagination_link:
+  $ref: pagination_link.yaml
+process_batch_request_body:
+  $ref: requests/process_batch_request_body.yaml
+provider_error:
+  $ref: provider_error.yaml
+purchase_label_request_body:
+  $ref: requests/purchase_label_request_body.yaml
+purchase_label_without_shipment_request_body:
+  $ref: requests/purchase_label_without_shipment_request_body.yaml
+rate:
+  $ref: rate.yaml
+rate_estimate_request_body:
+  $ref: requests/rate_estimate_request_body.yaml
+rate_request_body:
+  $ref: requests/rate_request_body.yaml
+rate_response_body:
+  $ref: responses/rate_response_body.yaml
+rate_shipment_request_body:
+  $ref: requests/rate_shipment_request_body.yaml
+rate_shipment_response_body:
+  $ref: responses/rate_shipment_response_body.yaml
+rate_shipments_request_body:
+  $ref: requests/rate_shipments_request_body.yaml
+royal_mail_account_information_request_body:
+  $ref: requests/royal_mail_account_information_request_body.yaml
+rr_donnelley_account_information_request_body:
+  $ref: requests/rr_donnelley_account_information_request_body.yaml
+service:
+  $ref: service.yaml
+shipment:
+  $ref: shipment.yaml
+shipment_add_tag_response_body:
+  $ref: responses/shipment_add_tag_response_body.yaml
+shipment_errors_response_body:
+  $ref: responses/shipment_errors_response_body.yaml
+shipment_package:
+  $ref: shipment_package.yaml
+shopify_access_token_request_body:
+  $ref: requests/shopify_access_token_request_body.yaml
+stamps_account_information_request_body:
+  $ref: requests/stamps_account_information_request_body.yaml
+stamps_account_url_response_body:
+  $ref: responses/stamps_account_url_response_body.yaml
+stamps_account_urls_request_body:
+  $ref: requests/stamps_account_urls_request_body.yaml
+stamps_account_urls_response_body:
+  $ref: responses/stamps_account_urls_response_body.yaml
+tag_response_body:
+  $ref: responses/tag_response_body.yaml
+tracking_information_response_body:
+  $ref: responses/tracking_information_response_body.yaml
+update_webhook_request_body:
+  $ref: requests/update_webhook_request_body.yaml
+ups_account_information_request_body:
+  $ref: requests/ups_account_information_request_body.yaml
+ups_account_settings:
+  $ref: ups_account_settings.yaml
+ups_invoice:
+  $ref: ups_invoice.yaml
+void_label_response_body:
+  $ref: responses/void_label_response_body.yaml
+warehouse:
+  $ref: warehouse.yaml
+warehouse_list_response_body:
+  $ref: responses/warehouse_list_response_body.yaml
+warehouse_request_body:
+  $ref: requests/warehouse_request_body.yaml
+webhook_response_body:
+  $ref: responses/webhook_response_body.yaml
+weight:
+  $ref: weight.yaml

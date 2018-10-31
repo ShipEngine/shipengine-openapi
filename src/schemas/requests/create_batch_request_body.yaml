@@ -1,0 +1,17 @@
+title: create_batch_request_body
+type: object
+properties:
+  external_batch_id:
+    allOf:
+      - $ref: '../primitives.yaml#/se_id'
+    description: A string that uniquely identifies the external batch id
+  batch_notes:
+    type: string
+  shipment_ids:
+    type: array
+    items:
+      type: string
+  rate_ids:
+    type: array
+    items:
+      type: string

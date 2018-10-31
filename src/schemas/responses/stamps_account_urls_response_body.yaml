@@ -1,0 +1,8 @@
+title: stamps_account_urls_response_body
+type: object
+properties:
+  urls:
+    type: array
+    items:
+      allOf:
+        - $ref: ../responses/stamps_account_url_response_body.yaml

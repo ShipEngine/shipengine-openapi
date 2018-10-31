@@ -1,0 +1,8 @@
+title: carrier_list_options_response_body
+type: object
+properties:
+  options:
+    type: array
+    items:
+      allOf:
+        - $ref: ../carrier_advanced_option.yaml

@@ -1,0 +1,22 @@
+tags:
+  - shipments
+operationId: shipments.get_by_external_id
+parameters:
+  - name: external_shipment_id
+    in: path
+    required: true
+    schema:
+      $ref: '../../../../../schemas/primitives.yaml#/se_id'
+responses:
+  '200':
+    description: The request was a success.
+    content:
+      application/json:
+        schema:
+          $ref: ../../../../../schemas/shipment.yaml
+  '400':
+    $ref: ../../../../../responses/bad_request.yaml
+  '404':
+    $ref: ../../../../../responses/not_found.yaml
+  '500':
+    $ref: ../../../../../responses/server_error.yaml

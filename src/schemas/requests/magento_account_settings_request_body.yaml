@@ -1,0 +1,32 @@
+title: magento_account_settings_request_body
+type: object
+properties:
+  automatically_import_sales_orders:
+    type: boolean
+  unpaid_status:
+    type: array
+    items:
+      type: string
+  paid_status:
+    type: array
+    items:
+      type: string
+  shipped_status:
+    type: array
+    items:
+      type: string
+  cancelled_status:
+    type: array
+    items:
+      type: string
+  hold_status:
+    type: array
+    items:
+      type: string
+  warehouse_location:
+    type: array
+    items:
+      type: string
+  capture_payment:
+    allOf:
+      - $ref: '../enums.yaml#/capture_payment'

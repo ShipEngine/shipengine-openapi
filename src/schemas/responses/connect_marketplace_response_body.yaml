@@ -1,0 +1,7 @@
+title: connect_marketplace_response_body
+type: object
+properties:
+  store_id:
+    allOf:
+      - $ref: '../primitives.yaml#/uuid'
+    description: A UUID that uniquely identifies the store id

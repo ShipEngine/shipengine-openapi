@@ -1,0 +1,20 @@
+title: list_label_response_body
+type: object
+properties:
+  labels:
+    type: array
+    items:
+      allOf:
+        - $ref: ../label.yaml
+  total:
+    type: integer
+    format: int64
+  page:
+    type: integer
+    format: int32
+  pages:
+    type: integer
+    format: int32
+  links:
+    allOf:
+      - $ref: ../pagination_link.yaml

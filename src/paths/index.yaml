@@ -1,0 +1,240 @@
+/v1/labels:
+  $ref: v1/labels/path.yaml
+/v-beta/connections/marketplaces/amazon:
+  $ref: v-beta/connections/marketplaces/amazon/path.yaml
+'/v-beta/connections/marketplaces/amazon/{store_id}/deactivate':
+  $ref: 'v-beta/connections/marketplaces/amazon/{store_id}/deactivate/path.yaml'
+'/v-beta/connections/marketplaces/amazon/{store_id}/reactivate':
+  $ref: 'v-beta/connections/marketplaces/amazon/{store_id}/reactivate/path.yaml'
+'/v-beta/connections/marketplaces/amazon/{store_id}/settings':
+  $ref: 'v-beta/connections/marketplaces/amazon/{store_id}/settings/path.yaml'
+'/v-beta/connections/marketplaces/amazon/{store_id}/test':
+  $ref: 'v-beta/connections/marketplaces/amazon/{store_id}/test/path.yaml'
+/v-beta/connections/marketplaces/channeladvisor:
+  $ref: v-beta/connections/marketplaces/channeladvisor/path.yaml
+'/v-beta/connections/marketplaces/channeladvisor/{store_id}/deactivate':
+  $ref: 'v-beta/connections/marketplaces/channeladvisor/{store_id}/deactivate/path.yaml'
+'/v-beta/connections/marketplaces/channeladvisor/{store_id}/reactivate':
+  $ref: 'v-beta/connections/marketplaces/channeladvisor/{store_id}/reactivate/path.yaml'
+'/v-beta/connections/marketplaces/channeladvisor/{store_id}/settings':
+  $ref: 'v-beta/connections/marketplaces/channeladvisor/{store_id}/settings/path.yaml'
+'/v-beta/connections/marketplaces/channeladvisor/{store_id}/test':
+  $ref: 'v-beta/connections/marketplaces/channeladvisor/{store_id}/test/path.yaml'
+/v-beta/connections/marketplaces/ebay/access_token:
+  $ref: v-beta/connections/marketplaces/ebay/access_token/path.yaml
+'/v-beta/connections/marketplaces/ebay/{store_id}/deactivate':
+  $ref: 'v-beta/connections/marketplaces/ebay/{store_id}/deactivate/path.yaml'
+'/v-beta/connections/marketplaces/ebay/{store_id}/reactivate':
+  $ref: 'v-beta/connections/marketplaces/ebay/{store_id}/reactivate/path.yaml'
+'/v-beta/connections/marketplaces/ebay/{store_id}/settings':
+  $ref: 'v-beta/connections/marketplaces/ebay/{store_id}/settings/path.yaml'
+'/v-beta/connections/marketplaces/ebay/{store_id}/test':
+  $ref: 'v-beta/connections/marketplaces/ebay/{store_id}/test/path.yaml'
+/v-beta/connections/marketplaces/etsy/access_token:
+  $ref: v-beta/connections/marketplaces/etsy/access_token/path.yaml
+'/v-beta/connections/marketplaces/etsy/{store_id}/deactivate':
+  $ref: 'v-beta/connections/marketplaces/etsy/{store_id}/deactivate/path.yaml'
+'/v-beta/connections/marketplaces/etsy/{store_id}/reactivate':
+  $ref: 'v-beta/connections/marketplaces/etsy/{store_id}/reactivate/path.yaml'
+'/v-beta/connections/marketplaces/etsy/{store_id}/settings':
+  $ref: 'v-beta/connections/marketplaces/etsy/{store_id}/settings/path.yaml'
+'/v-beta/connections/marketplaces/etsy/{store_id}/test':
+  $ref: 'v-beta/connections/marketplaces/etsy/{store_id}/test/path.yaml'
+/v-beta/connections/marketplaces/magento:
+  $ref: v-beta/connections/marketplaces/magento/path.yaml
+'/v-beta/connections/marketplaces/magento/{store_id}/deactivate':
+  $ref: 'v-beta/connections/marketplaces/magento/{store_id}/deactivate/path.yaml'
+'/v-beta/connections/marketplaces/magento/{store_id}/reactivate':
+  $ref: 'v-beta/connections/marketplaces/magento/{store_id}/reactivate/path.yaml'
+'/v-beta/connections/marketplaces/magento/{store_id}/settings':
+  $ref: 'v-beta/connections/marketplaces/magento/{store_id}/settings/path.yaml'
+'/v-beta/connections/marketplaces/magento/{store_id}/test':
+  $ref: 'v-beta/connections/marketplaces/magento/{store_id}/test/path.yaml'
+/v-beta/connections/marketplaces/shopify/access_token:
+  $ref: v-beta/connections/marketplaces/shopify/access_token/path.yaml
+'/v-beta/connections/marketplaces/shopify/{store_id}/deactivate':
+  $ref: 'v-beta/connections/marketplaces/shopify/{store_id}/deactivate/path.yaml'
+'/v-beta/connections/marketplaces/shopify/{store_id}/reactivate':
+  $ref: 'v-beta/connections/marketplaces/shopify/{store_id}/reactivate/path.yaml'
+'/v-beta/connections/marketplaces/shopify/{store_id}/settings':
+  $ref: 'v-beta/connections/marketplaces/shopify/{store_id}/settings/path.yaml'
+'/v-beta/connections/marketplaces/shopify/{store_id}/test':
+  $ref: 'v-beta/connections/marketplaces/shopify/{store_id}/test/path.yaml'
+/v1/addresses/validate:
+  $ref: v1/addresses/validate/path.yaml
+/v1/batches:
+  $ref: v1/batches/path.yaml
+'/v1/batches/external_batch_id/{external_batch_id}':
+  $ref: 'v1/batches/external_batch_id/{external_batch_id}/path.yaml'
+'/v1/batches/{batch_id}':
+  $ref: 'v1/batches/{batch_id}/path.yaml'
+'/v1/batches/{batch_id}/add':
+  $ref: 'v1/batches/{batch_id}/add/path.yaml'
+'/v1/batches/{batch_id}/errors':
+  $ref: 'v1/batches/{batch_id}/errors/path.yaml'
+'/v1/batches/{batch_id}/process/labels':
+  $ref: 'v1/batches/{batch_id}/process/labels/path.yaml'
+'/v1/batches/{batch_id}/remove':
+  $ref: 'v1/batches/{batch_id}/remove/path.yaml'
+/v1/carriers:
+  $ref: v1/carriers/path.yaml
+'/v1/carriers/{carrier_id}':
+  $ref: 'v1/carriers/{carrier_id}/path.yaml'
+'/v1/carriers/{carrier_id}/add_funds':
+  $ref: 'v1/carriers/{carrier_id}/add_funds/path.yaml'
+'/v1/carriers/{carrier_id}/options':
+  $ref: 'v1/carriers/{carrier_id}/options/path.yaml'
+'/v1/carriers/{carrier_id}/packages':
+  $ref: 'v1/carriers/{carrier_id}/packages/path.yaml'
+'/v1/carriers/{carrier_id}/services':
+  $ref: 'v1/carriers/{carrier_id}/services/path.yaml'
+/v1/connections/carriers/access_worldwide:
+  $ref: v1/connections/carriers/access_worldwide/path.yaml
+'/v1/connections/carriers/access_worldwide/{carrier_id}':
+  $ref: 'v1/connections/carriers/access_worldwide/{carrier_id}/path.yaml'
+/v1/connections/carriers/apc:
+  $ref: v1/connections/carriers/apc/path.yaml
+'/v1/connections/carriers/apc/{carrier_id}':
+  $ref: 'v1/connections/carriers/apc/{carrier_id}/path.yaml'
+/v1/connections/carriers/asendia:
+  $ref: v1/connections/carriers/asendia/path.yaml
+'/v1/connections/carriers/asendia/{carrier_id}':
+  $ref: 'v1/connections/carriers/asendia/{carrier_id}/path.yaml'
+/v1/connections/carriers/dhl_ecommerce:
+  $ref: v1/connections/carriers/dhl_ecommerce/path.yaml
+'/v1/connections/carriers/dhl_ecommerce/{carrier_id}':
+  $ref: 'v1/connections/carriers/dhl_ecommerce/{carrier_id}/path.yaml'
+/v1/connections/carriers/dhl_express:
+  $ref: v1/connections/carriers/dhl_express/path.yaml
+'/v1/connections/carriers/dhl_express/{carrier_id}':
+  $ref: 'v1/connections/carriers/dhl_express/{carrier_id}/path.yaml'
+'/v1/connections/carriers/dhl_express/{carrier_id}/settings':
+  $ref: 'v1/connections/carriers/dhl_express/{carrier_id}/settings/path.yaml'
+/v1/connections/carriers/dhl_express_uk:
+  $ref: v1/connections/carriers/dhl_express_uk/path.yaml
+'/v1/connections/carriers/dhl_express_uk/{carrier_id}':
+  $ref: 'v1/connections/carriers/dhl_express_uk/{carrier_id}/path.yaml'
+/v1/connections/carriers/dpd:
+  $ref: v1/connections/carriers/dpd/path.yaml
+'/v1/connections/carriers/dpd/{carrier_id}':
+  $ref: 'v1/connections/carriers/dpd/{carrier_id}/path.yaml'
+/v1/connections/carriers/endicia:
+  $ref: v1/connections/carriers/endicia/path.yaml
+'/v1/connections/carriers/endicia/{carrier_id}':
+  $ref: 'v1/connections/carriers/endicia/{carrier_id}/path.yaml'
+/v1/connections/carriers/fedex:
+  $ref: v1/connections/carriers/fedex/path.yaml
+'/v1/connections/carriers/fedex/{carrier_id}':
+  $ref: 'v1/connections/carriers/fedex/{carrier_id}/path.yaml'
+'/v1/connections/carriers/fedex/{carrier_id}/settings':
+  $ref: 'v1/connections/carriers/fedex/{carrier_id}/settings/path.yaml'
+/v1/connections/carriers/fedex_uk:
+  $ref: v1/connections/carriers/fedex_uk/path.yaml
+'/v1/connections/carriers/fedex_uk/{carrier_id}':
+  $ref: 'v1/connections/carriers/fedex_uk/{carrier_id}/path.yaml'
+/v1/connections/carriers/firstmile:
+  $ref: v1/connections/carriers/firstmile/path.yaml
+'/v1/connections/carriers/firstmile/{carrier_id}':
+  $ref: 'v1/connections/carriers/firstmile/{carrier_id}/path.yaml'
+/v1/connections/carriers/globegistics:
+  $ref: v1/connections/carriers/globegistics/path.yaml
+'/v1/connections/carriers/globegistics/{carrier_id}':
+  $ref: 'v1/connections/carriers/globegistics/{carrier_id}/path.yaml'
+/v1/connections/carriers/imex:
+  $ref: v1/connections/carriers/imex/path.yaml
+'/v1/connections/carriers/imex/{carrier_id}':
+  $ref: 'v1/connections/carriers/imex/{carrier_id}/path.yaml'
+/v1/connections/carriers/newgistics:
+  $ref: v1/connections/carriers/newgistics/path.yaml
+'/v1/connections/carriers/newgistics/{carrier_id}':
+  $ref: 'v1/connections/carriers/newgistics/{carrier_id}/path.yaml'
+'/v1/connections/carriers/newgistics/{carrier_id}/settings':
+  $ref: 'v1/connections/carriers/newgistics/{carrier_id}/settings/path.yaml'
+/v1/connections/carriers/ontrac:
+  $ref: v1/connections/carriers/ontrac/path.yaml
+'/v1/connections/carriers/ontrac/{carrier_id}':
+  $ref: 'v1/connections/carriers/ontrac/{carrier_id}/path.yaml'
+/v1/connections/carriers/royal_mail:
+  $ref: v1/connections/carriers/royal_mail/path.yaml
+'/v1/connections/carriers/royal_mail/{carrier_id}':
+  $ref: 'v1/connections/carriers/royal_mail/{carrier_id}/path.yaml'
+/v1/connections/carriers/rr_donnelley:
+  $ref: v1/connections/carriers/rr_donnelley/path.yaml
+'/v1/connections/carriers/rr_donnelley/{carrier_id}':
+  $ref: 'v1/connections/carriers/rr_donnelley/{carrier_id}/path.yaml'
+/v1/connections/carriers/stamps_com:
+  $ref: v1/connections/carriers/stamps_com/path.yaml
+'/v1/connections/carriers/stamps_com/{carrier_id}':
+  $ref: 'v1/connections/carriers/stamps_com/{carrier_id}/path.yaml'
+'/v1/connections/carriers/stamps_com/{carrier_id}/request_account_url':
+  $ref: 'v1/connections/carriers/stamps_com/{carrier_id}/request_account_url/path.yaml'
+/v1/connections/carriers/ups:
+  $ref: v1/connections/carriers/ups/path.yaml
+'/v1/connections/carriers/ups/{carrier_id}':
+  $ref: 'v1/connections/carriers/ups/{carrier_id}/path.yaml'
+'/v1/connections/carriers/ups/{carrier_id}/settings':
+  $ref: 'v1/connections/carriers/ups/{carrier_id}/settings/path.yaml'
+/v1/environment/webhooks:
+  $ref: v1/environment/webhooks/path.yaml
+'/v1/environment/webhooks/{webhook_id}':
+  $ref: 'v1/environment/webhooks/{webhook_id}/path.yaml'
+/v1/insurance/shipsurance/add_funds:
+  $ref: v1/insurance/shipsurance/add_funds/path.yaml
+/v1/insurance/shipsurance/balance:
+  $ref: v1/insurance/shipsurance/balance/path.yaml
+'/v1/labels/rates/{rate_id}':
+  $ref: 'v1/labels/rates/{rate_id}/path.yaml'
+'/v1/labels/shipment/{shipment_id}':
+  $ref: 'v1/labels/shipment/{shipment_id}/path.yaml'
+'/v1/labels/{label_id}':
+  $ref: 'v1/labels/{label_id}/path.yaml'
+'/v1/labels/{label_id}/track':
+  $ref: 'v1/labels/{label_id}/track/path.yaml'
+'/v1/labels/{label_id}/void':
+  $ref: 'v1/labels/{label_id}/void/path.yaml'
+/v1/manifests:
+  $ref: v1/manifests/path.yaml
+'/v1/manifests/{manifest_id}':
+  $ref: 'v1/manifests/{manifest_id}/path.yaml'
+/v1/packages:
+  $ref: v1/packages/path.yaml
+'/v1/packages/{package_id}':
+  $ref: 'v1/packages/{package_id}/path.yaml'
+/v1/rates:
+  $ref: v1/rates/path.yaml
+/v1/rates/bulk:
+  $ref: v1/rates/bulk/path.yaml
+/v1/rates/estimate:
+  $ref: v1/rates/estimate/path.yaml
+'/v1/rates/{rate_id}':
+  $ref: 'v1/rates/{rate_id}/path.yaml'
+/v1/shipments:
+  $ref: v1/shipments/path.yaml
+'/v1/shipments/external_shipment_id/{external_shipment_id}':
+  $ref: 'v1/shipments/external_shipment_id/{external_shipment_id}/path.yaml'
+'/v1/shipments/{shipment_id}':
+  $ref: 'v1/shipments/{shipment_id}/path.yaml'
+'/v1/shipments/{shipment_id}/cancel':
+  $ref: 'v1/shipments/{shipment_id}/cancel/path.yaml'
+'/v1/shipments/{shipment_id}/errors':
+  $ref: 'v1/shipments/{shipment_id}/errors/path.yaml'
+'/v1/shipments/{shipment_id}/rates':
+  $ref: 'v1/shipments/{shipment_id}/rates/path.yaml'
+'/v1/shipments/{shipment_id}/tags/{tag}':
+  $ref: 'v1/shipments/{shipment_id}/tags/{tag}/path.yaml'
+/v1/tags:
+  $ref: v1/tags/path.yaml
+'/v1/tags/{tag_name}':
+  $ref: 'v1/tags/{tag_name}/path.yaml'
+'/v1/tags/{tag_name}/{new_name}':
+  $ref: 'v1/tags/{tag_name}/{new_name}/path.yaml'
+/v1/tracking:
+  $ref: v1/tracking/path.yaml
+/v1/tracking/start:
+  $ref: v1/tracking/start/path.yaml
+/v1/tracking/stop:
+  $ref: v1/tracking/stop/path.yaml
+/v1/warehouses:
+  $ref: v1/warehouses/path.yaml
+'/v1/warehouses/{warehouse_id}':
+  $ref: 'v1/warehouses/{warehouse_id}/path.yaml'

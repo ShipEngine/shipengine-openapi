@@ -1,0 +1,13 @@
+title: dhl_ecommerce_account_information_request_body
+type: object
+properties:
+  nickname:
+    type: string
+  account_number:
+    type: string
+  pickup_number:
+    type: string
+  ftp_username:
+    type: string
+  ftp_password:
+    type: string

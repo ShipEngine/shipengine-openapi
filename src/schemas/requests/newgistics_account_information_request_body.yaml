@@ -1,0 +1,13 @@
+title: newgistics_account_information_request_body
+type: object
+properties:
+  merchant_id:
+    type: integer
+    format: int32
+  mailer_id:
+    type: integer
+    format: int32
+  induction_site:
+    type: string
+  nickname:
+    type: string

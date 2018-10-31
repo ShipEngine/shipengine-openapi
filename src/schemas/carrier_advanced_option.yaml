@@ -1,0 +1,9 @@
+title: carrier_advanced_option
+type: object
+properties:
+  name:
+    type: string
+  default_value:
+    type: string
+  description:
+    type: string

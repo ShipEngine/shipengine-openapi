@@ -1,0 +1,8 @@
+title: list_tag_response_body
+type: object
+properties:
+  tags:
+    type: array
+    items:
+      allOf:
+        - $ref: ../responses/tag_response_body.yaml

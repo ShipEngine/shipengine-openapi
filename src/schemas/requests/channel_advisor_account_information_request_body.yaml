@@ -1,0 +1,11 @@
+title: channel_advisor_account_information_request_body
+type: object
+properties:
+  store_name:
+    type: string
+  profile_id:
+    type: integer
+    format: int32
+  product_identifier:
+    allOf:
+      - $ref: '../enums.yaml#/channel_advisor_product_identifier'

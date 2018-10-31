@@ -1,0 +1,14 @@
+tags:
+  - insurance
+operationId: insurance.get_balance
+responses:
+  '200':
+    description: The request was a success.
+    content:
+      application/json:
+        schema:
+          $ref: ../../../../../schemas/money.yaml
+  '400':
+    $ref: ../../../../../responses/bad_request.yaml
+  '500':
+    $ref: ../../../../../responses/server_error.yaml

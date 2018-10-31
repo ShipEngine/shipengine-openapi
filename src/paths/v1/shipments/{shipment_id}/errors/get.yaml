@@ -1,0 +1,34 @@
+tags:
+  - shipments
+operationId: shipments.find_errors
+parameters:
+  - name: shipment_id
+    in: path
+    required: true
+    schema:
+      $ref: '../../../../../schemas/primitives.yaml#/se_id'
+  - name: page
+    in: query
+    required: false
+    schema:
+      type: integer
+      format: int32
+  - name: pagesize
+    in: query
+    required: false
+    schema:
+      type: integer
+      format: int32
+responses:
+  '200':
+    description: The request was a success.
+    content:
+      application/json:
+        schema:
+          $ref: ../../../../../schemas/responses/shipment_errors_response_body.yaml
+  '400':
+    $ref: ../../../../../responses/bad_request.yaml
+  '404':
+    $ref: ../../../../../responses/not_found.yaml
+  '500':
+    $ref: ../../../../../responses/server_error.yaml

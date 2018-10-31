@@ -1,0 +1,17 @@
+title: shipment_package
+type: object
+properties:
+  package_code:
+    type: string
+  weight:
+    allOf:
+      - $ref: weight.yaml
+  dimensions:
+    allOf:
+      - $ref: dimensions.yaml
+  insured_value:
+    allOf:
+      - $ref: money.yaml
+  label_messages:
+    allOf:
+      - $ref: label_messages.yaml
