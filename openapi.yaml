@@ -1,0 +1,5927 @@
+openapi: 3.0.0
+info:
+  title: ShipEngine API
+  version: 1.0.0
+  termsOfService: 'https://www.shipengine.com/terms-of-service'
+  contact:
+    name: ShipEngine Sales & Support
+    email: sales@shipengine.com
+    url: 'https://www.shipengine.com/contact-us'
+  description: |
+    ShipEngine™ is the world's best multi-carrier shipping API, with more than 20 supported shipping carriers.  You can easily get and compare shipping rates, print labels, track your shipments, and validate addresses anywhere in the world.
+
+    ### Worldwide Major Carrier Support
+    Access the top global carriers in minutes—instead of weeks. Simply [connect your existing carrier accounts](https://docs.shipengine.com/docs/setup-a-carrier) in the API dashboard, and then [begin creating labels](https://docs.shipengine.com/docs/use-a-specific-service).
+
+    ### Real-Time Tracking
+    [Track packages](https://docs.shipengine.com/docs/track-a-package) across any of our 20+ supported carrier accounts and create tracking events to keep your customers up-to-date. Easily integrate real-time tracking information for shipments into your app, email, or SMS.
+
+    ### Get Rates Across Carriers
+    Make sure you ship as cost-effectively as possible by [quickly comparing rates](https://docs.shipengine.com/docs/get-shipping-rates) using the ShipEngine Rates API. As long as you have the carrier connected to your account, you'll be able to see and compare different rates and services.
+
+    ### Global Address Validation
+    No matter your shipping volume, failed deliveries and address change surcharges cut into your bottom line and damage perception with customers. Our address validation services ensure your packages make it to the right place the first time. [Learn how to leverage our address validation services here.](https://docs.shipengine.com/docs/address-validation)
+
+    ShipEngine supports address validation for over 180 countries, including the United States, Canada, Great Britain, Australia, Germany, France, Norway, Spain, Sweden, Israel, Italy, and more.
+tags:
+  - name: address_validation
+    description: |
+      No matter your shipping volume, failed deliveries and address change surcharges cut into your bottom line and damage perception with customers. Our address validation services ensure your packages make it to the right place the first time. [Learn how to leverage our address validation services here.](https://docs.shipengine.com/docs/address-validation)
+
+      ShipEngine supports address validation for virtually every country on Earth, including the United States, Canada, Great Britain, Australia, Germany, France, Norway, Spain, Sweden, Israel, Italy, and over 160 others.
+    externalDocs:
+      url: 'https://docs.shipengine.com/docs/address-validation'
+      description: |
+        Address validation ensures accurate addresses and can lead to reduced shipping costs by preventing address correction surcharges. ShipEngine cross references multiple databases to validate addresses and identify potential deliverability issues.
+  - name: labels
+    description: |
+      Print shipping labels for any of the top global carriers in minutes—instead of weeks. Simply [connect your existing carrier accounts](https://docs.shipengine.com/docs/setup-a-carrier) in the API dashboard, and then [begin creating labels](https://docs.shipengine.com/docs/use-a-specific-service).
+    externalDocs:
+      url: 'https://docs.shipengine.com/docs/quickstart-create-a-label'
+      description: Follow this quick start guide to create your first shipping label with ShipEngine
+  - name: rates
+    description: |
+      Make sure you ship as cost-effectively as possible by [quickly comparing rates](https://docs.shipengine.com/docs/get-shipping-rates) using the ShipEngine Rates API. As long as you have the carrier connected to your account, you'll be able to see and compare different rates and services.
+    externalDocs:
+      url: 'https://docs.shipengine.com/docs/get-shipping-rates'
+      description: |
+        This quick start guide shows you how to get shipping rates for multiple carriers so you can choose the fastest, cheapest, or most reliable option.
+  - name: tracking
+    description: |
+      [Track packages](https://docs.shipengine.com/docs/track-a-package) across any of our 20+ supported carrier accounts and create tracking events to keep your customers up-to-date. Easily integrate real-time tracking information for shipments into your app, email, or SMS.
+    externalDocs:
+      url: 'https://docs.shipengine.com/docs/track-a-package'
+      description: Learn how to use ShipEngine to track any package with a carrier and a tracking number
+  - name: batches
+    description: |
+      batches
+  - name: carrier_accounts
+    description: |
+      carrier_accounts
+  - name: carriers
+    description: |
+      carriers
+  - name: environment
+    description: |
+      environment
+  - name: insurance
+    description: |
+      insurance
+  - name: manifests
+    description: |
+      manifests
+  - name: marketplace_accounts
+    description: |
+      marketplace_accounts
+  - name: packages
+    description: |
+      packages
+  - name: shipments
+    description: |
+      shipments
+  - name: tags
+    description: |
+      tags
+  - name: warehouses
+    description: |
+      warehouses
+externalDocs:
+  url: 'https://docs.shipengine.com'
+  description: |
+    ShipEngine's documentation is designed to help you start shipping as quickly as possible. With easy-to-follow quick start guides, detailed reference docs, and ready-made recipes for common use cases, you'll see real results in no time at all.
+servers:
+  - url: 'https://api.shipengine.com'
+security:
+  - api_key: []
+paths:
+  /v1/labels:
+    summary: Print shipping labels for any of the top global carriers in minutes—instead of weeks.
+    description: |
+      Print shipping labels for any of the top global carriers in minutes—instead of weeks. Simply [connect your existing carrier accounts](https://docs.shipengine.com/docs/setup-a-carrier) in the API dashboard, and then [begin creating labels](https://docs.shipengine.com/docs/use-a-specific-service).
+    get:
+      summary: Search for shipping labels you've created
+      description: |
+        This endpoint returns a list of labels that you've [created](https://docs.shipengine.com/docs/quickstart-create-a-label). You can optionally filter the results as well as control their sort order and the number of results returned at a time.
+
+        By default, all labels are returned, 25 at a time, starting with the most recently created ones.  You can combine multiple filter options to narrow-down the results.  For example, if you only want to get your UPS labels for your east coast warehouse you could query by both `warehouse_id` and `carrier_id`
+
+        > ###### Warning
+        > Test labels (those created with `test_label: true`) are not included in the results.  If you've only ever created test labels, then the results will be empty.
+      tags:
+        - labels
+      operationId: labels.find
+      parameters:
+        - name: label_status
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/label_status'
+          description: Only return labels that are currently in the specified status
+        - name: carrier_id
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/se_id'
+          example: se-28529731
+          description: 'Only return labels for a specific [carrier account](https://docs.shipengine.com/docs/setup-a-carrier)'
+        - name: service_code
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/service_code'
+          example: usps_first_class_mail
+          description: 'Only return labels for a specific [carrier service](https://docs.shipengine.com/docs/use-a-specific-service)'
+        - name: tracking_number
+          in: query
+          required: false
+          schema:
+            type: string
+            minLength: 1
+          example: 1Z5615280351136446
+          description: Only return labels with a specific tracking number
+        - name: batch_id
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/se_id'
+          example: se-28529731
+          description: 'Only return labels that were created in a specific [batch](https://docs.shipengine.com/docs/using-batches)'
+        - name: warehouse_id
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/se_id'
+          example: se-28529731
+          description: 'Only return labels that originate from a specific [warehouse](https://docs.shipengine.com/docs/ship-from-a-warehouse)'
+        - name: created_at_start
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/label/properties/voided_at/allOf/0'
+          example: 2018-09-23T15:00:00.000Z
+          description: Only return labels that were created on or after a specific date/time
+        - name: created_at_end
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/label/properties/voided_at/allOf/0'
+          example: 2018-09-30T15:00:00.000Z
+          description: Only return labels that were created on or before a specific date/time
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            default: 1
+          example: 3
+          description: 'Return a specific "page" of results. Defaults to the first page. If set to a number that''s greater than the number of pages of results, an empty page will be returned.'
+        - name: page_size
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            default: 25
+          example: 50
+          description: The number of labels to return per response.  Defaults to 25.
+        - name: sort_dir
+          in: query
+          required: false
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/label_status'
+              - default: desc
+          description: Controls the sort order of the query. Defaults to `desc`.
+        - name: sort_by
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - modified_at
+              - created_at
+            default: created_at
+          description: Controls which property the query is sorted by. Defaults to `created_at`.
+      responses:
+        '200':
+          description: |
+            The response includes a `labels` array containing a page of results (as determined by the `page_size` query parameter).  It also includes other useful information, such as the total number of labels that match the query criteria, the number of pages of results, and the URLs of the first, last, next, and previous pages of results.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/paged_list_response_body'
+                  - type: object
+                    required:
+                      - labels
+                    properties:
+                      labels:
+                        type: array
+                        minItems: 0
+                        items:
+                          $ref: '#/components/schemas/label'
+                        description: |
+                          The labels that matched the query criteria.  If no matching labels were found, then this array will be empty; otherwise, it will contain one page of results.  The last page of results may have fewer labels than the `page_size`.
+        '400':
+          description: BadRequest
+        '404':
+          description: NotFound
+        '500':
+          description: InternalServerError
+  /v-beta/connections/marketplaces/amazon:
+    post:
+      tags:
+        - marketplace_accounts
+      operationId: amazon_account.connect
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/amazon_account_information_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect_marketplace_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v-beta/connections/marketplaces/amazon/{store_id}/deactivate':
+    put:
+      tags:
+        - marketplace_accounts
+      operationId: amazon_account.deactivate
+      parameters:
+        - name: store_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v-beta/connections/marketplaces/amazon/{store_id}/reactivate':
+    put:
+      tags:
+        - marketplace_accounts
+      operationId: amazon_account.reactivate
+      parameters:
+        - name: store_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v-beta/connections/marketplaces/amazon/{store_id}/settings':
+    put:
+      tags:
+        - marketplace_accounts
+      operationId: amazon_account.update_settings
+      parameters:
+        - name: store_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/default_account_settings_request_body'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v-beta/connections/marketplaces/amazon/{store_id}/test':
+    get:
+      tags:
+        - marketplace_accounts
+      operationId: amazon_account.test
+      parameters:
+        - name: store_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v-beta/connections/marketplaces/channeladvisor:
+    post:
+      tags:
+        - marketplace_accounts
+      operationId: channel_advisor_account.connect
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/channel_advisor_account_information_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect_marketplace_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v-beta/connections/marketplaces/channeladvisor/{store_id}/deactivate':
+    put:
+      tags:
+        - marketplace_accounts
+      operationId: channel_advisor_account.deactivate
+      parameters:
+        - name: store_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v-beta/connections/marketplaces/channeladvisor/{store_id}/reactivate':
+    put:
+      tags:
+        - marketplace_accounts
+      operationId: channel_advisor_account.reactivate
+      parameters:
+        - name: store_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v-beta/connections/marketplaces/channeladvisor/{store_id}/settings':
+    put:
+      tags:
+        - marketplace_accounts
+      operationId: channel_advisor_account.update_settings
+      parameters:
+        - name: store_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/default_account_settings_request_body'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v-beta/connections/marketplaces/channeladvisor/{store_id}/test':
+    get:
+      tags:
+        - marketplace_accounts
+      operationId: channel_advisor_account.test
+      parameters:
+        - name: store_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v-beta/connections/marketplaces/ebay/access_token:
+    post:
+      tags:
+        - marketplace_accounts
+      operationId: ebay_account.connect_access_token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ebay_access_token_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect_marketplace_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v-beta/connections/marketplaces/ebay/{store_id}/deactivate':
+    put:
+      tags:
+        - marketplace_accounts
+      operationId: ebay_account.deactivate
+      parameters:
+        - name: store_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v-beta/connections/marketplaces/ebay/{store_id}/reactivate':
+    put:
+      tags:
+        - marketplace_accounts
+      operationId: ebay_account.reactivate
+      parameters:
+        - name: store_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v-beta/connections/marketplaces/ebay/{store_id}/settings':
+    put:
+      tags:
+        - marketplace_accounts
+      operationId: ebay_account.update_settings
+      parameters:
+        - name: store_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/default_account_settings_request_body'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v-beta/connections/marketplaces/ebay/{store_id}/test':
+    get:
+      tags:
+        - marketplace_accounts
+      operationId: ebay_account.test
+      parameters:
+        - name: store_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v-beta/connections/marketplaces/etsy/access_token:
+    post:
+      tags:
+        - marketplace_accounts
+      operationId: etsy_account.connect
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/etsy_access_token_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect_marketplace_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v-beta/connections/marketplaces/etsy/{store_id}/deactivate':
+    put:
+      tags:
+        - marketplace_accounts
+      operationId: etsy_account.deactivate
+      parameters:
+        - name: store_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v-beta/connections/marketplaces/etsy/{store_id}/reactivate':
+    put:
+      tags:
+        - marketplace_accounts
+      operationId: etsy_account.reactivate
+      parameters:
+        - name: store_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v-beta/connections/marketplaces/etsy/{store_id}/settings':
+    put:
+      tags:
+        - marketplace_accounts
+      operationId: etsy_account.update_settings
+      parameters:
+        - name: store_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/default_account_settings_request_body'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v-beta/connections/marketplaces/etsy/{store_id}/test':
+    get:
+      tags:
+        - marketplace_accounts
+      operationId: etsy_account.test
+      parameters:
+        - name: store_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v-beta/connections/marketplaces/magento:
+    post:
+      tags:
+        - marketplace_accounts
+      operationId: magento_account.connect
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/magento_account_information_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect_marketplace_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v-beta/connections/marketplaces/magento/{store_id}/deactivate':
+    put:
+      tags:
+        - marketplace_accounts
+      operationId: magento_account.deactivate
+      parameters:
+        - name: store_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v-beta/connections/marketplaces/magento/{store_id}/reactivate':
+    put:
+      tags:
+        - marketplace_accounts
+      operationId: magento_account.reactivate
+      parameters:
+        - name: store_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v-beta/connections/marketplaces/magento/{store_id}/settings':
+    put:
+      tags:
+        - marketplace_accounts
+      operationId: magento_account.update_settings
+      parameters:
+        - name: store_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/default_account_settings_request_body'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v-beta/connections/marketplaces/magento/{store_id}/test':
+    get:
+      tags:
+        - marketplace_accounts
+      operationId: magento_account.test
+      parameters:
+        - name: store_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v-beta/connections/marketplaces/shopify/access_token:
+    post:
+      tags:
+        - marketplace_accounts
+      operationId: shopify_account.connect_access_token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/shopify_access_token_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect_marketplace_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v-beta/connections/marketplaces/shopify/{store_id}/deactivate':
+    put:
+      tags:
+        - marketplace_accounts
+      operationId: shopify_account.deactivate
+      parameters:
+        - name: store_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v-beta/connections/marketplaces/shopify/{store_id}/reactivate':
+    put:
+      tags:
+        - marketplace_accounts
+      operationId: shopify_account.reactivate
+      parameters:
+        - name: store_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v-beta/connections/marketplaces/shopify/{store_id}/settings':
+    put:
+      tags:
+        - marketplace_accounts
+      operationId: shopify_account.update_settings
+      parameters:
+        - name: store_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/default_account_settings_request_body'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v-beta/connections/marketplaces/shopify/{store_id}/test':
+    get:
+      tags:
+        - marketplace_accounts
+      operationId: shopify_account.test
+      parameters:
+        - name: store_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/addresses/validate:
+    post:
+      tags:
+        - address_validation
+      operationId: addresses.validate_addresses
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/address'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/address_validation_result'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/batches:
+    get:
+      tags:
+        - batches
+      operationId: batches.find
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/batch/properties/status/allOf/0'
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: page_size
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: sort_dir
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/sort_dir'
+        - name: sort_by
+          in: query
+          required: false
+          schema:
+            title: batches_sort_by
+            type: string
+            enum:
+              - ship_date
+              - processed_at
+            description: The possible batches sort by values
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/list_batch_response_body'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+    post:
+      tags:
+        - batches
+      operationId: batches.create
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/create_batch_request_body'
+      responses:
+        '200':
+          description: The requested object creation was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batch'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/batches/external_batch_id/{external_batch_id}':
+    get:
+      tags:
+        - batches
+      operationId: batches.get_by_external_id
+      parameters:
+        - name: external_batch_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batch'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/batches/{batch_id}':
+    get:
+      tags:
+        - batches
+      operationId: batches.get_by_id
+      parameters:
+        - name: batch_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batch'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/batches/{batch_id}/add':
+    post:
+      tags:
+        - batches
+      operationId: batches.add_to_batch
+      parameters:
+        - name: batch_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/modify_batch_request_body'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/batches/{batch_id}/errors':
+    get:
+      tags:
+        - batches
+      operationId: batches.find_errors
+      parameters:
+        - name: batch_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: pagesize
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batch_errors_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/batches/{batch_id}/process/labels':
+    post:
+      tags:
+        - batches
+      operationId: batches.process
+      parameters:
+        - name: batch_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/process_batch_request_body'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/batches/{batch_id}/remove':
+    post:
+      tags:
+        - batches
+      operationId: batches.remove_from_batch
+      parameters:
+        - name: batch_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/modify_batch_request_body'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/carriers:
+    get:
+      tags:
+        - carriers
+      operationId: carriers.find
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/carrier_list_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/carriers/{carrier_id}':
+    get:
+      tags:
+        - carriers
+      operationId: carriers.get_by_id
+      parameters:
+        - name: carrier_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/carrier'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/carriers/{carrier_id}/add_funds':
+    put:
+      tags:
+        - carriers
+      operationId: carriers.add_funds
+      parameters:
+        - name: carrier_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/money'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/balance_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/carriers/{carrier_id}/options':
+    get:
+      tags:
+        - carriers
+      operationId: carriers.get_options
+      parameters:
+        - name: carrier_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/carrier_list_options_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/carriers/{carrier_id}/packages':
+    get:
+      tags:
+        - carriers
+      operationId: carriers.find_packages
+      parameters:
+        - name: carrier_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/package_list_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/carriers/{carrier_id}/services':
+    get:
+      tags:
+        - carriers
+      operationId: carriers.find_services
+      parameters:
+        - name: carrier_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/carrier_list_services_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/connections/carriers/access_worldwide:
+    post:
+      tags:
+        - carrier_accounts
+      operationId: access_worldwide_account_carrier.connect_account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/access_worldwide_account_information_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect_account_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/connections/carriers/access_worldwide/{carrier_id}':
+    delete:
+      tags:
+        - carrier_accounts
+      operationId: access_worldwide_account_carrier.disconnect_account
+      parameters:
+        - name: carrier_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/connections/carriers/apc:
+    post:
+      tags:
+        - carrier_accounts
+      operationId: apc_account_carrier.connect_account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/apc_account_information_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect_account_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/connections/carriers/apc/{carrier_id}':
+    delete:
+      tags:
+        - carrier_accounts
+      operationId: apc_account_carrier.disconnect_account
+      parameters:
+        - name: carrier_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/connections/carriers/asendia:
+    post:
+      tags:
+        - carrier_accounts
+      operationId: asendia_account_carrier.connect_account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/asendia_account_information_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect_account_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/connections/carriers/asendia/{carrier_id}':
+    delete:
+      tags:
+        - carrier_accounts
+      operationId: asendia_account_carrier.disconnect_account
+      parameters:
+        - name: carrier_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/connections/carriers/dhl_ecommerce:
+    post:
+      tags:
+        - carrier_accounts
+      operationId: dhl_ecommerce_account_carrier.connect_account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dhl_ecommerce_account_information_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect_account_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/connections/carriers/dhl_ecommerce/{carrier_id}':
+    delete:
+      tags:
+        - carrier_accounts
+      operationId: dhl_ecommerce_account_carrier.disconnect_account
+      parameters:
+        - name: carrier_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/connections/carriers/dhl_express:
+    post:
+      tags:
+        - carrier_accounts
+      operationId: dhl_express_account_carrier.connect_account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dhl_express_account_information_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect_account_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/connections/carriers/dhl_express/{carrier_id}':
+    delete:
+      tags:
+        - carrier_accounts
+      operationId: dhl_express_account_carrier.disconnect_account
+      parameters:
+        - name: carrier_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/connections/carriers/dhl_express/{carrier_id}/settings':
+    get:
+      tags:
+        - carrier_accounts
+      operationId: dhl_express_account_carrier.get_settings
+      parameters:
+        - name: carrier_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/dhl_express_account_settings'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+    put:
+      tags:
+        - carrier_accounts
+      operationId: dhl_express_account_carrier.update_settings
+      parameters:
+        - name: carrier_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dhl_express_account_settings'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/connections/carriers/dhl_express_uk:
+    post:
+      tags:
+        - carrier_accounts
+      operationId: dhl_express_uk_account_carrier.connect_account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dhl_express_uk_account_information_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect_account_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/connections/carriers/dhl_express_uk/{carrier_id}':
+    delete:
+      tags:
+        - carrier_accounts
+      operationId: dhl_express_uk_account_carrier.disconnect_account
+      parameters:
+        - name: carrier_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/connections/carriers/dpd:
+    post:
+      tags:
+        - carrier_accounts
+      operationId: dpd_account_carrier.connect_account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dpd_account_information_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect_account_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/connections/carriers/dpd/{carrier_id}':
+    delete:
+      tags:
+        - carrier_accounts
+      operationId: dpd_account_carrier.disconnect_account
+      parameters:
+        - name: carrier_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/connections/carriers/endicia:
+    post:
+      tags:
+        - carrier_accounts
+      operationId: endicia_account_carrier.connect_account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/endicia_account_information_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect_account_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/connections/carriers/endicia/{carrier_id}':
+    delete:
+      tags:
+        - carrier_accounts
+      operationId: endicia_account_carrier.disconnect_account
+      parameters:
+        - name: carrier_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/connections/carriers/fedex:
+    post:
+      tags:
+        - carrier_accounts
+      operationId: fedex_account_carrier.connect_account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/fedex_account_information_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect_account_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/connections/carriers/fedex/{carrier_id}':
+    delete:
+      tags:
+        - carrier_accounts
+      operationId: fedex_account_carrier.disconnect_account
+      parameters:
+        - name: carrier_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/connections/carriers/fedex/{carrier_id}/settings':
+    get:
+      tags:
+        - carrier_accounts
+      operationId: fedex_account_carrier.get_settings
+      parameters:
+        - name: carrier_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ups_account_settings'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+    put:
+      tags:
+        - carrier_accounts
+      operationId: fedex_account_carrier.update_settings
+      parameters:
+        - name: carrier_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/fedex_account_settings_request_body'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/connections/carriers/fedex_uk:
+    post:
+      tags:
+        - carrier_accounts
+      operationId: fedex_uk_account_carrier.connect_account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/fedex_uk_account_information_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect_account_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/connections/carriers/fedex_uk/{carrier_id}':
+    delete:
+      tags:
+        - carrier_accounts
+      operationId: fedex_uk_account_carrier.disconnect_account
+      parameters:
+        - name: carrier_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/connections/carriers/firstmile:
+    post:
+      tags:
+        - carrier_accounts
+      operationId: first_mile_account_carrier.connect_account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/first_mile_account_information_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect_account_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/connections/carriers/firstmile/{carrier_id}':
+    delete:
+      tags:
+        - carrier_accounts
+      operationId: first_mile_account_carrier.disconnect_account
+      parameters:
+        - name: carrier_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/connections/carriers/globegistics:
+    post:
+      tags:
+        - carrier_accounts
+      operationId: globegistics_account_carrier.connect_account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/globegistics_account_information_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect_account_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/connections/carriers/globegistics/{carrier_id}':
+    delete:
+      tags:
+        - carrier_accounts
+      operationId: globegistics_account_carrier.disconnect_account
+      parameters:
+        - name: carrier_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/connections/carriers/imex:
+    post:
+      tags:
+        - carrier_accounts
+      operationId: imex_account_carrier.connect_account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/imex_account_information_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect_account_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/connections/carriers/imex/{carrier_id}':
+    delete:
+      tags:
+        - carrier_accounts
+      operationId: imex_account_carrier.disconnect_account
+      parameters:
+        - name: carrier_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/connections/carriers/newgistics:
+    post:
+      tags:
+        - carrier_accounts
+      operationId: newgistics_account_carrier.connect_account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/newgistics_account_information_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect_account_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/connections/carriers/newgistics/{carrier_id}':
+    delete:
+      tags:
+        - carrier_accounts
+      operationId: newgistics_account_carrier.disconnect_account
+      parameters:
+        - name: carrier_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/connections/carriers/newgistics/{carrier_id}/settings':
+    put:
+      tags:
+        - carrier_accounts
+      operationId: newgistics_account_carrier.update_settings
+      parameters:
+        - name: carrier_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/newgistics_account_settings_request_body'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/connections/carriers/ontrac:
+    post:
+      tags:
+        - carrier_accounts
+      operationId: ontrac_account_carrier.connect_account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ontrac_account_information_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect_account_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/connections/carriers/ontrac/{carrier_id}':
+    delete:
+      tags:
+        - carrier_accounts
+      operationId: ontrac_account_carrier.disconnect_account
+      parameters:
+        - name: carrier_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/connections/carriers/royal_mail:
+    post:
+      tags:
+        - carrier_accounts
+      operationId: royal_mail_account_carrier.connect_account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/royal_mail_account_information_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect_account_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/connections/carriers/royal_mail/{carrier_id}':
+    delete:
+      tags:
+        - carrier_accounts
+      operationId: royal_mail_account_carrier.disconnect_account
+      parameters:
+        - name: carrier_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/connections/carriers/rr_donnelley:
+    post:
+      tags:
+        - carrier_accounts
+      operationId: rr_donnelley_account_carrier.connect_account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/rr_donnelley_account_information_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect_account_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/connections/carriers/rr_donnelley/{carrier_id}':
+    delete:
+      tags:
+        - carrier_accounts
+      operationId: rr_donnelley_account_carrier.disconnect_account
+      parameters:
+        - name: carrier_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/connections/carriers/stamps_com:
+    post:
+      tags:
+        - carrier_accounts
+      operationId: stamps_account_carrier.connect_account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/stamps_account_information_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect_account_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/connections/carriers/stamps_com/{carrier_id}':
+    delete:
+      tags:
+        - carrier_accounts
+      operationId: stamps_account_carrier.disconnect_account
+      parameters:
+        - name: carrier_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/connections/carriers/stamps_com/{carrier_id}/request_account_url':
+    put:
+      tags:
+        - carrier_accounts
+      operationId: stamps_account_carrier.get_account_url
+      parameters:
+        - name: carrier_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/stamps_account_urls_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/stamps_account_urls_response_body'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/connections/carriers/ups:
+    post:
+      tags:
+        - carrier_accounts
+      operationId: ups_account_carrier.connect_account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ups_account_information_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect_account_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/connections/carriers/ups/{carrier_id}':
+    delete:
+      tags:
+        - carrier_accounts
+      operationId: ups_account_carrier.disconnect_account
+      parameters:
+        - name: carrier_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/connections/carriers/ups/{carrier_id}/settings':
+    get:
+      tags:
+        - carrier_accounts
+      operationId: ups_account_carrier.get_settings
+      parameters:
+        - name: carrier_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ups_account_settings'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+    put:
+      tags:
+        - carrier_accounts
+      operationId: ups_account_carrier.update_settings
+      parameters:
+        - name: carrier_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ups_account_settings'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/environment/webhooks:
+    get:
+      tags:
+        - environment
+      operationId: environment.webhooks
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/webhook_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+    post:
+      tags:
+        - environment
+      operationId: environment.create_webhook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/create_webhook_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/webhook_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '409':
+          $ref: '#/components/responses/conflict'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/environment/webhooks/{webhook_id}':
+    get:
+      tags:
+        - environment
+      operationId: environment.get_webhook_by_id
+      parameters:
+        - name: webhook_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/webhook_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+    put:
+      tags:
+        - environment
+      operationId: environment.update_webhook
+      parameters:
+        - name: webhook_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/update_webhook_request_body'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+    delete:
+      tags:
+        - environment
+      operationId: environment.delete_webhook
+      parameters:
+        - name: webhook_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/insurance/shipsurance/add_funds:
+    patch:
+      tags:
+        - insurance
+      operationId: insurance.add_funds
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/money'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/money'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/insurance/shipsurance/balance:
+    get:
+      tags:
+        - insurance
+      operationId: insurance.get_balance
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/money'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/labels/rates/{rate_id}':
+    post:
+      tags:
+        - labels
+      operationId: labels.purchase_label_with_rate
+      parameters:
+        - name: rate_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/purchase_label_without_shipment_request_body'
+      responses:
+        '200':
+          description: The requested object creation was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/label'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/labels/shipment/{shipment_id}':
+    post:
+      tags:
+        - labels
+      operationId: labels.purchase_label_with_shipment
+      parameters:
+        - name: shipment_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/purchase_label_without_shipment_request_body'
+      responses:
+        '200':
+          description: The requested object creation was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/label'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/labels/{label_id}':
+    get:
+      tags:
+        - labels
+      operationId: labels.get_by_id
+      parameters:
+        - name: label_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/label'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/labels/{label_id}/track':
+    get:
+      tags:
+        - labels
+      operationId: labels.track
+      parameters:
+        - name: label_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tracking_information_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/labels/{label_id}/void':
+    put:
+      tags:
+        - labels
+      operationId: labels.void_label
+      parameters:
+        - name: label_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/void_label_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/manifests:
+    get:
+      tags:
+        - manifests
+      operationId: manifests.find
+      parameters:
+        - name: warehouse_id
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/se_id'
+        - name: ship_date_start
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: ship_date_end
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: created_at_start
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: created_at_end
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: carrier_id
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/se_id'
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: page_size
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/list_manifests_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+    post:
+      tags:
+        - manifests
+      operationId: manifests.create
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/create_manifest_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/manifest_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/manifests/{manifest_id}':
+    get:
+      tags:
+        - manifests
+      operationId: manifests.get_by_id
+      parameters:
+        - name: manifest_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/manifest_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/packages:
+    get:
+      tags:
+        - packages
+      operationId: packages.find
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/package_list_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+    post:
+      tags:
+        - packages
+      operationId: packages.create
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/package'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/package'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/packages/{package_id}':
+    get:
+      tags:
+        - packages
+      operationId: packages.get_by_id
+      parameters:
+        - name: package_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/package'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+    put:
+      tags:
+        - packages
+      operationId: packages.update
+      parameters:
+        - name: package_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/package'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+    delete:
+      tags:
+        - packages
+      operationId: packages.delete
+      parameters:
+        - name: package_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/rates:
+    post:
+      tags:
+        - rates
+      operationId: rates.rate_shipment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/rate_shipment_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rate_shipment_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/rates/bulk:
+    post:
+      tags:
+        - rates
+      operationId: rates.bulk_rate_shipments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/rate_shipments_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/bulk_rate_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/rates/estimate:
+    post:
+      tags:
+        - rates
+      operationId: rates.estimate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/rate_estimate_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/rate'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/rates/{rate_id}':
+    get:
+      tags:
+        - rates
+      operationId: rates.get_by_id
+      parameters:
+        - name: rate_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rate'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/shipments:
+    get:
+      tags:
+        - shipments
+      operationId: shipments.find
+      parameters:
+        - name: batch_id
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/se_id'
+        - name: tag
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: shipment_status
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/shipment/properties/shipment_status/allOf/0'
+        - name: modified_at_start
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: modified_at_end
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: created_at_start
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: created_at_end
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: page_size
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: sort_dir
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/sort_dir'
+        - name: sort_by
+          in: query
+          required: false
+          schema:
+            title: shipments_sort_by
+            type: string
+            enum:
+              - modified_at
+              - created_at
+            description: The possible shipments sort by values
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/list_shipment_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+    post:
+      tags:
+        - shipments
+      operationId: shipments.create_shipments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/create_shipments_request_body'
+      responses:
+        '201':
+          description: The requested object creation was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/create_shipments_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/shipments/external_shipment_id/{external_shipment_id}':
+    get:
+      tags:
+        - shipments
+      operationId: shipments.get_by_external_id
+      parameters:
+        - name: external_shipment_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/shipment'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/shipments/{shipment_id}':
+    get:
+      tags:
+        - shipments
+      operationId: shipments.get_by_id
+      parameters:
+        - name: shipment_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/shipment'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+    put:
+      tags:
+        - shipments
+      operationId: shipments.update_shipment
+      parameters:
+        - name: shipment_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/address_validating_shipment'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/create_shipment_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/shipments/{shipment_id}/cancel':
+    put:
+      tags:
+        - shipments
+      operationId: shipments.cancel
+      parameters:
+        - name: shipment_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/shipments/{shipment_id}/errors':
+    get:
+      tags:
+        - shipments
+      operationId: shipments.find_errors
+      parameters:
+        - name: shipment_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: pagesize
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/shipment_errors_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/shipments/{shipment_id}/rates':
+    get:
+      tags:
+        - shipments
+      operationId: shipments.get_rates_for_shipment
+      parameters:
+        - name: shipment_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+        - name: created_at_start
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rate_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/shipments/{shipment_id}/tags/{tag}':
+    post:
+      tags:
+        - shipments
+      operationId: shipments.add_tag
+      parameters:
+        - name: shipment_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+        - name: tag
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: The requested object creation was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/shipment_add_tag_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+    delete:
+      tags:
+        - shipments
+      operationId: shipments.remove_tag
+      parameters:
+        - name: shipment_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+        - name: tag
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/tags:
+    get:
+      tags:
+        - tags
+      operationId: tags.find_tags
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/list_tag_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/tags/{tag_name}':
+    post:
+      tags:
+        - tags
+      operationId: tags.add_tag
+      parameters:
+        - name: tag_name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tag_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+    delete:
+      tags:
+        - tags
+      operationId: tags.delete
+      parameters:
+        - name: tag_name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/list_tag_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/tags/{tag_name}/{new_name}':
+    put:
+      tags:
+        - tags
+      operationId: tags.update_tag
+      parameters:
+        - name: tag_name
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: new_name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/tracking:
+    get:
+      tags:
+        - tracking
+      operationId: tracking.track
+      parameters:
+        - name: carrier_code
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: tracking_number
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tracking_information_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/tracking/start:
+    post:
+      tags:
+        - tracking
+      operationId: tracking.start_tracking
+      parameters:
+        - name: carrier_code
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: tracking_number
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/tracking/stop:
+    post:
+      tags:
+        - tracking
+      operationId: tracking.stop_tracking
+      parameters:
+        - name: carrier_code
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: tracking_number
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  /v1/warehouses:
+    get:
+      tags:
+        - warehouses
+      operationId: warehouses.find
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/warehouse_list_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+    post:
+      tags:
+        - warehouses
+      operationId: warehouses.create
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/warehouse_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/warehouse'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+  '/v1/warehouses/{warehouse_id}':
+    get:
+      tags:
+        - warehouses
+      operationId: warehouses.get_by_id
+      parameters:
+        - name: warehouse_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/warehouse'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+    put:
+      tags:
+        - warehouses
+      operationId: warehouses.update
+      parameters:
+        - name: warehouse_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/warehouse_request_body'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/server_error'
+    delete:
+      tags:
+        - warehouses
+      operationId: warehouses.delete
+      parameters:
+        - name: warehouse_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+      responses:
+        '204':
+          $ref: '#/components/responses/no_content'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
+components:
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: api-key
+      in: header
+      description: |
+        All requests to ShipEngine must include an API key in order to be authenticated. Any number of API keys can be generated within the ShipEngine dashboard and are unique to your account. Your API keys give full access to ShipEngine's functionality and therefore should be guarded in the same way you would guard a password or other application credentials. Once you have generated an API key you simply add it to your request as an HTTP header named the api-key.
+
+        Find your ShipEngine API keys in the Dashboard: https://app.shipengine.com/#/portal/apimanagement
+  responses:
+    no_content:
+      description: The request was successful.
+    bad_request:
+      description: The request contained errors.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error_response_body'
+    not_found:
+      description: The specified resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error_response_body'
+    conflict:
+      description: The request conflicts with an existing resource.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error_response_body'
+    server_error:
+      description: |
+        An error occurred on ShipEngine's side.
+
+        > This error will automatically be reported to our engineers.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error_response_body'
+  schemas:
+    label_status:
+      title: label_status
+      type: string
+      enum:
+        - processing
+        - completed
+        - error
+        - voided
+      description: |
+        The possible statuses that a [shipping label](https://docs.shipengine.com/docs/quickstart-create-a-label) can be in.
+
+        |Status       |Description
+        |:------------|:-----------------------------------------------------
+        |`processing` |When labels are created in a [batch](https://docs.shipengine.com/docs/using-batches), it may take a few minutes for all of the labels in the batch to be created.  During this period, they will be in `processing` status.
+        |`completed`  |The label was successfully created
+        |`error`      |The label could not be created due to an error, such as an invalid delivery address
+        |`voided`     |The label has been [voided](https://docs.shipengine.com/docs/void-a-label)
+    paged_list_response_body:
+      title: paged_list_response_body
+      type: object
+      required:
+        - total
+        - page
+        - pages
+        - links
+      properties:
+        total:
+          type: integer
+          minimum: 0
+          example: 2750
+          description: The total number of items across all pages of results
+        page:
+          type: integer
+          minimum: 1
+          example: 1
+          description: 'The current page number of results.  For example, if there are 80 results, and the page size is 25, then `page` could be 1, 2, 3, or 4.  The first three pages would contain 25 items each, and the fourth page would contain the five remaining items.'
+        pages:
+          type: integer
+          minimum: 0
+          example: 4
+          description: 'The total number of pages of results.  For example, if there are 80 results, and the page size is 25, then `pages` would be 4.  The first three pages would contain 25 items each, and the fourth page would contain the five remaining items.  If there are no results, then `pages` will be zero.'
+        links:
+          description: Helpful links to other pages of results
+          type: object
+          required:
+            - first
+            - last
+            - prev
+            - next
+          properties:
+            first:
+              type: object
+              required:
+                - href
+              properties:
+                href:
+                  $ref: '#/components/schemas/paged_list_response_body/properties/links/properties/next/properties/href'
+              description: |
+                The link to the first page of results.  This object will _always_ have an `href` property. If there are no results, then the first page will contain an empty array of items.
+            last:
+              type: object
+              required:
+                - href
+              properties:
+                href:
+                  $ref: '#/components/schemas/paged_list_response_body/properties/links/properties/next/properties/href'
+              description: |
+                The link to the final page of results.  This object will _always_ have an `href` property. If there are no results, then the final page will contain an empty array of items.
+            prev:
+              type: object
+              properties:
+                href:
+                  $ref: '#/components/schemas/paged_list_response_body/properties/links/properties/next/properties/href'
+              description: |
+                The link to the previous page of results.  The `href` property will only be set when the `page` is 2 or greater.
+            next:
+              type: object
+              properties:
+                href:
+                  title: url
+                  type: string
+                  format: url
+                  minLength: 1
+              description: |
+                The link to the next page of results.  The `href` property will only be set when the `page` is less than `pages`.
+      description: |
+        Many ShipEngine endpoints return a paged list of items.  In addition to the returned items, these responses also include information about the total number of items, the number of pages of results, and URLs of other pages of results.
+    se_id:
+      title: se_id
+      type: string
+      minLength: 1
+      maxLength: 25
+      pattern: '^se(-[a-z0-9]+)+$'
+      example: se-28529731
+      description: 'A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.'
+    service_code:
+      title: service_code
+      type: string
+      minLength: 1
+      maxLength: 100
+      pattern: '^[a-z0-9]+([_-][a-z0-9]+)*\s*$'
+      example: usps_first_class_mail
+    sort_dir:
+      title: sort_dir
+      type: string
+      enum:
+        - asc
+        - desc
+      description: |
+        Controls the sort order of queries
+
+        |Value     |Description
+        |:---------|:-----------------------------------------------------
+        |`asc`     |Return results in ascending order
+        |`desc`    |Return results in descending order
+    access_worldwide_account_information_request_body:
+      title: access_worldwide_account_information_request_body
+      type: object
+      properties:
+        nickname:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+    address:
+      title: address
+      type: object
+      properties:
+        name:
+          type: string
+        phone:
+          type: string
+        company_name:
+          type: string
+        address_line1:
+          type: string
+        address_line2:
+          type: string
+        address_line3:
+          type: string
+        city_locality:
+          type: string
+        state_province:
+          type: string
+        postal_code:
+          type: string
+        country_code:
+          type: string
+        address_residential_indicator:
+          allOf:
+            - title: address_residential_indicator
+              type: string
+              enum:
+                - unknown
+                - 'yes'
+                - 'no'
+              description: The possible address residential indicator values
+    address_validating_shipment:
+      title: address_validating_shipment
+      type: object
+      properties:
+        validate_address:
+          allOf:
+            - $ref: '#/components/schemas/purchase_label_request_body/properties/validate_address/allOf/0'
+        shipment_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the shipment id
+        carrier_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the carrier id
+        service_code:
+          type: string
+        external_shipment_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the external shipment id
+        ship_date:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        modified_at:
+          type: string
+          format: date-time
+        shipment_status:
+          allOf:
+            - $ref: '#/components/schemas/shipment/properties/shipment_status/allOf/0'
+        ship_to:
+          allOf:
+            - $ref: '#/components/schemas/address'
+        ship_from:
+          allOf:
+            - $ref: '#/components/schemas/address'
+        warehouse_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the warehouse id
+        return_to:
+          allOf:
+            - $ref: '#/components/schemas/address'
+        confirmation:
+          allOf:
+            - $ref: '#/components/schemas/shipment/properties/confirmation/allOf/0'
+        customs:
+          allOf:
+            - $ref: '#/components/schemas/international_options'
+        advanced_options:
+          allOf:
+            - $ref: '#/components/schemas/advanced_options'
+        insurance_provider:
+          allOf:
+            - $ref: '#/components/schemas/shipment/properties/insurance_provider/allOf/0'
+        tags:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/tag_response_body'
+        packages:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/shipment_package'
+        total_weight:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/weight'
+    address_validation_result:
+      title: address_validation_result
+      type: object
+      properties:
+        status:
+          allOf:
+            - title: address_validation_status
+              type: string
+              enum:
+                - unverified
+                - verified
+                - warning
+                - error
+              description: The possible address validation status values
+        original_address:
+          allOf:
+            - $ref: '#/components/schemas/address'
+        matched_address:
+          allOf:
+            - $ref: '#/components/schemas/address'
+        messages:
+          type: array
+          items:
+            title: response_message
+            type: object
+            properties:
+              code:
+                allOf:
+                  - title: code
+                    type: string
+                    enum:
+                      - a1000
+                      - a1001
+                      - a1002
+                      - a1003
+                      - a1004
+                      - a1005
+                      - a1006
+                      - a1007
+                      - a1008
+                      - r1000
+                      - r1001
+                      - r1002
+                      - r1003
+                    description: The possible code values
+              message:
+                type: string
+              type:
+                allOf:
+                  - title: type
+                    type: string
+                    enum:
+                      - error
+                      - warning
+                      - info
+                    description: The possible type values
+              detail_code:
+                allOf:
+                  - title: detail_code
+                    type: string
+                    enum:
+                      - non_supported_country
+                      - minimum_postal_code_verification_failed
+                      - street_does_not_match_unique_street_name
+                      - multiple_directionals
+                      - multiple_matches
+                      - suite_not_valid
+                      - suite_missing
+                      - invalid_house_number
+                      - missing_house_number
+                      - invalid_box_number
+                      - missing_box_number
+                      - missing_cmra_or_private_mail_box_number
+                      - suite_has_no_secondaries
+                      - postal_code_changed_or_added
+                      - state_province_changed_or_added
+                      - city_locality_changed_or_added
+                      - urbanization_changed
+                      - street_name_spelling_changed_or_added
+                      - street_name_type_changed_or_added
+                      - street_direction_changed_or_added
+                      - suite_type_changed_or_added
+                      - suite_unit_number_changed_or_added
+                      - double_dependent_locality_changed_or_added
+                      - subadministrative_area_changed_or_added
+                      - subnational_area_changed_or_added
+                      - p_o_box_changed_or_added
+                      - premise_type_changed_or_added
+                      - house_number_changed
+                      - organization_changed_or_added
+                      - partially_verified_to_state_level
+                      - partially_verified_to_city_level
+                      - partially_verified_to_street_level
+                      - partially_verified_to_premise_level
+                      - verified_to_state_level
+                      - verified_to_city_level
+                      - verified_to_street_level
+                      - verified_to_premise_level
+                      - verified_to_suite_level
+                      - coded_to_street_lavel
+                      - coded_to_neighborhood_level
+                      - coded_to_community_level
+                      - coded_to_state_level
+                      - coded_to_rooftop_level
+                      - coded_to_rooftop_interpolation_level
+                    description: The possible detail code values
+    advanced_options:
+      title: advanced_options
+      type: object
+      properties:
+        bill_to_account:
+          type: string
+        bill_to_country_code:
+          type: string
+        bill_to_party:
+          allOf:
+            - title: bill_to_party
+              type: string
+              enum:
+                - recipient
+                - third_party
+              description: The possible bill to party values
+        bill_to_postal_code:
+          type: string
+        contains_alcohol:
+          type: boolean
+        delivered_duty_paid:
+          type: boolean
+        non_machinable:
+          type: boolean
+        saturday_delivery:
+          type: boolean
+        use_ups_ground_freight_pricing:
+          type: boolean
+        freight_class:
+          type: string
+        custom_field1:
+          type: string
+        custom_field2:
+          type: string
+        custom_field3:
+          type: string
+    amazon_account_information_request_body:
+      title: amazon_account_information_request_body
+      type: object
+      properties:
+        store_name:
+          type: string
+        merchant_seller_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the merchant seller id
+        product_identifier:
+          allOf:
+            - title: amazon_product_identifier
+              type: string
+              enum:
+                - sku
+                - asin
+              description: The possible amazon product identifier values
+        mws_auth_token:
+          type: string
+    apc_account_information_request_body:
+      title: apc_account_information_request_body
+      type: object
+      properties:
+        nickname:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+    asendia_account_information_request_body:
+      title: asendia_account_information_request_body
+      type: object
+      properties:
+        nickname:
+          type: string
+        account_number:
+          type: string
+        ftp_username:
+          type: string
+        ftp_password:
+          type: string
+    balance_response_body:
+      title: balance_response_body
+      type: object
+      properties:
+        balance:
+          allOf:
+            - $ref: '#/components/schemas/money'
+    batch:
+      title: batch
+      type: object
+      properties:
+        label_layout:
+          type: string
+        label_format:
+          allOf:
+            - $ref: '#/components/schemas/label/properties/label_format/allOf/0'
+        batch_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the batch id
+        external_batch_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the external batch id
+        batch_notes:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        processed_at:
+          type: string
+          format: date-time
+        errors:
+          type: integer
+          format: int32
+        warnings:
+          type: integer
+          format: int32
+        completed:
+          type: integer
+          format: int32
+        forms:
+          type: integer
+          format: int32
+        count:
+          type: integer
+          format: int32
+        batch_shipments_url:
+          allOf:
+            - $ref: '#/components/schemas/link'
+        batch_labels_url:
+          allOf:
+            - $ref: '#/components/schemas/link'
+        batch_errors_url:
+          allOf:
+            - $ref: '#/components/schemas/link'
+        label_download:
+          allOf:
+            - $ref: '#/components/schemas/link'
+        form_download:
+          allOf:
+            - $ref: '#/components/schemas/link'
+        status:
+          allOf:
+            - title: batch_status
+              type: string
+              enum:
+                - open
+                - queued
+                - processing
+                - completed
+                - completed_with_errors
+                - archived
+                - notifying
+                - invalid
+              description: The possible batch status values
+    batch_errors_response_body:
+      title: batch_errors_response_body
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            title: batch_response_error
+            type: object
+            properties:
+              error:
+                type: string
+              shipment_id:
+                allOf:
+                  - $ref: '#/components/schemas/se_id'
+                description: A string that uniquely identifies the shipment id
+        links:
+          allOf:
+            - $ref: '#/components/schemas/pagination_link'
+    bulk_rate_response_body:
+      title: bulk_rate_response_body
+      type: object
+      properties:
+        rate_request_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the rate request id
+        shipment_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the shipment id
+        created_at:
+          type: string
+          format: date-time
+        status:
+          allOf:
+            - $ref: '#/components/schemas/rate_response_body/properties/status/allOf/0'
+        errors:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/provider_error'
+    carrier:
+      title: carrier
+      type: object
+      properties:
+        carrier_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the carrier id
+        carrier_code:
+          type: string
+        account_number:
+          type: string
+        requires_funded_amount:
+          type: boolean
+        balance:
+          type: number
+          format: double
+        nickname:
+          type: string
+        friendly_name:
+          type: string
+        primary:
+          type: boolean
+        has_multi_package_supporting_services:
+          type: boolean
+        supports_label_messages:
+          type: boolean
+        services:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/service'
+        packages:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/package'
+        options:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/carrier_advanced_option'
+    carrier_advanced_option:
+      title: carrier_advanced_option
+      type: object
+      properties:
+        name:
+          type: string
+        default_value:
+          type: string
+        description:
+          type: string
+    carrier_list_options_response_body:
+      title: carrier_list_options_response_body
+      type: object
+      properties:
+        options:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/carrier_advanced_option'
+    carrier_list_response_body:
+      title: carrier_list_response_body
+      type: object
+      properties:
+        carriers:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/carrier'
+    carrier_list_services_response_body:
+      title: carrier_list_services_response_body
+      type: object
+      properties:
+        services:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/service'
+    channel_advisor_account_information_request_body:
+      title: channel_advisor_account_information_request_body
+      type: object
+      properties:
+        store_name:
+          type: string
+        profile_id:
+          type: integer
+          format: int32
+        product_identifier:
+          allOf:
+            - title: channel_advisor_product_identifier
+              type: string
+              enum:
+                - client_order_number
+                - channel_advisor_order_number
+              description: The possible channel advisor product identifier values
+    connect_account_response_body:
+      title: connect_account_response_body
+      type: object
+      properties:
+        carrier_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the carrier id
+    connect_marketplace_response_body:
+      title: connect_marketplace_response_body
+      type: object
+      properties:
+        store_id:
+          allOf:
+            - $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+          description: A UUID that uniquely identifies the store id
+    create_batch_request_body:
+      title: create_batch_request_body
+      type: object
+      properties:
+        external_batch_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the external batch id
+        batch_notes:
+          type: string
+        shipment_ids:
+          type: array
+          items:
+            type: string
+        rate_ids:
+          type: array
+          items:
+            type: string
+    create_manifest_request_body:
+      title: create_manifest_request_body
+      type: object
+      properties:
+        carrier_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the carrier id
+        excluded_label_ids:
+          type: array
+          items:
+            type: string
+        warehouse_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the warehouse id
+        ship_date:
+          type: string
+          format: date-time
+    create_shipment_response_body:
+      title: create_shipment_response_body
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: string
+        address_validation:
+          allOf:
+            - $ref: '#/components/schemas/address_validation_result'
+        shipment_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the shipment id
+        carrier_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the carrier id
+        service_code:
+          type: string
+        external_shipment_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the external shipment id
+        ship_date:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        modified_at:
+          type: string
+          format: date-time
+        shipment_status:
+          allOf:
+            - $ref: '#/components/schemas/shipment/properties/shipment_status/allOf/0'
+        ship_to:
+          allOf:
+            - $ref: '#/components/schemas/address'
+        ship_from:
+          allOf:
+            - $ref: '#/components/schemas/address'
+        warehouse_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the warehouse id
+        return_to:
+          allOf:
+            - $ref: '#/components/schemas/address'
+        confirmation:
+          allOf:
+            - $ref: '#/components/schemas/shipment/properties/confirmation/allOf/0'
+        customs:
+          allOf:
+            - $ref: '#/components/schemas/international_options'
+        advanced_options:
+          allOf:
+            - $ref: '#/components/schemas/advanced_options'
+        insurance_provider:
+          allOf:
+            - $ref: '#/components/schemas/shipment/properties/insurance_provider/allOf/0'
+        tags:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/tag_response_body'
+        packages:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/shipment_package'
+        total_weight:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/weight'
+    create_shipments_request_body:
+      title: create_shipments_request_body
+      type: object
+      properties:
+        shipments:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/address_validating_shipment'
+    create_shipments_response_body:
+      title: create_shipments_response_body
+      type: object
+      properties:
+        has_errors:
+          type: boolean
+        shipments:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/create_shipment_response_body'
+    create_webhook_request_body:
+      title: create_webhook_request_body
+      type: object
+      properties:
+        event:
+          allOf:
+            - title: event
+              type: string
+              enum:
+                - rate
+                - track
+                - batch
+                - store_refresh_complete
+                - sales_orders_imported
+                - carrier_connected
+              description: The possible event values
+        url:
+          type: string
+    default_account_settings_request_body:
+      title: default_account_settings_request_body
+      type: object
+      properties:
+        automatically_import_sales_orders:
+          type: boolean
+    dhl_ecommerce_account_information_request_body:
+      title: dhl_ecommerce_account_information_request_body
+      type: object
+      properties:
+        nickname:
+          type: string
+        account_number:
+          type: string
+        pickup_number:
+          type: string
+        ftp_username:
+          type: string
+        ftp_password:
+          type: string
+    dhl_express_account_information_request_body:
+      title: dhl_express_account_information_request_body
+      type: object
+      properties:
+        nickname:
+          type: string
+        account_number:
+          type: string
+    dhl_express_account_settings:
+      title: dhl_express_account_settings
+      type: object
+      properties:
+        nickname:
+          type: string
+        should_hide_account_number_on_archive_doc:
+          type: boolean
+        is_primary_account:
+          type: boolean
+    dhl_express_uk_account_information_request_body:
+      title: dhl_express_uk_account_information_request_body
+      type: object
+      properties:
+        account_number:
+          type: string
+        site_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the site id
+        password:
+          type: string
+        nickname:
+          type: string
+    dimensions:
+      title: dimensions
+      type: object
+      properties:
+        unit:
+          allOf:
+            - title: dimension_unit
+              type: string
+              enum:
+                - inch
+                - centimeter
+              description: The possible dimension unit values
+        length:
+          type: number
+          format: double
+        width:
+          type: number
+          format: double
+        height:
+          type: number
+          format: double
+    dpd_account_information_request_body:
+      title: dpd_account_information_request_body
+      type: object
+      properties:
+        account_number:
+          type: string
+        password:
+          type: string
+        nickname:
+          type: string
+    ebay_access_token_request_body:
+      title: ebay_access_token_request_body
+      type: object
+      properties:
+        username:
+          type: string
+        store_name:
+          type: string
+        access_token:
+          type: string
+        private_application_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the private application id
+    endicia_account_information_request_body:
+      title: endicia_account_information_request_body
+      type: object
+      properties:
+        nickname:
+          type: string
+        account:
+          type: string
+        passphrase:
+          type: string
+    error_response_body:
+      title: error_response_body
+      type: object
+      properties:
+        request_id:
+          allOf:
+            - title: uuid
+              type: string
+              format: uuid
+              minLength: 36
+              maxLength: 36
+              pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+              example: aa3d8e8e-462b-4476-9618-72db7f7b7009
+              description: A UUID (a.k.a. GUID) that uniquely identifies a resource
+          description: A UUID that uniquely identifies the request id
+        errors:
+          type: array
+          items:
+            title: api_error
+            type: object
+            properties:
+              error_code:
+                type: string
+              message:
+                type: string
+    etsy_access_token_request_body:
+      title: etsy_access_token_request_body
+      type: object
+      properties:
+        store_name:
+          type: string
+        access_token:
+          type: string
+        access_token_secret:
+          type: string
+        shop_id:
+          type: integer
+          format: int32
+        private_application_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the private application id
+    fedex_account_information_request_body:
+      title: fedex_account_information_request_body
+      type: object
+      properties:
+        account_number:
+          type: string
+        address1:
+          type: string
+        address2:
+          type: string
+        city:
+          type: string
+        company:
+          type: string
+        country_code:
+          type: string
+        email:
+          allOf:
+            - $ref: '#/components/schemas/ups_account_information_request_body/properties/email/allOf/0'
+          description: The email address
+        first_name:
+          type: string
+        last_name:
+          type: string
+        phone:
+          type: string
+        postal_code:
+          type: string
+        state:
+          type: string
+        nickname:
+          type: string
+        agree_to_eula:
+          type: boolean
+        meter_number:
+          type: string
+    fedex_account_settings_request_body:
+      title: fedex_account_settings_request_body
+      type: object
+      properties:
+        nickname:
+          type: string
+        pickup_type:
+          allOf:
+            - title: fedex_pickup_type
+              type: string
+              enum:
+                - none
+                - regular_pickup
+                - request_courier
+                - drop_box
+                - business_service_center
+                - station
+              description: The possible fedex pickup type values
+        smart_post_hub:
+          allOf:
+            - title: smart_post_hub
+              type: string
+              enum:
+                - none
+                - allentown_pa
+                - atlanta_ga
+                - baltimore_md
+                - charlotte_nc
+                - chino_ca
+                - dallas_tx
+                - denver_co
+                - detroit_mi
+                - edison_nj
+                - grove_city_oh
+                - groveport_oh
+                - houston_tx
+                - indianapolis_in
+                - kansas_city_ks
+                - los_angeles_ca
+                - martinsburg_wv
+                - memphis_tn
+                - minneapolis_mn
+                - new_berlin_wi
+                - northborough_ma
+                - orlando_fl
+                - phoneix_az
+                - pittsburgh_pa
+                - reno_nv
+                - sacramento_ca
+                - salt_lake_city_ut
+                - seattle_wa
+                - st_louis_mo
+                - windsor_ct
+                - newark_ny
+                - south_brunswick_nj
+                - scranton_pa
+                - wheeling_il
+              description: The possible smart post hub values
+        smart_post_endorsement:
+          allOf:
+            - title: smart_post_endorsement
+              type: string
+              enum:
+                - none
+                - return_service_requested
+                - forwarding_service_requested
+                - address_service_requested
+                - change_service_requested
+                - leave_if_no_response
+              description: The possible smart post endorsement values
+        is_primary_account:
+          type: boolean
+    fedex_uk_account_information_request_body:
+      title: fedex_uk_account_information_request_body
+      type: object
+      properties:
+        account_number:
+          type: string
+        address1:
+          type: string
+        address2:
+          type: string
+        city:
+          type: string
+        company:
+          type: string
+        country_code:
+          type: string
+        email:
+          allOf:
+            - $ref: '#/components/schemas/ups_account_information_request_body/properties/email/allOf/0'
+          description: The email address
+        first_name:
+          type: string
+        last_name:
+          type: string
+        phone:
+          type: string
+        postal_code:
+          type: string
+        state_province:
+          type: string
+        nickname:
+          type: string
+        agree_to_eula:
+          type: boolean
+        meter_number:
+          type: string
+    first_mile_account_information_request_body:
+      title: first_mile_account_information_request_body
+      type: object
+      properties:
+        nickname:
+          type: string
+        mailer_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the mailer id
+        profile_name:
+          type: string
+        password:
+          type: string
+    globegistics_account_information_request_body:
+      title: globegistics_account_information_request_body
+      type: object
+      properties:
+        nickname:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+    imex_account_information_request_body:
+      title: imex_account_information_request_body
+      type: object
+      properties:
+        nickname:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+    international_options:
+      title: international_options
+      type: object
+      properties:
+        contents:
+          allOf:
+            - title: contents
+              type: string
+              enum:
+                - merchandise
+                - documents
+                - gift
+                - returned_goods
+                - sample
+              description: The possible contents values
+        customs_items:
+          type: array
+          items:
+            title: customs_item
+            type: object
+            properties:
+              customs_item_id:
+                allOf:
+                  - $ref: '#/components/schemas/se_id'
+                description: A string that uniquely identifies the customs item id
+              description:
+                type: string
+              quantity:
+                type: integer
+                format: int32
+              value:
+                type: number
+                format: double
+              harmonized_tariff_code:
+                type: string
+              country_of_origin:
+                type: string
+        non_delivery:
+          allOf:
+            - title: non_delivery
+              type: string
+              enum:
+                - return_to_sender
+                - treat_as_abandoned
+              description: The possible non delivery values
+    label:
+      title: label
+      type: object
+      required:
+        - label_id
+        - status
+        - shipment_id
+        - ship_date
+        - created_at
+        - tracking_number
+        - is_return_label
+        - rma_number
+        - is_international
+        - batch_id
+        - carrier_id
+        - service_code
+        - package_code
+        - voided
+        - voided_at
+        - label_format
+        - label_layout
+        - trackable
+        - carrier_code
+        - tracking_status
+        - shipment_cost
+        - insurance_cost
+        - label_download
+        - form_download
+        - insurance_claim
+        - packages
+      properties:
+        label_id:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: |
+            A string that uniquely identifies the label. This ID is generated by ShipEngine when the label is created.
+        status:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/label_status'
+        shipment_id:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: |
+            The shipment that this label is for.  ShipEngine can create a shipment for you automatically when you [create a label](https://docs.shipengine.com/docs/quickstart-create-a-label), or you can [create your own shipment](https://docs.shipengine.com/docs/create-a-shipment) and then [use it to print a label](https://docs.shipengine.com/docs/use-a-shipment-to-print-a-label)
+        ship_date:
+          allOf:
+            - title: date
+              type: string
+              format: date-time
+              pattern: '^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[-+]\d{2}:\d{2}))?$'
+              example: 2018-09-23T00:00:00.000Z
+              description: |
+                An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string that represents a date, but not a specific time.  The value _may_ contain a time component, but it will be set to `00:00:00` UTC by ShipEngine.
+          description: |
+            The date that the package was (or will be) shippped.  ShipEngine will take the day of week into consideration when setting this.  For example, if a carrier does not operate on Sundays, then a package that would have shipped on Sunday will ship on Monday instead.
+        created_at:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/label/properties/voided_at/allOf/0'
+          description: The date and time that the label was created in ShipEngine.
+        tracking_number:
+          type: string
+          minLength: 1
+          readOnly: true
+          example: '782758401696'
+          description: The tracking number for the package. Tracking number formats vary across carriers.
+        is_return_label:
+          type: boolean
+          description: Indicates whether this is a return label.  You may also want to set the `rma_number` so you know what is being returned.
+        rma_number:
+          type: string
+          description: An optional Return Merchandise Authorization number.  This field is useful for return labels.  You can set it to any string value.
+        is_international:
+          type: boolean
+          readOnly: true
+          description: 'Indicates whether this is an international shipment.  That is, the originating country and destination country are different.'
+        batch_id:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: 'If this label was created as part of a [batch](https://docs.shipengine.com/docs/using-batches), then this is the unique ID of that batch.'
+        carrier_id:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: 'The unique ID of the [carrier account](https://docs.shipengine.com/docs/setup-a-carrier) that was used to create this label'
+        service_code:
+          readOnly: true
+          allOf:
+            - title: service_code
+              type: string
+              pattern: '^[a-z0-9]+(_[a-z0-9-]+)* ?$'
+              description: |
+                A [carrier service](https://docs.shipengine.com/docs/use-a-specific-service), such as `fedex_ground`, `usps_first_class_mail`, `flat_rate_envelope`, etc.
+          description: 'The [carrier service](https://docs.shipengine.com/docs/use-a-specific-service) that will be used to ship the package, such as `fedex_ground`, `usps_first_class_mail`, `flat_rate_envelope`, etc.'
+        voided:
+          type: boolean
+          readOnly: true
+          description: 'Indicates whether the label has been [voided](https://docs.shipengine.com/docs/void-a-label)'
+        voided_at:
+          nullable: true
+          readOnly: true
+          allOf:
+            - title: date_time
+              type: string
+              format: date-time
+              pattern: '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[-+]\d{2}:\d{2})$'
+              example: 2018-09-23T15:00:00.000Z
+              description: |
+                An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string that represents a date and time.
+          description: 'The date and time that the label was [voided](https://docs.shipengine.com/docs/void-a-label), or `null` if the label has not been voided'
+        label_format:
+          default: pdf
+          allOf:
+            - title: label_format
+              type: string
+              enum:
+                - pdf
+                - png
+                - zpl
+              description: |
+                The possible file formats in which shipping labels can be downloaded.  We recommend `pdf` format because it is supported by all carriers, whereas some carriers do not support the `png` or `zpl` formats.
+
+                |Label Format  | Supported Carriers
+                |--------------|-----------------------------------
+                |`pdf`         | All carriers
+                |`png`         | `fedex` <br> `stamps_com` <br> `ups` <br> `usps`
+                |`zpl`         | `access_worldwide` <br> `apc` <br> `asendia` <br> `dhl_global_mail` <br> `dhl_express` <br> `dhl_express_australia` <br> `dhl_express_canada` <br> `dhl_express_worldwide` <br> `dhl_express_uk` <br> `dpd` <br> `endicia` <br> `fedex` <br> `fedex_uk` <br> `firstmile` <br> `globegistics` <br> `imex` <br> `newgistics` <br> `ontrac` <br> `rr_donnelley` <br> `stamps_com` <br> `ups` <br> `usps`
+          description: 'The file format that you want the label to be in.  We recommend `pdf` format because it is supported by all carriers, whereas some carriers do not support the `png` or `zpl` formats.'
+        label_layout:
+          default: 4x6
+          allOf:
+            - title: label_layout
+              type: string
+              enum:
+                - 4x6
+                - letter
+              description: |
+                The available layouts (sizes) in which shipping labels can be downloaded.  The label format determines which sizes are supported.  `4x6` is supported for all label formats, whereas `letter` (8.5" x 11") is only supported for `pdf` format.
+          description: 'The layout (size) that you want the label to be in.  The `label_format` determines which sizes are allowed.  `4x6` is supported for all label formats, whereas `letter` (8.5" x 11") is only supported for `pdf` format.'
+        trackable:
+          type: boolean
+          readOnly: true
+          description: 'Indicates whether the shipment is trackable, in which case the `tracking_status` field will reflect the current status and each package will have a `tracking_number`.'
+        carrier_code:
+          readOnly: true
+          allOf:
+            - title: carrier_code
+              type: string
+              pattern: '^[a-z0-9]+(_[a-z0-9]+)*$'
+              description: |
+                A [shipping carrier](https://docs.shipengine.com/docs/setup-a-carrier), such as `fedex`, `dhl_express`, `stamps_com`, etc.
+          description: 'The [shipping carrier](https://docs.shipengine.com/docs/setup-a-carrier) who will ship the package, such as `fedex`, `dhl_express`, `stamps_com`, etc.'
+        tracking_status:
+          readOnly: true
+          allOf:
+            - title: tracking_status
+              type: string
+              enum:
+                - unknown
+                - in_transit
+                - error
+                - delivered
+              description: The different statuses that can apply to a shipment.
+          description: 'The current status of the package, such as `in_transit` or `delivered`'
+      description: |
+        A label represents the physical sticker that you affix to a package to ship it.  ShipEngine makes it easy for you to [create labels](https://docs.shipengine.com/docs/quickstart-create-a-label) and then download them in PDF, PNG, or ZPL format so you can print them.
+    label_messages:
+      title: label_messages
+      type: object
+      properties:
+        reference1:
+          type: string
+        reference2:
+          type: string
+        reference3:
+          type: string
+    link:
+      title: link
+      type: object
+      properties:
+        href:
+          type: string
+        type:
+          type: string
+    list_batch_response_body:
+      title: list_batch_response_body
+      type: object
+      properties:
+        batches:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/batch'
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pages:
+          type: integer
+          format: int32
+        links:
+          allOf:
+            - $ref: '#/components/schemas/pagination_link'
+    list_label_response_body:
+      title: list_label_response_body
+      type: object
+      properties:
+        labels:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/label'
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pages:
+          type: integer
+          format: int32
+        links:
+          allOf:
+            - $ref: '#/components/schemas/pagination_link'
+    list_manifests_request_body:
+      title: list_manifests_request_body
+      type: object
+      properties:
+        warehouse_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the warehouse id
+        ship_date_start:
+          type: string
+          format: date-time
+        ship_date_end:
+          type: string
+          format: date-time
+        created_at_start:
+          type: string
+          format: date-time
+        created_at_end:
+          type: string
+          format: date-time
+        carrier_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the carrier id
+        page:
+          type: integer
+          format: int32
+        page_size:
+          type: integer
+          format: int32
+    list_manifests_response_body:
+      title: list_manifests_response_body
+      type: object
+      properties:
+        manifests:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/manifest_response_body'
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pages:
+          type: integer
+          format: int32
+        links:
+          allOf:
+            - $ref: '#/components/schemas/pagination_link'
+    list_shipment_response_body:
+      title: list_shipment_response_body
+      type: object
+      properties:
+        shipments:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/shipment'
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pages:
+          type: integer
+          format: int32
+        links:
+          allOf:
+            - $ref: '#/components/schemas/pagination_link'
+    list_tag_response_body:
+      title: list_tag_response_body
+      type: object
+      properties:
+        tags:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/tag_response_body'
+    magento_account_information_request_body:
+      title: magento_account_information_request_body
+      type: object
+      properties:
+        store_name:
+          type: string
+        store_url:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+        settings:
+          allOf:
+            - $ref: '#/components/schemas/magento_account_settings_request_body'
+    magento_account_settings_request_body:
+      title: magento_account_settings_request_body
+      type: object
+      properties:
+        automatically_import_sales_orders:
+          type: boolean
+        unpaid_status:
+          type: array
+          items:
+            type: string
+        paid_status:
+          type: array
+          items:
+            type: string
+        shipped_status:
+          type: array
+          items:
+            type: string
+        cancelled_status:
+          type: array
+          items:
+            type: string
+        hold_status:
+          type: array
+          items:
+            type: string
+        warehouse_location:
+          type: array
+          items:
+            type: string
+        capture_payment:
+          allOf:
+            - title: capture_payment
+              type: string
+              enum:
+                - when_order_is_shipped
+                - when_order_is_placed
+              description: The possible capture payment values
+    manifest_response_body:
+      title: manifest_response_body
+      type: object
+      properties:
+        manifest_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the manifest id
+        form_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the form id
+        created_at:
+          type: string
+          format: date-time
+        ship_date:
+          type: string
+          format: date-time
+        shipments:
+          type: integer
+          format: int32
+        warehouse_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the warehouse id
+        submission_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the submission id
+        carrier_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the carrier id
+        manifest_download:
+          allOf:
+            - $ref: '#/components/schemas/link'
+    modify_batch_request_body:
+      title: modify_batch_request_body
+      type: object
+      properties:
+        shipment_ids:
+          type: array
+          items:
+            type: string
+        rate_ids:
+          type: array
+          items:
+            type: string
+    money:
+      title: money
+      type: object
+      properties:
+        currency:
+          allOf:
+            - title: currency
+              type: string
+              enum:
+                - usd
+                - cad
+                - aud
+                - gbp
+                - eur
+              description: The possible currency values
+        amount:
+          type: number
+          format: double
+    newgistics_account_information_request_body:
+      title: newgistics_account_information_request_body
+      type: object
+      properties:
+        merchant_id:
+          type: integer
+          format: int32
+        mailer_id:
+          type: integer
+          format: int32
+        induction_site:
+          type: string
+        nickname:
+          type: string
+    newgistics_account_settings_request_body:
+      title: newgistics_account_settings_request_body
+      type: object
+      properties:
+        include_barcode_with_order_number:
+          type: boolean
+        receive_email_on_manifest_processing:
+          type: boolean
+    ontrac_account_information_request_body:
+      title: ontrac_account_information_request_body
+      type: object
+      properties:
+        nickname:
+          type: string
+        account_number:
+          type: string
+        password:
+          type: string
+    package:
+      title: package
+      type: object
+      required:
+        - name
+      properties:
+        package_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the package id
+        package_code:
+          type: string
+        name:
+          type: string
+        dimensions:
+          allOf:
+            - $ref: '#/components/schemas/dimensions'
+        description:
+          type: string
+    package_list_response_body:
+      title: package_list_response_body
+      type: object
+      properties:
+        packages:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/package'
+    pagination_link:
+      title: pagination_link
+      type: object
+      properties:
+        first:
+          allOf:
+            - $ref: '#/components/schemas/link'
+        last:
+          allOf:
+            - $ref: '#/components/schemas/link'
+        prev:
+          allOf:
+            - $ref: '#/components/schemas/link'
+        next:
+          allOf:
+            - $ref: '#/components/schemas/link'
+        href:
+          type: string
+        type:
+          type: string
+    process_batch_request_body:
+      title: process_batch_request_body
+      type: object
+      properties:
+        ship_date:
+          type: string
+          format: date-time
+        label_layout:
+          type: string
+        label_format:
+          allOf:
+            - $ref: '#/components/schemas/label/properties/label_format/allOf/0'
+    provider_error:
+      title: provider_error
+      type: object
+      properties:
+        carrier_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the carrier id
+        message:
+          type: string
+    purchase_label_request_body:
+      title: purchase_label_request_body
+      type: object
+      properties:
+        shipment:
+          allOf:
+            - $ref: '#/components/schemas/shipment'
+        is_return_label:
+          type: boolean
+        rma_number:
+          type: string
+        test_label:
+          type: boolean
+        validate_address:
+          allOf:
+            - title: validate_address
+              type: string
+              enum:
+                - no_validation
+                - validate_only
+                - validate_and_clean
+              description: The possible validate address values
+        label_layout:
+          type: string
+        label_format:
+          allOf:
+            - $ref: '#/components/schemas/label/properties/label_format/allOf/0'
+    purchase_label_without_shipment_request_body:
+      title: purchase_label_without_shipment_request_body
+      type: object
+      properties:
+        test_label:
+          type: boolean
+        validate_address:
+          allOf:
+            - $ref: '#/components/schemas/purchase_label_request_body/properties/validate_address/allOf/0'
+        label_layout:
+          type: string
+        label_format:
+          allOf:
+            - $ref: '#/components/schemas/label/properties/label_format/allOf/0'
+    rate:
+      title: rate
+      type: object
+      properties:
+        rate_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the rate id
+        rate_type:
+          allOf:
+            - title: rate_type
+              type: string
+              enum:
+                - check
+                - shipment
+              description: The possible rate type values
+        carrier_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the carrier id
+        shipping_amount:
+          allOf:
+            - $ref: '#/components/schemas/money'
+        insurance_amount:
+          allOf:
+            - $ref: '#/components/schemas/money'
+        confirmation_amount:
+          allOf:
+            - $ref: '#/components/schemas/money'
+        other_amount:
+          allOf:
+            - $ref: '#/components/schemas/money'
+        zone:
+          type: integer
+          format: int32
+        package_type:
+          type: string
+        delivery_days:
+          type: integer
+          format: int32
+        guaranteed_service:
+          type: boolean
+        estimated_delivery_date:
+          type: string
+          format: date-time
+        carrier_delivery_days:
+          type: string
+        ship_date:
+          type: string
+          format: date-time
+        negotiated_rate:
+          type: boolean
+        service_type:
+          type: string
+        service_code:
+          type: string
+        trackable:
+          type: boolean
+        carrier_code:
+          type: string
+        carrier_nickname:
+          type: string
+        carrier_friendly_name:
+          type: string
+        validation_status:
+          allOf:
+            - title: validation_status
+              type: string
+              enum:
+                - valid
+                - invalid
+                - has_warnings
+                - unknown
+              description: The possible validation status values
+        warning_messages:
+          type: array
+          items:
+            type: string
+        error_messages:
+          type: array
+          items:
+            type: string
+    rate_estimate_request_body:
+      title: rate_estimate_request_body
+      type: object
+      properties:
+        carrier_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the carrier id
+        carrier_ids:
+          type: array
+          items:
+            type: string
+        from_country_code:
+          type: string
+        from_postal_code:
+          type: string
+        to_country_code:
+          type: string
+        to_postal_code:
+          type: string
+        to_city_locality:
+          type: string
+        to_state_province:
+          type: string
+        weight:
+          allOf:
+            - $ref: '#/components/schemas/weight'
+        dimensions:
+          allOf:
+            - $ref: '#/components/schemas/dimensions'
+        confirmation:
+          allOf:
+            - $ref: '#/components/schemas/shipment/properties/confirmation/allOf/0'
+        address_residential_indicator:
+          allOf:
+            - $ref: '#/components/schemas/address/properties/address_residential_indicator/allOf/0'
+        ship_date:
+          type: string
+          format: date-time
+    rate_request_body:
+      title: rate_request_body
+      type: object
+      properties:
+        carrier_ids:
+          type: array
+          items:
+            type: string
+    rate_response_body:
+      title: rate_response_body
+      type: object
+      properties:
+        rates:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/rate'
+        invalid_rates:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/rate'
+        rate_request_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the rate request id
+        shipment_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the shipment id
+        created_at:
+          type: string
+          format: date-time
+        status:
+          allOf:
+            - title: rate_response_status
+              type: string
+              enum:
+                - working
+                - completed
+                - partial
+                - error
+              description: The possible rate response status values
+        errors:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/provider_error'
+    rate_shipment_request_body:
+      title: rate_shipment_request_body
+      type: object
+      properties:
+        shipment_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the shipment id
+        shipment:
+          allOf:
+            - $ref: '#/components/schemas/address_validating_shipment'
+        rate_options:
+          allOf:
+            - $ref: '#/components/schemas/rate_request_body'
+    rate_shipment_response_body:
+      title: rate_shipment_response_body
+      type: object
+      properties:
+        rate_response:
+          allOf:
+            - $ref: '#/components/schemas/rate_response_body'
+        shipment_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the shipment id
+        carrier_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the carrier id
+        service_code:
+          type: string
+        external_shipment_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the external shipment id
+        ship_date:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        modified_at:
+          type: string
+          format: date-time
+        shipment_status:
+          allOf:
+            - $ref: '#/components/schemas/shipment/properties/shipment_status/allOf/0'
+        ship_to:
+          allOf:
+            - $ref: '#/components/schemas/address'
+        ship_from:
+          allOf:
+            - $ref: '#/components/schemas/address'
+        warehouse_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the warehouse id
+        return_to:
+          allOf:
+            - $ref: '#/components/schemas/address'
+        confirmation:
+          allOf:
+            - $ref: '#/components/schemas/shipment/properties/confirmation/allOf/0'
+        customs:
+          allOf:
+            - $ref: '#/components/schemas/international_options'
+        advanced_options:
+          allOf:
+            - $ref: '#/components/schemas/advanced_options'
+        insurance_provider:
+          allOf:
+            - $ref: '#/components/schemas/shipment/properties/insurance_provider/allOf/0'
+        tags:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/tag_response_body'
+        packages:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/shipment_package'
+        total_weight:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/weight'
+    rate_shipments_request_body:
+      title: rate_shipments_request_body
+      type: object
+      properties:
+        shipment_ids:
+          type: array
+          items:
+            type: string
+        rate_options:
+          allOf:
+            - $ref: '#/components/schemas/rate_request_body'
+        shipments:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/address_validating_shipment'
+    royal_mail_account_information_request_body:
+      title: royal_mail_account_information_request_body
+      type: object
+      properties:
+        account_number:
+          type: string
+        oba_email:
+          allOf:
+            - $ref: '#/components/schemas/ups_account_information_request_body/properties/email/allOf/0'
+          description: The oba email address
+        contact_name:
+          type: string
+        email:
+          allOf:
+            - $ref: '#/components/schemas/ups_account_information_request_body/properties/email/allOf/0'
+          description: The email address
+        company_name:
+          type: string
+        street_line1:
+          type: string
+        street_line2:
+          type: string
+        street_line3:
+          type: string
+        city:
+          type: string
+        postal_code:
+          type: string
+        phone:
+          type: string
+        nickname:
+          type: string
+    rr_donnelley_account_information_request_body:
+      title: rr_donnelley_account_information_request_body
+      type: object
+      properties:
+        nickname:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+    service:
+      title: service
+      type: object
+      properties:
+        carrier_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the carrier id
+        carrier_code:
+          type: string
+        service_code:
+          type: string
+        name:
+          type: string
+        domestic:
+          type: boolean
+        international:
+          type: boolean
+        is_multi_package_supported:
+          type: boolean
+    shipment:
+      title: shipment
+      type: object
+      properties:
+        shipment_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the shipment id
+        carrier_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the carrier id
+        service_code:
+          type: string
+        external_shipment_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the external shipment id
+        ship_date:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        modified_at:
+          type: string
+          format: date-time
+        shipment_status:
+          allOf:
+            - title: shipment_status
+              type: string
+              enum:
+                - pending
+                - processing
+                - label_purchased
+                - cancelled
+              description: The possible shipment status values
+        ship_to:
+          allOf:
+            - $ref: '#/components/schemas/address'
+        ship_from:
+          allOf:
+            - $ref: '#/components/schemas/address'
+        warehouse_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the warehouse id
+        return_to:
+          allOf:
+            - $ref: '#/components/schemas/address'
+        confirmation:
+          allOf:
+            - title: confirmation
+              type: string
+              enum:
+                - none
+                - delivery
+                - signature
+                - adult_signature
+                - direct_signature
+              description: The possible confirmation values
+        customs:
+          allOf:
+            - $ref: '#/components/schemas/international_options'
+        advanced_options:
+          allOf:
+            - $ref: '#/components/schemas/advanced_options'
+        insurance_provider:
+          allOf:
+            - title: insurance_provider
+              type: string
+              enum:
+                - none
+                - shipsurance
+                - carrier
+              description: The possible insurance provider values
+        tags:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/tag_response_body'
+        packages:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/shipment_package'
+        total_weight:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/weight'
+    shipment_add_tag_response_body:
+      title: shipment_add_tag_response_body
+      type: object
+      properties:
+        shipment_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the shipment id
+        tag:
+          allOf:
+            - $ref: '#/components/schemas/tag_response_body'
+    shipment_errors_response_body:
+      title: shipment_errors_response_body
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            title: shipment_response_error
+            type: object
+            properties:
+              error:
+                type: string
+              shipment_id:
+                allOf:
+                  - $ref: '#/components/schemas/se_id'
+                description: A string that uniquely identifies the shipment id
+              external_shipment_id:
+                allOf:
+                  - $ref: '#/components/schemas/se_id'
+                description: A string that uniquely identifies the external shipment id
+        links:
+          allOf:
+            - $ref: '#/components/schemas/pagination_link'
+    shipment_package:
+      title: shipment_package
+      type: object
+      properties:
+        package_code:
+          type: string
+        weight:
+          allOf:
+            - $ref: '#/components/schemas/weight'
+        dimensions:
+          allOf:
+            - $ref: '#/components/schemas/dimensions'
+        insured_value:
+          allOf:
+            - $ref: '#/components/schemas/money'
+        label_messages:
+          allOf:
+            - $ref: '#/components/schemas/label_messages'
+    shopify_access_token_request_body:
+      title: shopify_access_token_request_body
+      type: object
+      properties:
+        store_name:
+          type: string
+        store_url:
+          type: string
+        access_token:
+          type: string
+        private_application_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the private application id
+    stamps_account_information_request_body:
+      title: stamps_account_information_request_body
+      type: object
+      properties:
+        nickname:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+    stamps_account_url_response_body:
+      title: stamps_account_url_response_body
+      type: object
+      properties:
+        url_type:
+          allOf:
+            - title: url_type
+              type: string
+              enum:
+                - account_settings
+                - report_balances
+                - manifest_form
+                - payment_methods
+              description: The possible url type values
+        url:
+          type: string
+    stamps_account_urls_request_body:
+      title: stamps_account_urls_request_body
+      type: object
+      properties:
+        url_types:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/stamps_account_url_response_body/properties/url_type/allOf/0'
+    stamps_account_urls_response_body:
+      title: stamps_account_urls_response_body
+      type: object
+      properties:
+        urls:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/stamps_account_url_response_body'
+    tag_response_body:
+      title: tag_response_body
+      type: object
+      properties:
+        name:
+          type: string
+    tracking_information_response_body:
+      title: tracking_information_response_body
+      type: object
+      properties:
+        tracking_number:
+          type: string
+        status_code:
+          type: string
+        status_description:
+          type: string
+        carrier_status_code:
+          type: string
+        carrier_status_description:
+          type: string
+        ship_date:
+          type: string
+          format: date-time
+        estimated_delivery_date:
+          type: string
+          format: date-time
+        actual_delivery_date:
+          type: string
+          format: date-time
+        exception_description:
+          type: string
+        events:
+          type: array
+          items:
+            title: track_event
+            type: object
+            properties:
+              occurred_at:
+                type: string
+                format: date-time
+              description:
+                type: string
+              city_locality:
+                type: string
+              state_province:
+                type: string
+              postal_code:
+                type: string
+              country_code:
+                type: string
+              company_name:
+                type: string
+              signer:
+                type: string
+    update_webhook_request_body:
+      title: update_webhook_request_body
+      type: object
+      properties:
+        url:
+          type: string
+    ups_account_information_request_body:
+      title: ups_account_information_request_body
+      type: object
+      properties:
+        nickname:
+          type: string
+        account_number:
+          type: string
+        account_country_code:
+          type: string
+        account_postal_code:
+          type: string
+        title:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        company:
+          type: string
+        address1:
+          type: string
+        address2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        postal_code:
+          type: string
+        country_code:
+          type: string
+        email:
+          allOf:
+            - title: email
+              type: string
+              format: email
+              minLength: 1
+              example: john.doe@example.com
+              description: An email address.
+          description: The email address
+        phone:
+          type: string
+        invoice:
+          allOf:
+            - $ref: '#/components/schemas/ups_invoice'
+        agree_to_technology_agreement:
+          type: boolean
+    ups_account_settings:
+      title: ups_account_settings
+      type: object
+      properties:
+        nickname:
+          type: string
+        is_primary_account:
+          type: boolean
+        pickup_type:
+          allOf:
+            - title: ups_pickup_type
+              type: string
+              enum:
+                - daily_pickup
+                - occasional_pickup
+                - customer_counter
+              description: The possible ups pickup type values
+        use_carbon_neutral_shipping_program:
+          type: boolean
+        use_ground_freight_pricing:
+          type: boolean
+        use_consolidation_services:
+          type: boolean
+        use_order_number_on_mail_innovations_labels:
+          type: boolean
+        mail_innovations_endorsement:
+          allOf:
+            - title: mail_innovations_endorsement
+              type: string
+              enum:
+                - none
+                - return_service_requested
+                - forwarding_service_requested
+                - address_service_requested
+                - change_service_requested
+                - leave_if_no_response
+              description: The possible mail innovations endorsement values
+        mail_innovations_cost_center:
+          type: string
+        use_negotiated_rates:
+          type: boolean
+        account_postal_code:
+          type: string
+        invoice:
+          allOf:
+            - $ref: '#/components/schemas/ups_invoice'
+    ups_invoice:
+      title: ups_invoice
+      type: object
+      properties:
+        invoice_date:
+          type: string
+          format: date-time
+        invoice_number:
+          type: string
+        control_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the control id
+        invoice_amount:
+          type: number
+          format: double
+    void_label_response_body:
+      title: void_label_response_body
+      type: object
+      properties:
+        approved:
+          type: boolean
+        message:
+          type: string
+    warehouse:
+      title: warehouse
+      type: object
+      properties:
+        warehouse_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the warehouse id
+        name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        origin_address:
+          allOf:
+            - $ref: '#/components/schemas/address'
+        return_address:
+          allOf:
+            - $ref: '#/components/schemas/address'
+    warehouse_list_response_body:
+      title: warehouse_list_response_body
+      type: object
+      properties:
+        warehouses:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/warehouse'
+    warehouse_request_body:
+      title: warehouse_request_body
+      type: object
+      properties:
+        warehouse_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the warehouse id
+        name:
+          type: string
+        origin_address:
+          allOf:
+            - $ref: '#/components/schemas/address'
+        return_address:
+          allOf:
+            - $ref: '#/components/schemas/address'
+    webhook_response_body:
+      title: webhook_response_body
+      type: object
+      properties:
+        webhook_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the webhook id
+        url:
+          type: string
+        event:
+          type: string
+    weight:
+      title: weight
+      type: object
+      properties:
+        value:
+          type: number
+          format: double
+        unit:
+          allOf:
+            - title: weight_unit
+              type: string
+              enum:
+                - pound
+                - ounce
+                - gram
+                - kilogram
+              description: The possible weight unit values
