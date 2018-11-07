@@ -50,7 +50,7 @@
     },
     {
       "name": "carrier_accounts",
-      "description": "carrier_accounts\n"
+      "description": "carrier accounts\n"
     },
     {
       "name": "carriers",
@@ -70,7 +70,7 @@
     },
     {
       "name": "marketplace_accounts",
-      "description": "marketplace_accounts\n"
+      "description": "marketplace accounts\n"
     },
     {
       "name": "packages",

@@ -57,7 +57,7 @@ tags:
       batches
   - name: carrier_accounts
     description: |
-      carrier_accounts
+      carrier accounts
   - name: carriers
     description: |
       carriers
@@ -72,7 +72,7 @@ tags:
       manifests
   - name: marketplace_accounts
     description: |
-      marketplace_accounts
+      marketplace accounts
   - name: packages
     description: |
       packages
