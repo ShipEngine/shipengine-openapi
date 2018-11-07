@@ -12,14 +12,20 @@ access_worldwide_account_information_request_body:
   $ref: requests/access_worldwide_account_information_request_body.yaml
 address:
   $ref: address.yaml
+address_residential_indicator:
+  $ref: 'enums.yaml#/address_residential_indicator'
 address_validating_shipment:
   $ref: address_validating_shipment.yaml
 address_validation_result:
   $ref: address_validation_result.yaml
+address_validation_status:
+  $ref: 'enums.yaml#/address_validation_status'
 advanced_options:
   $ref: advanced_options.yaml
 amazon_account_information_request_body:
   $ref: requests/amazon_account_information_request_body.yaml
+amazon_product_identifier:
+  $ref: 'enums.yaml#/amazon_product_identifier'
 apc_account_information_request_body:
   $ref: requests/apc_account_information_request_body.yaml
 asendia_account_information_request_body:
@@ -30,8 +36,16 @@ batch:
   $ref: batch.yaml
 batch_errors_response_body:
   $ref: responses/batch_errors_response_body.yaml
+batch_status:
+  $ref: 'enums.yaml#/batch_status'
+batches_sort_by:
+  $ref: 'enums.yaml#/batches_sort_by'
+bill_to_party:
+  $ref: 'enums.yaml#/bill_to_party'
 bulk_rate_response_body:
   $ref: responses/bulk_rate_response_body.yaml
+capture_payment:
+  $ref: 'enums.yaml#/capture_payment'
 carrier:
   $ref: carrier.yaml
 carrier_advanced_option:
@@ -44,10 +58,18 @@ carrier_list_services_response_body:
   $ref: responses/carrier_list_services_response_body.yaml
 channel_advisor_account_information_request_body:
   $ref: requests/channel_advisor_account_information_request_body.yaml
+channel_advisor_product_identifier:
+  $ref: 'enums.yaml#/channel_advisor_product_identifier'
+code:
+  $ref: 'enums.yaml#/code'
+confirmation:
+  $ref: 'enums.yaml#/confirmation'
 connect_account_response_body:
   $ref: responses/connect_account_response_body.yaml
 connect_marketplace_response_body:
   $ref: responses/connect_marketplace_response_body.yaml
+contents:
+  $ref: 'enums.yaml#/contents'
 create_batch_request_body:
   $ref: requests/create_batch_request_body.yaml
 create_manifest_request_body:
@@ -60,8 +82,16 @@ create_shipments_response_body:
   $ref: responses/create_shipments_response_body.yaml
 create_webhook_request_body:
   $ref: requests/create_webhook_request_body.yaml
+currency:
+  $ref: 'enums.yaml#/currency'
+date:
+  $ref: 'primitives.yaml#/date'
+date_time:
+  $ref: 'primitives.yaml#/date_time'
 default_account_settings_request_body:
   $ref: requests/default_account_settings_request_body.yaml
+detail_code:
+  $ref: 'enums.yaml#/detail_code'
 dhl_ecommerce_account_information_request_body:
   $ref: requests/dhl_ecommerce_account_information_request_body.yaml
 dhl_express_account_information_request_body:
@@ -70,22 +100,30 @@ dhl_express_account_settings:
   $ref: dhl_express_account_settings.yaml
 dhl_express_uk_account_information_request_body:
   $ref: requests/dhl_express_uk_account_information_request_body.yaml
+dimension_unit:
+  $ref: 'enums.yaml#/dimension_unit'
 dimensions:
   $ref: dimensions.yaml
 dpd_account_information_request_body:
   $ref: requests/dpd_account_information_request_body.yaml
 ebay_access_token_request_body:
   $ref: requests/ebay_access_token_request_body.yaml
+email:
+  $ref: 'primitives.yaml#/email'
 endicia_account_information_request_body:
   $ref: requests/endicia_account_information_request_body.yaml
 error_response_body:
   $ref: responses/error_response_body.yaml
 etsy_access_token_request_body:
   $ref: requests/etsy_access_token_request_body.yaml
+event:
+  $ref: 'enums.yaml#/event'
 fedex_account_information_request_body:
   $ref: requests/fedex_account_information_request_body.yaml
 fedex_account_settings_request_body:
   $ref: requests/fedex_account_settings_request_body.yaml
+fedex_pickup_type:
+  $ref: 'enums.yaml#/fedex_pickup_type'
 fedex_uk_account_information_request_body:
   $ref: requests/fedex_uk_account_information_request_body.yaml
 first_mile_account_information_request_body:
@@ -94,12 +132,18 @@ globegistics_account_information_request_body:
   $ref: requests/globegistics_account_information_request_body.yaml
 imex_account_information_request_body:
   $ref: requests/imex_account_information_request_body.yaml
+insurance_provider:
+  $ref: 'enums.yaml#/insurance_provider'
 international_options:
   $ref: international_options.yaml
 label:
   $ref: label.yaml
+label_format:
+  $ref: 'enums.yaml#/label_format'
 label_messages:
   $ref: label_messages.yaml
+labels_sort_by:
+  $ref: 'enums.yaml#/labels_sort_by'
 link:
   $ref: link.yaml
 list_batch_response_body:
@@ -118,6 +162,8 @@ magento_account_information_request_body:
   $ref: requests/magento_account_information_request_body.yaml
 magento_account_settings_request_body:
   $ref: requests/magento_account_settings_request_body.yaml
+mail_innovations_endorsement:
+  $ref: 'enums.yaml#/mail_innovations_endorsement'
 manifest_response_body:
   $ref: responses/manifest_response_body.yaml
 modify_batch_request_body:
@@ -128,6 +174,8 @@ newgistics_account_information_request_body:
   $ref: requests/newgistics_account_information_request_body.yaml
 newgistics_account_settings_request_body:
   $ref: requests/newgistics_account_settings_request_body.yaml
+non_delivery:
+  $ref: 'enums.yaml#/non_delivery'
 ontrac_account_information_request_body:
   $ref: requests/ontrac_account_information_request_body.yaml
 package:
@@ -152,12 +200,16 @@ rate_request_body:
   $ref: requests/rate_request_body.yaml
 rate_response_body:
   $ref: responses/rate_response_body.yaml
+rate_response_status:
+  $ref: 'enums.yaml#/rate_response_status'
 rate_shipment_request_body:
   $ref: requests/rate_shipment_request_body.yaml
 rate_shipment_response_body:
   $ref: responses/rate_shipment_response_body.yaml
 rate_shipments_request_body:
   $ref: requests/rate_shipments_request_body.yaml
+rate_type:
+  $ref: 'enums.yaml#/rate_type'
 royal_mail_account_information_request_body:
   $ref: requests/royal_mail_account_information_request_body.yaml
 rr_donnelley_account_information_request_body:
@@ -172,8 +224,16 @@ shipment_errors_response_body:
   $ref: responses/shipment_errors_response_body.yaml
 shipment_package:
   $ref: shipment_package.yaml
+shipment_status:
+  $ref: 'enums.yaml#/shipment_status'
+shipments_sort_by:
+  $ref: 'enums.yaml#/shipments_sort_by'
 shopify_access_token_request_body:
   $ref: requests/shopify_access_token_request_body.yaml
+smart_post_endorsement:
+  $ref: 'enums.yaml#/smart_post_endorsement'
+smart_post_hub:
+  $ref: 'enums.yaml#/smart_post_hub'
 stamps_account_information_request_body:
   $ref: requests/stamps_account_information_request_body.yaml
 stamps_account_url_response_body:
@@ -186,6 +246,10 @@ tag_response_body:
   $ref: responses/tag_response_body.yaml
 tracking_information_response_body:
   $ref: responses/tracking_information_response_body.yaml
+tracking_status:
+  $ref: 'enums.yaml#/tracking_status'
+type:
+  $ref: 'enums.yaml#/type'
 update_webhook_request_body:
   $ref: requests/update_webhook_request_body.yaml
 ups_account_information_request_body:
@@ -194,6 +258,18 @@ ups_account_settings:
   $ref: ups_account_settings.yaml
 ups_invoice:
   $ref: ups_invoice.yaml
+ups_pickup_type:
+  $ref: 'enums.yaml#/ups_pickup_type'
+url:
+  $ref: 'primitives.yaml#/url'
+url_type:
+  $ref: 'enums.yaml#/url_type'
+uuid:
+  $ref: 'primitives.yaml#/uuid'
+validate_address:
+  $ref: 'enums.yaml#/validate_address'
+validation_status:
+  $ref: 'enums.yaml#/validation_status'
 void_label_response_body:
   $ref: responses/void_label_response_body.yaml
 warehouse:
@@ -206,3 +282,5 @@ webhook_response_body:
   $ref: responses/webhook_response_body.yaml
 weight:
   $ref: weight.yaml
+weight_unit:
+  $ref: 'enums.yaml#/weight_unit'

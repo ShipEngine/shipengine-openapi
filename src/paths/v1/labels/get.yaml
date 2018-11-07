@@ -91,8 +91,8 @@ parameters:
     required: false
     schema:
       allOf:
-        - $ref: '../../../schemas/enums.yaml#/label_status'
-        - default: desc
+        - $ref: '../../../schemas/enums.yaml#/sort_dir'
+      default: desc
     description: Controls the sort order of the query.
   - name: sort_by
     in: query
@@ -111,19 +111,19 @@ responses:
     content:
       application/json:
         schema:
+          type: object
+          required:
+            - labels
+          properties:
+            labels:
+              type: array
+              minItems: 0
+              items:
+                $ref: ../../../schemas/label.yaml
+              description: |
+                The labels that matched the query criteria.  If no matching labels were found, then this array will be empty; otherwise, it will contain one page of results.  The last page of results may have fewer labels than the `page_size`.
           allOf:
             - $ref: ../../../schemas/responses/paged_list_response_body.yaml
-            - type: object
-              required:
-                - labels
-              properties:
-                labels:
-                  type: array
-                  minItems: 0
-                  items:
-                    $ref: ../../../schemas/label.yaml
-                  description: |
-                    The labels that matched the query criteria.  If no matching labels were found, then this array will be empty; otherwise, it will contain one page of results.  The last page of results may have fewer labels than the `page_size`.
   '400':
     description: BadRequest
   '404':

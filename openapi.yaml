@@ -157,14 +157,14 @@ paths:
           in: query
           required: false
           schema:
-            $ref: '#/components/schemas/label/properties/voided_at/allOf/0'
+            $ref: '#/components/schemas/date_time'
           example: 2018-09-23T15:00:00.000Z
           description: Only return labels that were created on or after a specific date/time
         - name: created_at_end
           in: query
           required: false
           schema:
-            $ref: '#/components/schemas/label/properties/voided_at/allOf/0'
+            $ref: '#/components/schemas/date_time'
           example: 2018-09-30T15:00:00.000Z
           description: Only return labels that were created on or before a specific date/time
         - name: page
@@ -192,8 +192,8 @@ paths:
           required: false
           schema:
             allOf:
-              - $ref: '#/components/schemas/label_status'
-              - default: desc
+              - $ref: '#/components/schemas/sort_dir'
+            default: desc
           description: Controls the sort order of the query.
         - name: sort_by
           in: query
@@ -212,19 +212,19 @@ paths:
           content:
             application/json:
               schema:
+                type: object
+                required:
+                  - labels
+                properties:
+                  labels:
+                    type: array
+                    minItems: 0
+                    items:
+                      $ref: '#/components/schemas/label'
+                    description: |
+                      The labels that matched the query criteria.  If no matching labels were found, then this array will be empty; otherwise, it will contain one page of results.  The last page of results may have fewer labels than the `page_size`.
                 allOf:
                   - $ref: '#/components/schemas/paged_list_response_body'
-                  - type: object
-                    required:
-                      - labels
-                    properties:
-                      labels:
-                        type: array
-                        minItems: 0
-                        items:
-                          $ref: '#/components/schemas/label'
-                        description: |
-                          The labels that matched the query criteria.  If no matching labels were found, then this array will be empty; otherwise, it will contain one page of results.  The last page of results may have fewer labels than the `page_size`.
         '400':
           description: BadRequest
         '404':
@@ -263,7 +263,7 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+            $ref: '#/components/schemas/uuid'
       responses:
         '204':
           $ref: '#/components/responses/no_content'
@@ -281,7 +281,7 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+            $ref: '#/components/schemas/uuid'
       responses:
         '204':
           $ref: '#/components/responses/no_content'
@@ -299,7 +299,7 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+            $ref: '#/components/schemas/uuid'
       requestBody:
         required: true
         content:
@@ -323,7 +323,7 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+            $ref: '#/components/schemas/uuid'
       responses:
         '204':
           $ref: '#/components/responses/no_content'
@@ -363,7 +363,7 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+            $ref: '#/components/schemas/uuid'
       responses:
         '204':
           $ref: '#/components/responses/no_content'
@@ -381,7 +381,7 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+            $ref: '#/components/schemas/uuid'
       responses:
         '204':
           $ref: '#/components/responses/no_content'
@@ -399,7 +399,7 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+            $ref: '#/components/schemas/uuid'
       requestBody:
         required: true
         content:
@@ -423,7 +423,7 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+            $ref: '#/components/schemas/uuid'
       responses:
         '204':
           $ref: '#/components/responses/no_content'
@@ -463,7 +463,7 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+            $ref: '#/components/schemas/uuid'
       responses:
         '204':
           $ref: '#/components/responses/no_content'
@@ -481,7 +481,7 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+            $ref: '#/components/schemas/uuid'
       responses:
         '204':
           $ref: '#/components/responses/no_content'
@@ -499,7 +499,7 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+            $ref: '#/components/schemas/uuid'
       requestBody:
         required: true
         content:
@@ -523,7 +523,7 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+            $ref: '#/components/schemas/uuid'
       responses:
         '204':
           $ref: '#/components/responses/no_content'
@@ -563,7 +563,7 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+            $ref: '#/components/schemas/uuid'
       responses:
         '204':
           $ref: '#/components/responses/no_content'
@@ -581,7 +581,7 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+            $ref: '#/components/schemas/uuid'
       responses:
         '204':
           $ref: '#/components/responses/no_content'
@@ -599,7 +599,7 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+            $ref: '#/components/schemas/uuid'
       requestBody:
         required: true
         content:
@@ -623,7 +623,7 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+            $ref: '#/components/schemas/uuid'
       responses:
         '204':
           $ref: '#/components/responses/no_content'
@@ -663,7 +663,7 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+            $ref: '#/components/schemas/uuid'
       responses:
         '204':
           $ref: '#/components/responses/no_content'
@@ -681,7 +681,7 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+            $ref: '#/components/schemas/uuid'
       responses:
         '204':
           $ref: '#/components/responses/no_content'
@@ -699,7 +699,7 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+            $ref: '#/components/schemas/uuid'
       requestBody:
         required: true
         content:
@@ -723,7 +723,7 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+            $ref: '#/components/schemas/uuid'
       responses:
         '204':
           $ref: '#/components/responses/no_content'
@@ -763,7 +763,7 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+            $ref: '#/components/schemas/uuid'
       responses:
         '204':
           $ref: '#/components/responses/no_content'
@@ -781,7 +781,7 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+            $ref: '#/components/schemas/uuid'
       responses:
         '204':
           $ref: '#/components/responses/no_content'
@@ -799,7 +799,7 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+            $ref: '#/components/schemas/uuid'
       requestBody:
         required: true
         content:
@@ -823,7 +823,7 @@ paths:
           in: path
           required: true
           schema:
-            $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+            $ref: '#/components/schemas/uuid'
       responses:
         '204':
           $ref: '#/components/responses/no_content'
@@ -867,7 +867,7 @@ paths:
           in: query
           required: false
           schema:
-            $ref: '#/components/schemas/batch/properties/status/allOf/0'
+            $ref: '#/components/schemas/batch_status'
         - name: page
           in: query
           required: false
@@ -889,12 +889,7 @@ paths:
           in: query
           required: false
           schema:
-            title: batches_sort_by
-            type: string
-            enum:
-              - ship_date
-              - processed_at
-            description: The possible batches sort by values
+            $ref: '#/components/schemas/batches_sort_by'
       responses:
         '200':
           description: The request was a success.
@@ -2782,7 +2777,7 @@ paths:
           in: query
           required: false
           schema:
-            $ref: '#/components/schemas/shipment/properties/shipment_status/allOf/0'
+            $ref: '#/components/schemas/shipment_status'
         - name: modified_at_start
           in: query
           required: false
@@ -2828,12 +2823,7 @@ paths:
           in: query
           required: false
           schema:
-            title: shipments_sort_by
-            type: string
-            enum:
-              - modified_at
-              - created_at
-            description: The possible shipments sort by values
+            $ref: '#/components/schemas/shipments_sort_by'
       responses:
         '200':
           description: The request was a success.
@@ -3457,7 +3447,7 @@ components:
                 - href
               properties:
                 href:
-                  $ref: '#/components/schemas/paged_list_response_body/properties/links/properties/next/properties/href'
+                  $ref: '#/components/schemas/url'
               description: |
                 The link to the first page of results.  This object will _always_ have an `href` property. If there are no results, then the first page will contain an empty array of items.
             last:
@@ -3466,24 +3456,21 @@ components:
                 - href
               properties:
                 href:
-                  $ref: '#/components/schemas/paged_list_response_body/properties/links/properties/next/properties/href'
+                  $ref: '#/components/schemas/url'
               description: |
                 The link to the final page of results.  This object will _always_ have an `href` property. If there are no results, then the final page will contain an empty array of items.
             prev:
               type: object
               properties:
                 href:
-                  $ref: '#/components/schemas/paged_list_response_body/properties/links/properties/next/properties/href'
+                  $ref: '#/components/schemas/url'
               description: |
                 The link to the previous page of results.  The `href` property will only be set when the `page` is 2 or greater.
             next:
               type: object
               properties:
                 href:
-                  title: url
-                  type: string
-                  format: url
-                  minLength: 1
+                  $ref: '#/components/schemas/url'
               description: |
                 The link to the next page of results.  The `href` property will only be set when the `page` is less than `pages`.
       description: |
@@ -3551,21 +3538,21 @@ components:
         country_code:
           type: string
         address_residential_indicator:
-          allOf:
-            - title: address_residential_indicator
-              type: string
-              enum:
-                - unknown
-                - 'yes'
-                - 'no'
-              description: The possible address residential indicator values
+          $ref: '#/components/schemas/address_residential_indicator'
+    address_residential_indicator:
+      title: address_residential_indicator
+      type: string
+      enum:
+        - unknown
+        - 'yes'
+        - 'no'
+      description: The possible address residential indicator values
     address_validating_shipment:
       title: address_validating_shipment
       type: object
       properties:
         validate_address:
-          allOf:
-            - $ref: '#/components/schemas/purchase_label_request_body/properties/validate_address/allOf/0'
+          $ref: '#/components/schemas/validate_address'
         shipment_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
@@ -3590,43 +3577,33 @@ components:
           type: string
           format: date-time
         shipment_status:
-          allOf:
-            - $ref: '#/components/schemas/shipment/properties/shipment_status/allOf/0'
+          $ref: '#/components/schemas/shipment_status'
         ship_to:
-          allOf:
-            - $ref: '#/components/schemas/address'
+          $ref: '#/components/schemas/address'
         ship_from:
-          allOf:
-            - $ref: '#/components/schemas/address'
+          $ref: '#/components/schemas/address'
         warehouse_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
           description: A string that uniquely identifies the warehouse id
         return_to:
-          allOf:
-            - $ref: '#/components/schemas/address'
+          $ref: '#/components/schemas/address'
         confirmation:
-          allOf:
-            - $ref: '#/components/schemas/shipment/properties/confirmation/allOf/0'
+          $ref: '#/components/schemas/confirmation'
         customs:
-          allOf:
-            - $ref: '#/components/schemas/international_options'
+          $ref: '#/components/schemas/international_options'
         advanced_options:
-          allOf:
-            - $ref: '#/components/schemas/advanced_options'
+          $ref: '#/components/schemas/advanced_options'
         insurance_provider:
-          allOf:
-            - $ref: '#/components/schemas/shipment/properties/insurance_provider/allOf/0'
+          $ref: '#/components/schemas/insurance_provider'
         tags:
           type: array
           items:
-            allOf:
-              - $ref: '#/components/schemas/tag_response_body'
+            $ref: '#/components/schemas/tag_response_body'
         packages:
           type: array
           items:
-            allOf:
-              - $ref: '#/components/schemas/shipment_package'
+            $ref: '#/components/schemas/shipment_package'
         total_weight:
           readOnly: true
           allOf:
@@ -3636,21 +3613,11 @@ components:
       type: object
       properties:
         status:
-          allOf:
-            - title: address_validation_status
-              type: string
-              enum:
-                - unverified
-                - verified
-                - warning
-                - error
-              description: The possible address validation status values
+          $ref: '#/components/schemas/address_validation_status'
         original_address:
-          allOf:
-            - $ref: '#/components/schemas/address'
+          $ref: '#/components/schemas/address'
         matched_address:
-          allOf:
-            - $ref: '#/components/schemas/address'
+          $ref: '#/components/schemas/address'
         messages:
           type: array
           items:
@@ -3658,85 +3625,22 @@ components:
             type: object
             properties:
               code:
-                allOf:
-                  - title: code
-                    type: string
-                    enum:
-                      - a1000
-                      - a1001
-                      - a1002
-                      - a1003
-                      - a1004
-                      - a1005
-                      - a1006
-                      - a1007
-                      - a1008
-                      - r1000
-                      - r1001
-                      - r1002
-                      - r1003
-                    description: The possible code values
+                $ref: '#/components/schemas/code'
               message:
                 type: string
               type:
-                allOf:
-                  - title: type
-                    type: string
-                    enum:
-                      - error
-                      - warning
-                      - info
-                    description: The possible type values
+                $ref: '#/components/schemas/type'
               detail_code:
-                allOf:
-                  - title: detail_code
-                    type: string
-                    enum:
-                      - non_supported_country
-                      - minimum_postal_code_verification_failed
-                      - street_does_not_match_unique_street_name
-                      - multiple_directionals
-                      - multiple_matches
-                      - suite_not_valid
-                      - suite_missing
-                      - invalid_house_number
-                      - missing_house_number
-                      - invalid_box_number
-                      - missing_box_number
-                      - missing_cmra_or_private_mail_box_number
-                      - suite_has_no_secondaries
-                      - postal_code_changed_or_added
-                      - state_province_changed_or_added
-                      - city_locality_changed_or_added
-                      - urbanization_changed
-                      - street_name_spelling_changed_or_added
-                      - street_name_type_changed_or_added
-                      - street_direction_changed_or_added
-                      - suite_type_changed_or_added
-                      - suite_unit_number_changed_or_added
-                      - double_dependent_locality_changed_or_added
-                      - subadministrative_area_changed_or_added
-                      - subnational_area_changed_or_added
-                      - p_o_box_changed_or_added
-                      - premise_type_changed_or_added
-                      - house_number_changed
-                      - organization_changed_or_added
-                      - partially_verified_to_state_level
-                      - partially_verified_to_city_level
-                      - partially_verified_to_street_level
-                      - partially_verified_to_premise_level
-                      - verified_to_state_level
-                      - verified_to_city_level
-                      - verified_to_street_level
-                      - verified_to_premise_level
-                      - verified_to_suite_level
-                      - coded_to_street_lavel
-                      - coded_to_neighborhood_level
-                      - coded_to_community_level
-                      - coded_to_state_level
-                      - coded_to_rooftop_level
-                      - coded_to_rooftop_interpolation_level
-                    description: The possible detail code values
+                $ref: '#/components/schemas/detail_code'
+    address_validation_status:
+      title: address_validation_status
+      type: string
+      enum:
+        - unverified
+        - verified
+        - warning
+        - error
+      description: The possible address validation status values
     advanced_options:
       title: advanced_options
       type: object
@@ -3746,13 +3650,7 @@ components:
         bill_to_country_code:
           type: string
         bill_to_party:
-          allOf:
-            - title: bill_to_party
-              type: string
-              enum:
-                - recipient
-                - third_party
-              description: The possible bill to party values
+          $ref: '#/components/schemas/bill_to_party'
         bill_to_postal_code:
           type: string
         contains_alcohol:
@@ -3784,15 +3682,16 @@ components:
             - $ref: '#/components/schemas/se_id'
           description: A string that uniquely identifies the merchant seller id
         product_identifier:
-          allOf:
-            - title: amazon_product_identifier
-              type: string
-              enum:
-                - sku
-                - asin
-              description: The possible amazon product identifier values
+          $ref: '#/components/schemas/amazon_product_identifier'
         mws_auth_token:
           type: string
+    amazon_product_identifier:
+      title: amazon_product_identifier
+      type: string
+      enum:
+        - sku
+        - asin
+      description: The possible amazon product identifier values
     apc_account_information_request_body:
       title: apc_account_information_request_body
       type: object
@@ -3820,8 +3719,7 @@ components:
       type: object
       properties:
         balance:
-          allOf:
-            - $ref: '#/components/schemas/money'
+          $ref: '#/components/schemas/money'
     batch:
       title: batch
       type: object
@@ -3829,8 +3727,7 @@ components:
         label_layout:
           type: string
         label_format:
-          allOf:
-            - $ref: '#/components/schemas/label/properties/label_format/allOf/0'
+          $ref: '#/components/schemas/label_format'
         batch_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
@@ -3863,34 +3760,17 @@ components:
           type: integer
           format: int32
         batch_shipments_url:
-          allOf:
-            - $ref: '#/components/schemas/link'
+          $ref: '#/components/schemas/link'
         batch_labels_url:
-          allOf:
-            - $ref: '#/components/schemas/link'
+          $ref: '#/components/schemas/link'
         batch_errors_url:
-          allOf:
-            - $ref: '#/components/schemas/link'
+          $ref: '#/components/schemas/link'
         label_download:
-          allOf:
-            - $ref: '#/components/schemas/link'
+          $ref: '#/components/schemas/link'
         form_download:
-          allOf:
-            - $ref: '#/components/schemas/link'
+          $ref: '#/components/schemas/link'
         status:
-          allOf:
-            - title: batch_status
-              type: string
-              enum:
-                - open
-                - queued
-                - processing
-                - completed
-                - completed_with_errors
-                - archived
-                - notifying
-                - invalid
-              description: The possible batch status values
+          $ref: '#/components/schemas/batch_status'
     batch_errors_response_body:
       title: batch_errors_response_body
       type: object
@@ -3908,8 +3788,34 @@ components:
                   - $ref: '#/components/schemas/se_id'
                 description: A string that uniquely identifies the shipment id
         links:
-          allOf:
-            - $ref: '#/components/schemas/pagination_link'
+          $ref: '#/components/schemas/pagination_link'
+    batch_status:
+      title: batch_status
+      type: string
+      enum:
+        - open
+        - queued
+        - processing
+        - completed
+        - completed_with_errors
+        - archived
+        - notifying
+        - invalid
+      description: The possible batch status values
+    batches_sort_by:
+      title: batches_sort_by
+      type: string
+      enum:
+        - ship_date
+        - processed_at
+      description: The possible batches sort by values
+    bill_to_party:
+      title: bill_to_party
+      type: string
+      enum:
+        - recipient
+        - third_party
+      description: The possible bill to party values
     bulk_rate_response_body:
       title: bulk_rate_response_body
       type: object
@@ -3926,13 +3832,18 @@ components:
           type: string
           format: date-time
         status:
-          allOf:
-            - $ref: '#/components/schemas/rate_response_body/properties/status/allOf/0'
+          $ref: '#/components/schemas/rate_response_status'
         errors:
           type: array
           items:
-            allOf:
-              - $ref: '#/components/schemas/provider_error'
+            $ref: '#/components/schemas/provider_error'
+    capture_payment:
+      title: capture_payment
+      type: string
+      enum:
+        - when_order_is_shipped
+        - when_order_is_placed
+      description: The possible capture payment values
     carrier:
       title: carrier
       type: object
@@ -3963,18 +3874,15 @@ components:
         services:
           type: array
           items:
-            allOf:
-              - $ref: '#/components/schemas/service'
+            $ref: '#/components/schemas/service'
         packages:
           type: array
           items:
-            allOf:
-              - $ref: '#/components/schemas/package'
+            $ref: '#/components/schemas/package'
         options:
           type: array
           items:
-            allOf:
-              - $ref: '#/components/schemas/carrier_advanced_option'
+            $ref: '#/components/schemas/carrier_advanced_option'
     carrier_advanced_option:
       title: carrier_advanced_option
       type: object
@@ -3992,8 +3900,7 @@ components:
         options:
           type: array
           items:
-            allOf:
-              - $ref: '#/components/schemas/carrier_advanced_option'
+            $ref: '#/components/schemas/carrier_advanced_option'
     carrier_list_response_body:
       title: carrier_list_response_body
       type: object
@@ -4001,8 +3908,7 @@ components:
         carriers:
           type: array
           items:
-            allOf:
-              - $ref: '#/components/schemas/carrier'
+            $ref: '#/components/schemas/carrier'
     carrier_list_services_response_body:
       title: carrier_list_services_response_body
       type: object
@@ -4010,8 +3916,7 @@ components:
         services:
           type: array
           items:
-            allOf:
-              - $ref: '#/components/schemas/service'
+            $ref: '#/components/schemas/service'
     channel_advisor_account_information_request_body:
       title: channel_advisor_account_information_request_body
       type: object
@@ -4022,13 +3927,42 @@ components:
           type: integer
           format: int32
         product_identifier:
-          allOf:
-            - title: channel_advisor_product_identifier
-              type: string
-              enum:
-                - client_order_number
-                - channel_advisor_order_number
-              description: The possible channel advisor product identifier values
+          $ref: '#/components/schemas/channel_advisor_product_identifier'
+    channel_advisor_product_identifier:
+      title: channel_advisor_product_identifier
+      type: string
+      enum:
+        - client_order_number
+        - channel_advisor_order_number
+      description: The possible channel advisor product identifier values
+    code:
+      title: code
+      type: string
+      enum:
+        - a1000
+        - a1001
+        - a1002
+        - a1003
+        - a1004
+        - a1005
+        - a1006
+        - a1007
+        - a1008
+        - r1000
+        - r1001
+        - r1002
+        - r1003
+      description: The possible code values
+    confirmation:
+      title: confirmation
+      type: string
+      enum:
+        - none
+        - delivery
+        - signature
+        - adult_signature
+        - direct_signature
+      description: The possible confirmation values
     connect_account_response_body:
       title: connect_account_response_body
       type: object
@@ -4043,8 +3977,18 @@ components:
       properties:
         store_id:
           allOf:
-            - $ref: '#/components/schemas/error_response_body/properties/request_id/allOf/0'
+            - $ref: '#/components/schemas/uuid'
           description: A UUID that uniquely identifies the store id
+    contents:
+      title: contents
+      type: string
+      enum:
+        - merchandise
+        - documents
+        - gift
+        - returned_goods
+        - sample
+      description: The possible contents values
     create_batch_request_body:
       title: create_batch_request_body
       type: object
@@ -4091,8 +4035,7 @@ components:
           items:
             type: string
         address_validation:
-          allOf:
-            - $ref: '#/components/schemas/address_validation_result'
+          $ref: '#/components/schemas/address_validation_result'
         shipment_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
@@ -4117,43 +4060,33 @@ components:
           type: string
           format: date-time
         shipment_status:
-          allOf:
-            - $ref: '#/components/schemas/shipment/properties/shipment_status/allOf/0'
+          $ref: '#/components/schemas/shipment_status'
         ship_to:
-          allOf:
-            - $ref: '#/components/schemas/address'
+          $ref: '#/components/schemas/address'
         ship_from:
-          allOf:
-            - $ref: '#/components/schemas/address'
+          $ref: '#/components/schemas/address'
         warehouse_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
           description: A string that uniquely identifies the warehouse id
         return_to:
-          allOf:
-            - $ref: '#/components/schemas/address'
+          $ref: '#/components/schemas/address'
         confirmation:
-          allOf:
-            - $ref: '#/components/schemas/shipment/properties/confirmation/allOf/0'
+          $ref: '#/components/schemas/confirmation'
         customs:
-          allOf:
-            - $ref: '#/components/schemas/international_options'
+          $ref: '#/components/schemas/international_options'
         advanced_options:
-          allOf:
-            - $ref: '#/components/schemas/advanced_options'
+          $ref: '#/components/schemas/advanced_options'
         insurance_provider:
-          allOf:
-            - $ref: '#/components/schemas/shipment/properties/insurance_provider/allOf/0'
+          $ref: '#/components/schemas/insurance_provider'
         tags:
           type: array
           items:
-            allOf:
-              - $ref: '#/components/schemas/tag_response_body'
+            $ref: '#/components/schemas/tag_response_body'
         packages:
           type: array
           items:
-            allOf:
-              - $ref: '#/components/schemas/shipment_package'
+            $ref: '#/components/schemas/shipment_package'
         total_weight:
           readOnly: true
           allOf:
@@ -4165,8 +4098,7 @@ components:
         shipments:
           type: array
           items:
-            allOf:
-              - $ref: '#/components/schemas/address_validating_shipment'
+            $ref: '#/components/schemas/address_validating_shipment'
     create_shipments_response_body:
       title: create_shipments_response_body
       type: object
@@ -4176,32 +4108,96 @@ components:
         shipments:
           type: array
           items:
-            allOf:
-              - $ref: '#/components/schemas/create_shipment_response_body'
+            $ref: '#/components/schemas/create_shipment_response_body'
     create_webhook_request_body:
       title: create_webhook_request_body
       type: object
       properties:
         event:
-          allOf:
-            - title: event
-              type: string
-              enum:
-                - rate
-                - track
-                - batch
-                - store_refresh_complete
-                - sales_orders_imported
-                - carrier_connected
-              description: The possible event values
+          $ref: '#/components/schemas/event'
         url:
           type: string
+    currency:
+      title: currency
+      type: string
+      enum:
+        - usd
+        - cad
+        - aud
+        - gbp
+        - eur
+      description: The possible currency values
+    date:
+      title: date
+      type: string
+      format: date-time
+      pattern: '^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[-+]\d{2}:\d{2}))?$'
+      example: 2018-09-23T00:00:00.000Z
+      description: |
+        An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string that represents a date, but not a specific time.  The value _may_ contain a time component, but it will be set to `00:00:00` UTC by ShipEngine.
+    date_time:
+      title: date_time
+      type: string
+      format: date-time
+      pattern: '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[-+]\d{2}:\d{2})$'
+      example: 2018-09-23T15:00:00.000Z
+      description: |
+        An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string that represents a date and time.
     default_account_settings_request_body:
       title: default_account_settings_request_body
       type: object
       properties:
         automatically_import_sales_orders:
           type: boolean
+    detail_code:
+      title: detail_code
+      type: string
+      enum:
+        - non_supported_country
+        - minimum_postal_code_verification_failed
+        - street_does_not_match_unique_street_name
+        - multiple_directionals
+        - multiple_matches
+        - suite_not_valid
+        - suite_missing
+        - invalid_house_number
+        - missing_house_number
+        - invalid_box_number
+        - missing_box_number
+        - missing_cmra_or_private_mail_box_number
+        - suite_has_no_secondaries
+        - postal_code_changed_or_added
+        - state_province_changed_or_added
+        - city_locality_changed_or_added
+        - urbanization_changed
+        - street_name_spelling_changed_or_added
+        - street_name_type_changed_or_added
+        - street_direction_changed_or_added
+        - suite_type_changed_or_added
+        - suite_unit_number_changed_or_added
+        - double_dependent_locality_changed_or_added
+        - subadministrative_area_changed_or_added
+        - subnational_area_changed_or_added
+        - p_o_box_changed_or_added
+        - premise_type_changed_or_added
+        - house_number_changed
+        - organization_changed_or_added
+        - partially_verified_to_state_level
+        - partially_verified_to_city_level
+        - partially_verified_to_street_level
+        - partially_verified_to_premise_level
+        - verified_to_state_level
+        - verified_to_city_level
+        - verified_to_street_level
+        - verified_to_premise_level
+        - verified_to_suite_level
+        - coded_to_street_lavel
+        - coded_to_neighborhood_level
+        - coded_to_community_level
+        - coded_to_state_level
+        - coded_to_rooftop_level
+        - coded_to_rooftop_interpolation_level
+      description: The possible detail code values
     dhl_ecommerce_account_information_request_body:
       title: dhl_ecommerce_account_information_request_body
       type: object
@@ -4248,18 +4244,19 @@ components:
           type: string
         nickname:
           type: string
+    dimension_unit:
+      title: dimension_unit
+      type: string
+      enum:
+        - inch
+        - centimeter
+      description: The possible dimension unit values
     dimensions:
       title: dimensions
       type: object
       properties:
         unit:
-          allOf:
-            - title: dimension_unit
-              type: string
-              enum:
-                - inch
-                - centimeter
-              description: The possible dimension unit values
+          $ref: '#/components/schemas/dimension_unit'
         length:
           type: number
           format: double
@@ -4293,6 +4290,13 @@ components:
           allOf:
             - $ref: '#/components/schemas/se_id'
           description: A string that uniquely identifies the private application id
+    email:
+      title: email
+      type: string
+      format: email
+      minLength: 1
+      example: john.doe@example.com
+      description: An email address.
     endicia_account_information_request_body:
       title: endicia_account_information_request_body
       type: object
@@ -4309,14 +4313,7 @@ components:
       properties:
         request_id:
           allOf:
-            - title: uuid
-              type: string
-              format: uuid
-              minLength: 36
-              maxLength: 36
-              pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
-              example: aa3d8e8e-462b-4476-9618-72db7f7b7009
-              description: A UUID (a.k.a. GUID) that uniquely identifies a resource
+            - $ref: '#/components/schemas/uuid'
           description: A UUID that uniquely identifies the request id
         errors:
           type: array
@@ -4345,6 +4342,17 @@ components:
           allOf:
             - $ref: '#/components/schemas/se_id'
           description: A string that uniquely identifies the private application id
+    event:
+      title: event
+      type: string
+      enum:
+        - rate
+        - track
+        - batch
+        - store_refresh_complete
+        - sales_orders_imported
+        - carrier_connected
+      description: The possible event values
     fedex_account_information_request_body:
       title: fedex_account_information_request_body
       type: object
@@ -4363,7 +4371,7 @@ components:
           type: string
         email:
           allOf:
-            - $ref: '#/components/schemas/ups_account_information_request_body/properties/email/allOf/0'
+            - $ref: '#/components/schemas/email'
           description: The email address
         first_name:
           type: string
@@ -4388,71 +4396,24 @@ components:
         nickname:
           type: string
         pickup_type:
-          allOf:
-            - title: fedex_pickup_type
-              type: string
-              enum:
-                - none
-                - regular_pickup
-                - request_courier
-                - drop_box
-                - business_service_center
-                - station
-              description: The possible fedex pickup type values
+          $ref: '#/components/schemas/fedex_pickup_type'
         smart_post_hub:
-          allOf:
-            - title: smart_post_hub
-              type: string
-              enum:
-                - none
-                - allentown_pa
-                - atlanta_ga
-                - baltimore_md
-                - charlotte_nc
-                - chino_ca
-                - dallas_tx
-                - denver_co
-                - detroit_mi
-                - edison_nj
-                - grove_city_oh
-                - groveport_oh
-                - houston_tx
-                - indianapolis_in
-                - kansas_city_ks
-                - los_angeles_ca
-                - martinsburg_wv
-                - memphis_tn
-                - minneapolis_mn
-                - new_berlin_wi
-                - northborough_ma
-                - orlando_fl
-                - phoneix_az
-                - pittsburgh_pa
-                - reno_nv
-                - sacramento_ca
-                - salt_lake_city_ut
-                - seattle_wa
-                - st_louis_mo
-                - windsor_ct
-                - newark_ny
-                - south_brunswick_nj
-                - scranton_pa
-                - wheeling_il
-              description: The possible smart post hub values
+          $ref: '#/components/schemas/smart_post_hub'
         smart_post_endorsement:
-          allOf:
-            - title: smart_post_endorsement
-              type: string
-              enum:
-                - none
-                - return_service_requested
-                - forwarding_service_requested
-                - address_service_requested
-                - change_service_requested
-                - leave_if_no_response
-              description: The possible smart post endorsement values
+          $ref: '#/components/schemas/smart_post_endorsement'
         is_primary_account:
           type: boolean
+    fedex_pickup_type:
+      title: fedex_pickup_type
+      type: string
+      enum:
+        - none
+        - regular_pickup
+        - request_courier
+        - drop_box
+        - business_service_center
+        - station
+      description: The possible fedex pickup type values
     fedex_uk_account_information_request_body:
       title: fedex_uk_account_information_request_body
       type: object
@@ -4471,7 +4432,7 @@ components:
           type: string
         email:
           allOf:
-            - $ref: '#/components/schemas/ups_account_information_request_body/properties/email/allOf/0'
+            - $ref: '#/components/schemas/email'
           description: The email address
         first_name:
           type: string
@@ -4523,21 +4484,20 @@ components:
           type: string
         password:
           type: string
+    insurance_provider:
+      title: insurance_provider
+      type: string
+      enum:
+        - none
+        - shipsurance
+        - carrier
+      description: The possible insurance provider values
     international_options:
       title: international_options
       type: object
       properties:
         contents:
-          allOf:
-            - title: contents
-              type: string
-              enum:
-                - merchandise
-                - documents
-                - gift
-                - returned_goods
-                - sample
-              description: The possible contents values
+          $ref: '#/components/schemas/contents'
         customs_items:
           type: array
           items:
@@ -4561,13 +4521,7 @@ components:
               country_of_origin:
                 type: string
         non_delivery:
-          allOf:
-            - title: non_delivery
-              type: string
-              enum:
-                - return_to_sender
-                - treat_as_abandoned
-              description: The possible non delivery values
+          $ref: '#/components/schemas/non_delivery'
     label:
       title: label
       type: object
@@ -4617,19 +4571,13 @@ components:
             The shipment that this label is for.  ShipEngine can create a shipment for you automatically when you [create a label](https://docs.shipengine.com/docs/quickstart-create-a-label), or you can [create your own shipment](https://docs.shipengine.com/docs/create-a-shipment) and then [use it to print a label](https://docs.shipengine.com/docs/use-a-shipment-to-print-a-label)
         ship_date:
           allOf:
-            - title: date
-              type: string
-              format: date-time
-              pattern: '^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[-+]\d{2}:\d{2}))?$'
-              example: 2018-09-23T00:00:00.000Z
-              description: |
-                An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string that represents a date, but not a specific time.  The value _may_ contain a time component, but it will be set to `00:00:00` UTC by ShipEngine.
+            - $ref: '#/components/schemas/date'
           description: |
             The date that the package was (or will be) shippped.  ShipEngine will take the day of week into consideration when setting this.  For example, if a carrier does not operate on Sundays, then a package that would have shipped on Sunday will ship on Monday instead.
         created_at:
           readOnly: true
           allOf:
-            - $ref: '#/components/schemas/label/properties/voided_at/allOf/0'
+            - $ref: '#/components/schemas/date_time'
           description: The date and time that the label was created in ShipEngine.
         tracking_number:
           type: string
@@ -4659,13 +4607,11 @@ components:
           description: 'The unique ID of the [carrier account](https://docs.shipengine.com/docs/setup-a-carrier) that was used to create this label'
         service_code:
           readOnly: true
-          allOf:
-            - title: service_code
-              type: string
-              pattern: '^[a-z0-9]+(_[a-z0-9-]+)* ?$'
-              description: |
-                A [carrier service](https://docs.shipengine.com/docs/use-a-specific-service), such as `fedex_ground`, `usps_first_class_mail`, `flat_rate_envelope`, etc.
-          description: 'The [carrier service](https://docs.shipengine.com/docs/use-a-specific-service) that will be used to ship the package, such as `fedex_ground`, `usps_first_class_mail`, `flat_rate_envelope`, etc.'
+          description: |
+            A [carrier service](https://docs.shipengine.com/docs/use-a-specific-service), such as `fedex_ground`, `usps_first_class_mail`, `flat_rate_envelope`, etc.
+          title: service_code
+          type: string
+          pattern: '^[a-z0-9]+(_[a-z0-9-]+)* ?$'
         voided:
           type: boolean
           readOnly: true
@@ -4674,70 +4620,55 @@ components:
           nullable: true
           readOnly: true
           allOf:
-            - title: date_time
-              type: string
-              format: date-time
-              pattern: '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[-+]\d{2}:\d{2})$'
-              example: 2018-09-23T15:00:00.000Z
-              description: |
-                An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string that represents a date and time.
+            - $ref: '#/components/schemas/date_time'
           description: 'The date and time that the label was [voided](https://docs.shipengine.com/docs/void-a-label), or `null` if the label has not been voided'
         label_format:
           default: pdf
           allOf:
-            - title: label_format
-              type: string
-              enum:
-                - pdf
-                - png
-                - zpl
-              description: |
-                The possible file formats in which shipping labels can be downloaded.  We recommend `pdf` format because it is supported by all carriers, whereas some carriers do not support the `png` or `zpl` formats.
-
-                |Label Format  | Supported Carriers
-                |--------------|-----------------------------------
-                |`pdf`         | All carriers
-                |`png`         | `fedex` <br> `stamps_com` <br> `ups` <br> `usps`
-                |`zpl`         | `access_worldwide` <br> `apc` <br> `asendia` <br> `dhl_global_mail` <br> `dhl_express` <br> `dhl_express_australia` <br> `dhl_express_canada` <br> `dhl_express_worldwide` <br> `dhl_express_uk` <br> `dpd` <br> `endicia` <br> `fedex` <br> `fedex_uk` <br> `firstmile` <br> `globegistics` <br> `imex` <br> `newgistics` <br> `ontrac` <br> `rr_donnelley` <br> `stamps_com` <br> `ups` <br> `usps`
+            - $ref: '#/components/schemas/label_format'
           description: 'The file format that you want the label to be in.  We recommend `pdf` format because it is supported by all carriers, whereas some carriers do not support the `png` or `zpl` formats.'
         label_layout:
           default: 4x6
-          allOf:
-            - title: label_layout
-              type: string
-              enum:
-                - 4x6
-                - letter
-              description: |
-                The available layouts (sizes) in which shipping labels can be downloaded.  The label format determines which sizes are supported.  `4x6` is supported for all label formats, whereas `letter` (8.5" x 11") is only supported for `pdf` format.
-          description: 'The layout (size) that you want the label to be in.  The `label_format` determines which sizes are allowed.  `4x6` is supported for all label formats, whereas `letter` (8.5" x 11") is only supported for `pdf` format.'
+          description: |
+            The available layouts (sizes) in which shipping labels can be downloaded.  The label format determines which sizes are supported.  `4x6` is supported for all label formats, whereas `letter` (8.5" x 11") is only supported for `pdf` format.
+          title: label_layout
+          type: string
+          enum:
+            - 4x6
+            - letter
         trackable:
           type: boolean
           readOnly: true
           description: 'Indicates whether the shipment is trackable, in which case the `tracking_status` field will reflect the current status and each package will have a `tracking_number`.'
         carrier_code:
           readOnly: true
-          allOf:
-            - title: carrier_code
-              type: string
-              pattern: '^[a-z0-9]+(_[a-z0-9]+)*$'
-              description: |
-                A [shipping carrier](https://docs.shipengine.com/docs/setup-a-carrier), such as `fedex`, `dhl_express`, `stamps_com`, etc.
-          description: 'The [shipping carrier](https://docs.shipengine.com/docs/setup-a-carrier) who will ship the package, such as `fedex`, `dhl_express`, `stamps_com`, etc.'
+          description: |
+            A [shipping carrier](https://docs.shipengine.com/docs/setup-a-carrier), such as `fedex`, `dhl_express`, `stamps_com`, etc.
+          title: carrier_code
+          type: string
+          pattern: '^[a-z0-9]+(_[a-z0-9]+)*$'
         tracking_status:
           readOnly: true
           allOf:
-            - title: tracking_status
-              type: string
-              enum:
-                - unknown
-                - in_transit
-                - error
-                - delivered
-              description: The different statuses that can apply to a shipment.
+            - $ref: '#/components/schemas/tracking_status'
           description: 'The current status of the package, such as `in_transit` or `delivered`'
       description: |
         A label represents the physical sticker that you affix to a package to ship it.  ShipEngine makes it easy for you to [create labels](https://docs.shipengine.com/docs/quickstart-create-a-label) and then download them in PDF, PNG, or ZPL format so you can print them.
+    label_format:
+      title: label_format
+      type: string
+      enum:
+        - pdf
+        - png
+        - zpl
+      description: |
+        The possible file formats in which shipping labels can be downloaded.  We recommend `pdf` format because it is supported by all carriers, whereas some carriers do not support the `png` or `zpl` formats.
+
+        |Label Format  | Supported Carriers
+        |--------------|-----------------------------------
+        |`pdf`         | All carriers
+        |`png`         | `fedex` <br> `stamps_com` <br> `ups` <br> `usps`
+        |`zpl`         | `access_worldwide` <br> `apc` <br> `asendia` <br> `dhl_global_mail` <br> `dhl_express` <br> `dhl_express_australia` <br> `dhl_express_canada` <br> `dhl_express_worldwide` <br> `dhl_express_uk` <br> `dpd` <br> `endicia` <br> `fedex` <br> `fedex_uk` <br> `firstmile` <br> `globegistics` <br> `imex` <br> `newgistics` <br> `ontrac` <br> `rr_donnelley` <br> `stamps_com` <br> `ups` <br> `usps`
     label_messages:
       title: label_messages
       type: object
@@ -4748,6 +4679,13 @@ components:
           type: string
         reference3:
           type: string
+    labels_sort_by:
+      title: labels_sort_by
+      type: string
+      enum:
+        - modified_at
+        - created_at
+      description: The possible labels sort by values
     link:
       title: link
       type: object
@@ -4763,8 +4701,7 @@ components:
         batches:
           type: array
           items:
-            allOf:
-              - $ref: '#/components/schemas/batch'
+            $ref: '#/components/schemas/batch'
         total:
           type: integer
           format: int64
@@ -4775,8 +4712,7 @@ components:
           type: integer
           format: int32
         links:
-          allOf:
-            - $ref: '#/components/schemas/pagination_link'
+          $ref: '#/components/schemas/pagination_link'
     list_label_response_body:
       title: list_label_response_body
       type: object
@@ -4784,8 +4720,7 @@ components:
         labels:
           type: array
           items:
-            allOf:
-              - $ref: '#/components/schemas/label'
+            $ref: '#/components/schemas/label'
         total:
           type: integer
           format: int64
@@ -4796,8 +4731,7 @@ components:
           type: integer
           format: int32
         links:
-          allOf:
-            - $ref: '#/components/schemas/pagination_link'
+          $ref: '#/components/schemas/pagination_link'
     list_manifests_request_body:
       title: list_manifests_request_body
       type: object
@@ -4835,8 +4769,7 @@ components:
         manifests:
           type: array
           items:
-            allOf:
-              - $ref: '#/components/schemas/manifest_response_body'
+            $ref: '#/components/schemas/manifest_response_body'
         total:
           type: integer
           format: int64
@@ -4847,8 +4780,7 @@ components:
           type: integer
           format: int32
         links:
-          allOf:
-            - $ref: '#/components/schemas/pagination_link'
+          $ref: '#/components/schemas/pagination_link'
     list_shipment_response_body:
       title: list_shipment_response_body
       type: object
@@ -4856,8 +4788,7 @@ components:
         shipments:
           type: array
           items:
-            allOf:
-              - $ref: '#/components/schemas/shipment'
+            $ref: '#/components/schemas/shipment'
         total:
           type: integer
           format: int64
@@ -4868,8 +4799,7 @@ components:
           type: integer
           format: int32
         links:
-          allOf:
-            - $ref: '#/components/schemas/pagination_link'
+          $ref: '#/components/schemas/pagination_link'
     list_tag_response_body:
       title: list_tag_response_body
       type: object
@@ -4877,8 +4807,7 @@ components:
         tags:
           type: array
           items:
-            allOf:
-              - $ref: '#/components/schemas/tag_response_body'
+            $ref: '#/components/schemas/tag_response_body'
     magento_account_information_request_body:
       title: magento_account_information_request_body
       type: object
@@ -4892,8 +4821,7 @@ components:
         password:
           type: string
         settings:
-          allOf:
-            - $ref: '#/components/schemas/magento_account_settings_request_body'
+          $ref: '#/components/schemas/magento_account_settings_request_body'
     magento_account_settings_request_body:
       title: magento_account_settings_request_body
       type: object
@@ -4925,13 +4853,18 @@ components:
           items:
             type: string
         capture_payment:
-          allOf:
-            - title: capture_payment
-              type: string
-              enum:
-                - when_order_is_shipped
-                - when_order_is_placed
-              description: The possible capture payment values
+          $ref: '#/components/schemas/capture_payment'
+    mail_innovations_endorsement:
+      title: mail_innovations_endorsement
+      type: string
+      enum:
+        - none
+        - return_service_requested
+        - forwarding_service_requested
+        - address_service_requested
+        - change_service_requested
+        - leave_if_no_response
+      description: The possible mail innovations endorsement values
     manifest_response_body:
       title: manifest_response_body
       type: object
@@ -4966,8 +4899,7 @@ components:
             - $ref: '#/components/schemas/se_id'
           description: A string that uniquely identifies the carrier id
         manifest_download:
-          allOf:
-            - $ref: '#/components/schemas/link'
+          $ref: '#/components/schemas/link'
     modify_batch_request_body:
       title: modify_batch_request_body
       type: object
@@ -4985,16 +4917,7 @@ components:
       type: object
       properties:
         currency:
-          allOf:
-            - title: currency
-              type: string
-              enum:
-                - usd
-                - cad
-                - aud
-                - gbp
-                - eur
-              description: The possible currency values
+          $ref: '#/components/schemas/currency'
         amount:
           type: number
           format: double
@@ -5020,6 +4943,13 @@ components:
           type: boolean
         receive_email_on_manifest_processing:
           type: boolean
+    non_delivery:
+      title: non_delivery
+      type: string
+      enum:
+        - return_to_sender
+        - treat_as_abandoned
+      description: The possible non delivery values
     ontrac_account_information_request_body:
       title: ontrac_account_information_request_body
       type: object
@@ -5045,8 +4975,7 @@ components:
         name:
           type: string
         dimensions:
-          allOf:
-            - $ref: '#/components/schemas/dimensions'
+          $ref: '#/components/schemas/dimensions'
         description:
           type: string
     package_list_response_body:
@@ -5056,24 +4985,19 @@ components:
         packages:
           type: array
           items:
-            allOf:
-              - $ref: '#/components/schemas/package'
+            $ref: '#/components/schemas/package'
     pagination_link:
       title: pagination_link
       type: object
       properties:
         first:
-          allOf:
-            - $ref: '#/components/schemas/link'
+          $ref: '#/components/schemas/link'
         last:
-          allOf:
-            - $ref: '#/components/schemas/link'
+          $ref: '#/components/schemas/link'
         prev:
-          allOf:
-            - $ref: '#/components/schemas/link'
+          $ref: '#/components/schemas/link'
         next:
-          allOf:
-            - $ref: '#/components/schemas/link'
+          $ref: '#/components/schemas/link'
         href:
           type: string
         type:
@@ -5088,8 +5012,7 @@ components:
         label_layout:
           type: string
         label_format:
-          allOf:
-            - $ref: '#/components/schemas/label/properties/label_format/allOf/0'
+          $ref: '#/components/schemas/label_format'
     provider_error:
       title: provider_error
       type: object
@@ -5105,8 +5028,7 @@ components:
       type: object
       properties:
         shipment:
-          allOf:
-            - $ref: '#/components/schemas/shipment'
+          $ref: '#/components/schemas/shipment'
         is_return_label:
           type: boolean
         rma_number:
@@ -5114,19 +5036,11 @@ components:
         test_label:
           type: boolean
         validate_address:
-          allOf:
-            - title: validate_address
-              type: string
-              enum:
-                - no_validation
-                - validate_only
-                - validate_and_clean
-              description: The possible validate address values
+          $ref: '#/components/schemas/validate_address'
         label_layout:
           type: string
         label_format:
-          allOf:
-            - $ref: '#/components/schemas/label/properties/label_format/allOf/0'
+          $ref: '#/components/schemas/label_format'
     purchase_label_without_shipment_request_body:
       title: purchase_label_without_shipment_request_body
       type: object
@@ -5134,13 +5048,11 @@ components:
         test_label:
           type: boolean
         validate_address:
-          allOf:
-            - $ref: '#/components/schemas/purchase_label_request_body/properties/validate_address/allOf/0'
+          $ref: '#/components/schemas/validate_address'
         label_layout:
           type: string
         label_format:
-          allOf:
-            - $ref: '#/components/schemas/label/properties/label_format/allOf/0'
+          $ref: '#/components/schemas/label_format'
     rate:
       title: rate
       type: object
@@ -5150,29 +5062,19 @@ components:
             - $ref: '#/components/schemas/se_id'
           description: A string that uniquely identifies the rate id
         rate_type:
-          allOf:
-            - title: rate_type
-              type: string
-              enum:
-                - check
-                - shipment
-              description: The possible rate type values
+          $ref: '#/components/schemas/rate_type'
         carrier_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
           description: A string that uniquely identifies the carrier id
         shipping_amount:
-          allOf:
-            - $ref: '#/components/schemas/money'
+          $ref: '#/components/schemas/money'
         insurance_amount:
-          allOf:
-            - $ref: '#/components/schemas/money'
+          $ref: '#/components/schemas/money'
         confirmation_amount:
-          allOf:
-            - $ref: '#/components/schemas/money'
+          $ref: '#/components/schemas/money'
         other_amount:
-          allOf:
-            - $ref: '#/components/schemas/money'
+          $ref: '#/components/schemas/money'
         zone:
           type: integer
           format: int32
@@ -5206,15 +5108,7 @@ components:
         carrier_friendly_name:
           type: string
         validation_status:
-          allOf:
-            - title: validation_status
-              type: string
-              enum:
-                - valid
-                - invalid
-                - has_warnings
-                - unknown
-              description: The possible validation status values
+          $ref: '#/components/schemas/validation_status'
         warning_messages:
           type: array
           items:
@@ -5248,17 +5142,13 @@ components:
         to_state_province:
           type: string
         weight:
-          allOf:
-            - $ref: '#/components/schemas/weight'
+          $ref: '#/components/schemas/weight'
         dimensions:
-          allOf:
-            - $ref: '#/components/schemas/dimensions'
+          $ref: '#/components/schemas/dimensions'
         confirmation:
-          allOf:
-            - $ref: '#/components/schemas/shipment/properties/confirmation/allOf/0'
+          $ref: '#/components/schemas/confirmation'
         address_residential_indicator:
-          allOf:
-            - $ref: '#/components/schemas/address/properties/address_residential_indicator/allOf/0'
+          $ref: '#/components/schemas/address_residential_indicator'
         ship_date:
           type: string
           format: date-time
@@ -5277,13 +5167,11 @@ components:
         rates:
           type: array
           items:
-            allOf:
-              - $ref: '#/components/schemas/rate'
+            $ref: '#/components/schemas/rate'
         invalid_rates:
           type: array
           items:
-            allOf:
-              - $ref: '#/components/schemas/rate'
+            $ref: '#/components/schemas/rate'
         rate_request_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
@@ -5296,20 +5184,20 @@ components:
           type: string
           format: date-time
         status:
-          allOf:
-            - title: rate_response_status
-              type: string
-              enum:
-                - working
-                - completed
-                - partial
-                - error
-              description: The possible rate response status values
+          $ref: '#/components/schemas/rate_response_status'
         errors:
           type: array
           items:
-            allOf:
-              - $ref: '#/components/schemas/provider_error'
+            $ref: '#/components/schemas/provider_error'
+    rate_response_status:
+      title: rate_response_status
+      type: string
+      enum:
+        - working
+        - completed
+        - partial
+        - error
+      description: The possible rate response status values
     rate_shipment_request_body:
       title: rate_shipment_request_body
       type: object
@@ -5319,18 +5207,15 @@ components:
             - $ref: '#/components/schemas/se_id'
           description: A string that uniquely identifies the shipment id
         shipment:
-          allOf:
-            - $ref: '#/components/schemas/address_validating_shipment'
+          $ref: '#/components/schemas/address_validating_shipment'
         rate_options:
-          allOf:
-            - $ref: '#/components/schemas/rate_request_body'
+          $ref: '#/components/schemas/rate_request_body'
     rate_shipment_response_body:
       title: rate_shipment_response_body
       type: object
       properties:
         rate_response:
-          allOf:
-            - $ref: '#/components/schemas/rate_response_body'
+          $ref: '#/components/schemas/rate_response_body'
         shipment_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
@@ -5355,43 +5240,33 @@ components:
           type: string
           format: date-time
         shipment_status:
-          allOf:
-            - $ref: '#/components/schemas/shipment/properties/shipment_status/allOf/0'
+          $ref: '#/components/schemas/shipment_status'
         ship_to:
-          allOf:
-            - $ref: '#/components/schemas/address'
+          $ref: '#/components/schemas/address'
         ship_from:
-          allOf:
-            - $ref: '#/components/schemas/address'
+          $ref: '#/components/schemas/address'
         warehouse_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
           description: A string that uniquely identifies the warehouse id
         return_to:
-          allOf:
-            - $ref: '#/components/schemas/address'
+          $ref: '#/components/schemas/address'
         confirmation:
-          allOf:
-            - $ref: '#/components/schemas/shipment/properties/confirmation/allOf/0'
+          $ref: '#/components/schemas/confirmation'
         customs:
-          allOf:
-            - $ref: '#/components/schemas/international_options'
+          $ref: '#/components/schemas/international_options'
         advanced_options:
-          allOf:
-            - $ref: '#/components/schemas/advanced_options'
+          $ref: '#/components/schemas/advanced_options'
         insurance_provider:
-          allOf:
-            - $ref: '#/components/schemas/shipment/properties/insurance_provider/allOf/0'
+          $ref: '#/components/schemas/insurance_provider'
         tags:
           type: array
           items:
-            allOf:
-              - $ref: '#/components/schemas/tag_response_body'
+            $ref: '#/components/schemas/tag_response_body'
         packages:
           type: array
           items:
-            allOf:
-              - $ref: '#/components/schemas/shipment_package'
+            $ref: '#/components/schemas/shipment_package'
         total_weight:
           readOnly: true
           allOf:
@@ -5405,13 +5280,18 @@ components:
           items:
             type: string
         rate_options:
-          allOf:
-            - $ref: '#/components/schemas/rate_request_body'
+          $ref: '#/components/schemas/rate_request_body'
         shipments:
           type: array
           items:
-            allOf:
-              - $ref: '#/components/schemas/address_validating_shipment'
+            $ref: '#/components/schemas/address_validating_shipment'
+    rate_type:
+      title: rate_type
+      type: string
+      enum:
+        - check
+        - shipment
+      description: The possible rate type values
     royal_mail_account_information_request_body:
       title: royal_mail_account_information_request_body
       type: object
@@ -5420,13 +5300,13 @@ components:
           type: string
         oba_email:
           allOf:
-            - $ref: '#/components/schemas/ups_account_information_request_body/properties/email/allOf/0'
+            - $ref: '#/components/schemas/email'
           description: The oba email address
         contact_name:
           type: string
         email:
           allOf:
-            - $ref: '#/components/schemas/ups_account_information_request_body/properties/email/allOf/0'
+            - $ref: '#/components/schemas/email'
           description: The email address
         company_name:
           type: string
@@ -5502,64 +5382,33 @@ components:
           type: string
           format: date-time
         shipment_status:
-          allOf:
-            - title: shipment_status
-              type: string
-              enum:
-                - pending
-                - processing
-                - label_purchased
-                - cancelled
-              description: The possible shipment status values
+          $ref: '#/components/schemas/shipment_status'
         ship_to:
-          allOf:
-            - $ref: '#/components/schemas/address'
+          $ref: '#/components/schemas/address'
         ship_from:
-          allOf:
-            - $ref: '#/components/schemas/address'
+          $ref: '#/components/schemas/address'
         warehouse_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
           description: A string that uniquely identifies the warehouse id
         return_to:
-          allOf:
-            - $ref: '#/components/schemas/address'
+          $ref: '#/components/schemas/address'
         confirmation:
-          allOf:
-            - title: confirmation
-              type: string
-              enum:
-                - none
-                - delivery
-                - signature
-                - adult_signature
-                - direct_signature
-              description: The possible confirmation values
+          $ref: '#/components/schemas/confirmation'
         customs:
-          allOf:
-            - $ref: '#/components/schemas/international_options'
+          $ref: '#/components/schemas/international_options'
         advanced_options:
-          allOf:
-            - $ref: '#/components/schemas/advanced_options'
+          $ref: '#/components/schemas/advanced_options'
         insurance_provider:
-          allOf:
-            - title: insurance_provider
-              type: string
-              enum:
-                - none
-                - shipsurance
-                - carrier
-              description: The possible insurance provider values
+          $ref: '#/components/schemas/insurance_provider'
         tags:
           type: array
           items:
-            allOf:
-              - $ref: '#/components/schemas/tag_response_body'
+            $ref: '#/components/schemas/tag_response_body'
         packages:
           type: array
           items:
-            allOf:
-              - $ref: '#/components/schemas/shipment_package'
+            $ref: '#/components/schemas/shipment_package'
         total_weight:
           readOnly: true
           allOf:
@@ -5573,8 +5422,7 @@ components:
             - $ref: '#/components/schemas/se_id'
           description: A string that uniquely identifies the shipment id
         tag:
-          allOf:
-            - $ref: '#/components/schemas/tag_response_body'
+          $ref: '#/components/schemas/tag_response_body'
     shipment_errors_response_body:
       title: shipment_errors_response_body
       type: object
@@ -5596,8 +5444,7 @@ components:
                   - $ref: '#/components/schemas/se_id'
                 description: A string that uniquely identifies the external shipment id
         links:
-          allOf:
-            - $ref: '#/components/schemas/pagination_link'
+          $ref: '#/components/schemas/pagination_link'
     shipment_package:
       title: shipment_package
       type: object
@@ -5605,17 +5452,29 @@ components:
         package_code:
           type: string
         weight:
-          allOf:
-            - $ref: '#/components/schemas/weight'
+          $ref: '#/components/schemas/weight'
         dimensions:
-          allOf:
-            - $ref: '#/components/schemas/dimensions'
+          $ref: '#/components/schemas/dimensions'
         insured_value:
-          allOf:
-            - $ref: '#/components/schemas/money'
+          $ref: '#/components/schemas/money'
         label_messages:
-          allOf:
-            - $ref: '#/components/schemas/label_messages'
+          $ref: '#/components/schemas/label_messages'
+    shipment_status:
+      title: shipment_status
+      type: string
+      enum:
+        - pending
+        - processing
+        - label_purchased
+        - cancelled
+      description: The possible shipment status values
+    shipments_sort_by:
+      title: shipments_sort_by
+      type: string
+      enum:
+        - modified_at
+        - created_at
+      description: The possible shipments sort by values
     shopify_access_token_request_body:
       title: shopify_access_token_request_body
       type: object
@@ -5630,6 +5489,56 @@ components:
           allOf:
             - $ref: '#/components/schemas/se_id'
           description: A string that uniquely identifies the private application id
+    smart_post_endorsement:
+      title: smart_post_endorsement
+      type: string
+      enum:
+        - none
+        - return_service_requested
+        - forwarding_service_requested
+        - address_service_requested
+        - change_service_requested
+        - leave_if_no_response
+      description: The possible smart post endorsement values
+    smart_post_hub:
+      title: smart_post_hub
+      type: string
+      enum:
+        - none
+        - allentown_pa
+        - atlanta_ga
+        - baltimore_md
+        - charlotte_nc
+        - chino_ca
+        - dallas_tx
+        - denver_co
+        - detroit_mi
+        - edison_nj
+        - grove_city_oh
+        - groveport_oh
+        - houston_tx
+        - indianapolis_in
+        - kansas_city_ks
+        - los_angeles_ca
+        - martinsburg_wv
+        - memphis_tn
+        - minneapolis_mn
+        - new_berlin_wi
+        - northborough_ma
+        - orlando_fl
+        - phoneix_az
+        - pittsburgh_pa
+        - reno_nv
+        - sacramento_ca
+        - salt_lake_city_ut
+        - seattle_wa
+        - st_louis_mo
+        - windsor_ct
+        - newark_ny
+        - south_brunswick_nj
+        - scranton_pa
+        - wheeling_il
+      description: The possible smart post hub values
     stamps_account_information_request_body:
       title: stamps_account_information_request_body
       type: object
@@ -5645,15 +5554,7 @@ components:
       type: object
       properties:
         url_type:
-          allOf:
-            - title: url_type
-              type: string
-              enum:
-                - account_settings
-                - report_balances
-                - manifest_form
-                - payment_methods
-              description: The possible url type values
+          $ref: '#/components/schemas/url_type'
         url:
           type: string
     stamps_account_urls_request_body:
@@ -5663,8 +5564,7 @@ components:
         url_types:
           type: array
           items:
-            allOf:
-              - $ref: '#/components/schemas/stamps_account_url_response_body/properties/url_type/allOf/0'
+            $ref: '#/components/schemas/url_type'
     stamps_account_urls_response_body:
       title: stamps_account_urls_response_body
       type: object
@@ -5672,8 +5572,7 @@ components:
         urls:
           type: array
           items:
-            allOf:
-              - $ref: '#/components/schemas/stamps_account_url_response_body'
+            $ref: '#/components/schemas/stamps_account_url_response_body'
     tag_response_body:
       title: tag_response_body
       type: object
@@ -5728,6 +5627,23 @@ components:
                 type: string
               signer:
                 type: string
+    tracking_status:
+      title: tracking_status
+      type: string
+      enum:
+        - unknown
+        - in_transit
+        - error
+        - delivered
+      description: The different statuses that can apply to a shipment.
+    type:
+      title: type
+      type: string
+      enum:
+        - error
+        - warning
+        - info
+      description: The possible type values
     update_webhook_request_body:
       title: update_webhook_request_body
       type: object
@@ -5768,18 +5684,12 @@ components:
           type: string
         email:
           allOf:
-            - title: email
-              type: string
-              format: email
-              minLength: 1
-              example: john.doe@example.com
-              description: An email address.
+            - $ref: '#/components/schemas/email'
           description: The email address
         phone:
           type: string
         invoice:
-          allOf:
-            - $ref: '#/components/schemas/ups_invoice'
+          $ref: '#/components/schemas/ups_invoice'
         agree_to_technology_agreement:
           type: boolean
     ups_account_settings:
@@ -5791,14 +5701,7 @@ components:
         is_primary_account:
           type: boolean
         pickup_type:
-          allOf:
-            - title: ups_pickup_type
-              type: string
-              enum:
-                - daily_pickup
-                - occasional_pickup
-                - customer_counter
-              description: The possible ups pickup type values
+          $ref: '#/components/schemas/ups_pickup_type'
         use_carbon_neutral_shipping_program:
           type: boolean
         use_ground_freight_pricing:
@@ -5808,17 +5711,7 @@ components:
         use_order_number_on_mail_innovations_labels:
           type: boolean
         mail_innovations_endorsement:
-          allOf:
-            - title: mail_innovations_endorsement
-              type: string
-              enum:
-                - none
-                - return_service_requested
-                - forwarding_service_requested
-                - address_service_requested
-                - change_service_requested
-                - leave_if_no_response
-              description: The possible mail innovations endorsement values
+          $ref: '#/components/schemas/mail_innovations_endorsement'
         mail_innovations_cost_center:
           type: string
         use_negotiated_rates:
@@ -5826,8 +5719,7 @@ components:
         account_postal_code:
           type: string
         invoice:
-          allOf:
-            - $ref: '#/components/schemas/ups_invoice'
+          $ref: '#/components/schemas/ups_invoice'
     ups_invoice:
       title: ups_invoice
       type: object
@@ -5844,6 +5736,54 @@ components:
         invoice_amount:
           type: number
           format: double
+    ups_pickup_type:
+      title: ups_pickup_type
+      type: string
+      enum:
+        - daily_pickup
+        - occasional_pickup
+        - customer_counter
+      description: The possible ups pickup type values
+    url:
+      title: url
+      type: string
+      format: url
+      minLength: 1
+    url_type:
+      title: url_type
+      type: string
+      enum:
+        - account_settings
+        - report_balances
+        - manifest_form
+        - payment_methods
+      description: The possible url type values
+    uuid:
+      title: uuid
+      type: string
+      format: uuid
+      minLength: 36
+      maxLength: 36
+      pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+      example: aa3d8e8e-462b-4476-9618-72db7f7b7009
+      description: A UUID (a.k.a. GUID) that uniquely identifies a resource
+    validate_address:
+      title: validate_address
+      type: string
+      enum:
+        - no_validation
+        - validate_only
+        - validate_and_clean
+      description: The possible validate address values
+    validation_status:
+      title: validation_status
+      type: string
+      enum:
+        - valid
+        - invalid
+        - has_warnings
+        - unknown
+      description: The possible validation status values
     void_label_response_body:
       title: void_label_response_body
       type: object
@@ -5866,11 +5806,9 @@ components:
           type: string
           format: date-time
         origin_address:
-          allOf:
-            - $ref: '#/components/schemas/address'
+          $ref: '#/components/schemas/address'
         return_address:
-          allOf:
-            - $ref: '#/components/schemas/address'
+          $ref: '#/components/schemas/address'
     warehouse_list_response_body:
       title: warehouse_list_response_body
       type: object
@@ -5878,8 +5816,7 @@ components:
         warehouses:
           type: array
           items:
-            allOf:
-              - $ref: '#/components/schemas/warehouse'
+            $ref: '#/components/schemas/warehouse'
     warehouse_request_body:
       title: warehouse_request_body
       type: object
@@ -5891,11 +5828,9 @@ components:
         name:
           type: string
         origin_address:
-          allOf:
-            - $ref: '#/components/schemas/address'
+          $ref: '#/components/schemas/address'
         return_address:
-          allOf:
-            - $ref: '#/components/schemas/address'
+          $ref: '#/components/schemas/address'
     webhook_response_body:
       title: webhook_response_body
       type: object
@@ -5916,12 +5851,13 @@ components:
           type: number
           format: double
         unit:
-          allOf:
-            - title: weight_unit
-              type: string
-              enum:
-                - pound
-                - ounce
-                - gram
-                - kilogram
-              description: The possible weight unit values
+          $ref: '#/components/schemas/weight_unit'
+    weight_unit:
+      title: weight_unit
+      type: string
+      enum:
+        - pound
+        - ounce
+        - gram
+        - kilogram
+      description: The possible weight unit values
