@@ -108,7 +108,7 @@
       "summary": "Print shipping labels for any of the top global carriers in minutes—instead of weeks.",
       "description": "Print shipping labels for any of the top global carriers in minutes—instead of weeks. Simply [connect your existing carrier accounts](https://docs.shipengine.com/docs/setup-a-carrier) in the API dashboard, and then [begin creating labels](https://docs.shipengine.com/docs/use-a-specific-service).\n",
       "get": {
-        "summary": "Search for shipping labels you've created",
+        "summary": "Find shipping labels you've created",
         "description": "This endpoint returns a list of labels that you've [created](https://docs.shipengine.com/docs/quickstart-create-a-label). You can optionally filter the results as well as control their sort order and the number of results returned at a time.\n\nBy default, all labels are returned, 25 at a time, starting with the most recently created ones.  You can combine multiple filter options to narrow-down the results.  For example, if you only want to get your UPS labels for your east coast warehouse you could query by both `warehouse_id` and `carrier_id`\n\n> ###### Warning\n> Test labels (those created with `test_label: true`) are not included in the results.  If you've only ever created test labels, then the results will be empty.\n",
         "tags": [
           "labels"
@@ -260,7 +260,7 @@
               "default": 25
             },
             "example": 50,
-            "description": "The number of labels to return per response.  Defaults to 25."
+            "description": "The number of labels to return per response."
           },
           {
             "name": "sort_dir",
@@ -284,7 +284,7 @@
                 }
               ]
             },
-            "description": "Controls the sort order of the query. Defaults to `desc`."
+            "description": "Controls the sort order of the query."
           },
           {
             "name": "sort_by",
@@ -298,7 +298,7 @@
               ],
               "default": "created_at"
             },
-            "description": "Controls which property the query is sorted by. Defaults to `created_at`."
+            "description": "Controls which property the query is sorted by."
           }
         ],
         "responses": {

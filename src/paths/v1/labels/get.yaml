@@ -1,4 +1,4 @@
-summary: Search for shipping labels you've created
+summary: Find shipping labels you've created
 description: |
   This endpoint returns a list of labels that you've [created](https://docs.shipengine.com/docs/quickstart-create-a-label). You can optionally filter the results as well as control their sort order and the number of results returned at a time.
 
@@ -85,7 +85,7 @@ parameters:
       minimum: 1
       default: 25
     example: 50
-    description: The number of labels to return per response.  Defaults to 25.
+    description: The number of labels to return per response.
   - name: sort_dir
     in: query
     required: false
@@ -93,7 +93,7 @@ parameters:
       allOf:
         - $ref: '../../../schemas/enums.yaml#/label_status'
         - default: desc
-    description: Controls the sort order of the query. Defaults to `desc`.
+    description: Controls the sort order of the query.
   - name: sort_by
     in: query
     required: false
@@ -103,7 +103,7 @@ parameters:
         - modified_at
         - created_at
       default: created_at
-    description: Controls which property the query is sorted by. Defaults to `created_at`.
+    description: Controls which property the query is sorted by.
 responses:
   '200':
     description: |
