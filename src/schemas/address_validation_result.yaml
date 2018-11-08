@@ -2,14 +2,11 @@ title: address_validation_result
 type: object
 properties:
   status:
-    allOf:
-      - $ref: 'enums.yaml#/address_validation_status'
+    $ref: 'enums.yaml#/address_validation_status'
   original_address:
-    allOf:
-      - $ref: address.yaml
+    $ref: address.yaml
   matched_address:
-    allOf:
-      - $ref: address.yaml
+    $ref: address.yaml
   messages:
     type: array
     items:
@@ -17,13 +14,10 @@ properties:
       type: object
       properties:
         code:
-          allOf:
-            - $ref: 'enums.yaml#/code'
+          $ref: 'enums.yaml#/code'
         message:
           type: string
         type:
-          allOf:
-            - $ref: 'enums.yaml#/type'
+          $ref: 'enums.yaml#/type'
         detail_code:
-          allOf:
-            - $ref: 'enums.yaml#/detail_code'
+          $ref: 'enums.yaml#/detail_code'

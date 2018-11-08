@@ -4,5 +4,4 @@ properties:
   carriers:
     type: array
     items:
-      allOf:
-        - $ref: ../carrier.yaml
+      $ref: ../carrier.yaml

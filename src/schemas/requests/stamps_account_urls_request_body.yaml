@@ -4,5 +4,4 @@ properties:
   url_types:
     type: array
     items:
-      allOf:
-        - $ref: '../enums.yaml#/url_type'
+      $ref: '../enums.yaml#/url_type'

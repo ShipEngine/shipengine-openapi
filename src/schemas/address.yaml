@@ -22,5 +22,4 @@ properties:
   country_code:
     type: string
   address_residential_indicator:
-    allOf:
-      - $ref: 'enums.yaml#/address_residential_indicator'
+    $ref: 'enums.yaml#/address_residential_indicator'

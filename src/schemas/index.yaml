@@ -22,8 +22,6 @@ address_validation_status:
   $ref: 'enums.yaml#/address_validation_status'
 advanced_options:
   $ref: advanced_options.yaml
-amazon_account_information_request_body:
-  $ref: requests/amazon_account_information_request_body.yaml
 amazon_product_identifier:
   $ref: 'enums.yaml#/amazon_product_identifier'
 apc_account_information_request_body:
@@ -56,8 +54,6 @@ carrier_list_response_body:
   $ref: responses/carrier_list_response_body.yaml
 carrier_list_services_response_body:
   $ref: responses/carrier_list_services_response_body.yaml
-channel_advisor_account_information_request_body:
-  $ref: requests/channel_advisor_account_information_request_body.yaml
 channel_advisor_product_identifier:
   $ref: 'enums.yaml#/channel_advisor_product_identifier'
 code:
@@ -66,8 +62,6 @@ confirmation:
   $ref: 'enums.yaml#/confirmation'
 connect_account_response_body:
   $ref: responses/connect_account_response_body.yaml
-connect_marketplace_response_body:
-  $ref: responses/connect_marketplace_response_body.yaml
 contents:
   $ref: 'enums.yaml#/contents'
 create_batch_request_body:
@@ -88,8 +82,6 @@ date:
   $ref: 'primitives.yaml#/date'
 date_time:
   $ref: 'primitives.yaml#/date_time'
-default_account_settings_request_body:
-  $ref: requests/default_account_settings_request_body.yaml
 detail_code:
   $ref: 'enums.yaml#/detail_code'
 dhl_ecommerce_account_information_request_body:
@@ -106,16 +98,12 @@ dimensions:
   $ref: dimensions.yaml
 dpd_account_information_request_body:
   $ref: requests/dpd_account_information_request_body.yaml
-ebay_access_token_request_body:
-  $ref: requests/ebay_access_token_request_body.yaml
 email:
   $ref: 'primitives.yaml#/email'
 endicia_account_information_request_body:
   $ref: requests/endicia_account_information_request_body.yaml
 error_response_body:
   $ref: responses/error_response_body.yaml
-etsy_access_token_request_body:
-  $ref: requests/etsy_access_token_request_body.yaml
 event:
   $ref: 'enums.yaml#/event'
 fedex_account_information_request_body:
@@ -158,8 +146,6 @@ list_shipment_response_body:
   $ref: responses/list_shipment_response_body.yaml
 list_tag_response_body:
   $ref: responses/list_tag_response_body.yaml
-magento_account_information_request_body:
-  $ref: requests/magento_account_information_request_body.yaml
 magento_account_settings_request_body:
   $ref: requests/magento_account_settings_request_body.yaml
 mail_innovations_endorsement:
@@ -228,8 +214,6 @@ shipment_status:
   $ref: 'enums.yaml#/shipment_status'
 shipments_sort_by:
   $ref: 'enums.yaml#/shipments_sort_by'
-shopify_access_token_request_body:
-  $ref: requests/shopify_access_token_request_body.yaml
 smart_post_endorsement:
   $ref: 'enums.yaml#/smart_post_endorsement'
 smart_post_hub:

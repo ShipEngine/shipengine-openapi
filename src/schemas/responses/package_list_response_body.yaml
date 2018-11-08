@@ -4,5 +4,4 @@ properties:
   packages:
     type: array
     items:
-      allOf:
-        - $ref: ../package.yaml
+      $ref: ../package.yaml

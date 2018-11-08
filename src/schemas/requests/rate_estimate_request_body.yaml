@@ -22,17 +22,13 @@ properties:
   to_state_province:
     type: string
   weight:
-    allOf:
-      - $ref: ../weight.yaml
+    $ref: ../weight.yaml
   dimensions:
-    allOf:
-      - $ref: ../dimensions.yaml
+    $ref: ../dimensions.yaml
   confirmation:
-    allOf:
-      - $ref: '../enums.yaml#/confirmation'
+    $ref: '../enums.yaml#/confirmation'
   address_residential_indicator:
-    allOf:
-      - $ref: '../enums.yaml#/address_residential_indicator'
+    $ref: '../enums.yaml#/address_residential_indicator'
   ship_date:
     type: string
     format: date-time

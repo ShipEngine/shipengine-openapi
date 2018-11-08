@@ -4,5 +4,4 @@ properties:
   warehouses:
     type: array
     items:
-      allOf:
-        - $ref: ../warehouse.yaml
+      $ref: ../warehouse.yaml

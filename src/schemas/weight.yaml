@@ -5,5 +5,4 @@ properties:
     type: number
     format: double
   unit:
-    allOf:
-      - $ref: 'enums.yaml#/weight_unit'
+    $ref: 'enums.yaml#/weight_unit'

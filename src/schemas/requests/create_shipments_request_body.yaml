@@ -4,5 +4,4 @@ properties:
   shipments:
     type: array
     items:
-      allOf:
-        - $ref: ../address_validating_shipment.yaml
+      $ref: ../address_validating_shipment.yaml

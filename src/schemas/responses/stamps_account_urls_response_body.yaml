@@ -4,5 +4,4 @@ properties:
   urls:
     type: array
     items:
-      allOf:
-        - $ref: ../responses/stamps_account_url_response_body.yaml
+      $ref: ../responses/stamps_account_url_response_body.yaml

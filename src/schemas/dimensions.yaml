@@ -2,8 +2,7 @@ title: dimensions
 type: object
 properties:
   unit:
-    allOf:
-      - $ref: 'enums.yaml#/dimension_unit'
+    $ref: 'enums.yaml#/dimension_unit'
   length:
     type: number
     format: double

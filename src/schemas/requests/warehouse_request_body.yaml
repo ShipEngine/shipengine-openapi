@@ -8,8 +8,6 @@ properties:
   name:
     type: string
   origin_address:
-    allOf:
-      - $ref: ../address.yaml
+    $ref: ../address.yaml
   return_address:
-    allOf:
-      - $ref: ../address.yaml
+    $ref: ../address.yaml

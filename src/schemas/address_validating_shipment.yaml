@@ -2,8 +2,7 @@ title: address_validating_shipment
 type: object
 properties:
   validate_address:
-    allOf:
-      - $ref: 'enums.yaml#/validate_address'
+    $ref: 'enums.yaml#/validate_address'
   shipment_id:
     allOf:
       - $ref: 'primitives.yaml#/se_id'
@@ -28,43 +27,33 @@ properties:
     type: string
     format: date-time
   shipment_status:
-    allOf:
-      - $ref: 'enums.yaml#/shipment_status'
+    $ref: 'enums.yaml#/shipment_status'
   ship_to:
-    allOf:
-      - $ref: address.yaml
+    $ref: address.yaml
   ship_from:
-    allOf:
-      - $ref: address.yaml
+    $ref: address.yaml
   warehouse_id:
     allOf:
       - $ref: 'primitives.yaml#/se_id'
     description: A string that uniquely identifies the warehouse id
   return_to:
-    allOf:
-      - $ref: address.yaml
+    $ref: address.yaml
   confirmation:
-    allOf:
-      - $ref: 'enums.yaml#/confirmation'
+    $ref: 'enums.yaml#/confirmation'
   customs:
-    allOf:
-      - $ref: international_options.yaml
+    $ref: international_options.yaml
   advanced_options:
-    allOf:
-      - $ref: advanced_options.yaml
+    $ref: advanced_options.yaml
   insurance_provider:
-    allOf:
-      - $ref: 'enums.yaml#/insurance_provider'
+    $ref: 'enums.yaml#/insurance_provider'
   tags:
     type: array
     items:
-      allOf:
-        - $ref: responses/tag_response_body.yaml
+      $ref: responses/tag_response_body.yaml
   packages:
     type: array
     items:
-      allOf:
-        - $ref: shipment_package.yaml
+      $ref: shipment_package.yaml
   total_weight:
     readOnly: true
     allOf:

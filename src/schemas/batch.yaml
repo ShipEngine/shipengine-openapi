@@ -4,8 +4,7 @@ properties:
   label_layout:
     type: string
   label_format:
-    allOf:
-      - $ref: 'enums.yaml#/label_format'
+    $ref: 'enums.yaml#/label_format'
   batch_id:
     allOf:
       - $ref: 'primitives.yaml#/se_id'
@@ -38,20 +37,14 @@ properties:
     type: integer
     format: int32
   batch_shipments_url:
-    allOf:
-      - $ref: link.yaml
+    $ref: link.yaml
   batch_labels_url:
-    allOf:
-      - $ref: link.yaml
+    $ref: link.yaml
   batch_errors_url:
-    allOf:
-      - $ref: link.yaml
+    $ref: link.yaml
   label_download:
-    allOf:
-      - $ref: link.yaml
+    $ref: link.yaml
   form_download:
-    allOf:
-      - $ref: link.yaml
+    $ref: link.yaml
   status:
-    allOf:
-      - $ref: 'enums.yaml#/batch_status'
+    $ref: 'enums.yaml#/batch_status'

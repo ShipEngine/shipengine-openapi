@@ -2,8 +2,7 @@ title: money
 type: object
 properties:
   currency:
-    allOf:
-      - $ref: 'enums.yaml#/currency'
+    $ref: 'enums.yaml#/currency'
   amount:
     type: number
     format: double

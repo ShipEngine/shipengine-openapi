@@ -4,13 +4,11 @@ properties:
   rates:
     type: array
     items:
-      allOf:
-        - $ref: ../rate.yaml
+      $ref: ../rate.yaml
   invalid_rates:
     type: array
     items:
-      allOf:
-        - $ref: ../rate.yaml
+      $ref: ../rate.yaml
   rate_request_id:
     allOf:
       - $ref: '../primitives.yaml#/se_id'
@@ -23,10 +21,8 @@ properties:
     type: string
     format: date-time
   status:
-    allOf:
-      - $ref: '../enums.yaml#/rate_response_status'
+    $ref: '../enums.yaml#/rate_response_status'
   errors:
     type: array
     items:
-      allOf:
-        - $ref: ../provider_error.yaml
+      $ref: ../provider_error.yaml

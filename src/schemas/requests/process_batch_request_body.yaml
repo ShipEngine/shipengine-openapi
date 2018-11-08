@@ -7,5 +7,4 @@ properties:
   label_layout:
     type: string
   label_format:
-    allOf:
-      - $ref: '../enums.yaml#/label_format'
+    $ref: '../enums.yaml#/label_format'

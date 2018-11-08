@@ -2,7 +2,6 @@ title: create_webhook_request_body
 type: object
 properties:
   event:
-    allOf:
-      - $ref: '../enums.yaml#/event'
+    $ref: '../enums.yaml#/event'
   url:
     type: string

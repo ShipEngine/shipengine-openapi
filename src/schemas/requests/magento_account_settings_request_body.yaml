@@ -28,5 +28,4 @@ properties:
     items:
       type: string
   capture_payment:
-    allOf:
-      - $ref: '../enums.yaml#/capture_payment'
+    $ref: '../enums.yaml#/capture_payment'

@@ -4,13 +4,10 @@ properties:
   nickname:
     type: string
   pickup_type:
-    allOf:
-      - $ref: '../enums.yaml#/fedex_pickup_type'
+    $ref: '../enums.yaml#/fedex_pickup_type'
   smart_post_hub:
-    allOf:
-      - $ref: '../enums.yaml#/smart_post_hub'
+    $ref: '../enums.yaml#/smart_post_hub'
   smart_post_endorsement:
-    allOf:
-      - $ref: '../enums.yaml#/smart_post_endorsement'
+    $ref: '../enums.yaml#/smart_post_endorsement'
   is_primary_account:
     type: boolean

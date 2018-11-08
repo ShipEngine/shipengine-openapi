@@ -6,8 +6,7 @@ properties:
   is_primary_account:
     type: boolean
   pickup_type:
-    allOf:
-      - $ref: 'enums.yaml#/ups_pickup_type'
+    $ref: 'enums.yaml#/ups_pickup_type'
   use_carbon_neutral_shipping_program:
     type: boolean
   use_ground_freight_pricing:
@@ -17,8 +16,7 @@ properties:
   use_order_number_on_mail_innovations_labels:
     type: boolean
   mail_innovations_endorsement:
-    allOf:
-      - $ref: 'enums.yaml#/mail_innovations_endorsement'
+    $ref: 'enums.yaml#/mail_innovations_endorsement'
   mail_innovations_cost_center:
     type: string
   use_negotiated_rates:
@@ -26,5 +24,4 @@ properties:
   account_postal_code:
     type: string
   invoice:
-    allOf:
-      - $ref: ups_invoice.yaml
+    $ref: ups_invoice.yaml

@@ -6,8 +6,7 @@ properties:
   bill_to_country_code:
     type: string
   bill_to_party:
-    allOf:
-      - $ref: 'enums.yaml#/bill_to_party'
+    $ref: 'enums.yaml#/bill_to_party'
   bill_to_postal_code:
     type: string
   contains_alcohol:

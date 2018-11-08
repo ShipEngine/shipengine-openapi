@@ -2,8 +2,7 @@ title: international_options
 type: object
 properties:
   contents:
-    allOf:
-      - $ref: 'enums.yaml#/contents'
+    $ref: 'enums.yaml#/contents'
   customs_items:
     type: array
     items:
@@ -27,5 +26,4 @@ properties:
         country_of_origin:
           type: string
   non_delivery:
-    allOf:
-      - $ref: 'enums.yaml#/non_delivery'
+    $ref: 'enums.yaml#/non_delivery'
