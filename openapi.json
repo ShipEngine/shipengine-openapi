@@ -105,10 +105,10 @@
   ],
   "paths": {
     "/v1/labels": {
-      "summary": "Print shipping labels for any of the top global carriers in minutes—instead of weeks.",
+      "summary": "Print shipping labels",
       "description": "Print shipping labels for any of the top global carriers in minutes—instead of weeks. Simply [connect your existing carrier accounts](https://docs.shipengine.com/docs/setup-a-carrier) in the API dashboard, and then [begin creating labels](https://docs.shipengine.com/docs/use-a-specific-service).\n",
       "get": {
-        "summary": "Find shipping labels you've created",
+        "summary": "List labels",
         "description": "This endpoint returns a list of labels that you've [created](https://docs.shipengine.com/docs/quickstart-create-a-label). You can optionally filter the results as well as control their sort order and the number of results returned at a time.\n\nBy default, all labels are returned, 25 at a time, starting with the most recently created ones.  You can combine multiple filter options to narrow-down the results.  For example, if you only want to get your UPS labels for your east coast warehouse you could query by both `warehouse_id` and `carrier_id`\n\n> ###### Warning\n> Test labels (those created with `test_label: true`) are not included in the results.  If you've only ever created test labels, then the results will be empty.\n",
         "tags": [
           "labels"
@@ -596,13 +596,80 @@
             }
           },
           "400": {
-            "description": "BadRequest"
-          },
-          "404": {
-            "description": "NotFound"
+            "description": "The request contained errors.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "error_response_body",
+                  "type": "object",
+                  "properties": {
+                    "request_id": {
+                      "description": "A UUID (a.k.a. GUID) that uniquely identifies a resource",
+                      "title": "uuid",
+                      "type": "string",
+                      "format": "uuid",
+                      "minLength": 36,
+                      "maxLength": 36,
+                      "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+                      "example": "aa3d8e8e-462b-4476-9618-72db7f7b7009"
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "title": "api_error",
+                        "type": "object",
+                        "properties": {
+                          "error_code": {
+                            "type": "string"
+                          },
+                          "message": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
-            "description": "InternalServerError"
+            "description": "An error occurred on ShipEngine's side.\n\n> This error will automatically be reported to our engineers.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "error_response_body",
+                  "type": "object",
+                  "properties": {
+                    "request_id": {
+                      "description": "A UUID (a.k.a. GUID) that uniquely identifies a resource",
+                      "title": "uuid",
+                      "type": "string",
+                      "format": "uuid",
+                      "minLength": 36,
+                      "maxLength": 36,
+                      "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+                      "example": "aa3d8e8e-462b-4476-9618-72db7f7b7009"
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "title": "api_error",
+                        "type": "object",
+                        "properties": {
+                          "error_code": {
+                            "type": "string"
+                          },
+                          "message": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }

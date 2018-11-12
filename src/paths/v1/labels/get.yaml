@@ -1,4 +1,4 @@
-summary: Find shipping labels you've created
+summary: List labels
 description: |
   This endpoint returns a list of labels that you've [created](https://docs.shipengine.com/docs/quickstart-create-a-label). You can optionally filter the results as well as control their sort order and the number of results returned at a time.
 
@@ -125,8 +125,6 @@ responses:
           allOf:
             - $ref: ../../../schemas/responses/paged_list_response_body.yaml
   '400':
-    description: BadRequest
-  '404':
-    description: NotFound
+    $ref: ../../../responses/bad_request.yaml
   '500':
-    description: InternalServerError
+    $ref: ../../../responses/server_error.yaml
