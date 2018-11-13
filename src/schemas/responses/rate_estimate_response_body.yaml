@@ -1,0 +1,4 @@
+title: rate_estimate_response_body
+type: array
+items:
+  $ref: ../rate.yaml

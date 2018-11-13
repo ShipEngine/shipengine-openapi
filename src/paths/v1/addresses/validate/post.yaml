@@ -6,18 +6,14 @@ requestBody:
   content:
     application/json:
       schema:
-        type: array
-        items:
-          $ref: ../../../../schemas/address.yaml
+        $ref: ../../../../schemas/requests/address_validation_request_body.yaml
 responses:
   '200':
     description: The request was a success.
     content:
       application/json:
         schema:
-          type: array
-          items:
-            $ref: ../../../../schemas/address_validation_result.yaml
+          $ref: ../../../../schemas/responses/address_validation_response_body.yaml
   '400':
     $ref: ../../../../responses/bad_request.yaml
   '500':

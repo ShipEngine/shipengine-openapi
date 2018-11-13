@@ -16,6 +16,10 @@ address_residential_indicator:
   $ref: 'enums.yaml#/address_residential_indicator'
 address_validating_shipment:
   $ref: address_validating_shipment.yaml
+address_validation_request_body:
+  $ref: requests/address_validation_request_body.yaml
+address_validation_response_body:
+  $ref: responses/address_validation_response_body.yaml
 address_validation_result:
   $ref: address_validation_result.yaml
 address_validation_status:
@@ -182,6 +186,8 @@ rate:
   $ref: rate.yaml
 rate_estimate_request_body:
   $ref: requests/rate_estimate_request_body.yaml
+rate_estimate_response_body:
+  $ref: responses/rate_estimate_response_body.yaml
 rate_request_body:
   $ref: requests/rate_request_body.yaml
 rate_response_body:
@@ -262,6 +268,8 @@ warehouse_list_response_body:
   $ref: responses/warehouse_list_response_body.yaml
 warehouse_request_body:
   $ref: requests/warehouse_request_body.yaml
+webhook:
+  $ref: webhook.yaml
 webhook_response_body:
   $ref: responses/webhook_response_body.yaml
 weight:

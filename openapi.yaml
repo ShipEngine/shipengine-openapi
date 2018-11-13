@@ -227,18 +227,14 @@ paths:
         content:
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/address'
+              $ref: '#/components/schemas/address_validation_request_body'
       responses:
         '200':
           description: The request was a success.
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/address_validation_result'
+                $ref: '#/components/schemas/address_validation_response_body'
         '400':
           $ref: '#/components/responses/bad_request'
         '500':
@@ -1570,9 +1566,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/webhook_response_body'
+                $ref: '#/components/schemas/webhook_response_body'
         '400':
           $ref: '#/components/responses/bad_request'
         '500':
@@ -1593,7 +1587,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/webhook_response_body'
+                $ref: '#/components/schemas/webhook'
         '400':
           $ref: '#/components/responses/bad_request'
         '409':
@@ -1617,7 +1611,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/webhook_response_body'
+                $ref: '#/components/schemas/webhook'
         '400':
           $ref: '#/components/responses/bad_request'
         '500':
@@ -2088,9 +2082,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/bulk_rate_response_body'
+                $ref: '#/components/schemas/bulk_rate_response_body'
         '400':
           $ref: '#/components/responses/bad_request'
         '500':
@@ -2112,9 +2104,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/rate'
+                $ref: '#/components/schemas/rate_estimate_response_body'
         '400':
           $ref: '#/components/responses/bad_request'
         '500':
@@ -2958,6 +2948,16 @@ components:
           readOnly: true
           allOf:
             - $ref: '#/components/schemas/weight'
+    address_validation_request_body:
+      title: address_validation_request_body
+      type: array
+      items:
+        $ref: '#/components/schemas/address'
+    address_validation_response_body:
+      title: address_validation_response_body
+      type: array
+      items:
+        $ref: '#/components/schemas/address_validation_result'
     address_validation_result:
       title: address_validation_result
       type: object
@@ -3163,26 +3163,29 @@ components:
       description: The possible bill to party values
     bulk_rate_response_body:
       title: bulk_rate_response_body
-      type: object
-      additionalProperties: false
-      properties:
-        rate_request_id:
-          allOf:
-            - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the rate request id
-        shipment_id:
-          allOf:
-            - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the shipment id
-        created_at:
-          type: string
-          format: date-time
-        status:
-          $ref: '#/components/schemas/rate_response_status'
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/provider_error'
+      type: array
+      items:
+        title: bulk_rate
+        type: object
+        additionalProperties: false
+        properties:
+          rate_request_id:
+            allOf:
+              - $ref: '#/components/schemas/se_id'
+            description: A string that uniquely identifies the rate request id
+          shipment_id:
+            allOf:
+              - $ref: '#/components/schemas/se_id'
+            description: A string that uniquely identifies the shipment id
+          created_at:
+            type: string
+            format: date-time
+          status:
+            $ref: '#/components/schemas/rate_response_status'
+          errors:
+            type: array
+            items:
+              $ref: '#/components/schemas/provider_error'
     capture_payment:
       title: capture_payment
       type: string
@@ -4500,6 +4503,11 @@ components:
         ship_date:
           type: string
           format: date-time
+    rate_estimate_response_body:
+      title: rate_estimate_response_body
+      type: array
+      items:
+        $ref: '#/components/schemas/rate'
     rate_request_body:
       title: rate_request_body
       type: object
@@ -5194,8 +5202,8 @@ components:
           $ref: '#/components/schemas/address'
         return_address:
           $ref: '#/components/schemas/address'
-    webhook_response_body:
-      title: webhook_response_body
+    webhook:
+      title: webhook
       type: object
       additionalProperties: false
       properties:
@@ -5207,6 +5215,11 @@ components:
           type: string
         event:
           type: string
+    webhook_response_body:
+      title: webhook_response_body
+      type: array
+      items:
+        $ref: '#/components/schemas/webhook'
     weight:
       title: weight
       type: object

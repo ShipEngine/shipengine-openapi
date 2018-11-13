@@ -13,9 +13,7 @@ responses:
     content:
       application/json:
         schema:
-          type: array
-          items:
-            $ref: ../../../../schemas/responses/bulk_rate_response_body.yaml
+          $ref: ../../../../schemas/responses/bulk_rate_response_body.yaml
   '400':
     $ref: ../../../../responses/bad_request.yaml
   '500':

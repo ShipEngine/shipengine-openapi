@@ -728,6 +728,7 @@
           "content": {
             "application/json": {
               "schema": {
+                "title": "address_validation_request_body",
                 "type": "array",
                 "items": {
                   "title": "address",
@@ -786,6 +787,7 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "title": "address_validation_response_body",
                   "type": "array",
                   "items": {
                     "title": "address_validation_result",
@@ -11021,9 +11023,10 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "title": "webhook_response_body",
                   "type": "array",
                   "items": {
-                    "title": "webhook_response_body",
+                    "title": "webhook",
                     "type": "object",
                     "additionalProperties": false,
                     "properties": {
@@ -11171,7 +11174,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "webhook_response_body",
+                  "title": "webhook",
                   "type": "object",
                   "additionalProperties": false,
                   "properties": {
@@ -11346,7 +11349,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "webhook_response_body",
+                  "title": "webhook",
                   "type": "object",
                   "additionalProperties": false,
                   "properties": {
@@ -17449,9 +17452,10 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "title": "bulk_rate_response_body",
                   "type": "array",
                   "items": {
-                    "title": "bulk_rate_response_body",
+                    "title": "bulk_rate",
                     "type": "object",
                     "additionalProperties": false,
                     "properties": {
@@ -17734,6 +17738,7 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "title": "rate_estimate_response_body",
                   "type": "array",
                   "items": {
                     "title": "rate",
