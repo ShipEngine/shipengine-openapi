@@ -1,5 +1,6 @@
 title: purchase_label_without_shipment_request_body
 type: object
+additionalProperties: false
 properties:
   test_label:
     type: boolean

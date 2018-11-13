@@ -1,5 +1,6 @@
 title: process_batch_request_body
 type: object
+additionalProperties: false
 properties:
   ship_date:
     type: string

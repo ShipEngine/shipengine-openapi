@@ -1,11 +1,13 @@
 title: shipment_errors_response_body
 type: object
+additionalProperties: false
 properties:
   errors:
     type: array
     items:
       title: shipment_response_error
       type: object
+      additionalProperties: false
       properties:
         error:
           type: string

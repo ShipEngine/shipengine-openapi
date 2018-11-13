@@ -1,6 +1,6 @@
 tags:
   - tags
-operationId: tags.find_tags
+operationId: tags.list_tags
 responses:
   '200':
     description: The request was a success.

@@ -109,7 +109,7 @@ paths:
         > Test labels (those created with `test_label: true`) are not included in the results.  If you've only ever created test labels, then the results will be empty.
       tags:
         - labels
-      operationId: labels.find
+      operationId: labels.list
       parameters:
         - name: label_status
           in: query
@@ -212,19 +212,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                required:
-                  - labels
-                properties:
-                  labels:
-                    type: array
-                    minItems: 0
-                    items:
-                      $ref: '#/components/schemas/label'
-                    description: |
-                      The labels that matched the query criteria.  If no matching labels were found, then this array will be empty; otherwise, it will contain one page of results.  The last page of results may have fewer labels than the `page_size`.
-                allOf:
-                  - $ref: '#/components/schemas/paged_list_response_body'
+                $ref: '#/components/schemas/list_label_response_body'
         '400':
           $ref: '#/components/responses/bad_request'
         '500':
@@ -259,7 +247,7 @@ paths:
     get:
       tags:
         - batches
-      operationId: batches.find
+      operationId: batches.list
       parameters:
         - name: status
           in: query
@@ -396,7 +384,7 @@ paths:
     get:
       tags:
         - batches
-      operationId: batches.find_errors
+      operationId: batches.list_errors
       parameters:
         - name: batch_id
           in: path
@@ -484,7 +472,7 @@ paths:
     get:
       tags:
         - carriers
-      operationId: carriers.find
+      operationId: carriers.list
       responses:
         '200':
           description: The request was a success.
@@ -580,7 +568,7 @@ paths:
     get:
       tags:
         - carriers
-      operationId: carriers.find_packages
+      operationId: carriers.list_packages
       parameters:
         - name: carrier_id
           in: path
@@ -604,7 +592,7 @@ paths:
     get:
       tags:
         - carriers
-      operationId: carriers.find_services
+      operationId: carriers.list_services
       parameters:
         - name: carrier_id
           in: path
@@ -1850,7 +1838,7 @@ paths:
     get:
       tags:
         - manifests
-      operationId: manifests.find
+      operationId: manifests.list
       parameters:
         - name: warehouse_id
           in: query
@@ -1960,7 +1948,7 @@ paths:
     get:
       tags:
         - packages
-      operationId: packages.find
+      operationId: packages.list
       responses:
         '200':
           description: The request was a success.
@@ -2159,7 +2147,7 @@ paths:
     get:
       tags:
         - shipments
-      operationId: shipments.find
+      operationId: shipments.list
       parameters:
         - name: batch_id
           in: query
@@ -2357,7 +2345,7 @@ paths:
     get:
       tags:
         - shipments
-      operationId: shipments.find_errors
+      operationId: shipments.list_errors
       parameters:
         - name: shipment_id
           in: path
@@ -2476,7 +2464,7 @@ paths:
     get:
       tags:
         - tags
-      operationId: tags.find_tags
+      operationId: tags.list_tags
       responses:
         '200':
           description: The request was a success.
@@ -2645,7 +2633,7 @@ paths:
     get:
       tags:
         - warehouses
-      operationId: warehouses.find
+      operationId: warehouses.list
       responses:
         '200':
           description: The request was a success.
@@ -2831,46 +2819,7 @@ components:
           example: 4
           description: 'The total number of pages of results.  For example, if there are 80 results, and the page size is 25, then `pages` would be 4.  The first three pages would contain 25 items each, and the fourth page would contain the five remaining items.  If there are no results, then `pages` will be zero.'
         links:
-          description: Helpful links to other pages of results
-          type: object
-          required:
-            - first
-            - last
-            - prev
-            - next
-          properties:
-            first:
-              type: object
-              required:
-                - href
-              properties:
-                href:
-                  $ref: '#/components/schemas/url'
-              description: |
-                The link to the first page of results.  This object will _always_ have an `href` property. If there are no results, then the first page will contain an empty array of items.
-            last:
-              type: object
-              required:
-                - href
-              properties:
-                href:
-                  $ref: '#/components/schemas/url'
-              description: |
-                The link to the final page of results.  This object will _always_ have an `href` property. If there are no results, then the final page will contain an empty array of items.
-            prev:
-              type: object
-              properties:
-                href:
-                  $ref: '#/components/schemas/url'
-              description: |
-                The link to the previous page of results.  The `href` property will only be set when the `page` is 2 or greater.
-            next:
-              type: object
-              properties:
-                href:
-                  $ref: '#/components/schemas/url'
-              description: |
-                The link to the next page of results.  The `href` property will only be set when the `page` is less than `pages`.
+          $ref: '#/components/schemas/pagination_link'
       description: |
         Many ShipEngine endpoints return a paged list of items.  In addition to the returned items, these responses also include information about the total number of items, the number of pages of results, and URLs of other pages of results.
     se_id:
@@ -2904,6 +2853,7 @@ components:
     access_worldwide_account_information_request_body:
       title: access_worldwide_account_information_request_body
       type: object
+      additionalProperties: false
       properties:
         nickname:
           type: string
@@ -2914,6 +2864,7 @@ components:
     address:
       title: address
       type: object
+      additionalProperties: false
       properties:
         name:
           type: string
@@ -2948,6 +2899,7 @@ components:
     address_validating_shipment:
       title: address_validating_shipment
       type: object
+      additionalProperties: false
       properties:
         validate_address:
           $ref: '#/components/schemas/validate_address'
@@ -3009,6 +2961,7 @@ components:
     address_validation_result:
       title: address_validation_result
       type: object
+      additionalProperties: false
       properties:
         status:
           $ref: '#/components/schemas/address_validation_status'
@@ -3021,6 +2974,7 @@ components:
           items:
             title: response_message
             type: object
+            additionalProperties: false
             properties:
               code:
                 $ref: '#/components/schemas/code'
@@ -3042,6 +2996,7 @@ components:
     advanced_options:
       title: advanced_options
       type: object
+      additionalProperties: false
       properties:
         bill_to_account:
           type: string
@@ -3079,6 +3034,7 @@ components:
     apc_account_information_request_body:
       title: apc_account_information_request_body
       type: object
+      additionalProperties: false
       properties:
         nickname:
           type: string
@@ -3089,6 +3045,7 @@ components:
     asendia_account_information_request_body:
       title: asendia_account_information_request_body
       type: object
+      additionalProperties: false
       properties:
         nickname:
           type: string
@@ -3101,12 +3058,14 @@ components:
     balance_response_body:
       title: balance_response_body
       type: object
+      additionalProperties: false
       properties:
         balance:
           $ref: '#/components/schemas/money'
     batch:
       title: batch
       type: object
+      additionalProperties: false
       properties:
         label_layout:
           type: string
@@ -3158,12 +3117,14 @@ components:
     batch_errors_response_body:
       title: batch_errors_response_body
       type: object
+      additionalProperties: false
       properties:
         errors:
           type: array
           items:
             title: batch_response_error
             type: object
+            additionalProperties: false
             properties:
               error:
                 type: string
@@ -3203,6 +3164,7 @@ components:
     bulk_rate_response_body:
       title: bulk_rate_response_body
       type: object
+      additionalProperties: false
       properties:
         rate_request_id:
           allOf:
@@ -3231,6 +3193,7 @@ components:
     carrier:
       title: carrier
       type: object
+      additionalProperties: false
       properties:
         carrier_id:
           allOf:
@@ -3270,6 +3233,7 @@ components:
     carrier_advanced_option:
       title: carrier_advanced_option
       type: object
+      additionalProperties: false
       properties:
         name:
           type: string
@@ -3280,6 +3244,7 @@ components:
     carrier_list_options_response_body:
       title: carrier_list_options_response_body
       type: object
+      additionalProperties: false
       properties:
         options:
           type: array
@@ -3288,6 +3253,7 @@ components:
     carrier_list_response_body:
       title: carrier_list_response_body
       type: object
+      additionalProperties: false
       properties:
         carriers:
           type: array
@@ -3296,6 +3262,7 @@ components:
     carrier_list_services_response_body:
       title: carrier_list_services_response_body
       type: object
+      additionalProperties: false
       properties:
         services:
           type: array
@@ -3339,6 +3306,7 @@ components:
     connect_account_response_body:
       title: connect_account_response_body
       type: object
+      additionalProperties: false
       properties:
         carrier_id:
           allOf:
@@ -3357,6 +3325,7 @@ components:
     create_batch_request_body:
       title: create_batch_request_body
       type: object
+      additionalProperties: false
       properties:
         external_batch_id:
           allOf:
@@ -3375,6 +3344,7 @@ components:
     create_manifest_request_body:
       title: create_manifest_request_body
       type: object
+      additionalProperties: false
       properties:
         carrier_id:
           allOf:
@@ -3394,6 +3364,7 @@ components:
     create_shipment_response_body:
       title: create_shipment_response_body
       type: object
+      additionalProperties: false
       properties:
         errors:
           type: array
@@ -3459,6 +3430,7 @@ components:
     create_shipments_request_body:
       title: create_shipments_request_body
       type: object
+      additionalProperties: false
       properties:
         shipments:
           type: array
@@ -3467,6 +3439,7 @@ components:
     create_shipments_response_body:
       title: create_shipments_response_body
       type: object
+      additionalProperties: false
       properties:
         has_errors:
           type: boolean
@@ -3477,6 +3450,7 @@ components:
     create_webhook_request_body:
       title: create_webhook_request_body
       type: object
+      additionalProperties: false
       properties:
         event:
           $ref: '#/components/schemas/event'
@@ -3560,6 +3534,7 @@ components:
     dhl_ecommerce_account_information_request_body:
       title: dhl_ecommerce_account_information_request_body
       type: object
+      additionalProperties: false
       properties:
         nickname:
           type: string
@@ -3574,6 +3549,7 @@ components:
     dhl_express_account_information_request_body:
       title: dhl_express_account_information_request_body
       type: object
+      additionalProperties: false
       properties:
         nickname:
           type: string
@@ -3582,6 +3558,7 @@ components:
     dhl_express_account_settings:
       title: dhl_express_account_settings
       type: object
+      additionalProperties: false
       properties:
         nickname:
           type: string
@@ -3592,6 +3569,7 @@ components:
     dhl_express_uk_account_information_request_body:
       title: dhl_express_uk_account_information_request_body
       type: object
+      additionalProperties: false
       properties:
         account_number:
           type: string
@@ -3613,6 +3591,7 @@ components:
     dimensions:
       title: dimensions
       type: object
+      additionalProperties: false
       properties:
         unit:
           $ref: '#/components/schemas/dimension_unit'
@@ -3628,6 +3607,7 @@ components:
     dpd_account_information_request_body:
       title: dpd_account_information_request_body
       type: object
+      additionalProperties: false
       properties:
         account_number:
           type: string
@@ -3645,6 +3625,7 @@ components:
     endicia_account_information_request_body:
       title: endicia_account_information_request_body
       type: object
+      additionalProperties: false
       properties:
         nickname:
           type: string
@@ -3655,6 +3636,7 @@ components:
     error_response_body:
       title: error_response_body
       type: object
+      additionalProperties: false
       properties:
         request_id:
           allOf:
@@ -3665,6 +3647,7 @@ components:
           items:
             title: api_error
             type: object
+            additionalProperties: false
             properties:
               error_code:
                 type: string
@@ -3684,6 +3667,7 @@ components:
     fedex_account_information_request_body:
       title: fedex_account_information_request_body
       type: object
+      additionalProperties: false
       properties:
         account_number:
           type: string
@@ -3720,6 +3704,7 @@ components:
     fedex_account_settings_request_body:
       title: fedex_account_settings_request_body
       type: object
+      additionalProperties: false
       properties:
         nickname:
           type: string
@@ -3745,6 +3730,7 @@ components:
     fedex_uk_account_information_request_body:
       title: fedex_uk_account_information_request_body
       type: object
+      additionalProperties: false
       properties:
         account_number:
           type: string
@@ -3781,6 +3767,7 @@ components:
     first_mile_account_information_request_body:
       title: first_mile_account_information_request_body
       type: object
+      additionalProperties: false
       properties:
         nickname:
           type: string
@@ -3795,6 +3782,7 @@ components:
     globegistics_account_information_request_body:
       title: globegistics_account_information_request_body
       type: object
+      additionalProperties: false
       properties:
         nickname:
           type: string
@@ -3805,6 +3793,7 @@ components:
     imex_account_information_request_body:
       title: imex_account_information_request_body
       type: object
+      additionalProperties: false
       properties:
         nickname:
           type: string
@@ -3823,6 +3812,7 @@ components:
     international_options:
       title: international_options
       type: object
+      additionalProperties: false
       properties:
         contents:
           $ref: '#/components/schemas/contents'
@@ -3831,6 +3821,7 @@ components:
           items:
             title: customs_item
             type: object
+            additionalProperties: false
             properties:
               customs_item_id:
                 allOf:
@@ -4000,6 +3991,7 @@ components:
     label_messages:
       title: label_messages
       type: object
+      additionalProperties: false
       properties:
         reference1:
           type: string
@@ -4017,14 +4009,21 @@ components:
     link:
       title: link
       type: object
+      description: A link to a related resource
+      additionalProperties: false
       properties:
         href:
-          type: string
+          allOf:
+            - $ref: '#/components/schemas/url'
+          description: The URL of the linked resource
         type:
           type: string
+          minLength: 1
+          description: 'The type of resource, or the type of relationship to the parent resource'
     list_batch_response_body:
       title: list_batch_response_body
       type: object
+      additionalProperties: false
       properties:
         batches:
           type: array
@@ -4044,25 +4043,23 @@ components:
     list_label_response_body:
       title: list_label_response_body
       type: object
+      required:
+        - labels
+      additionalProperties: false
       properties:
         labels:
           type: array
+          minItems: 0
           items:
             $ref: '#/components/schemas/label'
-        total:
-          type: integer
-          format: int64
-        page:
-          type: integer
-          format: int32
-        pages:
-          type: integer
-          format: int32
-        links:
-          $ref: '#/components/schemas/pagination_link'
+          description: |
+            The labels that matched the query criteria.  If no matching labels were found, then this array will be empty; otherwise, it will contain one page of results.  The last page of results may have fewer labels than the `page_size`.
+      allOf:
+        - $ref: '#/components/schemas/paged_list_response_body'
     list_manifests_request_body:
       title: list_manifests_request_body
       type: object
+      additionalProperties: false
       properties:
         warehouse_id:
           allOf:
@@ -4093,6 +4090,7 @@ components:
     list_manifests_response_body:
       title: list_manifests_response_body
       type: object
+      additionalProperties: false
       properties:
         manifests:
           type: array
@@ -4112,6 +4110,7 @@ components:
     list_shipment_response_body:
       title: list_shipment_response_body
       type: object
+      additionalProperties: false
       properties:
         shipments:
           type: array
@@ -4131,6 +4130,7 @@ components:
     list_tag_response_body:
       title: list_tag_response_body
       type: object
+      additionalProperties: false
       properties:
         tags:
           type: array
@@ -4139,6 +4139,7 @@ components:
     magento_account_settings_request_body:
       title: magento_account_settings_request_body
       type: object
+      additionalProperties: false
       properties:
         automatically_import_sales_orders:
           type: boolean
@@ -4182,6 +4183,7 @@ components:
     manifest_response_body:
       title: manifest_response_body
       type: object
+      additionalProperties: false
       properties:
         manifest_id:
           allOf:
@@ -4217,6 +4219,7 @@ components:
     modify_batch_request_body:
       title: modify_batch_request_body
       type: object
+      additionalProperties: false
       properties:
         shipment_ids:
           type: array
@@ -4229,6 +4232,7 @@ components:
     money:
       title: money
       type: object
+      additionalProperties: false
       properties:
         currency:
           $ref: '#/components/schemas/currency'
@@ -4238,6 +4242,7 @@ components:
     newgistics_account_information_request_body:
       title: newgistics_account_information_request_body
       type: object
+      additionalProperties: false
       properties:
         merchant_id:
           type: integer
@@ -4252,6 +4257,7 @@ components:
     newgistics_account_settings_request_body:
       title: newgistics_account_settings_request_body
       type: object
+      additionalProperties: false
       properties:
         include_barcode_with_order_number:
           type: boolean
@@ -4267,6 +4273,7 @@ components:
     ontrac_account_information_request_body:
       title: ontrac_account_information_request_body
       type: object
+      additionalProperties: false
       properties:
         nickname:
           type: string
@@ -4279,6 +4286,7 @@ components:
       type: object
       required:
         - name
+      additionalProperties: false
       properties:
         package_id:
           allOf:
@@ -4295,6 +4303,7 @@ components:
     package_list_response_body:
       title: package_list_response_body
       type: object
+      additionalProperties: false
       properties:
         packages:
           type: array
@@ -4303,22 +4312,42 @@ components:
     pagination_link:
       title: pagination_link
       type: object
+      description: Helpful links to other pages of results
+      required:
+        - first
+        - last
+        - prev
+        - next
+      additionalProperties: false
       properties:
         first:
-          $ref: '#/components/schemas/link'
+          allOf:
+            - $ref: '#/components/schemas/link'
+          required:
+            - href
+          description: |
+            The link to the first page of results.  This object will _always_ have an `href` property. If there are no results, then the first page will contain an empty array of items.
         last:
-          $ref: '#/components/schemas/link'
+          allOf:
+            - $ref: '#/components/schemas/link'
+          required:
+            - href
+          description: |
+            The link to the final page of results.  This object will _always_ have an `href` property. If there are no results, then the final page will contain an empty array of items.
         prev:
-          $ref: '#/components/schemas/link'
+          allOf:
+            - $ref: '#/components/schemas/link'
+          description: |
+            The link to the previous page of results.  The `href` property will only be set when the `page` is 2 or greater.
         next:
-          $ref: '#/components/schemas/link'
-        href:
-          type: string
-        type:
-          type: string
+          allOf:
+            - $ref: '#/components/schemas/link'
+          description: |
+            The link to the next page of results.  The `href` property will only be set when the `page` is less than `pages`.
     process_batch_request_body:
       title: process_batch_request_body
       type: object
+      additionalProperties: false
       properties:
         ship_date:
           type: string
@@ -4330,6 +4359,7 @@ components:
     provider_error:
       title: provider_error
       type: object
+      additionalProperties: false
       properties:
         carrier_id:
           allOf:
@@ -4340,6 +4370,7 @@ components:
     purchase_label_request_body:
       title: purchase_label_request_body
       type: object
+      additionalProperties: false
       properties:
         shipment:
           $ref: '#/components/schemas/shipment'
@@ -4358,6 +4389,7 @@ components:
     purchase_label_without_shipment_request_body:
       title: purchase_label_without_shipment_request_body
       type: object
+      additionalProperties: false
       properties:
         test_label:
           type: boolean
@@ -4370,6 +4402,7 @@ components:
     rate:
       title: rate
       type: object
+      additionalProperties: false
       properties:
         rate_id:
           allOf:
@@ -4434,6 +4467,7 @@ components:
     rate_estimate_request_body:
       title: rate_estimate_request_body
       type: object
+      additionalProperties: false
       properties:
         carrier_id:
           allOf:
@@ -4469,6 +4503,7 @@ components:
     rate_request_body:
       title: rate_request_body
       type: object
+      additionalProperties: false
       properties:
         carrier_ids:
           type: array
@@ -4477,6 +4512,7 @@ components:
     rate_response_body:
       title: rate_response_body
       type: object
+      additionalProperties: false
       properties:
         rates:
           type: array
@@ -4515,6 +4551,7 @@ components:
     rate_shipment_request_body:
       title: rate_shipment_request_body
       type: object
+      additionalProperties: false
       properties:
         shipment_id:
           allOf:
@@ -4527,6 +4564,7 @@ components:
     rate_shipment_response_body:
       title: rate_shipment_response_body
       type: object
+      additionalProperties: false
       properties:
         rate_response:
           $ref: '#/components/schemas/rate_response_body'
@@ -4588,6 +4626,7 @@ components:
     rate_shipments_request_body:
       title: rate_shipments_request_body
       type: object
+      additionalProperties: false
       properties:
         shipment_ids:
           type: array
@@ -4609,6 +4648,7 @@ components:
     royal_mail_account_information_request_body:
       title: royal_mail_account_information_request_body
       type: object
+      additionalProperties: false
       properties:
         account_number:
           type: string
@@ -4641,6 +4681,7 @@ components:
     rr_donnelley_account_information_request_body:
       title: rr_donnelley_account_information_request_body
       type: object
+      additionalProperties: false
       properties:
         nickname:
           type: string
@@ -4651,6 +4692,7 @@ components:
     service:
       title: service
       type: object
+      additionalProperties: false
       properties:
         carrier_id:
           allOf:
@@ -4671,6 +4713,7 @@ components:
     shipment:
       title: shipment
       type: object
+      additionalProperties: false
       properties:
         shipment_id:
           allOf:
@@ -4730,6 +4773,7 @@ components:
     shipment_add_tag_response_body:
       title: shipment_add_tag_response_body
       type: object
+      additionalProperties: false
       properties:
         shipment_id:
           allOf:
@@ -4740,12 +4784,14 @@ components:
     shipment_errors_response_body:
       title: shipment_errors_response_body
       type: object
+      additionalProperties: false
       properties:
         errors:
           type: array
           items:
             title: shipment_response_error
             type: object
+            additionalProperties: false
             properties:
               error:
                 type: string
@@ -4762,6 +4808,7 @@ components:
     shipment_package:
       title: shipment_package
       type: object
+      additionalProperties: false
       properties:
         package_code:
           type: string
@@ -4842,6 +4889,7 @@ components:
     stamps_account_information_request_body:
       title: stamps_account_information_request_body
       type: object
+      additionalProperties: false
       properties:
         nickname:
           type: string
@@ -4852,6 +4900,7 @@ components:
     stamps_account_url_response_body:
       title: stamps_account_url_response_body
       type: object
+      additionalProperties: false
       properties:
         url_type:
           $ref: '#/components/schemas/url_type'
@@ -4860,6 +4909,7 @@ components:
     stamps_account_urls_request_body:
       title: stamps_account_urls_request_body
       type: object
+      additionalProperties: false
       properties:
         url_types:
           type: array
@@ -4868,6 +4918,7 @@ components:
     stamps_account_urls_response_body:
       title: stamps_account_urls_response_body
       type: object
+      additionalProperties: false
       properties:
         urls:
           type: array
@@ -4876,12 +4927,14 @@ components:
     tag_response_body:
       title: tag_response_body
       type: object
+      additionalProperties: false
       properties:
         name:
           type: string
     tracking_information_response_body:
       title: tracking_information_response_body
       type: object
+      additionalProperties: false
       properties:
         tracking_number:
           type: string
@@ -4909,6 +4962,7 @@ components:
           items:
             title: track_event
             type: object
+            additionalProperties: false
             properties:
               occurred_at:
                 type: string
@@ -4947,12 +5001,14 @@ components:
     update_webhook_request_body:
       title: update_webhook_request_body
       type: object
+      additionalProperties: false
       properties:
         url:
           type: string
     ups_account_information_request_body:
       title: ups_account_information_request_body
       type: object
+      additionalProperties: false
       properties:
         nickname:
           type: string
@@ -4995,6 +5051,7 @@ components:
     ups_account_settings:
       title: ups_account_settings
       type: object
+      additionalProperties: false
       properties:
         nickname:
           type: string
@@ -5023,6 +5080,7 @@ components:
     ups_invoice:
       title: ups_invoice
       type: object
+      additionalProperties: false
       properties:
         invoice_date:
           type: string
@@ -5049,6 +5107,7 @@ components:
       type: string
       format: url
       minLength: 1
+      example: 'http://api.shipengine.com/v1/labels/se-28529731'
     url_type:
       title: url_type
       type: string
@@ -5087,6 +5146,7 @@ components:
     void_label_response_body:
       title: void_label_response_body
       type: object
+      additionalProperties: false
       properties:
         approved:
           type: boolean
@@ -5095,6 +5155,7 @@ components:
     warehouse:
       title: warehouse
       type: object
+      additionalProperties: false
       properties:
         warehouse_id:
           allOf:
@@ -5112,6 +5173,7 @@ components:
     warehouse_list_response_body:
       title: warehouse_list_response_body
       type: object
+      additionalProperties: false
       properties:
         warehouses:
           type: array
@@ -5120,6 +5182,7 @@ components:
     warehouse_request_body:
       title: warehouse_request_body
       type: object
+      additionalProperties: false
       properties:
         warehouse_id:
           allOf:
@@ -5134,6 +5197,7 @@ components:
     webhook_response_body:
       title: webhook_response_body
       type: object
+      additionalProperties: false
       properties:
         webhook_id:
           allOf:
@@ -5146,6 +5210,7 @@ components:
     weight:
       title: weight
       type: object
+      additionalProperties: false
       properties:
         value:
           type: number

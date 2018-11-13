@@ -1,5 +1,6 @@
 title: provider_error
 type: object
+additionalProperties: false
 properties:
   carrier_id:
     allOf:

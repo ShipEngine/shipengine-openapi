@@ -1,5 +1,6 @@
 title: list_tag_response_body
 type: object
+additionalProperties: false
 properties:
   tags:
     type: array

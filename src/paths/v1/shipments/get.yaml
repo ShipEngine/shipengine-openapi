@@ -1,6 +1,6 @@
 tags:
   - shipments
-operationId: shipments.find
+operationId: shipments.list
 parameters:
   - name: batch_id
     in: query

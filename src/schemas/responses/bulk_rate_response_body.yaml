@@ -1,5 +1,6 @@
 title: bulk_rate_response_body
 type: object
+additionalProperties: false
 properties:
   rate_request_id:
     allOf:

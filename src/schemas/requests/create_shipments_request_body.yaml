@@ -1,5 +1,6 @@
 title: create_shipments_request_body
 type: object
+additionalProperties: false
 properties:
   shipments:
     type: array

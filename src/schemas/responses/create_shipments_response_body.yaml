@@ -1,5 +1,6 @@
 title: create_shipments_response_body
 type: object
+additionalProperties: false
 properties:
   has_errors:
     type: boolean

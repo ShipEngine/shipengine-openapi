@@ -1,5 +1,6 @@
 title: list_manifests_response_body
 type: object
+additionalProperties: false
 properties:
   manifests:
     type: array

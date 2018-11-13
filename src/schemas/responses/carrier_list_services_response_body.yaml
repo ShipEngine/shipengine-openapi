@@ -1,5 +1,6 @@
 title: carrier_list_services_response_body
 type: object
+additionalProperties: false
 properties:
   services:
     type: array

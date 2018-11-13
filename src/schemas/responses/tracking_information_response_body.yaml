@@ -1,5 +1,6 @@
 title: tracking_information_response_body
 type: object
+additionalProperties: false
 properties:
   tracking_number:
     type: string
@@ -27,6 +28,7 @@ properties:
     items:
       title: track_event
       type: object
+      additionalProperties: false
       properties:
         occurred_at:
           type: string

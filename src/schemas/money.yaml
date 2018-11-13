@@ -1,5 +1,6 @@
 title: money
 type: object
+additionalProperties: false
 properties:
   currency:
     $ref: 'enums.yaml#/currency'

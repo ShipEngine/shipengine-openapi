@@ -1,6 +1,6 @@
 tags:
   - manifests
-operationId: manifests.find
+operationId: manifests.list
 parameters:
   - name: warehouse_id
     in: query

@@ -8,7 +8,7 @@ description: |
   > Test labels (those created with `test_label: true`) are not included in the results.  If you've only ever created test labels, then the results will be empty.
 tags:
   - labels
-operationId: labels.find
+operationId: labels.list
 parameters:
   - name: label_status
     in: query
@@ -111,19 +111,7 @@ responses:
     content:
       application/json:
         schema:
-          type: object
-          required:
-            - labels
-          properties:
-            labels:
-              type: array
-              minItems: 0
-              items:
-                $ref: ../../../schemas/label.yaml
-              description: |
-                The labels that matched the query criteria.  If no matching labels were found, then this array will be empty; otherwise, it will contain one page of results.  The last page of results may have fewer labels than the `page_size`.
-          allOf:
-            - $ref: ../../../schemas/responses/paged_list_response_body.yaml
+          $ref: ../../../schemas/responses/list_label_response_body.yaml
   '400':
     $ref: ../../../responses/bad_request.yaml
   '500':

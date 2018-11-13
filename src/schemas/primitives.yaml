@@ -41,6 +41,7 @@ url:
   type: string
   format: url
   minLength: 1
+  example: 'http://api.shipengine.com/v1/labels/se-28529731'
 uuid:
   title: uuid
   type: string

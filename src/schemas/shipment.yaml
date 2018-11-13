@@ -1,5 +1,6 @@
 title: shipment
 type: object
+additionalProperties: false
 properties:
   shipment_id:
     allOf:

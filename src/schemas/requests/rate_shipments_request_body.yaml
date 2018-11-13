@@ -1,5 +1,6 @@
 title: rate_shipments_request_body
 type: object
+additionalProperties: false
 properties:
   shipment_ids:
     type: array

@@ -1,5 +1,6 @@
 title: batch
 type: object
+additionalProperties: false
 properties:
   label_layout:
     type: string

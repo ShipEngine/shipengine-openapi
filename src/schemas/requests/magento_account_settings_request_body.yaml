@@ -1,5 +1,6 @@
 title: magento_account_settings_request_body
 type: object
+additionalProperties: false
 properties:
   automatically_import_sales_orders:
     type: boolean

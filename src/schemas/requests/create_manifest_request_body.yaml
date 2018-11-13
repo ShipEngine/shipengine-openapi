@@ -1,5 +1,6 @@
 title: create_manifest_request_body
 type: object
+additionalProperties: false
 properties:
   carrier_id:
     allOf:

@@ -1,5 +1,6 @@
 title: rate_shipment_response_body
 type: object
+additionalProperties: false
 properties:
   rate_response:
     $ref: ../responses/rate_response_body.yaml

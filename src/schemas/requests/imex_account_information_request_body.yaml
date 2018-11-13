@@ -1,5 +1,6 @@
 title: imex_account_information_request_body
 type: object
+additionalProperties: false
 properties:
   nickname:
     type: string

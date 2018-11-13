@@ -1,5 +1,6 @@
 title: rate_response_body
 type: object
+additionalProperties: false
 properties:
   rates:
     type: array

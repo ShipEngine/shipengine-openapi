@@ -1,5 +1,6 @@
 title: international_options
 type: object
+additionalProperties: false
 properties:
   contents:
     $ref: 'enums.yaml#/contents'
@@ -8,6 +9,7 @@ properties:
     items:
       title: customs_item
       type: object
+      additionalProperties: false
       properties:
         customs_item_id:
           allOf:

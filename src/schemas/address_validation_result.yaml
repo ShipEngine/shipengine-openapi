@@ -1,5 +1,6 @@
 title: address_validation_result
 type: object
+additionalProperties: false
 properties:
   status:
     $ref: 'enums.yaml#/address_validation_status'
@@ -12,6 +13,7 @@ properties:
     items:
       title: response_message
       type: object
+      additionalProperties: false
       properties:
         code:
           $ref: 'enums.yaml#/code'

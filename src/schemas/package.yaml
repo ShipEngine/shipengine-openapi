@@ -2,6 +2,7 @@ title: package
 type: object
 required:
   - name
+additionalProperties: false
 properties:
   package_id:
     allOf:

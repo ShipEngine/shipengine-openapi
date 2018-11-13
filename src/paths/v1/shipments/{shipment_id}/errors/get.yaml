@@ -1,6 +1,6 @@
 tags:
   - shipments
-operationId: shipments.find_errors
+operationId: shipments.list_errors
 parameters:
   - name: shipment_id
     in: path

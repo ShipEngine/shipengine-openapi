@@ -1,6 +1,6 @@
 tags:
   - warehouses
-operationId: warehouses.find
+operationId: warehouses.list
 responses:
   '200':
     description: The request was a success.

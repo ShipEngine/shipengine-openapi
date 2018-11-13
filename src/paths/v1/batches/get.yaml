@@ -1,6 +1,6 @@
 tags:
   - batches
-operationId: batches.find
+operationId: batches.list
 parameters:
   - name: status
     in: query

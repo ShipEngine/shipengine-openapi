@@ -1,5 +1,6 @@
 title: advanced_options
 type: object
+additionalProperties: false
 properties:
   bill_to_account:
     type: string

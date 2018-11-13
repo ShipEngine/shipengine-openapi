@@ -1,5 +1,6 @@
 title: dimensions
 type: object
+additionalProperties: false
 properties:
   unit:
     $ref: 'enums.yaml#/dimension_unit'

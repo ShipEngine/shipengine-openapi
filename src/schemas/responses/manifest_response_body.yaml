@@ -1,5 +1,6 @@
 title: manifest_response_body
 type: object
+additionalProperties: false
 properties:
   manifest_id:
     allOf:

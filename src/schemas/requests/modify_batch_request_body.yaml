@@ -1,5 +1,6 @@
 title: modify_batch_request_body
 type: object
+additionalProperties: false
 properties:
   shipment_ids:
     type: array

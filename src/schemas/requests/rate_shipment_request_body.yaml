@@ -1,5 +1,6 @@
 title: rate_shipment_request_body
 type: object
+additionalProperties: false
 properties:
   shipment_id:
     allOf:

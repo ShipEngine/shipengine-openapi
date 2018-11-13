@@ -1,5 +1,6 @@
 title: warehouse
 type: object
+additionalProperties: false
 properties:
   warehouse_id:
     allOf:

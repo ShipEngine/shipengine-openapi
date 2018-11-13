@@ -1,5 +1,6 @@
 title: newgistics_account_information_request_body
 type: object
+additionalProperties: false
 properties:
   merchant_id:
     type: integer

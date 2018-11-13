@@ -1,5 +1,6 @@
 title: address_validating_shipment
 type: object
+additionalProperties: false
 properties:
   validate_address:
     $ref: 'enums.yaml#/validate_address'

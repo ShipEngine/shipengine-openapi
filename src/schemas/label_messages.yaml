@@ -1,5 +1,6 @@
 title: label_messages
 type: object
+additionalProperties: false
 properties:
   reference1:
     type: string

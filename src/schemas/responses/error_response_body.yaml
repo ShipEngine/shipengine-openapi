@@ -1,5 +1,6 @@
 title: error_response_body
 type: object
+additionalProperties: false
 properties:
   request_id:
     allOf:
@@ -10,6 +11,7 @@ properties:
     items:
       title: api_error
       type: object
+      additionalProperties: false
       properties:
         error_code:
           type: string

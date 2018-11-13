@@ -1,6 +1,6 @@
 tags:
   - batches
-operationId: batches.find_errors
+operationId: batches.list_errors
 parameters:
   - name: batch_id
     in: path

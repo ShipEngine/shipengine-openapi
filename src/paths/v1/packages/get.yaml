@@ -1,6 +1,6 @@
 tags:
   - packages
-operationId: packages.find
+operationId: packages.list
 responses:
   '200':
     description: The request was a success.

@@ -1,5 +1,6 @@
 title: create_webhook_request_body
 type: object
+additionalProperties: false
 properties:
   event:
     $ref: '../enums.yaml#/event'

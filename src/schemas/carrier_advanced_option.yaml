@@ -1,5 +1,6 @@
 title: carrier_advanced_option
 type: object
+additionalProperties: false
 properties:
   name:
     type: string

@@ -1,5 +1,6 @@
 title: webhook_response_body
 type: object
+additionalProperties: false
 properties:
   webhook_id:
     allOf:

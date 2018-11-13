@@ -1,5 +1,6 @@
 title: shipment_package
 type: object
+additionalProperties: false
 properties:
   package_code:
     type: string

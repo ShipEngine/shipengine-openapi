@@ -1,5 +1,6 @@
 title: void_label_response_body
 type: object
+additionalProperties: false
 properties:
   approved:
     type: boolean

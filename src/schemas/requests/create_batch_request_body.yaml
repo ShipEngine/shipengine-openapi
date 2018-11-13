@@ -1,5 +1,6 @@
 title: create_batch_request_body
 type: object
+additionalProperties: false
 properties:
   external_batch_id:
     allOf:

@@ -1,7 +1,13 @@
 title: link
 type: object
+description: A link to a related resource
+additionalProperties: false
 properties:
   href:
-    type: string
+    allOf:
+      - $ref: 'primitives.yaml#/url'
+    description: The URL of the linked resource
   type:
     type: string
+    minLength: 1
+    description: 'The type of resource, or the type of relationship to the parent resource'

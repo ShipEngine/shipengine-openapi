@@ -1,6 +1,6 @@
 tags:
   - carriers
-operationId: carriers.find_services
+operationId: carriers.list_services
 parameters:
   - name: carrier_id
     in: path

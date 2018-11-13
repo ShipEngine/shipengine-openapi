@@ -1,6 +1,6 @@
 tags:
   - carriers
-operationId: carriers.find
+operationId: carriers.list
 responses:
   '200':
     description: The request was a success.

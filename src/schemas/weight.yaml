@@ -1,5 +1,6 @@
 title: weight
 type: object
+additionalProperties: false
 properties:
   value:
     type: number

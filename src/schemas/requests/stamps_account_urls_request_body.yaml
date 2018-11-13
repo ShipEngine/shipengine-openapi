@@ -1,5 +1,6 @@
 title: stamps_account_urls_request_body
 type: object
+additionalProperties: false
 properties:
   url_types:
     type: array

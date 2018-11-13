@@ -1,5 +1,6 @@
 title: rate_request_body
 type: object
+additionalProperties: false
 properties:
   carrier_ids:
     type: array
