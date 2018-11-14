@@ -1,0 +1,5 @@
+title: update_shipment_request_body
+type: object
+additionalProperties: false
+allOf:
+  - $ref: ../address_validating_shipment.yaml

@@ -13,7 +13,7 @@ responses:
     content:
       application/json:
         schema:
-          $ref: ../../../../schemas/rate.yaml
+          $ref: ../../../../schemas/responses/rate_response_body.yaml
   '400':
     $ref: ../../../../responses/bad_request.yaml
   '404':

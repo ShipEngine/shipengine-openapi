@@ -1,0 +1,5 @@
+title: shipment_response_body
+type: object
+additionalProperties: false
+allOf:
+  - $ref: ../shipment.yaml

@@ -5,4 +5,6 @@ properties:
   packages:
     type: array
     items:
-      $ref: ../package.yaml
+      additionalProperties: false
+      allOf:
+        - $ref: ../package.yaml

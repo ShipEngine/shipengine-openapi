@@ -6,14 +6,14 @@ requestBody:
   content:
     application/json:
       schema:
-        $ref: ../../../../../schemas/money.yaml
+        $ref: ../../../../../schemas/requests/money_request_body.yaml
 responses:
   '200':
     description: The request was a success.
     content:
       application/json:
         schema:
-          $ref: ../../../../../schemas/money.yaml
+          $ref: ../../../../../schemas/responses/insurance_balance_response_body.yaml
   '400':
     $ref: ../../../../../responses/bad_request.yaml
   '500':

@@ -7,4 +7,6 @@ properties:
       - $ref: '../primitives.yaml#/se_id'
     description: A string that uniquely identifies the shipment id
   tag:
-    $ref: ../responses/tag_response_body.yaml
+    additionalProperties: false
+    allOf:
+      - $ref: ../responses/tag_response_body.yaml

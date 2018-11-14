@@ -32,14 +32,14 @@ apc_account_information_request_body:
   $ref: requests/apc_account_information_request_body.yaml
 asendia_account_information_request_body:
   $ref: requests/asendia_account_information_request_body.yaml
-balance_response_body:
-  $ref: responses/balance_response_body.yaml
 batch:
   $ref: batch.yaml
 batch_errors_response_body:
   $ref: responses/batch_errors_response_body.yaml
 batch_status:
   $ref: 'enums.yaml#/batch_status'
+batches_response_body:
+  $ref: responses/batches_response_body.yaml
 batches_sort_by:
   $ref: 'enums.yaml#/batches_sort_by'
 bill_to_party:
@@ -52,12 +52,16 @@ carrier:
   $ref: carrier.yaml
 carrier_advanced_option:
   $ref: carrier_advanced_option.yaml
+carrier_balance_response_body:
+  $ref: responses/carrier_balance_response_body.yaml
 carrier_list_options_response_body:
   $ref: responses/carrier_list_options_response_body.yaml
 carrier_list_response_body:
   $ref: responses/carrier_list_response_body.yaml
 carrier_list_services_response_body:
   $ref: responses/carrier_list_services_response_body.yaml
+carrier_response_body:
+  $ref: responses/carrier_response_body.yaml
 channel_advisor_product_identifier:
   $ref: 'enums.yaml#/channel_advisor_product_identifier'
 code:
@@ -70,6 +74,8 @@ contents:
   $ref: 'enums.yaml#/contents'
 create_batch_request_body:
   $ref: requests/create_batch_request_body.yaml
+create_batch_response_body:
+  $ref: responses/create_batch_response_body.yaml
 create_manifest_request_body:
   $ref: requests/create_manifest_request_body.yaml
 create_shipment_response_body:
@@ -94,6 +100,8 @@ dhl_express_account_information_request_body:
   $ref: requests/dhl_express_account_information_request_body.yaml
 dhl_express_account_settings:
   $ref: dhl_express_account_settings.yaml
+dhl_express_settings_response_body:
+  $ref: responses/dhl_express_settings_response_body.yaml
 dhl_express_uk_account_information_request_body:
   $ref: requests/dhl_express_uk_account_information_request_body.yaml
 dimension_unit:
@@ -116,6 +124,8 @@ fedex_account_settings_request_body:
   $ref: requests/fedex_account_settings_request_body.yaml
 fedex_pickup_type:
   $ref: 'enums.yaml#/fedex_pickup_type'
+fedex_settings_response_body:
+  $ref: responses/fedex_settings_response_body.yaml
 fedex_uk_account_information_request_body:
   $ref: requests/fedex_uk_account_information_request_body.yaml
 first_mile_account_information_request_body:
@@ -124,6 +134,8 @@ globegistics_account_information_request_body:
   $ref: requests/globegistics_account_information_request_body.yaml
 imex_account_information_request_body:
   $ref: requests/imex_account_information_request_body.yaml
+insurance_balance_response_body:
+  $ref: responses/insurance_balance_response_body.yaml
 insurance_provider:
   $ref: 'enums.yaml#/insurance_provider'
 international_options:
@@ -134,6 +146,8 @@ label_format:
   $ref: 'enums.yaml#/label_format'
 label_messages:
   $ref: label_messages.yaml
+label_response_body:
+  $ref: responses/label_response_body.yaml
 labels_sort_by:
   $ref: 'enums.yaml#/labels_sort_by'
 link:
@@ -160,6 +174,8 @@ modify_batch_request_body:
   $ref: requests/modify_batch_request_body.yaml
 money:
   $ref: money.yaml
+money_request_body:
+  $ref: requests/money_request_body.yaml
 newgistics_account_information_request_body:
   $ref: requests/newgistics_account_information_request_body.yaml
 newgistics_account_settings_request_body:
@@ -172,6 +188,10 @@ package:
   $ref: package.yaml
 package_list_response_body:
   $ref: responses/package_list_response_body.yaml
+package_request_body:
+  $ref: requests/package_request_body.yaml
+package_response_body:
+  $ref: responses/package_response_body.yaml
 pagination_link:
   $ref: pagination_link.yaml
 process_batch_request_body:
@@ -216,6 +236,8 @@ shipment_errors_response_body:
   $ref: responses/shipment_errors_response_body.yaml
 shipment_package:
   $ref: shipment_package.yaml
+shipment_response_body:
+  $ref: responses/shipment_response_body.yaml
 shipment_status:
   $ref: 'enums.yaml#/shipment_status'
 shipments_sort_by:
@@ -240,6 +262,14 @@ tracking_status:
   $ref: 'enums.yaml#/tracking_status'
 type:
   $ref: 'enums.yaml#/type'
+update_dhl_express_settings_request_body:
+  $ref: requests/update_dhl_express_settings_request_body.yaml
+update_fedex_settings_request_body:
+  $ref: requests/update_fedex_settings_request_body.yaml
+update_shipment_request_body:
+  $ref: requests/update_shipment_request_body.yaml
+update_ups_settings_request_body:
+  $ref: requests/update_ups_settings_request_body.yaml
 update_webhook_request_body:
   $ref: requests/update_webhook_request_body.yaml
 ups_account_information_request_body:
@@ -250,6 +280,8 @@ ups_invoice:
   $ref: ups_invoice.yaml
 ups_pickup_type:
   $ref: 'enums.yaml#/ups_pickup_type'
+ups_settings_response_body:
+  $ref: responses/ups_settings_response_body.yaml
 url:
   $ref: 'primitives.yaml#/url'
 url_type:
@@ -268,8 +300,10 @@ warehouse_list_response_body:
   $ref: responses/warehouse_list_response_body.yaml
 warehouse_request_body:
   $ref: requests/warehouse_request_body.yaml
-webhook:
-  $ref: webhook.yaml
+warehouse_response_body:
+  $ref: responses/warehouse_response_body.yaml
+webhook_list_response_body:
+  $ref: responses/webhook_list_response_body.yaml
 webhook_response_body:
   $ref: responses/webhook_response_body.yaml
 weight:

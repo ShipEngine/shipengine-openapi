@@ -1,0 +1,5 @@
+title: money_request_body
+type: object
+additionalProperties: false
+allOf:
+  - $ref: ../money.yaml

@@ -28,12 +28,18 @@ properties:
   services:
     type: array
     items:
-      $ref: service.yaml
+      additionalProperties: false
+      allOf:
+        - $ref: service.yaml
   packages:
     type: array
     items:
-      $ref: package.yaml
+      additionalProperties: false
+      allOf:
+        - $ref: package.yaml
   options:
     type: array
     items:
-      $ref: carrier_advanced_option.yaml
+      additionalProperties: false
+      allOf:
+        - $ref: carrier_advanced_option.yaml

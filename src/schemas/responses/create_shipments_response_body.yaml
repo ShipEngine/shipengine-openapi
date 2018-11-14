@@ -7,4 +7,6 @@ properties:
   shipments:
     type: array
     items:
-      $ref: ../responses/create_shipment_response_body.yaml
+      additionalProperties: false
+      allOf:
+        - $ref: ../responses/create_shipment_response_body.yaml

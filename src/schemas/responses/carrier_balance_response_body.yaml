@@ -1,0 +1,8 @@
+title: carrier_balance_response_body
+type: object
+additionalProperties: false
+properties:
+  balance:
+    additionalProperties: false
+    allOf:
+      - $ref: ../money.yaml

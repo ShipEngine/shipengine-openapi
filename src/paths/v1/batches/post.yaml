@@ -13,7 +13,7 @@ responses:
     content:
       application/json:
         schema:
-          $ref: ../../../schemas/batch.yaml
+          $ref: ../../../schemas/responses/create_batch_response_body.yaml
   '400':
     $ref: ../../../responses/bad_request.yaml
   '500':

@@ -7,7 +7,7 @@ responses:
     content:
       application/json:
         schema:
-          $ref: ../../../../../schemas/money.yaml
+          $ref: ../../../../../schemas/responses/insurance_balance_response_body.yaml
   '400':
     $ref: ../../../../../responses/bad_request.yaml
   '500':

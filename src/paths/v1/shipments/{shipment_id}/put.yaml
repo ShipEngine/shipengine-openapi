@@ -12,7 +12,7 @@ requestBody:
   content:
     application/json:
       schema:
-        $ref: ../../../../schemas/address_validating_shipment.yaml
+        $ref: ../../../../schemas/requests/update_shipment_request_body.yaml
 responses:
   '200':
     description: The request was a success.

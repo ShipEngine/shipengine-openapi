@@ -12,7 +12,7 @@ requestBody:
   content:
     application/json:
       schema:
-        $ref: ../../../../../../../schemas/dhl_express_account_settings.yaml
+        $ref: ../../../../../../../schemas/requests/update_dhl_express_settings_request_body.yaml
 responses:
   '204':
     $ref: ../../../../../../../responses/no_content.yaml

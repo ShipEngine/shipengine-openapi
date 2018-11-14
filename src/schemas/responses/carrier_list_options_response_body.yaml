@@ -5,4 +5,6 @@ properties:
   options:
     type: array
     items:
-      $ref: ../carrier_advanced_option.yaml
+      additionalProperties: false
+      allOf:
+        - $ref: ../carrier_advanced_option.yaml

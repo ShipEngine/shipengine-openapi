@@ -1,0 +1,5 @@
+title: update_ups_settings_request_body
+type: object
+additionalProperties: false
+allOf:
+  - $ref: ../ups_account_settings.yaml

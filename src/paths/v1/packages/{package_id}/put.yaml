@@ -12,7 +12,7 @@ requestBody:
   content:
     application/json:
       schema:
-        $ref: ../../../../schemas/package.yaml
+        $ref: ../../../../schemas/requests/package_request_body.yaml
 responses:
   '204':
     $ref: ../../../../responses/no_content.yaml

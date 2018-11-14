@@ -1,0 +1,5 @@
+title: label_response_body
+type: object
+additionalProperties: false
+allOf:
+  - $ref: ../label.yaml

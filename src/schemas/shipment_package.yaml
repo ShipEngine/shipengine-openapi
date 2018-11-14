@@ -5,10 +5,18 @@ properties:
   package_code:
     type: string
   weight:
-    $ref: weight.yaml
+    additionalProperties: false
+    allOf:
+      - $ref: weight.yaml
   dimensions:
-    $ref: dimensions.yaml
+    additionalProperties: false
+    allOf:
+      - $ref: dimensions.yaml
   insured_value:
-    $ref: money.yaml
+    additionalProperties: false
+    allOf:
+      - $ref: money.yaml
   label_messages:
-    $ref: label_messages.yaml
+    additionalProperties: false
+    allOf:
+      - $ref: label_messages.yaml

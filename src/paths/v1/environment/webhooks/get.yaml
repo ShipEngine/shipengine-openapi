@@ -7,7 +7,7 @@ responses:
     content:
       application/json:
         schema:
-          $ref: ../../../../schemas/responses/webhook_response_body.yaml
+          $ref: ../../../../schemas/responses/webhook_list_response_body.yaml
   '400':
     $ref: ../../../../responses/bad_request.yaml
   '500':

@@ -9,6 +9,10 @@ properties:
   name:
     type: string
   origin_address:
-    $ref: ../address.yaml
+    additionalProperties: false
+    allOf:
+      - $ref: ../address.yaml
   return_address:
-    $ref: ../address.yaml
+    additionalProperties: false
+    allOf:
+      - $ref: ../address.yaml

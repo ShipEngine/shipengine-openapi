@@ -13,7 +13,7 @@ responses:
     content:
       application/json:
         schema:
-          $ref: ../../../../../../../schemas/ups_account_settings.yaml
+          $ref: ../../../../../../../schemas/responses/ups_settings_response_body.yaml
   '404':
     $ref: ../../../../../../../responses/not_found.yaml
   '500':

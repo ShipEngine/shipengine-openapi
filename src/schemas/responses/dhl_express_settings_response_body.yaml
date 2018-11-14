@@ -1,0 +1,5 @@
+title: dhl_express_settings_response_body
+type: object
+additionalProperties: false
+allOf:
+  - $ref: ../dhl_express_account_settings.yaml

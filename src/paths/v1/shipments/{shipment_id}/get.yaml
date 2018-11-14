@@ -13,7 +13,7 @@ responses:
     content:
       application/json:
         schema:
-          $ref: ../../../../schemas/shipment.yaml
+          $ref: ../../../../schemas/responses/shipment_response_body.yaml
   '400':
     $ref: ../../../../responses/bad_request.yaml
   '404':

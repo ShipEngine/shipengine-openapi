@@ -5,7 +5,9 @@ properties:
   shipments:
     type: array
     items:
-      $ref: ../shipment.yaml
+      additionalProperties: false
+      allOf:
+        - $ref: ../shipment.yaml
   total:
     type: integer
     format: int64
@@ -16,4 +18,6 @@ properties:
     type: integer
     format: int32
   links:
-    $ref: ../pagination_link.yaml
+    additionalProperties: false
+    allOf:
+      - $ref: ../pagination_link.yaml

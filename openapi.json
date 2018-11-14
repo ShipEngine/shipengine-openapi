@@ -731,9 +731,9 @@
                 "title": "address_validation_request_body",
                 "type": "array",
                 "items": {
+                  "additionalProperties": false,
                   "title": "address",
                   "type": "object",
-                  "additionalProperties": false,
                   "properties": {
                     "name": {
                       "type": "string"
@@ -790,9 +790,9 @@
                   "title": "address_validation_response_body",
                   "type": "array",
                   "items": {
+                    "additionalProperties": false,
                     "title": "address_validation_result",
                     "type": "object",
-                    "additionalProperties": false,
                     "properties": {
                       "status": {
                         "title": "address_validation_status",
@@ -806,9 +806,9 @@
                         "description": "The possible address validation status values"
                       },
                       "original_address": {
+                        "additionalProperties": false,
                         "title": "address",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "name": {
                             "type": "string"
@@ -853,9 +853,9 @@
                         }
                       },
                       "matched_address": {
+                        "additionalProperties": false,
                         "title": "address",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "name": {
                             "type": "string"
@@ -1169,9 +1169,9 @@
                     "batches": {
                       "type": "array",
                       "items": {
+                        "additionalProperties": false,
                         "title": "batch",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "label_layout": {
                             "type": "string"
@@ -1236,10 +1236,10 @@
                             "format": "int32"
                           },
                           "batch_shipments_url": {
+                            "additionalProperties": false,
                             "title": "link",
                             "type": "object",
                             "description": "A link to a related resource",
-                            "additionalProperties": false,
                             "properties": {
                               "href": {
                                 "description": "The URL of the linked resource",
@@ -1257,10 +1257,10 @@
                             }
                           },
                           "batch_labels_url": {
+                            "additionalProperties": false,
                             "title": "link",
                             "type": "object",
                             "description": "A link to a related resource",
-                            "additionalProperties": false,
                             "properties": {
                               "href": {
                                 "description": "The URL of the linked resource",
@@ -1278,10 +1278,10 @@
                             }
                           },
                           "batch_errors_url": {
+                            "additionalProperties": false,
                             "title": "link",
                             "type": "object",
                             "description": "A link to a related resource",
-                            "additionalProperties": false,
                             "properties": {
                               "href": {
                                 "description": "The URL of the linked resource",
@@ -1299,10 +1299,10 @@
                             }
                           },
                           "label_download": {
+                            "additionalProperties": false,
                             "title": "link",
                             "type": "object",
                             "description": "A link to a related resource",
-                            "additionalProperties": false,
                             "properties": {
                               "href": {
                                 "description": "The URL of the linked resource",
@@ -1320,10 +1320,10 @@
                             }
                           },
                           "form_download": {
+                            "additionalProperties": false,
                             "title": "link",
                             "type": "object",
                             "description": "A link to a related resource",
-                            "additionalProperties": false,
                             "properties": {
                               "href": {
                                 "description": "The URL of the linked resource",
@@ -1371,6 +1371,7 @@
                       "format": "int32"
                     },
                     "links": {
+                      "additionalProperties": false,
                       "title": "pagination_link",
                       "type": "object",
                       "description": "Helpful links to other pages of results",
@@ -1380,7 +1381,6 @@
                         "prev",
                         "next"
                       ],
-                      "additionalProperties": false,
                       "properties": {
                         "first": {
                           "required": [
@@ -1610,7 +1610,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "batch",
+                  "title": "create_batch_response_body",
                   "type": "object",
                   "additionalProperties": false,
                   "properties": {
@@ -1677,10 +1677,10 @@
                       "format": "int32"
                     },
                     "batch_shipments_url": {
+                      "additionalProperties": false,
                       "title": "link",
                       "type": "object",
                       "description": "A link to a related resource",
-                      "additionalProperties": false,
                       "properties": {
                         "href": {
                           "description": "The URL of the linked resource",
@@ -1698,10 +1698,10 @@
                       }
                     },
                     "batch_labels_url": {
+                      "additionalProperties": false,
                       "title": "link",
                       "type": "object",
                       "description": "A link to a related resource",
-                      "additionalProperties": false,
                       "properties": {
                         "href": {
                           "description": "The URL of the linked resource",
@@ -1719,10 +1719,10 @@
                       }
                     },
                     "batch_errors_url": {
+                      "additionalProperties": false,
                       "title": "link",
                       "type": "object",
                       "description": "A link to a related resource",
-                      "additionalProperties": false,
                       "properties": {
                         "href": {
                           "description": "The URL of the linked resource",
@@ -1740,10 +1740,10 @@
                       }
                     },
                     "label_download": {
+                      "additionalProperties": false,
                       "title": "link",
                       "type": "object",
                       "description": "A link to a related resource",
-                      "additionalProperties": false,
                       "properties": {
                         "href": {
                           "description": "The URL of the linked resource",
@@ -1761,10 +1761,10 @@
                       }
                     },
                     "form_download": {
+                      "additionalProperties": false,
                       "title": "link",
                       "type": "object",
                       "description": "A link to a related resource",
-                      "additionalProperties": false,
                       "properties": {
                         "href": {
                           "description": "The URL of the linked resource",
@@ -1912,7 +1912,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "batch",
+                  "title": "batches_response_body",
                   "type": "object",
                   "additionalProperties": false,
                   "properties": {
@@ -1979,10 +1979,10 @@
                       "format": "int32"
                     },
                     "batch_shipments_url": {
+                      "additionalProperties": false,
                       "title": "link",
                       "type": "object",
                       "description": "A link to a related resource",
-                      "additionalProperties": false,
                       "properties": {
                         "href": {
                           "description": "The URL of the linked resource",
@@ -2000,10 +2000,10 @@
                       }
                     },
                     "batch_labels_url": {
+                      "additionalProperties": false,
                       "title": "link",
                       "type": "object",
                       "description": "A link to a related resource",
-                      "additionalProperties": false,
                       "properties": {
                         "href": {
                           "description": "The URL of the linked resource",
@@ -2021,10 +2021,10 @@
                       }
                     },
                     "batch_errors_url": {
+                      "additionalProperties": false,
                       "title": "link",
                       "type": "object",
                       "description": "A link to a related resource",
-                      "additionalProperties": false,
                       "properties": {
                         "href": {
                           "description": "The URL of the linked resource",
@@ -2042,10 +2042,10 @@
                       }
                     },
                     "label_download": {
+                      "additionalProperties": false,
                       "title": "link",
                       "type": "object",
                       "description": "A link to a related resource",
-                      "additionalProperties": false,
                       "properties": {
                         "href": {
                           "description": "The URL of the linked resource",
@@ -2063,10 +2063,10 @@
                       }
                     },
                     "form_download": {
+                      "additionalProperties": false,
                       "title": "link",
                       "type": "object",
                       "description": "A link to a related resource",
-                      "additionalProperties": false,
                       "properties": {
                         "href": {
                           "description": "The URL of the linked resource",
@@ -2254,7 +2254,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "batch",
+                  "title": "batches_response_body",
                   "type": "object",
                   "additionalProperties": false,
                   "properties": {
@@ -2321,10 +2321,10 @@
                       "format": "int32"
                     },
                     "batch_shipments_url": {
+                      "additionalProperties": false,
                       "title": "link",
                       "type": "object",
                       "description": "A link to a related resource",
-                      "additionalProperties": false,
                       "properties": {
                         "href": {
                           "description": "The URL of the linked resource",
@@ -2342,10 +2342,10 @@
                       }
                     },
                     "batch_labels_url": {
+                      "additionalProperties": false,
                       "title": "link",
                       "type": "object",
                       "description": "A link to a related resource",
-                      "additionalProperties": false,
                       "properties": {
                         "href": {
                           "description": "The URL of the linked resource",
@@ -2363,10 +2363,10 @@
                       }
                     },
                     "batch_errors_url": {
+                      "additionalProperties": false,
                       "title": "link",
                       "type": "object",
                       "description": "A link to a related resource",
-                      "additionalProperties": false,
                       "properties": {
                         "href": {
                           "description": "The URL of the linked resource",
@@ -2384,10 +2384,10 @@
                       }
                     },
                     "label_download": {
+                      "additionalProperties": false,
                       "title": "link",
                       "type": "object",
                       "description": "A link to a related resource",
-                      "additionalProperties": false,
                       "properties": {
                         "href": {
                           "description": "The URL of the linked resource",
@@ -2405,10 +2405,10 @@
                       }
                     },
                     "form_download": {
+                      "additionalProperties": false,
                       "title": "link",
                       "type": "object",
                       "description": "A link to a related resource",
-                      "additionalProperties": false,
                       "properties": {
                         "href": {
                           "description": "The URL of the linked resource",
@@ -2776,6 +2776,7 @@
                       }
                     },
                     "links": {
+                      "additionalProperties": false,
                       "title": "pagination_link",
                       "type": "object",
                       "description": "Helpful links to other pages of results",
@@ -2785,7 +2786,6 @@
                         "prev",
                         "next"
                       ],
-                      "additionalProperties": false,
                       "properties": {
                         "first": {
                           "required": [
@@ -3381,9 +3381,9 @@
                     "carriers": {
                       "type": "array",
                       "items": {
+                        "additionalProperties": false,
                         "title": "carrier",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "carrier_id": {
                             "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.",
@@ -3425,9 +3425,9 @@
                           "services": {
                             "type": "array",
                             "items": {
+                              "additionalProperties": false,
                               "title": "service",
                               "type": "object",
-                              "additionalProperties": false,
                               "properties": {
                                 "carrier_id": {
                                   "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.",
@@ -3462,12 +3462,12 @@
                           "packages": {
                             "type": "array",
                             "items": {
+                              "additionalProperties": false,
                               "title": "package",
                               "type": "object",
                               "required": [
                                 "name"
                               ],
-                              "additionalProperties": false,
                               "properties": {
                                 "package_id": {
                                   "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.",
@@ -3485,9 +3485,9 @@
                                   "type": "string"
                                 },
                                 "dimensions": {
+                                  "additionalProperties": false,
                                   "title": "dimensions",
                                   "type": "object",
-                                  "additionalProperties": false,
                                   "properties": {
                                     "unit": {
                                       "title": "dimension_unit",
@@ -3521,9 +3521,9 @@
                           "options": {
                             "type": "array",
                             "items": {
+                              "additionalProperties": false,
                               "title": "carrier_advanced_option",
                               "type": "object",
-                              "additionalProperties": false,
                               "properties": {
                                 "name": {
                                   "type": "string"
@@ -3696,7 +3696,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "carrier",
+                  "title": "carrier_response_body",
                   "type": "object",
                   "additionalProperties": false,
                   "properties": {
@@ -3740,9 +3740,9 @@
                     "services": {
                       "type": "array",
                       "items": {
+                        "additionalProperties": false,
                         "title": "service",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "carrier_id": {
                             "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.",
@@ -3777,12 +3777,12 @@
                     "packages": {
                       "type": "array",
                       "items": {
+                        "additionalProperties": false,
                         "title": "package",
                         "type": "object",
                         "required": [
                           "name"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                           "package_id": {
                             "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.",
@@ -3800,9 +3800,9 @@
                             "type": "string"
                           },
                           "dimensions": {
+                            "additionalProperties": false,
                             "title": "dimensions",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "unit": {
                                 "title": "dimension_unit",
@@ -3836,9 +3836,9 @@
                     "options": {
                       "type": "array",
                       "items": {
+                        "additionalProperties": false,
                         "title": "carrier_advanced_option",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "name": {
                             "type": "string"
@@ -4007,7 +4007,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "money",
+                "title": "money_request_body",
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
@@ -4038,14 +4038,14 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "balance_response_body",
+                  "title": "carrier_balance_response_body",
                   "type": "object",
                   "additionalProperties": false,
                   "properties": {
                     "balance": {
+                      "additionalProperties": false,
                       "title": "money",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "currency": {
                           "title": "currency",
@@ -4228,9 +4228,9 @@
                     "options": {
                       "type": "array",
                       "items": {
+                        "additionalProperties": false,
                         "title": "carrier_advanced_option",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "name": {
                             "type": "string"
@@ -4407,12 +4407,12 @@
                     "packages": {
                       "type": "array",
                       "items": {
+                        "additionalProperties": false,
                         "title": "package",
                         "type": "object",
                         "required": [
                           "name"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                           "package_id": {
                             "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.",
@@ -4430,9 +4430,9 @@
                             "type": "string"
                           },
                           "dimensions": {
+                            "additionalProperties": false,
                             "title": "dimensions",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "unit": {
                                 "title": "dimension_unit",
@@ -4626,9 +4626,9 @@
                     "services": {
                       "type": "array",
                       "items": {
+                        "additionalProperties": false,
                         "title": "service",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "carrier_id": {
                             "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.",
@@ -6047,7 +6047,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "dhl_express_account_settings",
+                  "title": "dhl_express_settings_response_body",
                   "type": "object",
                   "additionalProperties": false,
                   "properties": {
@@ -6173,7 +6173,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "dhl_express_account_settings",
+                "title": "update_dhl_express_settings_request_body",
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
@@ -7336,40 +7336,69 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "ups_account_settings",
+                  "title": "fedex_settings_response_body",
                   "type": "object",
                   "additionalProperties": false,
                   "properties": {
                     "nickname": {
                       "type": "string"
                     },
-                    "is_primary_account": {
-                      "type": "boolean"
-                    },
                     "pickup_type": {
-                      "title": "ups_pickup_type",
+                      "title": "fedex_pickup_type",
                       "type": "string",
                       "enum": [
-                        "daily_pickup",
-                        "occasional_pickup",
-                        "customer_counter"
+                        "none",
+                        "regular_pickup",
+                        "request_courier",
+                        "drop_box",
+                        "business_service_center",
+                        "station"
                       ],
-                      "description": "The possible ups pickup type values"
+                      "description": "The possible fedex pickup type values"
                     },
-                    "use_carbon_neutral_shipping_program": {
-                      "type": "boolean"
+                    "smart_post_hub": {
+                      "title": "smart_post_hub",
+                      "type": "string",
+                      "enum": [
+                        "none",
+                        "allentown_pa",
+                        "atlanta_ga",
+                        "baltimore_md",
+                        "charlotte_nc",
+                        "chino_ca",
+                        "dallas_tx",
+                        "denver_co",
+                        "detroit_mi",
+                        "edison_nj",
+                        "grove_city_oh",
+                        "groveport_oh",
+                        "houston_tx",
+                        "indianapolis_in",
+                        "kansas_city_ks",
+                        "los_angeles_ca",
+                        "martinsburg_wv",
+                        "memphis_tn",
+                        "minneapolis_mn",
+                        "new_berlin_wi",
+                        "northborough_ma",
+                        "orlando_fl",
+                        "phoneix_az",
+                        "pittsburgh_pa",
+                        "reno_nv",
+                        "sacramento_ca",
+                        "salt_lake_city_ut",
+                        "seattle_wa",
+                        "st_louis_mo",
+                        "windsor_ct",
+                        "newark_ny",
+                        "south_brunswick_nj",
+                        "scranton_pa",
+                        "wheeling_il"
+                      ],
+                      "description": "The possible smart post hub values"
                     },
-                    "use_ground_freight_pricing": {
-                      "type": "boolean"
-                    },
-                    "use_consolidation_services": {
-                      "type": "boolean"
-                    },
-                    "use_order_number_on_mail_innovations_labels": {
-                      "type": "boolean"
-                    },
-                    "mail_innovations_endorsement": {
-                      "title": "mail_innovations_endorsement",
+                    "smart_post_endorsement": {
+                      "title": "smart_post_endorsement",
                       "type": "string",
                       "enum": [
                         "none",
@@ -7379,43 +7408,10 @@
                         "change_service_requested",
                         "leave_if_no_response"
                       ],
-                      "description": "The possible mail innovations endorsement values"
+                      "description": "The possible smart post endorsement values"
                     },
-                    "mail_innovations_cost_center": {
-                      "type": "string"
-                    },
-                    "use_negotiated_rates": {
+                    "is_primary_account": {
                       "type": "boolean"
-                    },
-                    "account_postal_code": {
-                      "type": "string"
-                    },
-                    "invoice": {
-                      "title": "ups_invoice",
-                      "type": "object",
-                      "additionalProperties": false,
-                      "properties": {
-                        "invoice_date": {
-                          "type": "string",
-                          "format": "date-time"
-                        },
-                        "invoice_number": {
-                          "type": "string"
-                        },
-                        "control_id": {
-                          "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.",
-                          "title": "se_id",
-                          "type": "string",
-                          "minLength": 1,
-                          "maxLength": 25,
-                          "pattern": "^se(-[a-z0-9]+)+$",
-                          "example": "se-28529731"
-                        },
-                        "invoice_amount": {
-                          "type": "number",
-                          "format": "double"
-                        }
-                      }
                     }
                   }
                 }
@@ -7530,7 +7526,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "fedex_account_settings_request_body",
+                "title": "update_fedex_settings_request_body",
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
@@ -10188,9 +10184,9 @@
                     "urls": {
                       "type": "array",
                       "items": {
+                        "additionalProperties": false,
                         "title": "stamps_account_url_response_body",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "url_type": {
                             "title": "url_type",
@@ -10366,9 +10362,9 @@
                     "type": "string"
                   },
                   "invoice": {
+                    "additionalProperties": false,
                     "title": "ups_invoice",
                     "type": "object",
-                    "additionalProperties": false,
                     "properties": {
                       "invoice_date": {
                         "type": "string",
@@ -10644,7 +10640,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "ups_account_settings",
+                  "title": "ups_settings_response_body",
                   "type": "object",
                   "additionalProperties": false,
                   "properties": {
@@ -10699,9 +10695,9 @@
                       "type": "string"
                     },
                     "invoice": {
+                      "additionalProperties": false,
                       "title": "ups_invoice",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "invoice_date": {
                           "type": "string",
@@ -10838,7 +10834,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "ups_account_settings",
+                "title": "update_ups_settings_request_body",
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
@@ -10893,9 +10889,9 @@
                     "type": "string"
                   },
                   "invoice": {
+                    "additionalProperties": false,
                     "title": "ups_invoice",
                     "type": "object",
-                    "additionalProperties": false,
                     "properties": {
                       "invoice_date": {
                         "type": "string",
@@ -11023,12 +11019,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "webhook_response_body",
+                  "title": "webhook_list_response_body",
                   "type": "array",
                   "items": {
-                    "title": "webhook",
-                    "type": "object",
                     "additionalProperties": false,
+                    "title": "webhook_response_body",
+                    "type": "object",
                     "properties": {
                       "webhook_id": {
                         "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.",
@@ -11174,7 +11170,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "webhook",
+                  "title": "webhook_response_body",
                   "type": "object",
                   "additionalProperties": false,
                   "properties": {
@@ -11349,7 +11345,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "webhook",
+                  "title": "webhook_response_body",
                   "type": "object",
                   "additionalProperties": false,
                   "properties": {
@@ -11738,7 +11734,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "money",
+                "title": "money_request_body",
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
@@ -11769,7 +11765,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "money",
+                  "title": "insurance_balance_response_body",
                   "type": "object",
                   "additionalProperties": false,
                   "properties": {
@@ -11889,7 +11885,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "money",
+                  "title": "insurance_balance_response_body",
                   "type": "object",
                   "additionalProperties": false,
                   "properties": {
@@ -12065,8 +12061,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "label",
+                  "title": "label_response_body",
                   "type": "object",
+                  "additionalProperties": false,
                   "required": [
                     "label_id",
                     "status",
@@ -12449,8 +12446,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "label",
+                  "title": "label_response_body",
                   "type": "object",
+                  "additionalProperties": false,
                   "required": [
                     "label_id",
                     "status",
@@ -12793,8 +12791,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "label",
+                  "title": "label_response_body",
                   "type": "object",
+                  "additionalProperties": false,
                   "required": [
                     "label_id",
                     "status",
@@ -13603,9 +13602,9 @@
                     "manifests": {
                       "type": "array",
                       "items": {
+                        "additionalProperties": false,
                         "title": "manifest_response_body",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "manifest_id": {
                             "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.",
@@ -13665,10 +13664,10 @@
                             "example": "se-28529731"
                           },
                           "manifest_download": {
+                            "additionalProperties": false,
                             "title": "link",
                             "type": "object",
                             "description": "A link to a related resource",
-                            "additionalProperties": false,
                             "properties": {
                               "href": {
                                 "description": "The URL of the linked resource",
@@ -13701,6 +13700,7 @@
                       "format": "int32"
                     },
                     "links": {
+                      "additionalProperties": false,
                       "title": "pagination_link",
                       "type": "object",
                       "description": "Helpful links to other pages of results",
@@ -13710,7 +13710,6 @@
                         "prev",
                         "next"
                       ],
-                      "additionalProperties": false,
                       "properties": {
                         "first": {
                           "required": [
@@ -14046,10 +14045,10 @@
                       "example": "se-28529731"
                     },
                     "manifest_download": {
+                      "additionalProperties": false,
                       "title": "link",
                       "type": "object",
                       "description": "A link to a related resource",
-                      "additionalProperties": false,
                       "properties": {
                         "href": {
                           "description": "The URL of the linked resource",
@@ -14244,10 +14243,10 @@
                       "example": "se-28529731"
                     },
                     "manifest_download": {
+                      "additionalProperties": false,
                       "title": "link",
                       "type": "object",
                       "description": "A link to a related resource",
-                      "additionalProperties": false,
                       "properties": {
                         "href": {
                           "description": "The URL of the linked resource",
@@ -14411,12 +14410,12 @@
                     "packages": {
                       "type": "array",
                       "items": {
+                        "additionalProperties": false,
                         "title": "package",
                         "type": "object",
                         "required": [
                           "name"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                           "package_id": {
                             "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.",
@@ -14434,9 +14433,9 @@
                             "type": "string"
                           },
                           "dimensions": {
+                            "additionalProperties": false,
                             "title": "dimensions",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "unit": {
                                 "title": "dimension_unit",
@@ -14604,12 +14603,12 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "package",
+                "title": "package_request_body",
                 "type": "object",
+                "additionalProperties": false,
                 "required": [
                   "name"
                 ],
-                "additionalProperties": false,
                 "properties": {
                   "package_id": {
                     "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.",
@@ -14627,9 +14626,9 @@
                     "type": "string"
                   },
                   "dimensions": {
+                    "additionalProperties": false,
                     "title": "dimensions",
                     "type": "object",
-                    "additionalProperties": false,
                     "properties": {
                       "unit": {
                         "title": "dimension_unit",
@@ -14668,12 +14667,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "package",
+                  "title": "package_response_body",
                   "type": "object",
+                  "additionalProperties": false,
                   "required": [
                     "name"
                   ],
-                  "additionalProperties": false,
                   "properties": {
                     "package_id": {
                       "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.",
@@ -14691,9 +14690,9 @@
                       "type": "string"
                     },
                     "dimensions": {
+                      "additionalProperties": false,
                       "title": "dimensions",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "unit": {
                           "title": "dimension_unit",
@@ -14837,12 +14836,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "package",
+                  "title": "package_response_body",
                   "type": "object",
+                  "additionalProperties": false,
                   "required": [
                     "name"
                   ],
-                  "additionalProperties": false,
                   "properties": {
                     "package_id": {
                       "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.",
@@ -14860,9 +14859,9 @@
                       "type": "string"
                     },
                     "dimensions": {
+                      "additionalProperties": false,
                       "title": "dimensions",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "unit": {
                           "title": "dimension_unit",
@@ -15043,12 +15042,12 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "package",
+                "title": "package_request_body",
                 "type": "object",
+                "additionalProperties": false,
                 "required": [
                   "name"
                 ],
-                "additionalProperties": false,
                 "properties": {
                   "package_id": {
                     "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.",
@@ -15066,9 +15065,9 @@
                     "type": "string"
                   },
                   "dimensions": {
+                    "additionalProperties": false,
                     "title": "dimensions",
                     "type": "object",
-                    "additionalProperties": false,
                     "properties": {
                       "unit": {
                         "title": "dimension_unit",
@@ -15360,9 +15359,9 @@
                     "example": "se-28529731"
                   },
                   "shipment": {
+                    "additionalProperties": false,
                     "title": "address_validating_shipment",
                     "type": "object",
-                    "additionalProperties": false,
                     "properties": {
                       "validate_address": {
                         "title": "validate_address",
@@ -15428,9 +15427,9 @@
                         "description": "The possible shipment status values"
                       },
                       "ship_to": {
+                        "additionalProperties": false,
                         "title": "address",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "name": {
                             "type": "string"
@@ -15475,9 +15474,9 @@
                         }
                       },
                       "ship_from": {
+                        "additionalProperties": false,
                         "title": "address",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "name": {
                             "type": "string"
@@ -15531,9 +15530,9 @@
                         "example": "se-28529731"
                       },
                       "return_to": {
+                        "additionalProperties": false,
                         "title": "address",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "name": {
                             "type": "string"
@@ -15590,9 +15589,9 @@
                         "description": "The possible confirmation values"
                       },
                       "customs": {
+                        "additionalProperties": false,
                         "title": "international_options",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "contents": {
                             "title": "contents",
@@ -15654,9 +15653,9 @@
                         }
                       },
                       "advanced_options": {
+                        "additionalProperties": false,
                         "title": "advanced_options",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "bill_to_account": {
                             "type": "string"
@@ -15718,9 +15717,9 @@
                       "tags": {
                         "type": "array",
                         "items": {
+                          "additionalProperties": false,
                           "title": "tag_response_body",
                           "type": "object",
-                          "additionalProperties": false,
                           "properties": {
                             "name": {
                               "type": "string"
@@ -15731,17 +15730,17 @@
                       "packages": {
                         "type": "array",
                         "items": {
+                          "additionalProperties": false,
                           "title": "shipment_package",
                           "type": "object",
-                          "additionalProperties": false,
                           "properties": {
                             "package_code": {
                               "type": "string"
                             },
                             "weight": {
+                              "additionalProperties": false,
                               "title": "weight",
                               "type": "object",
-                              "additionalProperties": false,
                               "properties": {
                                 "value": {
                                   "type": "number",
@@ -15761,9 +15760,9 @@
                               }
                             },
                             "dimensions": {
+                              "additionalProperties": false,
                               "title": "dimensions",
                               "type": "object",
-                              "additionalProperties": false,
                               "properties": {
                                 "unit": {
                                   "title": "dimension_unit",
@@ -15789,9 +15788,9 @@
                               }
                             },
                             "insured_value": {
+                              "additionalProperties": false,
                               "title": "money",
                               "type": "object",
-                              "additionalProperties": false,
                               "properties": {
                                 "currency": {
                                   "title": "currency",
@@ -15812,9 +15811,9 @@
                               }
                             },
                             "label_messages": {
+                              "additionalProperties": false,
                               "title": "label_messages",
                               "type": "object",
-                              "additionalProperties": false,
                               "properties": {
                                 "reference1": {
                                   "type": "string"
@@ -15832,9 +15831,9 @@
                       },
                       "total_weight": {
                         "readOnly": true,
+                        "additionalProperties": false,
                         "title": "weight",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "value": {
                             "type": "number",
@@ -15856,9 +15855,9 @@
                     }
                   },
                   "rate_options": {
+                    "additionalProperties": false,
                     "title": "rate_request_body",
                     "type": "object",
-                    "additionalProperties": false,
                     "properties": {
                       "carrier_ids": {
                         "type": "array",
@@ -15884,16 +15883,16 @@
                   "additionalProperties": false,
                   "properties": {
                     "rate_response": {
+                      "additionalProperties": false,
                       "title": "rate_response_body",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "rates": {
                           "type": "array",
                           "items": {
+                            "additionalProperties": false,
                             "title": "rate",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "rate_id": {
                                 "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.",
@@ -15923,9 +15922,9 @@
                                 "example": "se-28529731"
                               },
                               "shipping_amount": {
+                                "additionalProperties": false,
                                 "title": "money",
                                 "type": "object",
-                                "additionalProperties": false,
                                 "properties": {
                                   "currency": {
                                     "title": "currency",
@@ -15946,9 +15945,9 @@
                                 }
                               },
                               "insurance_amount": {
+                                "additionalProperties": false,
                                 "title": "money",
                                 "type": "object",
-                                "additionalProperties": false,
                                 "properties": {
                                   "currency": {
                                     "title": "currency",
@@ -15969,9 +15968,9 @@
                                 }
                               },
                               "confirmation_amount": {
+                                "additionalProperties": false,
                                 "title": "money",
                                 "type": "object",
-                                "additionalProperties": false,
                                 "properties": {
                                   "currency": {
                                     "title": "currency",
@@ -15992,9 +15991,9 @@
                                 }
                               },
                               "other_amount": {
+                                "additionalProperties": false,
                                 "title": "money",
                                 "type": "object",
-                                "additionalProperties": false,
                                 "properties": {
                                   "currency": {
                                     "title": "currency",
@@ -16089,9 +16088,9 @@
                         "invalid_rates": {
                           "type": "array",
                           "items": {
+                            "additionalProperties": false,
                             "title": "rate",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "rate_id": {
                                 "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.",
@@ -16121,9 +16120,9 @@
                                 "example": "se-28529731"
                               },
                               "shipping_amount": {
+                                "additionalProperties": false,
                                 "title": "money",
                                 "type": "object",
-                                "additionalProperties": false,
                                 "properties": {
                                   "currency": {
                                     "title": "currency",
@@ -16144,9 +16143,9 @@
                                 }
                               },
                               "insurance_amount": {
+                                "additionalProperties": false,
                                 "title": "money",
                                 "type": "object",
-                                "additionalProperties": false,
                                 "properties": {
                                   "currency": {
                                     "title": "currency",
@@ -16167,9 +16166,9 @@
                                 }
                               },
                               "confirmation_amount": {
+                                "additionalProperties": false,
                                 "title": "money",
                                 "type": "object",
-                                "additionalProperties": false,
                                 "properties": {
                                   "currency": {
                                     "title": "currency",
@@ -16190,9 +16189,9 @@
                                 }
                               },
                               "other_amount": {
+                                "additionalProperties": false,
                                 "title": "money",
                                 "type": "object",
-                                "additionalProperties": false,
                                 "properties": {
                                   "currency": {
                                     "title": "currency",
@@ -16320,9 +16319,9 @@
                         "errors": {
                           "type": "array",
                           "items": {
+                            "additionalProperties": false,
                             "title": "provider_error",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "carrier_id": {
                                 "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.",
@@ -16395,9 +16394,9 @@
                       "description": "The possible shipment status values"
                     },
                     "ship_to": {
+                      "additionalProperties": false,
                       "title": "address",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "name": {
                           "type": "string"
@@ -16442,9 +16441,9 @@
                       }
                     },
                     "ship_from": {
+                      "additionalProperties": false,
                       "title": "address",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "name": {
                           "type": "string"
@@ -16498,9 +16497,9 @@
                       "example": "se-28529731"
                     },
                     "return_to": {
+                      "additionalProperties": false,
                       "title": "address",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "name": {
                           "type": "string"
@@ -16557,9 +16556,9 @@
                       "description": "The possible confirmation values"
                     },
                     "customs": {
+                      "additionalProperties": false,
                       "title": "international_options",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "contents": {
                           "title": "contents",
@@ -16621,9 +16620,9 @@
                       }
                     },
                     "advanced_options": {
+                      "additionalProperties": false,
                       "title": "advanced_options",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "bill_to_account": {
                           "type": "string"
@@ -16685,9 +16684,9 @@
                     "tags": {
                       "type": "array",
                       "items": {
+                        "additionalProperties": false,
                         "title": "tag_response_body",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "name": {
                             "type": "string"
@@ -16698,17 +16697,17 @@
                     "packages": {
                       "type": "array",
                       "items": {
+                        "additionalProperties": false,
                         "title": "shipment_package",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "package_code": {
                             "type": "string"
                           },
                           "weight": {
+                            "additionalProperties": false,
                             "title": "weight",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "value": {
                                 "type": "number",
@@ -16728,9 +16727,9 @@
                             }
                           },
                           "dimensions": {
+                            "additionalProperties": false,
                             "title": "dimensions",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "unit": {
                                 "title": "dimension_unit",
@@ -16756,9 +16755,9 @@
                             }
                           },
                           "insured_value": {
+                            "additionalProperties": false,
                             "title": "money",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "currency": {
                                 "title": "currency",
@@ -16779,9 +16778,9 @@
                             }
                           },
                           "label_messages": {
+                            "additionalProperties": false,
                             "title": "label_messages",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "reference1": {
                                 "type": "string"
@@ -16799,9 +16798,9 @@
                     },
                     "total_weight": {
                       "readOnly": true,
+                      "additionalProperties": false,
                       "title": "weight",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "value": {
                           "type": "number",
@@ -16930,9 +16929,9 @@
                     }
                   },
                   "rate_options": {
+                    "additionalProperties": false,
                     "title": "rate_request_body",
                     "type": "object",
-                    "additionalProperties": false,
                     "properties": {
                       "carrier_ids": {
                         "type": "array",
@@ -16945,9 +16944,9 @@
                   "shipments": {
                     "type": "array",
                     "items": {
+                      "additionalProperties": false,
                       "title": "address_validating_shipment",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "validate_address": {
                           "title": "validate_address",
@@ -17013,9 +17012,9 @@
                           "description": "The possible shipment status values"
                         },
                         "ship_to": {
+                          "additionalProperties": false,
                           "title": "address",
                           "type": "object",
-                          "additionalProperties": false,
                           "properties": {
                             "name": {
                               "type": "string"
@@ -17060,9 +17059,9 @@
                           }
                         },
                         "ship_from": {
+                          "additionalProperties": false,
                           "title": "address",
                           "type": "object",
-                          "additionalProperties": false,
                           "properties": {
                             "name": {
                               "type": "string"
@@ -17116,9 +17115,9 @@
                           "example": "se-28529731"
                         },
                         "return_to": {
+                          "additionalProperties": false,
                           "title": "address",
                           "type": "object",
-                          "additionalProperties": false,
                           "properties": {
                             "name": {
                               "type": "string"
@@ -17175,9 +17174,9 @@
                           "description": "The possible confirmation values"
                         },
                         "customs": {
+                          "additionalProperties": false,
                           "title": "international_options",
                           "type": "object",
-                          "additionalProperties": false,
                           "properties": {
                             "contents": {
                               "title": "contents",
@@ -17239,9 +17238,9 @@
                           }
                         },
                         "advanced_options": {
+                          "additionalProperties": false,
                           "title": "advanced_options",
                           "type": "object",
-                          "additionalProperties": false,
                           "properties": {
                             "bill_to_account": {
                               "type": "string"
@@ -17303,9 +17302,9 @@
                         "tags": {
                           "type": "array",
                           "items": {
+                            "additionalProperties": false,
                             "title": "tag_response_body",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "name": {
                                 "type": "string"
@@ -17316,17 +17315,17 @@
                         "packages": {
                           "type": "array",
                           "items": {
+                            "additionalProperties": false,
                             "title": "shipment_package",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "package_code": {
                                 "type": "string"
                               },
                               "weight": {
+                                "additionalProperties": false,
                                 "title": "weight",
                                 "type": "object",
-                                "additionalProperties": false,
                                 "properties": {
                                   "value": {
                                     "type": "number",
@@ -17346,9 +17345,9 @@
                                 }
                               },
                               "dimensions": {
+                                "additionalProperties": false,
                                 "title": "dimensions",
                                 "type": "object",
-                                "additionalProperties": false,
                                 "properties": {
                                   "unit": {
                                     "title": "dimension_unit",
@@ -17374,9 +17373,9 @@
                                 }
                               },
                               "insured_value": {
+                                "additionalProperties": false,
                                 "title": "money",
                                 "type": "object",
-                                "additionalProperties": false,
                                 "properties": {
                                   "currency": {
                                     "title": "currency",
@@ -17397,9 +17396,9 @@
                                 }
                               },
                               "label_messages": {
+                                "additionalProperties": false,
                                 "title": "label_messages",
                                 "type": "object",
-                                "additionalProperties": false,
                                 "properties": {
                                   "reference1": {
                                     "type": "string"
@@ -17417,9 +17416,9 @@
                         },
                         "total_weight": {
                           "readOnly": true,
+                          "additionalProperties": false,
                           "title": "weight",
                           "type": "object",
-                          "additionalProperties": false,
                           "properties": {
                             "value": {
                               "type": "number",
@@ -17495,9 +17494,9 @@
                       "errors": {
                         "type": "array",
                         "items": {
+                          "additionalProperties": false,
                           "title": "provider_error",
                           "type": "object",
-                          "additionalProperties": false,
                           "properties": {
                             "carrier_id": {
                               "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.",
@@ -17652,9 +17651,9 @@
                     "type": "string"
                   },
                   "weight": {
+                    "additionalProperties": false,
                     "title": "weight",
                     "type": "object",
-                    "additionalProperties": false,
                     "properties": {
                       "value": {
                         "type": "number",
@@ -17674,9 +17673,9 @@
                     }
                   },
                   "dimensions": {
+                    "additionalProperties": false,
                     "title": "dimensions",
                     "type": "object",
-                    "additionalProperties": false,
                     "properties": {
                       "unit": {
                         "title": "dimension_unit",
@@ -17741,9 +17740,9 @@
                   "title": "rate_estimate_response_body",
                   "type": "array",
                   "items": {
+                    "additionalProperties": false,
                     "title": "rate",
                     "type": "object",
-                    "additionalProperties": false,
                     "properties": {
                       "rate_id": {
                         "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.",
@@ -17773,9 +17772,9 @@
                         "example": "se-28529731"
                       },
                       "shipping_amount": {
+                        "additionalProperties": false,
                         "title": "money",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "currency": {
                             "title": "currency",
@@ -17796,9 +17795,9 @@
                         }
                       },
                       "insurance_amount": {
+                        "additionalProperties": false,
                         "title": "money",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "currency": {
                             "title": "currency",
@@ -17819,9 +17818,9 @@
                         }
                       },
                       "confirmation_amount": {
+                        "additionalProperties": false,
                         "title": "money",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "currency": {
                             "title": "currency",
@@ -17842,9 +17841,9 @@
                         }
                       },
                       "other_amount": {
+                        "additionalProperties": false,
                         "title": "money",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "currency": {
                             "title": "currency",
@@ -18050,11 +18049,407 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "rate",
+                  "title": "rate_response_body",
                   "type": "object",
                   "additionalProperties": false,
                   "properties": {
-                    "rate_id": {
+                    "rates": {
+                      "type": "array",
+                      "items": {
+                        "additionalProperties": false,
+                        "title": "rate",
+                        "type": "object",
+                        "properties": {
+                          "rate_id": {
+                            "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.",
+                            "title": "se_id",
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 25,
+                            "pattern": "^se(-[a-z0-9]+)+$",
+                            "example": "se-28529731"
+                          },
+                          "rate_type": {
+                            "title": "rate_type",
+                            "type": "string",
+                            "enum": [
+                              "check",
+                              "shipment"
+                            ],
+                            "description": "The possible rate type values"
+                          },
+                          "carrier_id": {
+                            "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.",
+                            "title": "se_id",
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 25,
+                            "pattern": "^se(-[a-z0-9]+)+$",
+                            "example": "se-28529731"
+                          },
+                          "shipping_amount": {
+                            "additionalProperties": false,
+                            "title": "money",
+                            "type": "object",
+                            "properties": {
+                              "currency": {
+                                "title": "currency",
+                                "type": "string",
+                                "enum": [
+                                  "usd",
+                                  "cad",
+                                  "aud",
+                                  "gbp",
+                                  "eur"
+                                ],
+                                "description": "The possible currency values"
+                              },
+                              "amount": {
+                                "type": "number",
+                                "format": "double"
+                              }
+                            }
+                          },
+                          "insurance_amount": {
+                            "additionalProperties": false,
+                            "title": "money",
+                            "type": "object",
+                            "properties": {
+                              "currency": {
+                                "title": "currency",
+                                "type": "string",
+                                "enum": [
+                                  "usd",
+                                  "cad",
+                                  "aud",
+                                  "gbp",
+                                  "eur"
+                                ],
+                                "description": "The possible currency values"
+                              },
+                              "amount": {
+                                "type": "number",
+                                "format": "double"
+                              }
+                            }
+                          },
+                          "confirmation_amount": {
+                            "additionalProperties": false,
+                            "title": "money",
+                            "type": "object",
+                            "properties": {
+                              "currency": {
+                                "title": "currency",
+                                "type": "string",
+                                "enum": [
+                                  "usd",
+                                  "cad",
+                                  "aud",
+                                  "gbp",
+                                  "eur"
+                                ],
+                                "description": "The possible currency values"
+                              },
+                              "amount": {
+                                "type": "number",
+                                "format": "double"
+                              }
+                            }
+                          },
+                          "other_amount": {
+                            "additionalProperties": false,
+                            "title": "money",
+                            "type": "object",
+                            "properties": {
+                              "currency": {
+                                "title": "currency",
+                                "type": "string",
+                                "enum": [
+                                  "usd",
+                                  "cad",
+                                  "aud",
+                                  "gbp",
+                                  "eur"
+                                ],
+                                "description": "The possible currency values"
+                              },
+                              "amount": {
+                                "type": "number",
+                                "format": "double"
+                              }
+                            }
+                          },
+                          "zone": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "package_type": {
+                            "type": "string"
+                          },
+                          "delivery_days": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "guaranteed_service": {
+                            "type": "boolean"
+                          },
+                          "estimated_delivery_date": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "carrier_delivery_days": {
+                            "type": "string"
+                          },
+                          "ship_date": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "negotiated_rate": {
+                            "type": "boolean"
+                          },
+                          "service_type": {
+                            "type": "string"
+                          },
+                          "service_code": {
+                            "type": "string"
+                          },
+                          "trackable": {
+                            "type": "boolean"
+                          },
+                          "carrier_code": {
+                            "type": "string"
+                          },
+                          "carrier_nickname": {
+                            "type": "string"
+                          },
+                          "carrier_friendly_name": {
+                            "type": "string"
+                          },
+                          "validation_status": {
+                            "title": "validation_status",
+                            "type": "string",
+                            "enum": [
+                              "valid",
+                              "invalid",
+                              "has_warnings",
+                              "unknown"
+                            ],
+                            "description": "The possible validation status values"
+                          },
+                          "warning_messages": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "error_messages": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "invalid_rates": {
+                      "type": "array",
+                      "items": {
+                        "additionalProperties": false,
+                        "title": "rate",
+                        "type": "object",
+                        "properties": {
+                          "rate_id": {
+                            "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.",
+                            "title": "se_id",
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 25,
+                            "pattern": "^se(-[a-z0-9]+)+$",
+                            "example": "se-28529731"
+                          },
+                          "rate_type": {
+                            "title": "rate_type",
+                            "type": "string",
+                            "enum": [
+                              "check",
+                              "shipment"
+                            ],
+                            "description": "The possible rate type values"
+                          },
+                          "carrier_id": {
+                            "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.",
+                            "title": "se_id",
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 25,
+                            "pattern": "^se(-[a-z0-9]+)+$",
+                            "example": "se-28529731"
+                          },
+                          "shipping_amount": {
+                            "additionalProperties": false,
+                            "title": "money",
+                            "type": "object",
+                            "properties": {
+                              "currency": {
+                                "title": "currency",
+                                "type": "string",
+                                "enum": [
+                                  "usd",
+                                  "cad",
+                                  "aud",
+                                  "gbp",
+                                  "eur"
+                                ],
+                                "description": "The possible currency values"
+                              },
+                              "amount": {
+                                "type": "number",
+                                "format": "double"
+                              }
+                            }
+                          },
+                          "insurance_amount": {
+                            "additionalProperties": false,
+                            "title": "money",
+                            "type": "object",
+                            "properties": {
+                              "currency": {
+                                "title": "currency",
+                                "type": "string",
+                                "enum": [
+                                  "usd",
+                                  "cad",
+                                  "aud",
+                                  "gbp",
+                                  "eur"
+                                ],
+                                "description": "The possible currency values"
+                              },
+                              "amount": {
+                                "type": "number",
+                                "format": "double"
+                              }
+                            }
+                          },
+                          "confirmation_amount": {
+                            "additionalProperties": false,
+                            "title": "money",
+                            "type": "object",
+                            "properties": {
+                              "currency": {
+                                "title": "currency",
+                                "type": "string",
+                                "enum": [
+                                  "usd",
+                                  "cad",
+                                  "aud",
+                                  "gbp",
+                                  "eur"
+                                ],
+                                "description": "The possible currency values"
+                              },
+                              "amount": {
+                                "type": "number",
+                                "format": "double"
+                              }
+                            }
+                          },
+                          "other_amount": {
+                            "additionalProperties": false,
+                            "title": "money",
+                            "type": "object",
+                            "properties": {
+                              "currency": {
+                                "title": "currency",
+                                "type": "string",
+                                "enum": [
+                                  "usd",
+                                  "cad",
+                                  "aud",
+                                  "gbp",
+                                  "eur"
+                                ],
+                                "description": "The possible currency values"
+                              },
+                              "amount": {
+                                "type": "number",
+                                "format": "double"
+                              }
+                            }
+                          },
+                          "zone": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "package_type": {
+                            "type": "string"
+                          },
+                          "delivery_days": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "guaranteed_service": {
+                            "type": "boolean"
+                          },
+                          "estimated_delivery_date": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "carrier_delivery_days": {
+                            "type": "string"
+                          },
+                          "ship_date": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "negotiated_rate": {
+                            "type": "boolean"
+                          },
+                          "service_type": {
+                            "type": "string"
+                          },
+                          "service_code": {
+                            "type": "string"
+                          },
+                          "trackable": {
+                            "type": "boolean"
+                          },
+                          "carrier_code": {
+                            "type": "string"
+                          },
+                          "carrier_nickname": {
+                            "type": "string"
+                          },
+                          "carrier_friendly_name": {
+                            "type": "string"
+                          },
+                          "validation_status": {
+                            "title": "validation_status",
+                            "type": "string",
+                            "enum": [
+                              "valid",
+                              "invalid",
+                              "has_warnings",
+                              "unknown"
+                            ],
+                            "description": "The possible validation status values"
+                          },
+                          "warning_messages": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "error_messages": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "rate_request_id": {
                       "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.",
                       "title": "se_id",
                       "type": "string",
@@ -18063,16 +18458,7 @@
                       "pattern": "^se(-[a-z0-9]+)+$",
                       "example": "se-28529731"
                     },
-                    "rate_type": {
-                      "title": "rate_type",
-                      "type": "string",
-                      "enum": [
-                        "check",
-                        "shipment"
-                      ],
-                      "description": "The possible rate type values"
-                    },
-                    "carrier_id": {
+                    "shipment_id": {
                       "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.",
                       "title": "se_id",
                       "type": "string",
@@ -18081,165 +18467,41 @@
                       "pattern": "^se(-[a-z0-9]+)+$",
                       "example": "se-28529731"
                     },
-                    "shipping_amount": {
-                      "title": "money",
-                      "type": "object",
-                      "additionalProperties": false,
-                      "properties": {
-                        "currency": {
-                          "title": "currency",
-                          "type": "string",
-                          "enum": [
-                            "usd",
-                            "cad",
-                            "aud",
-                            "gbp",
-                            "eur"
-                          ],
-                          "description": "The possible currency values"
-                        },
-                        "amount": {
-                          "type": "number",
-                          "format": "double"
-                        }
-                      }
-                    },
-                    "insurance_amount": {
-                      "title": "money",
-                      "type": "object",
-                      "additionalProperties": false,
-                      "properties": {
-                        "currency": {
-                          "title": "currency",
-                          "type": "string",
-                          "enum": [
-                            "usd",
-                            "cad",
-                            "aud",
-                            "gbp",
-                            "eur"
-                          ],
-                          "description": "The possible currency values"
-                        },
-                        "amount": {
-                          "type": "number",
-                          "format": "double"
-                        }
-                      }
-                    },
-                    "confirmation_amount": {
-                      "title": "money",
-                      "type": "object",
-                      "additionalProperties": false,
-                      "properties": {
-                        "currency": {
-                          "title": "currency",
-                          "type": "string",
-                          "enum": [
-                            "usd",
-                            "cad",
-                            "aud",
-                            "gbp",
-                            "eur"
-                          ],
-                          "description": "The possible currency values"
-                        },
-                        "amount": {
-                          "type": "number",
-                          "format": "double"
-                        }
-                      }
-                    },
-                    "other_amount": {
-                      "title": "money",
-                      "type": "object",
-                      "additionalProperties": false,
-                      "properties": {
-                        "currency": {
-                          "title": "currency",
-                          "type": "string",
-                          "enum": [
-                            "usd",
-                            "cad",
-                            "aud",
-                            "gbp",
-                            "eur"
-                          ],
-                          "description": "The possible currency values"
-                        },
-                        "amount": {
-                          "type": "number",
-                          "format": "double"
-                        }
-                      }
-                    },
-                    "zone": {
-                      "type": "integer",
-                      "format": "int32"
-                    },
-                    "package_type": {
-                      "type": "string"
-                    },
-                    "delivery_days": {
-                      "type": "integer",
-                      "format": "int32"
-                    },
-                    "guaranteed_service": {
-                      "type": "boolean"
-                    },
-                    "estimated_delivery_date": {
+                    "created_at": {
                       "type": "string",
                       "format": "date-time"
                     },
-                    "carrier_delivery_days": {
-                      "type": "string"
-                    },
-                    "ship_date": {
-                      "type": "string",
-                      "format": "date-time"
-                    },
-                    "negotiated_rate": {
-                      "type": "boolean"
-                    },
-                    "service_type": {
-                      "type": "string"
-                    },
-                    "service_code": {
-                      "type": "string"
-                    },
-                    "trackable": {
-                      "type": "boolean"
-                    },
-                    "carrier_code": {
-                      "type": "string"
-                    },
-                    "carrier_nickname": {
-                      "type": "string"
-                    },
-                    "carrier_friendly_name": {
-                      "type": "string"
-                    },
-                    "validation_status": {
-                      "title": "validation_status",
+                    "status": {
+                      "title": "rate_response_status",
                       "type": "string",
                       "enum": [
-                        "valid",
-                        "invalid",
-                        "has_warnings",
-                        "unknown"
+                        "working",
+                        "completed",
+                        "partial",
+                        "error"
                       ],
-                      "description": "The possible validation status values"
+                      "description": "The possible rate response status values"
                     },
-                    "warning_messages": {
+                    "errors": {
                       "type": "array",
                       "items": {
-                        "type": "string"
-                      }
-                    },
-                    "error_messages": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
+                        "additionalProperties": false,
+                        "title": "provider_error",
+                        "type": "object",
+                        "properties": {
+                          "carrier_id": {
+                            "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.",
+                            "title": "se_id",
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 25,
+                            "pattern": "^se(-[a-z0-9]+)+$",
+                            "example": "se-28529731"
+                          },
+                          "message": {
+                            "type": "string"
+                          }
+                        }
                       }
                     }
                   }
@@ -18511,9 +18773,9 @@
                     "shipments": {
                       "type": "array",
                       "items": {
+                        "additionalProperties": false,
                         "title": "shipment",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "shipment_id": {
                             "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.",
@@ -18569,9 +18831,9 @@
                             "description": "The possible shipment status values"
                           },
                           "ship_to": {
+                            "additionalProperties": false,
                             "title": "address",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "name": {
                                 "type": "string"
@@ -18616,9 +18878,9 @@
                             }
                           },
                           "ship_from": {
+                            "additionalProperties": false,
                             "title": "address",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "name": {
                                 "type": "string"
@@ -18672,9 +18934,9 @@
                             "example": "se-28529731"
                           },
                           "return_to": {
+                            "additionalProperties": false,
                             "title": "address",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "name": {
                                 "type": "string"
@@ -18731,9 +18993,9 @@
                             "description": "The possible confirmation values"
                           },
                           "customs": {
+                            "additionalProperties": false,
                             "title": "international_options",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "contents": {
                                 "title": "contents",
@@ -18795,9 +19057,9 @@
                             }
                           },
                           "advanced_options": {
+                            "additionalProperties": false,
                             "title": "advanced_options",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "bill_to_account": {
                                 "type": "string"
@@ -18859,9 +19121,9 @@
                           "tags": {
                             "type": "array",
                             "items": {
+                              "additionalProperties": false,
                               "title": "tag_response_body",
                               "type": "object",
-                              "additionalProperties": false,
                               "properties": {
                                 "name": {
                                   "type": "string"
@@ -18872,17 +19134,17 @@
                           "packages": {
                             "type": "array",
                             "items": {
+                              "additionalProperties": false,
                               "title": "shipment_package",
                               "type": "object",
-                              "additionalProperties": false,
                               "properties": {
                                 "package_code": {
                                   "type": "string"
                                 },
                                 "weight": {
+                                  "additionalProperties": false,
                                   "title": "weight",
                                   "type": "object",
-                                  "additionalProperties": false,
                                   "properties": {
                                     "value": {
                                       "type": "number",
@@ -18902,9 +19164,9 @@
                                   }
                                 },
                                 "dimensions": {
+                                  "additionalProperties": false,
                                   "title": "dimensions",
                                   "type": "object",
-                                  "additionalProperties": false,
                                   "properties": {
                                     "unit": {
                                       "title": "dimension_unit",
@@ -18930,9 +19192,9 @@
                                   }
                                 },
                                 "insured_value": {
+                                  "additionalProperties": false,
                                   "title": "money",
                                   "type": "object",
-                                  "additionalProperties": false,
                                   "properties": {
                                     "currency": {
                                       "title": "currency",
@@ -18953,9 +19215,9 @@
                                   }
                                 },
                                 "label_messages": {
+                                  "additionalProperties": false,
                                   "title": "label_messages",
                                   "type": "object",
-                                  "additionalProperties": false,
                                   "properties": {
                                     "reference1": {
                                       "type": "string"
@@ -18973,9 +19235,9 @@
                           },
                           "total_weight": {
                             "readOnly": true,
+                            "additionalProperties": false,
                             "title": "weight",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "value": {
                                 "type": "number",
@@ -19010,6 +19272,7 @@
                       "format": "int32"
                     },
                     "links": {
+                      "additionalProperties": false,
                       "title": "pagination_link",
                       "type": "object",
                       "description": "Helpful links to other pages of results",
@@ -19019,7 +19282,6 @@
                         "prev",
                         "next"
                       ],
-                      "additionalProperties": false,
                       "properties": {
                         "first": {
                           "required": [
@@ -19257,9 +19519,9 @@
                   "shipments": {
                     "type": "array",
                     "items": {
+                      "additionalProperties": false,
                       "title": "address_validating_shipment",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "validate_address": {
                           "title": "validate_address",
@@ -19325,9 +19587,9 @@
                           "description": "The possible shipment status values"
                         },
                         "ship_to": {
+                          "additionalProperties": false,
                           "title": "address",
                           "type": "object",
-                          "additionalProperties": false,
                           "properties": {
                             "name": {
                               "type": "string"
@@ -19372,9 +19634,9 @@
                           }
                         },
                         "ship_from": {
+                          "additionalProperties": false,
                           "title": "address",
                           "type": "object",
-                          "additionalProperties": false,
                           "properties": {
                             "name": {
                               "type": "string"
@@ -19428,9 +19690,9 @@
                           "example": "se-28529731"
                         },
                         "return_to": {
+                          "additionalProperties": false,
                           "title": "address",
                           "type": "object",
-                          "additionalProperties": false,
                           "properties": {
                             "name": {
                               "type": "string"
@@ -19487,9 +19749,9 @@
                           "description": "The possible confirmation values"
                         },
                         "customs": {
+                          "additionalProperties": false,
                           "title": "international_options",
                           "type": "object",
-                          "additionalProperties": false,
                           "properties": {
                             "contents": {
                               "title": "contents",
@@ -19551,9 +19813,9 @@
                           }
                         },
                         "advanced_options": {
+                          "additionalProperties": false,
                           "title": "advanced_options",
                           "type": "object",
-                          "additionalProperties": false,
                           "properties": {
                             "bill_to_account": {
                               "type": "string"
@@ -19615,9 +19877,9 @@
                         "tags": {
                           "type": "array",
                           "items": {
+                            "additionalProperties": false,
                             "title": "tag_response_body",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "name": {
                                 "type": "string"
@@ -19628,17 +19890,17 @@
                         "packages": {
                           "type": "array",
                           "items": {
+                            "additionalProperties": false,
                             "title": "shipment_package",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "package_code": {
                                 "type": "string"
                               },
                               "weight": {
+                                "additionalProperties": false,
                                 "title": "weight",
                                 "type": "object",
-                                "additionalProperties": false,
                                 "properties": {
                                   "value": {
                                     "type": "number",
@@ -19658,9 +19920,9 @@
                                 }
                               },
                               "dimensions": {
+                                "additionalProperties": false,
                                 "title": "dimensions",
                                 "type": "object",
-                                "additionalProperties": false,
                                 "properties": {
                                   "unit": {
                                     "title": "dimension_unit",
@@ -19686,9 +19948,9 @@
                                 }
                               },
                               "insured_value": {
+                                "additionalProperties": false,
                                 "title": "money",
                                 "type": "object",
-                                "additionalProperties": false,
                                 "properties": {
                                   "currency": {
                                     "title": "currency",
@@ -19709,9 +19971,9 @@
                                 }
                               },
                               "label_messages": {
+                                "additionalProperties": false,
                                 "title": "label_messages",
                                 "type": "object",
-                                "additionalProperties": false,
                                 "properties": {
                                   "reference1": {
                                     "type": "string"
@@ -19729,9 +19991,9 @@
                         },
                         "total_weight": {
                           "readOnly": true,
+                          "additionalProperties": false,
                           "title": "weight",
                           "type": "object",
-                          "additionalProperties": false,
                           "properties": {
                             "value": {
                               "type": "number",
@@ -19774,9 +20036,9 @@
                     "shipments": {
                       "type": "array",
                       "items": {
+                        "additionalProperties": false,
                         "title": "create_shipment_response_body",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "errors": {
                             "type": "array",
@@ -19785,9 +20047,9 @@
                             }
                           },
                           "address_validation": {
+                            "additionalProperties": false,
                             "title": "address_validation_result",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "status": {
                                 "title": "address_validation_status",
@@ -19801,9 +20063,9 @@
                                 "description": "The possible address validation status values"
                               },
                               "original_address": {
+                                "additionalProperties": false,
                                 "title": "address",
                                 "type": "object",
-                                "additionalProperties": false,
                                 "properties": {
                                   "name": {
                                     "type": "string"
@@ -19848,9 +20110,9 @@
                                 }
                               },
                               "matched_address": {
+                                "additionalProperties": false,
                                 "title": "address",
                                 "type": "object",
-                                "additionalProperties": false,
                                 "properties": {
                                   "name": {
                                     "type": "string"
@@ -20044,9 +20306,9 @@
                             "description": "The possible shipment status values"
                           },
                           "ship_to": {
+                            "additionalProperties": false,
                             "title": "address",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "name": {
                                 "type": "string"
@@ -20091,9 +20353,9 @@
                             }
                           },
                           "ship_from": {
+                            "additionalProperties": false,
                             "title": "address",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "name": {
                                 "type": "string"
@@ -20147,9 +20409,9 @@
                             "example": "se-28529731"
                           },
                           "return_to": {
+                            "additionalProperties": false,
                             "title": "address",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "name": {
                                 "type": "string"
@@ -20206,9 +20468,9 @@
                             "description": "The possible confirmation values"
                           },
                           "customs": {
+                            "additionalProperties": false,
                             "title": "international_options",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "contents": {
                                 "title": "contents",
@@ -20270,9 +20532,9 @@
                             }
                           },
                           "advanced_options": {
+                            "additionalProperties": false,
                             "title": "advanced_options",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "bill_to_account": {
                                 "type": "string"
@@ -20334,9 +20596,9 @@
                           "tags": {
                             "type": "array",
                             "items": {
+                              "additionalProperties": false,
                               "title": "tag_response_body",
                               "type": "object",
-                              "additionalProperties": false,
                               "properties": {
                                 "name": {
                                   "type": "string"
@@ -20347,17 +20609,17 @@
                           "packages": {
                             "type": "array",
                             "items": {
+                              "additionalProperties": false,
                               "title": "shipment_package",
                               "type": "object",
-                              "additionalProperties": false,
                               "properties": {
                                 "package_code": {
                                   "type": "string"
                                 },
                                 "weight": {
+                                  "additionalProperties": false,
                                   "title": "weight",
                                   "type": "object",
-                                  "additionalProperties": false,
                                   "properties": {
                                     "value": {
                                       "type": "number",
@@ -20377,9 +20639,9 @@
                                   }
                                 },
                                 "dimensions": {
+                                  "additionalProperties": false,
                                   "title": "dimensions",
                                   "type": "object",
-                                  "additionalProperties": false,
                                   "properties": {
                                     "unit": {
                                       "title": "dimension_unit",
@@ -20405,9 +20667,9 @@
                                   }
                                 },
                                 "insured_value": {
+                                  "additionalProperties": false,
                                   "title": "money",
                                   "type": "object",
-                                  "additionalProperties": false,
                                   "properties": {
                                     "currency": {
                                       "title": "currency",
@@ -20428,9 +20690,9 @@
                                   }
                                 },
                                 "label_messages": {
+                                  "additionalProperties": false,
                                   "title": "label_messages",
                                   "type": "object",
-                                  "additionalProperties": false,
                                   "properties": {
                                     "reference1": {
                                       "type": "string"
@@ -20448,9 +20710,9 @@
                           },
                           "total_weight": {
                             "readOnly": true,
+                            "additionalProperties": false,
                             "title": "weight",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "value": {
                                 "type": "number",
@@ -20588,7 +20850,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "shipment",
+                  "title": "shipment_response_body",
                   "type": "object",
                   "additionalProperties": false,
                   "properties": {
@@ -20646,9 +20908,9 @@
                       "description": "The possible shipment status values"
                     },
                     "ship_to": {
+                      "additionalProperties": false,
                       "title": "address",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "name": {
                           "type": "string"
@@ -20693,9 +20955,9 @@
                       }
                     },
                     "ship_from": {
+                      "additionalProperties": false,
                       "title": "address",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "name": {
                           "type": "string"
@@ -20749,9 +21011,9 @@
                       "example": "se-28529731"
                     },
                     "return_to": {
+                      "additionalProperties": false,
                       "title": "address",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "name": {
                           "type": "string"
@@ -20808,9 +21070,9 @@
                       "description": "The possible confirmation values"
                     },
                     "customs": {
+                      "additionalProperties": false,
                       "title": "international_options",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "contents": {
                           "title": "contents",
@@ -20872,9 +21134,9 @@
                       }
                     },
                     "advanced_options": {
+                      "additionalProperties": false,
                       "title": "advanced_options",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "bill_to_account": {
                           "type": "string"
@@ -20936,9 +21198,9 @@
                     "tags": {
                       "type": "array",
                       "items": {
+                        "additionalProperties": false,
                         "title": "tag_response_body",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "name": {
                             "type": "string"
@@ -20949,17 +21211,17 @@
                     "packages": {
                       "type": "array",
                       "items": {
+                        "additionalProperties": false,
                         "title": "shipment_package",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "package_code": {
                             "type": "string"
                           },
                           "weight": {
+                            "additionalProperties": false,
                             "title": "weight",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "value": {
                                 "type": "number",
@@ -20979,9 +21241,9 @@
                             }
                           },
                           "dimensions": {
+                            "additionalProperties": false,
                             "title": "dimensions",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "unit": {
                                 "title": "dimension_unit",
@@ -21007,9 +21269,9 @@
                             }
                           },
                           "insured_value": {
+                            "additionalProperties": false,
                             "title": "money",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "currency": {
                                 "title": "currency",
@@ -21030,9 +21292,9 @@
                             }
                           },
                           "label_messages": {
+                            "additionalProperties": false,
                             "title": "label_messages",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "reference1": {
                                 "type": "string"
@@ -21050,9 +21312,9 @@
                     },
                     "total_weight": {
                       "readOnly": true,
+                      "additionalProperties": false,
                       "title": "weight",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "value": {
                           "type": "number",
@@ -21227,7 +21489,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "shipment",
+                  "title": "shipment_response_body",
                   "type": "object",
                   "additionalProperties": false,
                   "properties": {
@@ -21285,9 +21547,9 @@
                       "description": "The possible shipment status values"
                     },
                     "ship_to": {
+                      "additionalProperties": false,
                       "title": "address",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "name": {
                           "type": "string"
@@ -21332,9 +21594,9 @@
                       }
                     },
                     "ship_from": {
+                      "additionalProperties": false,
                       "title": "address",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "name": {
                           "type": "string"
@@ -21388,9 +21650,9 @@
                       "example": "se-28529731"
                     },
                     "return_to": {
+                      "additionalProperties": false,
                       "title": "address",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "name": {
                           "type": "string"
@@ -21447,9 +21709,9 @@
                       "description": "The possible confirmation values"
                     },
                     "customs": {
+                      "additionalProperties": false,
                       "title": "international_options",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "contents": {
                           "title": "contents",
@@ -21511,9 +21773,9 @@
                       }
                     },
                     "advanced_options": {
+                      "additionalProperties": false,
                       "title": "advanced_options",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "bill_to_account": {
                           "type": "string"
@@ -21575,9 +21837,9 @@
                     "tags": {
                       "type": "array",
                       "items": {
+                        "additionalProperties": false,
                         "title": "tag_response_body",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "name": {
                             "type": "string"
@@ -21588,17 +21850,17 @@
                     "packages": {
                       "type": "array",
                       "items": {
+                        "additionalProperties": false,
                         "title": "shipment_package",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "package_code": {
                             "type": "string"
                           },
                           "weight": {
+                            "additionalProperties": false,
                             "title": "weight",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "value": {
                                 "type": "number",
@@ -21618,9 +21880,9 @@
                             }
                           },
                           "dimensions": {
+                            "additionalProperties": false,
                             "title": "dimensions",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "unit": {
                                 "title": "dimension_unit",
@@ -21646,9 +21908,9 @@
                             }
                           },
                           "insured_value": {
+                            "additionalProperties": false,
                             "title": "money",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "currency": {
                                 "title": "currency",
@@ -21669,9 +21931,9 @@
                             }
                           },
                           "label_messages": {
+                            "additionalProperties": false,
                             "title": "label_messages",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "reference1": {
                                 "type": "string"
@@ -21689,9 +21951,9 @@
                     },
                     "total_weight": {
                       "readOnly": true,
+                      "additionalProperties": false,
                       "title": "weight",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "value": {
                           "type": "number",
@@ -21863,7 +22125,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "address_validating_shipment",
+                "title": "update_shipment_request_body",
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
@@ -21931,9 +22193,9 @@
                     "description": "The possible shipment status values"
                   },
                   "ship_to": {
+                    "additionalProperties": false,
                     "title": "address",
                     "type": "object",
-                    "additionalProperties": false,
                     "properties": {
                       "name": {
                         "type": "string"
@@ -21978,9 +22240,9 @@
                     }
                   },
                   "ship_from": {
+                    "additionalProperties": false,
                     "title": "address",
                     "type": "object",
-                    "additionalProperties": false,
                     "properties": {
                       "name": {
                         "type": "string"
@@ -22034,9 +22296,9 @@
                     "example": "se-28529731"
                   },
                   "return_to": {
+                    "additionalProperties": false,
                     "title": "address",
                     "type": "object",
-                    "additionalProperties": false,
                     "properties": {
                       "name": {
                         "type": "string"
@@ -22093,9 +22355,9 @@
                     "description": "The possible confirmation values"
                   },
                   "customs": {
+                    "additionalProperties": false,
                     "title": "international_options",
                     "type": "object",
-                    "additionalProperties": false,
                     "properties": {
                       "contents": {
                         "title": "contents",
@@ -22157,9 +22419,9 @@
                     }
                   },
                   "advanced_options": {
+                    "additionalProperties": false,
                     "title": "advanced_options",
                     "type": "object",
-                    "additionalProperties": false,
                     "properties": {
                       "bill_to_account": {
                         "type": "string"
@@ -22221,9 +22483,9 @@
                   "tags": {
                     "type": "array",
                     "items": {
+                      "additionalProperties": false,
                       "title": "tag_response_body",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "name": {
                           "type": "string"
@@ -22234,17 +22496,17 @@
                   "packages": {
                     "type": "array",
                     "items": {
+                      "additionalProperties": false,
                       "title": "shipment_package",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "package_code": {
                           "type": "string"
                         },
                         "weight": {
+                          "additionalProperties": false,
                           "title": "weight",
                           "type": "object",
-                          "additionalProperties": false,
                           "properties": {
                             "value": {
                               "type": "number",
@@ -22264,9 +22526,9 @@
                           }
                         },
                         "dimensions": {
+                          "additionalProperties": false,
                           "title": "dimensions",
                           "type": "object",
-                          "additionalProperties": false,
                           "properties": {
                             "unit": {
                               "title": "dimension_unit",
@@ -22292,9 +22554,9 @@
                           }
                         },
                         "insured_value": {
+                          "additionalProperties": false,
                           "title": "money",
                           "type": "object",
-                          "additionalProperties": false,
                           "properties": {
                             "currency": {
                               "title": "currency",
@@ -22315,9 +22577,9 @@
                           }
                         },
                         "label_messages": {
+                          "additionalProperties": false,
                           "title": "label_messages",
                           "type": "object",
-                          "additionalProperties": false,
                           "properties": {
                             "reference1": {
                               "type": "string"
@@ -22335,9 +22597,9 @@
                   },
                   "total_weight": {
                     "readOnly": true,
+                    "additionalProperties": false,
                     "title": "weight",
                     "type": "object",
-                    "additionalProperties": false,
                     "properties": {
                       "value": {
                         "type": "number",
@@ -22378,9 +22640,9 @@
                       }
                     },
                     "address_validation": {
+                      "additionalProperties": false,
                       "title": "address_validation_result",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "status": {
                           "title": "address_validation_status",
@@ -22394,9 +22656,9 @@
                           "description": "The possible address validation status values"
                         },
                         "original_address": {
+                          "additionalProperties": false,
                           "title": "address",
                           "type": "object",
-                          "additionalProperties": false,
                           "properties": {
                             "name": {
                               "type": "string"
@@ -22441,9 +22703,9 @@
                           }
                         },
                         "matched_address": {
+                          "additionalProperties": false,
                           "title": "address",
                           "type": "object",
-                          "additionalProperties": false,
                           "properties": {
                             "name": {
                               "type": "string"
@@ -22637,9 +22899,9 @@
                       "description": "The possible shipment status values"
                     },
                     "ship_to": {
+                      "additionalProperties": false,
                       "title": "address",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "name": {
                           "type": "string"
@@ -22684,9 +22946,9 @@
                       }
                     },
                     "ship_from": {
+                      "additionalProperties": false,
                       "title": "address",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "name": {
                           "type": "string"
@@ -22740,9 +23002,9 @@
                       "example": "se-28529731"
                     },
                     "return_to": {
+                      "additionalProperties": false,
                       "title": "address",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "name": {
                           "type": "string"
@@ -22799,9 +23061,9 @@
                       "description": "The possible confirmation values"
                     },
                     "customs": {
+                      "additionalProperties": false,
                       "title": "international_options",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "contents": {
                           "title": "contents",
@@ -22863,9 +23125,9 @@
                       }
                     },
                     "advanced_options": {
+                      "additionalProperties": false,
                       "title": "advanced_options",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "bill_to_account": {
                           "type": "string"
@@ -22927,9 +23189,9 @@
                     "tags": {
                       "type": "array",
                       "items": {
+                        "additionalProperties": false,
                         "title": "tag_response_body",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "name": {
                             "type": "string"
@@ -22940,17 +23202,17 @@
                     "packages": {
                       "type": "array",
                       "items": {
+                        "additionalProperties": false,
                         "title": "shipment_package",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "package_code": {
                             "type": "string"
                           },
                           "weight": {
+                            "additionalProperties": false,
                             "title": "weight",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "value": {
                                 "type": "number",
@@ -22970,9 +23232,9 @@
                             }
                           },
                           "dimensions": {
+                            "additionalProperties": false,
                             "title": "dimensions",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "unit": {
                                 "title": "dimension_unit",
@@ -22998,9 +23260,9 @@
                             }
                           },
                           "insured_value": {
+                            "additionalProperties": false,
                             "title": "money",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "currency": {
                                 "title": "currency",
@@ -23021,9 +23283,9 @@
                             }
                           },
                           "label_messages": {
+                            "additionalProperties": false,
                             "title": "label_messages",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "reference1": {
                                 "type": "string"
@@ -23041,9 +23303,9 @@
                     },
                     "total_weight": {
                       "readOnly": true,
+                      "additionalProperties": false,
                       "title": "weight",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "value": {
                           "type": "number",
@@ -23421,6 +23683,7 @@
                       }
                     },
                     "links": {
+                      "additionalProperties": false,
                       "title": "pagination_link",
                       "type": "object",
                       "description": "Helpful links to other pages of results",
@@ -23430,7 +23693,6 @@
                         "prev",
                         "next"
                       ],
-                      "additionalProperties": false,
                       "properties": {
                         "first": {
                           "required": [
@@ -23696,9 +23958,9 @@
                     "rates": {
                       "type": "array",
                       "items": {
+                        "additionalProperties": false,
                         "title": "rate",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "rate_id": {
                             "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.",
@@ -23728,9 +23990,9 @@
                             "example": "se-28529731"
                           },
                           "shipping_amount": {
+                            "additionalProperties": false,
                             "title": "money",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "currency": {
                                 "title": "currency",
@@ -23751,9 +24013,9 @@
                             }
                           },
                           "insurance_amount": {
+                            "additionalProperties": false,
                             "title": "money",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "currency": {
                                 "title": "currency",
@@ -23774,9 +24036,9 @@
                             }
                           },
                           "confirmation_amount": {
+                            "additionalProperties": false,
                             "title": "money",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "currency": {
                                 "title": "currency",
@@ -23797,9 +24059,9 @@
                             }
                           },
                           "other_amount": {
+                            "additionalProperties": false,
                             "title": "money",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "currency": {
                                 "title": "currency",
@@ -23894,9 +24156,9 @@
                     "invalid_rates": {
                       "type": "array",
                       "items": {
+                        "additionalProperties": false,
                         "title": "rate",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "rate_id": {
                             "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.",
@@ -23926,9 +24188,9 @@
                             "example": "se-28529731"
                           },
                           "shipping_amount": {
+                            "additionalProperties": false,
                             "title": "money",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "currency": {
                                 "title": "currency",
@@ -23949,9 +24211,9 @@
                             }
                           },
                           "insurance_amount": {
+                            "additionalProperties": false,
                             "title": "money",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "currency": {
                                 "title": "currency",
@@ -23972,9 +24234,9 @@
                             }
                           },
                           "confirmation_amount": {
+                            "additionalProperties": false,
                             "title": "money",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "currency": {
                                 "title": "currency",
@@ -23995,9 +24257,9 @@
                             }
                           },
                           "other_amount": {
+                            "additionalProperties": false,
                             "title": "money",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "currency": {
                                 "title": "currency",
@@ -24125,9 +24387,9 @@
                     "errors": {
                       "type": "array",
                       "items": {
+                        "additionalProperties": false,
                         "title": "provider_error",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "carrier_id": {
                             "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.",
@@ -24322,9 +24584,9 @@
                       "example": "se-28529731"
                     },
                     "tag": {
+                      "additionalProperties": false,
                       "title": "tag_response_body",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "name": {
                           "type": "string"
@@ -24633,9 +24895,9 @@
                     "tags": {
                       "type": "array",
                       "items": {
+                        "additionalProperties": false,
                         "title": "tag_response_body",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "name": {
                             "type": "string"
@@ -24955,9 +25217,9 @@
                     "tags": {
                       "type": "array",
                       "items": {
+                        "additionalProperties": false,
                         "title": "tag_response_body",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "name": {
                             "type": "string"
@@ -25792,9 +26054,9 @@
                     "warehouses": {
                       "type": "array",
                       "items": {
+                        "additionalProperties": false,
                         "title": "warehouse",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                           "warehouse_id": {
                             "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.",
@@ -25813,9 +26075,9 @@
                             "format": "date-time"
                           },
                           "origin_address": {
+                            "additionalProperties": false,
                             "title": "address",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "name": {
                                 "type": "string"
@@ -25860,9 +26122,9 @@
                             }
                           },
                           "return_address": {
+                            "additionalProperties": false,
                             "title": "address",
                             "type": "object",
-                            "additionalProperties": false,
                             "properties": {
                               "name": {
                                 "type": "string"
@@ -26063,9 +26325,9 @@
                     "type": "string"
                   },
                   "origin_address": {
+                    "additionalProperties": false,
                     "title": "address",
                     "type": "object",
-                    "additionalProperties": false,
                     "properties": {
                       "name": {
                         "type": "string"
@@ -26110,9 +26372,9 @@
                     }
                   },
                   "return_address": {
+                    "additionalProperties": false,
                     "title": "address",
                     "type": "object",
-                    "additionalProperties": false,
                     "properties": {
                       "name": {
                         "type": "string"
@@ -26167,7 +26429,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "warehouse",
+                  "title": "warehouse_response_body",
                   "type": "object",
                   "additionalProperties": false,
                   "properties": {
@@ -26188,9 +26450,9 @@
                       "format": "date-time"
                     },
                     "origin_address": {
+                      "additionalProperties": false,
                       "title": "address",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "name": {
                           "type": "string"
@@ -26235,9 +26497,9 @@
                       }
                     },
                     "return_address": {
+                      "additionalProperties": false,
                       "title": "address",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "name": {
                           "type": "string"
@@ -26437,7 +26699,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "warehouse",
+                  "title": "warehouse_response_body",
                   "type": "object",
                   "additionalProperties": false,
                   "properties": {
@@ -26458,9 +26720,9 @@
                       "format": "date-time"
                     },
                     "origin_address": {
+                      "additionalProperties": false,
                       "title": "address",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "name": {
                           "type": "string"
@@ -26505,9 +26767,9 @@
                       }
                     },
                     "return_address": {
+                      "additionalProperties": false,
                       "title": "address",
                       "type": "object",
-                      "additionalProperties": false,
                       "properties": {
                         "name": {
                           "type": "string"
@@ -26721,9 +26983,9 @@
                     "type": "string"
                   },
                   "origin_address": {
+                    "additionalProperties": false,
                     "title": "address",
                     "type": "object",
-                    "additionalProperties": false,
                     "properties": {
                       "name": {
                         "type": "string"
@@ -26768,9 +27030,9 @@
                     }
                   },
                   "return_address": {
+                    "additionalProperties": false,
                     "title": "address",
                     "type": "object",
-                    "additionalProperties": false,
                     "properties": {
                       "name": {
                         "type": "string"

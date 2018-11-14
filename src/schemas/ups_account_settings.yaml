@@ -25,4 +25,6 @@ properties:
   account_postal_code:
     type: string
   invoice:
-    $ref: ups_invoice.yaml
+    additionalProperties: false
+    allOf:
+      - $ref: ups_invoice.yaml

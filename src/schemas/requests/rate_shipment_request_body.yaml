@@ -7,6 +7,10 @@ properties:
       - $ref: '../primitives.yaml#/se_id'
     description: A string that uniquely identifies the shipment id
   shipment:
-    $ref: ../address_validating_shipment.yaml
+    additionalProperties: false
+    allOf:
+      - $ref: ../address_validating_shipment.yaml
   rate_options:
-    $ref: ../requests/rate_request_body.yaml
+    additionalProperties: false
+    allOf:
+      - $ref: ../requests/rate_request_body.yaml

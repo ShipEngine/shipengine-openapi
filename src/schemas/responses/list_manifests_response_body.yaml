@@ -5,7 +5,9 @@ properties:
   manifests:
     type: array
     items:
-      $ref: ../responses/manifest_response_body.yaml
+      additionalProperties: false
+      allOf:
+        - $ref: ../responses/manifest_response_body.yaml
   total:
     type: integer
     format: int64
@@ -16,4 +18,6 @@ properties:
     type: integer
     format: int32
   links:
-    $ref: ../pagination_link.yaml
+    additionalProperties: false
+    allOf:
+      - $ref: ../pagination_link.yaml

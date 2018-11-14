@@ -1,0 +1,5 @@
+title: batches_response_body
+type: object
+additionalProperties: false
+allOf:
+  - $ref: ../batch.yaml
