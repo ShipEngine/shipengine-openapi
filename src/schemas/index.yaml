@@ -248,12 +248,12 @@ smart_post_hub:
   $ref: 'enums.yaml#/smart_post_hub'
 stamps_account_information_request_body:
   $ref: requests/stamps_account_information_request_body.yaml
+stamps_account_url_list_response_body:
+  $ref: responses/stamps_account_url_list_response_body.yaml
 stamps_account_url_response_body:
   $ref: responses/stamps_account_url_response_body.yaml
 stamps_account_urls_request_body:
   $ref: requests/stamps_account_urls_request_body.yaml
-stamps_account_urls_response_body:
-  $ref: responses/stamps_account_urls_response_body.yaml
 tag_response_body:
   $ref: responses/tag_response_body.yaml
 tracking_information_response_body:

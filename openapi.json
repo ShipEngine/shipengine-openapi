@@ -2618,7 +2618,23 @@
         },
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "400": {
             "description": "The request contained errors.",
@@ -3062,7 +3078,23 @@
         },
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "400": {
             "description": "The request contained errors.",
@@ -3237,7 +3269,23 @@
         },
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "400": {
             "description": "The request contained errors.",
@@ -4948,7 +4996,23 @@
         ],
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "404": {
             "description": "The specified resource does not exist.",
@@ -5193,7 +5257,23 @@
         ],
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "404": {
             "description": "The specified resource does not exist.",
@@ -5441,7 +5521,23 @@
         ],
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "404": {
             "description": "The specified resource does not exist.",
@@ -5692,7 +5788,23 @@
         ],
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "404": {
             "description": "The specified resource does not exist.",
@@ -5934,7 +6046,23 @@
         ],
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "404": {
             "description": "The specified resource does not exist.",
@@ -6193,7 +6321,23 @@
         },
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "404": {
             "description": "The specified resource does not exist.",
@@ -6447,7 +6591,23 @@
         ],
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "404": {
             "description": "The specified resource does not exist.",
@@ -6692,7 +6852,23 @@
         ],
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "404": {
             "description": "The specified resource does not exist.",
@@ -6937,7 +7113,23 @@
         ],
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "404": {
             "description": "The specified resource does not exist.",
@@ -7223,7 +7415,23 @@
         ],
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "404": {
             "description": "The specified resource does not exist.",
@@ -7610,7 +7818,23 @@
         },
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "404": {
             "description": "The specified resource does not exist.",
@@ -7896,7 +8120,23 @@
         ],
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "404": {
             "description": "The specified resource does not exist.",
@@ -8150,7 +8390,23 @@
         ],
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "404": {
             "description": "The specified resource does not exist.",
@@ -8395,7 +8651,23 @@
         ],
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "404": {
             "description": "The specified resource does not exist.",
@@ -8640,7 +8912,23 @@
         ],
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "404": {
             "description": "The specified resource does not exist.",
@@ -8890,7 +9178,23 @@
         ],
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "404": {
             "description": "The specified resource does not exist.",
@@ -9019,7 +9323,23 @@
         },
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "404": {
             "description": "The specified resource does not exist.",
@@ -9264,7 +9584,23 @@
         ],
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "404": {
             "description": "The specified resource does not exist.",
@@ -9546,7 +9882,23 @@
         ],
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "404": {
             "description": "The specified resource does not exist.",
@@ -9791,7 +10143,23 @@
         ],
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "404": {
             "description": "The specified resource does not exist.",
@@ -10036,7 +10404,23 @@
         ],
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "404": {
             "description": "The specified resource does not exist.",
@@ -10177,7 +10561,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "stamps_account_urls_response_body",
+                  "title": "stamps_account_url_list_response_body",
                   "type": "object",
                   "additionalProperties": false,
                   "properties": {
@@ -10527,7 +10911,23 @@
         ],
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "404": {
             "description": "The specified resource does not exist.",
@@ -10922,7 +11322,23 @@
         },
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "404": {
             "description": "The specified resource does not exist.",
@@ -11491,7 +11907,23 @@
         },
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "400": {
             "description": "The request contained errors.",
@@ -11598,7 +12030,23 @@
         ],
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "400": {
             "description": "The request contained errors.",
@@ -15102,7 +15550,23 @@
         },
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "400": {
             "description": "The request contained errors.",
@@ -15249,7 +15713,23 @@
         ],
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "400": {
             "description": "The request contained errors.",
@@ -23476,7 +23956,23 @@
         ],
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "400": {
             "description": "The request contained errors.",
@@ -24751,7 +25247,23 @@
         ],
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "400": {
             "description": "The request contained errors.",
@@ -25381,7 +25893,23 @@
         ],
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "400": {
             "description": "The request contained errors.",
@@ -25759,7 +26287,23 @@
         ],
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "400": {
             "description": "The request contained errors.",
@@ -25910,7 +26454,23 @@
         ],
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "400": {
             "description": "The request contained errors.",
@@ -27083,7 +27643,23 @@
         },
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "400": {
             "description": "The request contained errors.",
@@ -27230,7 +27806,23 @@
         ],
         "responses": {
           "204": {
-            "description": "The request was successful."
+            "description": "The request was successful.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "title": "empty_response_body",
+                  "type": "string",
+                  "maxLength": 0
+                }
+              }
+            }
           },
           "400": {
             "description": "The request contained errors.",

@@ -1,0 +1,10 @@
+title: stamps_account_url_list_response_body
+type: object
+additionalProperties: false
+properties:
+  urls:
+    type: array
+    items:
+      additionalProperties: false
+      allOf:
+        - $ref: ../responses/stamps_account_url_response_body.yaml

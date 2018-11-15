@@ -1,1 +1,12 @@
 description: The request was successful.
+content:
+  text/plain:
+    schema:
+      title: empty_response_body
+      type: string
+      maxLength: 0
+  application/json:
+    schema:
+      title: empty_response_body
+      type: string
+      maxLength: 0

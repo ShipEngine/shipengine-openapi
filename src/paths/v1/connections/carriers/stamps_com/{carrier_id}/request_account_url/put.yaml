@@ -19,7 +19,7 @@ responses:
     content:
       application/json:
         schema:
-          $ref: ../../../../../../../schemas/responses/stamps_account_urls_response_body.yaml
+          $ref: ../../../../../../../schemas/responses/stamps_account_url_list_response_body.yaml
   '404':
     $ref: ../../../../../../../responses/not_found.yaml
   '500':

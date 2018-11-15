@@ -1465,7 +1465,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/stamps_account_urls_response_body'
+                $ref: '#/components/schemas/stamps_account_url_list_response_body'
         '404':
           $ref: '#/components/responses/not_found'
         '500':
@@ -2739,6 +2739,17 @@ components:
   responses:
     no_content:
       description: The request was successful.
+      content:
+        text/plain:
+          schema:
+            title: empty_response_body
+            type: string
+            maxLength: 0
+        application/json:
+          schema:
+            title: empty_response_body
+            type: string
+            maxLength: 0
     bad_request:
       description: The request contained errors.
       content:
@@ -5134,6 +5145,17 @@ components:
           type: string
         password:
           type: string
+    stamps_account_url_list_response_body:
+      title: stamps_account_url_list_response_body
+      type: object
+      additionalProperties: false
+      properties:
+        urls:
+          type: array
+          items:
+            additionalProperties: false
+            allOf:
+              - $ref: '#/components/schemas/stamps_account_url_response_body'
     stamps_account_url_response_body:
       title: stamps_account_url_response_body
       type: object
@@ -5152,17 +5174,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/url_type'
-    stamps_account_urls_response_body:
-      title: stamps_account_urls_response_body
-      type: object
-      additionalProperties: false
-      properties:
-        urls:
-          type: array
-          items:
-            additionalProperties: false
-            allOf:
-              - $ref: '#/components/schemas/stamps_account_url_response_body'
     tag_response_body:
       title: tag_response_body
       type: object
