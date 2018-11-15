@@ -1,6 +1,0 @@
-title: balance_response_body
-type: object
-additionalProperties: false
-properties:
-  balance:
-    $ref: ../money.yaml
