@@ -1,5 +1,3 @@
-/v1/labels:
-  $ref: v1/labels/path.yaml
 /v1/addresses/validate:
   $ref: v1/addresses/validate/path.yaml
 /v1/batches:
@@ -122,6 +120,8 @@
   $ref: v1/insurance/shipsurance/add_funds/path.yaml
 /v1/insurance/shipsurance/balance:
   $ref: v1/insurance/shipsurance/balance/path.yaml
+/v1/labels:
+  $ref: v1/labels/path.yaml
 '/v1/labels/rates/{rate_id}':
   $ref: 'v1/labels/rates/{rate_id}/path.yaml'
 '/v1/labels/shipment/{shipment_id}':

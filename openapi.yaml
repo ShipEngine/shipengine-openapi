@@ -33,25 +33,6 @@ tags:
       url: 'https://docs.shipengine.com/docs/address-validation'
       description: |
         Address validation ensures accurate addresses and can lead to reduced shipping costs by preventing address correction surcharges. ShipEngine cross references multiple databases to validate addresses and identify potential deliverability issues.
-  - name: labels
-    description: |
-      Print shipping labels for any of the top global carriers in minutes—instead of weeks. Simply [connect your existing carrier accounts](https://docs.shipengine.com/docs/setup-a-carrier) in the API dashboard, and then [begin creating labels](https://docs.shipengine.com/docs/use-a-specific-service).
-    externalDocs:
-      url: 'https://docs.shipengine.com/docs/quickstart-create-a-label'
-      description: Follow this quick start guide to create your first shipping label with ShipEngine
-  - name: rates
-    description: |
-      Make sure you ship as cost-effectively as possible by [quickly comparing rates](https://docs.shipengine.com/docs/get-shipping-rates) using the ShipEngine Rates API. As long as you have the carrier connected to your account, you'll be able to see and compare different rates and services.
-    externalDocs:
-      url: 'https://docs.shipengine.com/docs/get-shipping-rates'
-      description: |
-        This quick start guide shows you how to get shipping rates for multiple carriers so you can choose the fastest, cheapest, or most reliable option.
-  - name: tracking
-    description: |
-      [Track packages](https://docs.shipengine.com/docs/track-a-package) across any of our 20+ supported carrier accounts and create tracking events to keep your customers up-to-date. Easily integrate real-time tracking information for shipments into your app, email, or SMS.
-    externalDocs:
-      url: 'https://docs.shipengine.com/docs/track-a-package'
-      description: Learn how to use ShipEngine to track any package with a carrier and a tracking number
   - name: batches
     description: |
       batches
@@ -67,6 +48,12 @@ tags:
   - name: insurance
     description: |
       insurance
+  - name: labels
+    description: |
+      Print shipping labels for any of the top global carriers in minutes—instead of weeks. Simply [connect your existing carrier accounts](https://docs.shipengine.com/docs/setup-a-carrier) in the API dashboard, and then [begin creating labels](https://docs.shipengine.com/docs/use-a-specific-service).
+    externalDocs:
+      url: 'https://docs.shipengine.com/docs/quickstart-create-a-label'
+      description: Follow this quick start guide to create your first shipping label with ShipEngine
   - name: manifests
     description: |
       manifests
@@ -76,12 +63,25 @@ tags:
   - name: packages
     description: |
       packages
+  - name: rates
+    description: |
+      Make sure you ship as cost-effectively as possible by [quickly comparing rates](https://docs.shipengine.com/docs/get-shipping-rates) using the ShipEngine Rates API. As long as you have the carrier connected to your account, you'll be able to see and compare different rates and services.
+    externalDocs:
+      url: 'https://docs.shipengine.com/docs/get-shipping-rates'
+      description: |
+        This quick start guide shows you how to get shipping rates for multiple carriers so you can choose the fastest, cheapest, or most reliable option.
   - name: shipments
     description: |
       shipments
   - name: tags
     description: |
       tags
+  - name: tracking
+    description: |
+      [Track packages](https://docs.shipengine.com/docs/track-a-package) across any of our 20+ supported carrier accounts and create tracking events to keep your customers up-to-date. Easily integrate real-time tracking information for shipments into your app, email, or SMS.
+    externalDocs:
+      url: 'https://docs.shipengine.com/docs/track-a-package'
+      description: Learn how to use ShipEngine to track any package with a carrier and a tracking number
   - name: warehouses
     description: |
       warehouses
@@ -94,129 +94,6 @@ servers:
 security:
   - api_key: []
 paths:
-  /v1/labels:
-    summary: Print shipping labels
-    description: |
-      Print shipping labels for any of the top global carriers in minutes—instead of weeks. Simply [connect your existing carrier accounts](https://docs.shipengine.com/docs/setup-a-carrier) in the API dashboard, and then [begin creating labels](https://docs.shipengine.com/docs/use-a-specific-service).
-    get:
-      summary: List labels
-      description: |
-        This endpoint returns a list of labels that you've [created](https://docs.shipengine.com/docs/quickstart-create-a-label). You can optionally filter the results as well as control their sort order and the number of results returned at a time.
-
-        By default, all labels are returned, 25 at a time, starting with the most recently created ones.  You can combine multiple filter options to narrow-down the results.  For example, if you only want to get your UPS labels for your east coast warehouse you could query by both `warehouse_id` and `carrier_id`
-
-        > ###### Warning
-        > Test labels (those created with `test_label: true`) are not included in the results.  If you've only ever created test labels, then the results will be empty.
-      tags:
-        - labels
-      operationId: labels.list
-      parameters:
-        - name: label_status
-          in: query
-          required: false
-          schema:
-            $ref: '#/components/schemas/label_status'
-          description: Only return labels that are currently in the specified status
-        - name: carrier_id
-          in: query
-          required: false
-          schema:
-            $ref: '#/components/schemas/se_id'
-          example: se-28529731
-          description: 'Only return labels for a specific [carrier account](https://docs.shipengine.com/docs/setup-a-carrier)'
-        - name: service_code
-          in: query
-          required: false
-          schema:
-            $ref: '#/components/schemas/service_code'
-          example: usps_first_class_mail
-          description: 'Only return labels for a specific [carrier service](https://docs.shipengine.com/docs/use-a-specific-service)'
-        - name: tracking_number
-          in: query
-          required: false
-          schema:
-            type: string
-            minLength: 1
-          example: 1Z5615280351136446
-          description: Only return labels with a specific tracking number
-        - name: batch_id
-          in: query
-          required: false
-          schema:
-            $ref: '#/components/schemas/se_id'
-          example: se-28529731
-          description: 'Only return labels that were created in a specific [batch](https://docs.shipengine.com/docs/using-batches)'
-        - name: warehouse_id
-          in: query
-          required: false
-          schema:
-            $ref: '#/components/schemas/se_id'
-          example: se-28529731
-          description: 'Only return labels that originate from a specific [warehouse](https://docs.shipengine.com/docs/ship-from-a-warehouse)'
-        - name: created_at_start
-          in: query
-          required: false
-          schema:
-            $ref: '#/components/schemas/date_time'
-          example: 2018-09-23T15:00:00.000Z
-          description: Only return labels that were created on or after a specific date/time
-        - name: created_at_end
-          in: query
-          required: false
-          schema:
-            $ref: '#/components/schemas/date_time'
-          example: 2018-09-30T15:00:00.000Z
-          description: Only return labels that were created on or before a specific date/time
-        - name: page
-          in: query
-          required: false
-          schema:
-            type: integer
-            format: int32
-            minimum: 1
-            default: 1
-          example: 3
-          description: 'Return a specific "page" of results. Defaults to the first page. If set to a number that''s greater than the number of pages of results, an empty page will be returned.'
-        - name: page_size
-          in: query
-          required: false
-          schema:
-            type: integer
-            format: int32
-            minimum: 1
-            default: 25
-          example: 50
-          description: The number of labels to return per response.
-        - name: sort_dir
-          in: query
-          required: false
-          schema:
-            allOf:
-              - $ref: '#/components/schemas/sort_dir'
-            default: desc
-          description: Controls the sort order of the query.
-        - name: sort_by
-          in: query
-          required: false
-          schema:
-            type: string
-            enum:
-              - modified_at
-              - created_at
-            default: created_at
-          description: Controls which property the query is sorted by.
-      responses:
-        '200':
-          description: |
-            The response includes a `labels` array containing a page of results (as determined by the `page_size` query parameter).  It also includes other useful information, such as the total number of labels that match the query criteria, the number of pages of results, and the URLs of the first, last, next, and previous pages of results.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/list_label_response_body'
-        '400':
-          $ref: '#/components/responses/bad_request'
-        '500':
-          $ref: '#/components/responses/server_error'
   /v1/addresses/validate:
     post:
       tags:
@@ -1696,6 +1573,129 @@ paths:
           $ref: '#/components/responses/bad_request'
         '500':
           $ref: '#/components/responses/server_error'
+  /v1/labels:
+    summary: Print shipping labels
+    description: |
+      Print shipping labels for any of the top global carriers in minutes—instead of weeks. Simply [connect your existing carrier accounts](https://docs.shipengine.com/docs/setup-a-carrier) in the API dashboard, and then [begin creating labels](https://docs.shipengine.com/docs/use-a-specific-service).
+    get:
+      summary: List labels
+      description: |
+        This endpoint returns a list of labels that you've [created](https://docs.shipengine.com/docs/quickstart-create-a-label). You can optionally filter the results as well as control their sort order and the number of results returned at a time.
+
+        By default, all labels are returned, 25 at a time, starting with the most recently created ones.  You can combine multiple filter options to narrow-down the results.  For example, if you only want to get your UPS labels for your east coast warehouse you could query by both `warehouse_id` and `carrier_id`
+
+        > ###### Warning
+        > Test labels (those created with `test_label: true`) are not included in the results.  If you've only ever created test labels, then the results will be empty.
+      tags:
+        - labels
+      operationId: labels.list
+      parameters:
+        - name: label_status
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/label_status'
+          description: Only return labels that are currently in the specified status
+        - name: carrier_id
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/se_id'
+          example: se-28529731
+          description: 'Only return labels for a specific [carrier account](https://docs.shipengine.com/docs/setup-a-carrier)'
+        - name: service_code
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/service_code'
+          example: usps_first_class_mail
+          description: 'Only return labels for a specific [carrier service](https://docs.shipengine.com/docs/use-a-specific-service)'
+        - name: tracking_number
+          in: query
+          required: false
+          schema:
+            type: string
+            minLength: 1
+          example: 1Z5615280351136446
+          description: Only return labels with a specific tracking number
+        - name: batch_id
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/se_id'
+          example: se-28529731
+          description: 'Only return labels that were created in a specific [batch](https://docs.shipengine.com/docs/using-batches)'
+        - name: warehouse_id
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/se_id'
+          example: se-28529731
+          description: 'Only return labels that originate from a specific [warehouse](https://docs.shipengine.com/docs/ship-from-a-warehouse)'
+        - name: created_at_start
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/date_time'
+          example: 2018-09-23T15:00:00.000Z
+          description: Only return labels that were created on or after a specific date/time
+        - name: created_at_end
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/date_time'
+          example: 2018-09-30T15:00:00.000Z
+          description: Only return labels that were created on or before a specific date/time
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            default: 1
+          example: 3
+          description: 'Return a specific "page" of results. Defaults to the first page. If set to a number that''s greater than the number of pages of results, an empty page will be returned.'
+        - name: page_size
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            default: 25
+          example: 50
+          description: The number of labels to return per response.
+        - name: sort_dir
+          in: query
+          required: false
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/sort_dir'
+            default: desc
+          description: Controls the sort order of the query.
+        - name: sort_by
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - modified_at
+              - created_at
+            default: created_at
+          description: Controls which property the query is sorted by.
+      responses:
+        '200':
+          description: |
+            The response includes a `labels` array containing a page of results (as determined by the `page_size` query parameter).  It also includes other useful information, such as the total number of labels that match the query criteria, the number of pages of results, and the URLs of the first, last, next, and previous pages of results.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/list_label_response_body'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
   '/v1/labels/rates/{rate_id}':
     post:
       tags:
@@ -2778,79 +2778,6 @@ components:
           schema:
             $ref: '#/components/schemas/error_response_body'
   schemas:
-    label_status:
-      title: label_status
-      type: string
-      enum:
-        - processing
-        - completed
-        - error
-        - voided
-      description: |
-        The possible statuses that a [shipping label](https://docs.shipengine.com/docs/quickstart-create-a-label) can be in.
-
-        |Status       |Description
-        |:------------|:-----------------------------------------------------
-        |`processing` |When labels are created in a [batch](https://docs.shipengine.com/docs/using-batches), it may take a few minutes for all of the labels in the batch to be created.  During this period, they will be in `processing` status.
-        |`completed`  |The label was successfully created
-        |`error`      |The label could not be created due to an error, such as an invalid delivery address
-        |`voided`     |The label has been [voided](https://docs.shipengine.com/docs/void-a-label)
-    paged_list_response_body:
-      title: paged_list_response_body
-      type: object
-      required:
-        - total
-        - page
-        - pages
-        - links
-      properties:
-        total:
-          type: integer
-          minimum: 0
-          example: 2750
-          description: The total number of items across all pages of results
-        page:
-          type: integer
-          minimum: 1
-          example: 1
-          description: 'The current page number of results.  For example, if there are 80 results, and the page size is 25, then `page` could be 1, 2, 3, or 4.  The first three pages would contain 25 items each, and the fourth page would contain the five remaining items.'
-        pages:
-          type: integer
-          minimum: 0
-          example: 4
-          description: 'The total number of pages of results.  For example, if there are 80 results, and the page size is 25, then `pages` would be 4.  The first three pages would contain 25 items each, and the fourth page would contain the five remaining items.  If there are no results, then `pages` will be zero.'
-        links:
-          $ref: '#/components/schemas/pagination_link'
-      description: |
-        Many ShipEngine endpoints return a paged list of items.  In addition to the returned items, these responses also include information about the total number of items, the number of pages of results, and URLs of other pages of results.
-    se_id:
-      title: se_id
-      type: string
-      minLength: 1
-      maxLength: 25
-      pattern: '^se(-[a-z0-9]+)+$'
-      example: se-28529731
-      description: 'A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.'
-    service_code:
-      title: service_code
-      type: string
-      minLength: 1
-      maxLength: 100
-      pattern: '^[a-z0-9]+([_-][a-z0-9]+)*\s*$'
-      example: usps_first_class_mail
-    sort_dir:
-      title: sort_dir
-      type: string
-      enum:
-        - asc
-        - desc
-      description: |
-        Controls the sort order of queries
-
-        |Value     |Description
-        |:---------|:-----------------------------------------------------
-        |`asc`     |Return results in ascending order
-        |`desc`    |Return results in descending order
     access_worldwide_account_information_request_body:
       title: access_worldwide_account_information_request_body
       type: object
@@ -4124,6 +4051,23 @@ components:
       additionalProperties: false
       allOf:
         - $ref: '#/components/schemas/label'
+    label_status:
+      title: label_status
+      type: string
+      enum:
+        - processing
+        - completed
+        - error
+        - voided
+      description: |
+        The possible statuses that a [shipping label](https://docs.shipengine.com/docs/quickstart-create-a-label) can be in.
+
+        |Status       |Description
+        |:------------|:-----------------------------------------------------
+        |`processing` |When labels are created in a [batch](https://docs.shipengine.com/docs/using-batches), it may take a few minutes for all of the labels in the batch to be created.  During this period, they will be in `processing` status.
+        |`completed`  |The label was successfully created
+        |`error`      |The label could not be created due to an error, such as an invalid delivery address
+        |`voided`     |The label has been [voided](https://docs.shipengine.com/docs/void-a-label)
     labels_sort_by:
       title: labels_sort_by
       type: string
@@ -4472,6 +4416,34 @@ components:
       additionalProperties: false
       allOf:
         - $ref: '#/components/schemas/package'
+    paged_list_response_body:
+      title: paged_list_response_body
+      type: object
+      required:
+        - total
+        - page
+        - pages
+        - links
+      properties:
+        total:
+          type: integer
+          minimum: 0
+          example: 2750
+          description: The total number of items across all pages of results
+        page:
+          type: integer
+          minimum: 1
+          example: 1
+          description: 'The current page number of results.  For example, if there are 80 results, and the page size is 25, then `page` could be 1, 2, 3, or 4.  The first three pages would contain 25 items each, and the fourth page would contain the five remaining items.'
+        pages:
+          type: integer
+          minimum: 0
+          example: 4
+          description: 'The total number of pages of results.  For example, if there are 80 results, and the page size is 25, then `pages` would be 4.  The first three pages would contain 25 items each, and the fourth page would contain the five remaining items.  If there are no results, then `pages` will be zero.'
+        links:
+          $ref: '#/components/schemas/pagination_link'
+      description: |
+        Many ShipEngine endpoints return a paged list of items.  In addition to the returned items, these responses also include information about the total number of items, the number of pages of results, and URLs of other pages of results.
     pagination_link:
       title: pagination_link
       type: object
@@ -4904,6 +4876,14 @@ components:
           type: string
         password:
           type: string
+    se_id:
+      title: se_id
+      type: string
+      minLength: 1
+      maxLength: 25
+      pattern: '^se(-[a-z0-9]+)+$'
+      example: se-28529731
+      description: 'A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.'
     service:
       title: service
       type: object
@@ -4925,6 +4905,13 @@ components:
           type: boolean
         is_multi_package_supported:
           type: boolean
+    service_code:
+      title: service_code
+      type: string
+      minLength: 1
+      maxLength: 100
+      pattern: '^[a-z0-9]+([_-][a-z0-9]+)*\s*$'
+      example: usps_first_class_mail
     shipment:
       title: shipment
       type: object
@@ -5134,6 +5121,19 @@ components:
         - scranton_pa
         - wheeling_il
       description: The possible smart post hub values
+    sort_dir:
+      title: sort_dir
+      type: string
+      enum:
+        - asc
+        - desc
+      description: |
+        Controls the sort order of queries
+
+        |Value     |Description
+        |:---------|:-----------------------------------------------------
+        |`asc`     |Return results in ascending order
+        |`desc`    |Return results in descending order
     stamps_account_information_request_body:
       title: stamps_account_information_request_body
       type: object

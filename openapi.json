@@ -21,30 +21,6 @@
       }
     },
     {
-      "name": "labels",
-      "description": "Print shipping labels for any of the top global carriers in minutes—instead of weeks. Simply [connect your existing carrier accounts](https://docs.shipengine.com/docs/setup-a-carrier) in the API dashboard, and then [begin creating labels](https://docs.shipengine.com/docs/use-a-specific-service).\n",
-      "externalDocs": {
-        "url": "https://docs.shipengine.com/docs/quickstart-create-a-label",
-        "description": "Follow this quick start guide to create your first shipping label with ShipEngine"
-      }
-    },
-    {
-      "name": "rates",
-      "description": "Make sure you ship as cost-effectively as possible by [quickly comparing rates](https://docs.shipengine.com/docs/get-shipping-rates) using the ShipEngine Rates API. As long as you have the carrier connected to your account, you'll be able to see and compare different rates and services.\n",
-      "externalDocs": {
-        "url": "https://docs.shipengine.com/docs/get-shipping-rates",
-        "description": "This quick start guide shows you how to get shipping rates for multiple carriers so you can choose the fastest, cheapest, or most reliable option.\n"
-      }
-    },
-    {
-      "name": "tracking",
-      "description": "[Track packages](https://docs.shipengine.com/docs/track-a-package) across any of our 20+ supported carrier accounts and create tracking events to keep your customers up-to-date. Easily integrate real-time tracking information for shipments into your app, email, or SMS.\n",
-      "externalDocs": {
-        "url": "https://docs.shipengine.com/docs/track-a-package",
-        "description": "Learn how to use ShipEngine to track any package with a carrier and a tracking number"
-      }
-    },
-    {
       "name": "batches",
       "description": "batches\n"
     },
@@ -65,6 +41,14 @@
       "description": "insurance\n"
     },
     {
+      "name": "labels",
+      "description": "Print shipping labels for any of the top global carriers in minutes—instead of weeks. Simply [connect your existing carrier accounts](https://docs.shipengine.com/docs/setup-a-carrier) in the API dashboard, and then [begin creating labels](https://docs.shipengine.com/docs/use-a-specific-service).\n",
+      "externalDocs": {
+        "url": "https://docs.shipengine.com/docs/quickstart-create-a-label",
+        "description": "Follow this quick start guide to create your first shipping label with ShipEngine"
+      }
+    },
+    {
       "name": "manifests",
       "description": "manifests\n"
     },
@@ -77,12 +61,28 @@
       "description": "packages\n"
     },
     {
+      "name": "rates",
+      "description": "Make sure you ship as cost-effectively as possible by [quickly comparing rates](https://docs.shipengine.com/docs/get-shipping-rates) using the ShipEngine Rates API. As long as you have the carrier connected to your account, you'll be able to see and compare different rates and services.\n",
+      "externalDocs": {
+        "url": "https://docs.shipengine.com/docs/get-shipping-rates",
+        "description": "This quick start guide shows you how to get shipping rates for multiple carriers so you can choose the fastest, cheapest, or most reliable option.\n"
+      }
+    },
+    {
       "name": "shipments",
       "description": "shipments\n"
     },
     {
       "name": "tags",
       "description": "tags\n"
+    },
+    {
+      "name": "tracking",
+      "description": "[Track packages](https://docs.shipengine.com/docs/track-a-package) across any of our 20+ supported carrier accounts and create tracking events to keep your customers up-to-date. Easily integrate real-time tracking information for shipments into your app, email, or SMS.\n",
+      "externalDocs": {
+        "url": "https://docs.shipengine.com/docs/track-a-package",
+        "description": "Learn how to use ShipEngine to track any package with a carrier and a tracking number"
+      }
     },
     {
       "name": "warehouses",
@@ -104,619 +104,6 @@
     }
   ],
   "paths": {
-    "/v1/labels": {
-      "summary": "Print shipping labels",
-      "description": "Print shipping labels for any of the top global carriers in minutes—instead of weeks. Simply [connect your existing carrier accounts](https://docs.shipengine.com/docs/setup-a-carrier) in the API dashboard, and then [begin creating labels](https://docs.shipengine.com/docs/use-a-specific-service).\n",
-      "get": {
-        "summary": "List labels",
-        "description": "This endpoint returns a list of labels that you've [created](https://docs.shipengine.com/docs/quickstart-create-a-label). You can optionally filter the results as well as control their sort order and the number of results returned at a time.\n\nBy default, all labels are returned, 25 at a time, starting with the most recently created ones.  You can combine multiple filter options to narrow-down the results.  For example, if you only want to get your UPS labels for your east coast warehouse you could query by both `warehouse_id` and `carrier_id`\n\n> ###### Warning\n> Test labels (those created with `test_label: true`) are not included in the results.  If you've only ever created test labels, then the results will be empty.\n",
-        "tags": [
-          "labels"
-        ],
-        "operationId": "labels.list",
-        "parameters": [
-          {
-            "name": "label_status",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "title": "label_status",
-              "type": "string",
-              "enum": [
-                "processing",
-                "completed",
-                "error",
-                "voided"
-              ],
-              "description": "The possible statuses that a [shipping label](https://docs.shipengine.com/docs/quickstart-create-a-label) can be in.\n\n|Status       |Description\n|:------------|:-----------------------------------------------------\n|`processing` |When labels are created in a [batch](https://docs.shipengine.com/docs/using-batches), it may take a few minutes for all of the labels in the batch to be created.  During this period, they will be in `processing` status.\n|`completed`  |The label was successfully created\n|`error`      |The label could not be created due to an error, such as an invalid delivery address\n|`voided`     |The label has been [voided](https://docs.shipengine.com/docs/void-a-label)\n"
-            },
-            "description": "Only return labels that are currently in the specified status"
-          },
-          {
-            "name": "carrier_id",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "title": "se_id",
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 25,
-              "pattern": "^se(-[a-z0-9]+)+$",
-              "example": "se-28529731",
-              "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc."
-            },
-            "example": "se-28529731",
-            "description": "Only return labels for a specific [carrier account](https://docs.shipengine.com/docs/setup-a-carrier)"
-          },
-          {
-            "name": "service_code",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "title": "service_code",
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 100,
-              "pattern": "^[a-z0-9]+([_-][a-z0-9]+)*\\s*$",
-              "example": "usps_first_class_mail"
-            },
-            "example": "usps_first_class_mail",
-            "description": "Only return labels for a specific [carrier service](https://docs.shipengine.com/docs/use-a-specific-service)"
-          },
-          {
-            "name": "tracking_number",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "minLength": 1
-            },
-            "example": "1Z5615280351136446",
-            "description": "Only return labels with a specific tracking number"
-          },
-          {
-            "name": "batch_id",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "title": "se_id",
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 25,
-              "pattern": "^se(-[a-z0-9]+)+$",
-              "example": "se-28529731",
-              "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc."
-            },
-            "example": "se-28529731",
-            "description": "Only return labels that were created in a specific [batch](https://docs.shipengine.com/docs/using-batches)"
-          },
-          {
-            "name": "warehouse_id",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "title": "se_id",
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 25,
-              "pattern": "^se(-[a-z0-9]+)+$",
-              "example": "se-28529731",
-              "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc."
-            },
-            "example": "se-28529731",
-            "description": "Only return labels that originate from a specific [warehouse](https://docs.shipengine.com/docs/ship-from-a-warehouse)"
-          },
-          {
-            "name": "created_at_start",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "title": "date_time",
-              "type": "string",
-              "format": "date-time",
-              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[-+]\\d{2}:\\d{2})$",
-              "example": "2018-09-23T15:00:00.000Z",
-              "description": "An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string that represents a date and time.\n"
-            },
-            "example": "2018-09-23T15:00:00.000Z",
-            "description": "Only return labels that were created on or after a specific date/time"
-          },
-          {
-            "name": "created_at_end",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "title": "date_time",
-              "type": "string",
-              "format": "date-time",
-              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[-+]\\d{2}:\\d{2})$",
-              "example": "2018-09-23T15:00:00.000Z",
-              "description": "An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string that represents a date and time.\n"
-            },
-            "example": "2018-09-30T15:00:00.000Z",
-            "description": "Only return labels that were created on or before a specific date/time"
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "minimum": 1,
-              "default": 1
-            },
-            "example": 3,
-            "description": "Return a specific \"page\" of results. Defaults to the first page. If set to a number that's greater than the number of pages of results, an empty page will be returned."
-          },
-          {
-            "name": "page_size",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "minimum": 1,
-              "default": 25
-            },
-            "example": 50,
-            "description": "The number of labels to return per response."
-          },
-          {
-            "name": "sort_dir",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "default": "desc",
-              "title": "sort_dir",
-              "type": "string",
-              "enum": [
-                "asc",
-                "desc"
-              ],
-              "description": "Controls the sort order of queries\n\n|Value     |Description\n|:---------|:-----------------------------------------------------\n|`asc`     |Return results in ascending order\n|`desc`    |Return results in descending order\n"
-            },
-            "description": "Controls the sort order of the query."
-          },
-          {
-            "name": "sort_by",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "enum": [
-                "modified_at",
-                "created_at"
-              ],
-              "default": "created_at"
-            },
-            "description": "Controls which property the query is sorted by."
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The response includes a `labels` array containing a page of results (as determined by the `page_size` query parameter).  It also includes other useful information, such as the total number of labels that match the query criteria, the number of pages of results, and the URLs of the first, last, next, and previous pages of results.\n",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "title": "list_label_response_body",
-                  "type": "object",
-                  "required": [
-                    "labels",
-                    "total",
-                    "page",
-                    "pages",
-                    "links"
-                  ],
-                  "additionalProperties": false,
-                  "properties": {
-                    "labels": {
-                      "type": "array",
-                      "minItems": 0,
-                      "items": {
-                        "title": "label",
-                        "type": "object",
-                        "required": [
-                          "label_id",
-                          "status",
-                          "shipment_id",
-                          "ship_date",
-                          "created_at",
-                          "tracking_number",
-                          "is_return_label",
-                          "rma_number",
-                          "is_international",
-                          "batch_id",
-                          "carrier_id",
-                          "service_code",
-                          "package_code",
-                          "voided",
-                          "voided_at",
-                          "label_format",
-                          "label_layout",
-                          "trackable",
-                          "carrier_code",
-                          "tracking_status",
-                          "shipment_cost",
-                          "insurance_cost",
-                          "label_download",
-                          "form_download",
-                          "insurance_claim",
-                          "packages"
-                        ],
-                        "properties": {
-                          "label_id": {
-                            "readOnly": true,
-                            "description": "A string that uniquely identifies the label. This ID is generated by ShipEngine when the label is created.\n",
-                            "title": "se_id",
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 25,
-                            "pattern": "^se(-[a-z0-9]+)+$",
-                            "example": "se-28529731"
-                          },
-                          "status": {
-                            "readOnly": true,
-                            "title": "label_status",
-                            "type": "string",
-                            "enum": [
-                              "processing",
-                              "completed",
-                              "error",
-                              "voided"
-                            ],
-                            "description": "The possible statuses that a [shipping label](https://docs.shipengine.com/docs/quickstart-create-a-label) can be in.\n\n|Status       |Description\n|:------------|:-----------------------------------------------------\n|`processing` |When labels are created in a [batch](https://docs.shipengine.com/docs/using-batches), it may take a few minutes for all of the labels in the batch to be created.  During this period, they will be in `processing` status.\n|`completed`  |The label was successfully created\n|`error`      |The label could not be created due to an error, such as an invalid delivery address\n|`voided`     |The label has been [voided](https://docs.shipengine.com/docs/void-a-label)\n"
-                          },
-                          "shipment_id": {
-                            "readOnly": true,
-                            "description": "The shipment that this label is for.  ShipEngine can create a shipment for you automatically when you [create a label](https://docs.shipengine.com/docs/quickstart-create-a-label), or you can [create your own shipment](https://docs.shipengine.com/docs/create-a-shipment) and then [use it to print a label](https://docs.shipengine.com/docs/use-a-shipment-to-print-a-label)\n",
-                            "title": "se_id",
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 25,
-                            "pattern": "^se(-[a-z0-9]+)+$",
-                            "example": "se-28529731"
-                          },
-                          "ship_date": {
-                            "description": "The date that the package was (or will be) shippped.  ShipEngine will take the day of week into consideration when setting this.  For example, if a carrier does not operate on Sundays, then a package that would have shipped on Sunday will ship on Monday instead.\n",
-                            "title": "date",
-                            "type": "string",
-                            "format": "date-time",
-                            "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[-+]\\d{2}:\\d{2}))?$",
-                            "example": "2018-09-23T00:00:00.000Z"
-                          },
-                          "created_at": {
-                            "readOnly": true,
-                            "description": "The date and time that the label was created in ShipEngine.",
-                            "title": "date_time",
-                            "type": "string",
-                            "format": "date-time",
-                            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[-+]\\d{2}:\\d{2})$",
-                            "example": "2018-09-23T15:00:00.000Z"
-                          },
-                          "tracking_number": {
-                            "type": "string",
-                            "minLength": 1,
-                            "readOnly": true,
-                            "example": "782758401696",
-                            "description": "The tracking number for the package. Tracking number formats vary across carriers."
-                          },
-                          "is_return_label": {
-                            "type": "boolean",
-                            "description": "Indicates whether this is a return label.  You may also want to set the `rma_number` so you know what is being returned."
-                          },
-                          "rma_number": {
-                            "type": "string",
-                            "description": "An optional Return Merchandise Authorization number.  This field is useful for return labels.  You can set it to any string value."
-                          },
-                          "is_international": {
-                            "type": "boolean",
-                            "readOnly": true,
-                            "description": "Indicates whether this is an international shipment.  That is, the originating country and destination country are different."
-                          },
-                          "batch_id": {
-                            "readOnly": true,
-                            "description": "If this label was created as part of a [batch](https://docs.shipengine.com/docs/using-batches), then this is the unique ID of that batch.",
-                            "title": "se_id",
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 25,
-                            "pattern": "^se(-[a-z0-9]+)+$",
-                            "example": "se-28529731"
-                          },
-                          "carrier_id": {
-                            "readOnly": true,
-                            "description": "The unique ID of the [carrier account](https://docs.shipengine.com/docs/setup-a-carrier) that was used to create this label",
-                            "title": "se_id",
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 25,
-                            "pattern": "^se(-[a-z0-9]+)+$",
-                            "example": "se-28529731"
-                          },
-                          "service_code": {
-                            "readOnly": true,
-                            "description": "The [carrier service](https://docs.shipengine.com/docs/use-a-specific-service) that will be used to ship the package, such as `fedex_ground`, `usps_first_class_mail`, `flat_rate_envelope`, etc.",
-                            "title": "service_code",
-                            "type": "string",
-                            "pattern": "^[a-z0-9]+(_[a-z0-9-]+)* ?$"
-                          },
-                          "voided": {
-                            "type": "boolean",
-                            "readOnly": true,
-                            "description": "Indicates whether the label has been [voided](https://docs.shipengine.com/docs/void-a-label)"
-                          },
-                          "voided_at": {
-                            "nullable": true,
-                            "readOnly": true,
-                            "description": "The date and time that the label was [voided](https://docs.shipengine.com/docs/void-a-label), or `null` if the label has not been voided",
-                            "title": "date_time",
-                            "type": "string",
-                            "format": "date-time",
-                            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[-+]\\d{2}:\\d{2})$",
-                            "example": "2018-09-23T15:00:00.000Z"
-                          },
-                          "label_format": {
-                            "default": "pdf",
-                            "description": "The file format that you want the label to be in.  We recommend `pdf` format because it is supported by all carriers, whereas some carriers do not support the `png` or `zpl` formats.",
-                            "title": "label_format",
-                            "type": "string",
-                            "enum": [
-                              "pdf",
-                              "png",
-                              "zpl"
-                            ]
-                          },
-                          "label_layout": {
-                            "default": "4x6",
-                            "description": "The layout (size) that you want the label to be in.  The `label_format` determines which sizes are allowed.  `4x6` is supported for all label formats, whereas `letter` (8.5\" x 11\") is only supported for `pdf` format.",
-                            "title": "label_layout",
-                            "type": "string",
-                            "enum": [
-                              "4x6",
-                              "letter"
-                            ]
-                          },
-                          "trackable": {
-                            "type": "boolean",
-                            "readOnly": true,
-                            "description": "Indicates whether the shipment is trackable, in which case the `tracking_status` field will reflect the current status and each package will have a `tracking_number`."
-                          },
-                          "carrier_code": {
-                            "readOnly": true,
-                            "description": "The [shipping carrier](https://docs.shipengine.com/docs/setup-a-carrier) who will ship the package, such as `fedex`, `dhl_express`, `stamps_com`, etc.",
-                            "title": "carrier_code",
-                            "type": "string",
-                            "pattern": "^[a-z0-9]+(_[a-z0-9]+)*$"
-                          },
-                          "tracking_status": {
-                            "readOnly": true,
-                            "description": "The current status of the package, such as `in_transit` or `delivered`",
-                            "title": "tracking_status",
-                            "type": "string",
-                            "enum": [
-                              "unknown",
-                              "in_transit",
-                              "error",
-                              "delivered"
-                            ]
-                          }
-                        },
-                        "description": "A label represents the physical sticker that you affix to a package to ship it.  ShipEngine makes it easy for you to [create labels](https://docs.shipengine.com/docs/quickstart-create-a-label) and then download them in PDF, PNG, or ZPL format so you can print them.\n"
-                      },
-                      "description": "The labels that matched the query criteria.  If no matching labels were found, then this array will be empty; otherwise, it will contain one page of results.  The last page of results may have fewer labels than the `page_size`.\n"
-                    },
-                    "total": {
-                      "type": "integer",
-                      "minimum": 0,
-                      "example": 2750,
-                      "description": "The total number of items across all pages of results"
-                    },
-                    "page": {
-                      "type": "integer",
-                      "minimum": 1,
-                      "example": 1,
-                      "description": "The current page number of results.  For example, if there are 80 results, and the page size is 25, then `page` could be 1, 2, 3, or 4.  The first three pages would contain 25 items each, and the fourth page would contain the five remaining items."
-                    },
-                    "pages": {
-                      "type": "integer",
-                      "minimum": 0,
-                      "example": 4,
-                      "description": "The total number of pages of results.  For example, if there are 80 results, and the page size is 25, then `pages` would be 4.  The first three pages would contain 25 items each, and the fourth page would contain the five remaining items.  If there are no results, then `pages` will be zero."
-                    },
-                    "links": {
-                      "title": "pagination_link",
-                      "type": "object",
-                      "description": "Helpful links to other pages of results",
-                      "required": [
-                        "first",
-                        "last",
-                        "prev",
-                        "next"
-                      ],
-                      "additionalProperties": false,
-                      "properties": {
-                        "first": {
-                          "required": [
-                            "href"
-                          ],
-                          "description": "The link to the first page of results.  This object will _always_ have an `href` property. If there are no results, then the first page will contain an empty array of items.\n",
-                          "title": "link",
-                          "type": "object",
-                          "additionalProperties": false,
-                          "properties": {
-                            "href": {
-                              "description": "The URL of the linked resource",
-                              "title": "url",
-                              "type": "string",
-                              "format": "url",
-                              "minLength": 1,
-                              "example": "http://api.shipengine.com/v1/labels/se-28529731"
-                            },
-                            "type": {
-                              "type": "string",
-                              "minLength": 1,
-                              "description": "The type of resource, or the type of relationship to the parent resource"
-                            }
-                          }
-                        },
-                        "last": {
-                          "required": [
-                            "href"
-                          ],
-                          "description": "The link to the final page of results.  This object will _always_ have an `href` property. If there are no results, then the final page will contain an empty array of items.\n",
-                          "title": "link",
-                          "type": "object",
-                          "additionalProperties": false,
-                          "properties": {
-                            "href": {
-                              "description": "The URL of the linked resource",
-                              "title": "url",
-                              "type": "string",
-                              "format": "url",
-                              "minLength": 1,
-                              "example": "http://api.shipengine.com/v1/labels/se-28529731"
-                            },
-                            "type": {
-                              "type": "string",
-                              "minLength": 1,
-                              "description": "The type of resource, or the type of relationship to the parent resource"
-                            }
-                          }
-                        },
-                        "prev": {
-                          "description": "The link to the previous page of results.  The `href` property will only be set when the `page` is 2 or greater.\n",
-                          "title": "link",
-                          "type": "object",
-                          "additionalProperties": false,
-                          "properties": {
-                            "href": {
-                              "description": "The URL of the linked resource",
-                              "title": "url",
-                              "type": "string",
-                              "format": "url",
-                              "minLength": 1,
-                              "example": "http://api.shipengine.com/v1/labels/se-28529731"
-                            },
-                            "type": {
-                              "type": "string",
-                              "minLength": 1,
-                              "description": "The type of resource, or the type of relationship to the parent resource"
-                            }
-                          }
-                        },
-                        "next": {
-                          "description": "The link to the next page of results.  The `href` property will only be set when the `page` is less than `pages`.\n",
-                          "title": "link",
-                          "type": "object",
-                          "additionalProperties": false,
-                          "properties": {
-                            "href": {
-                              "description": "The URL of the linked resource",
-                              "title": "url",
-                              "type": "string",
-                              "format": "url",
-                              "minLength": 1,
-                              "example": "http://api.shipengine.com/v1/labels/se-28529731"
-                            },
-                            "type": {
-                              "type": "string",
-                              "minLength": 1,
-                              "description": "The type of resource, or the type of relationship to the parent resource"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "description": "Many ShipEngine endpoints return a paged list of items.  In addition to the returned items, these responses also include information about the total number of items, the number of pages of results, and URLs of other pages of results.\n"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "The request contained errors.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "title": "error_response_body",
-                  "type": "object",
-                  "additionalProperties": false,
-                  "properties": {
-                    "request_id": {
-                      "description": "A UUID that uniquely identifies the request id",
-                      "title": "uuid",
-                      "type": "string",
-                      "format": "uuid",
-                      "minLength": 36,
-                      "maxLength": 36,
-                      "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
-                      "example": "aa3d8e8e-462b-4476-9618-72db7f7b7009"
-                    },
-                    "errors": {
-                      "type": "array",
-                      "items": {
-                        "title": "api_error",
-                        "type": "object",
-                        "additionalProperties": false,
-                        "properties": {
-                          "error_code": {
-                            "type": "string"
-                          },
-                          "message": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An error occurred on ShipEngine's side.\n\n> This error will automatically be reported to our engineers.\n",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "title": "error_response_body",
-                  "type": "object",
-                  "additionalProperties": false,
-                  "properties": {
-                    "request_id": {
-                      "description": "A UUID that uniquely identifies the request id",
-                      "title": "uuid",
-                      "type": "string",
-                      "format": "uuid",
-                      "minLength": 36,
-                      "maxLength": 36,
-                      "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
-                      "example": "aa3d8e8e-462b-4476-9618-72db7f7b7009"
-                    },
-                    "errors": {
-                      "type": "array",
-                      "items": {
-                        "title": "api_error",
-                        "type": "object",
-                        "additionalProperties": false,
-                        "properties": {
-                          "error_code": {
-                            "type": "string"
-                          },
-                          "message": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/v1/addresses/validate": {
       "post": {
         "tags": [
@@ -12354,6 +11741,619 @@
                       "format": "double"
                     }
                   }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request contained errors.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "error_response_body",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "request_id": {
+                      "description": "A UUID that uniquely identifies the request id",
+                      "title": "uuid",
+                      "type": "string",
+                      "format": "uuid",
+                      "minLength": 36,
+                      "maxLength": 36,
+                      "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+                      "example": "aa3d8e8e-462b-4476-9618-72db7f7b7009"
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "title": "api_error",
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "error_code": {
+                            "type": "string"
+                          },
+                          "message": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An error occurred on ShipEngine's side.\n\n> This error will automatically be reported to our engineers.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "error_response_body",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "request_id": {
+                      "description": "A UUID that uniquely identifies the request id",
+                      "title": "uuid",
+                      "type": "string",
+                      "format": "uuid",
+                      "minLength": 36,
+                      "maxLength": 36,
+                      "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+                      "example": "aa3d8e8e-462b-4476-9618-72db7f7b7009"
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "title": "api_error",
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "error_code": {
+                            "type": "string"
+                          },
+                          "message": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/labels": {
+      "summary": "Print shipping labels",
+      "description": "Print shipping labels for any of the top global carriers in minutes—instead of weeks. Simply [connect your existing carrier accounts](https://docs.shipengine.com/docs/setup-a-carrier) in the API dashboard, and then [begin creating labels](https://docs.shipengine.com/docs/use-a-specific-service).\n",
+      "get": {
+        "summary": "List labels",
+        "description": "This endpoint returns a list of labels that you've [created](https://docs.shipengine.com/docs/quickstart-create-a-label). You can optionally filter the results as well as control their sort order and the number of results returned at a time.\n\nBy default, all labels are returned, 25 at a time, starting with the most recently created ones.  You can combine multiple filter options to narrow-down the results.  For example, if you only want to get your UPS labels for your east coast warehouse you could query by both `warehouse_id` and `carrier_id`\n\n> ###### Warning\n> Test labels (those created with `test_label: true`) are not included in the results.  If you've only ever created test labels, then the results will be empty.\n",
+        "tags": [
+          "labels"
+        ],
+        "operationId": "labels.list",
+        "parameters": [
+          {
+            "name": "label_status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "title": "label_status",
+              "type": "string",
+              "enum": [
+                "processing",
+                "completed",
+                "error",
+                "voided"
+              ],
+              "description": "The possible statuses that a [shipping label](https://docs.shipengine.com/docs/quickstart-create-a-label) can be in.\n\n|Status       |Description\n|:------------|:-----------------------------------------------------\n|`processing` |When labels are created in a [batch](https://docs.shipengine.com/docs/using-batches), it may take a few minutes for all of the labels in the batch to be created.  During this period, they will be in `processing` status.\n|`completed`  |The label was successfully created\n|`error`      |The label could not be created due to an error, such as an invalid delivery address\n|`voided`     |The label has been [voided](https://docs.shipengine.com/docs/void-a-label)\n"
+            },
+            "description": "Only return labels that are currently in the specified status"
+          },
+          {
+            "name": "carrier_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "title": "se_id",
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 25,
+              "pattern": "^se(-[a-z0-9]+)+$",
+              "example": "se-28529731",
+              "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc."
+            },
+            "example": "se-28529731",
+            "description": "Only return labels for a specific [carrier account](https://docs.shipengine.com/docs/setup-a-carrier)"
+          },
+          {
+            "name": "service_code",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "title": "service_code",
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100,
+              "pattern": "^[a-z0-9]+([_-][a-z0-9]+)*\\s*$",
+              "example": "usps_first_class_mail"
+            },
+            "example": "usps_first_class_mail",
+            "description": "Only return labels for a specific [carrier service](https://docs.shipengine.com/docs/use-a-specific-service)"
+          },
+          {
+            "name": "tracking_number",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "example": "1Z5615280351136446",
+            "description": "Only return labels with a specific tracking number"
+          },
+          {
+            "name": "batch_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "title": "se_id",
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 25,
+              "pattern": "^se(-[a-z0-9]+)+$",
+              "example": "se-28529731",
+              "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc."
+            },
+            "example": "se-28529731",
+            "description": "Only return labels that were created in a specific [batch](https://docs.shipengine.com/docs/using-batches)"
+          },
+          {
+            "name": "warehouse_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "title": "se_id",
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 25,
+              "pattern": "^se(-[a-z0-9]+)+$",
+              "example": "se-28529731",
+              "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc."
+            },
+            "example": "se-28529731",
+            "description": "Only return labels that originate from a specific [warehouse](https://docs.shipengine.com/docs/ship-from-a-warehouse)"
+          },
+          {
+            "name": "created_at_start",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "title": "date_time",
+              "type": "string",
+              "format": "date-time",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[-+]\\d{2}:\\d{2})$",
+              "example": "2018-09-23T15:00:00.000Z",
+              "description": "An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string that represents a date and time.\n"
+            },
+            "example": "2018-09-23T15:00:00.000Z",
+            "description": "Only return labels that were created on or after a specific date/time"
+          },
+          {
+            "name": "created_at_end",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "title": "date_time",
+              "type": "string",
+              "format": "date-time",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[-+]\\d{2}:\\d{2})$",
+              "example": "2018-09-23T15:00:00.000Z",
+              "description": "An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string that represents a date and time.\n"
+            },
+            "example": "2018-09-30T15:00:00.000Z",
+            "description": "Only return labels that were created on or before a specific date/time"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 1,
+              "default": 1
+            },
+            "example": 3,
+            "description": "Return a specific \"page\" of results. Defaults to the first page. If set to a number that's greater than the number of pages of results, an empty page will be returned."
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 1,
+              "default": 25
+            },
+            "example": 50,
+            "description": "The number of labels to return per response."
+          },
+          {
+            "name": "sort_dir",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "default": "desc",
+              "title": "sort_dir",
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "description": "Controls the sort order of queries\n\n|Value     |Description\n|:---------|:-----------------------------------------------------\n|`asc`     |Return results in ascending order\n|`desc`    |Return results in descending order\n"
+            },
+            "description": "Controls the sort order of the query."
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "modified_at",
+                "created_at"
+              ],
+              "default": "created_at"
+            },
+            "description": "Controls which property the query is sorted by."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response includes a `labels` array containing a page of results (as determined by the `page_size` query parameter).  It also includes other useful information, such as the total number of labels that match the query criteria, the number of pages of results, and the URLs of the first, last, next, and previous pages of results.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "list_label_response_body",
+                  "type": "object",
+                  "required": [
+                    "labels",
+                    "total",
+                    "page",
+                    "pages",
+                    "links"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "labels": {
+                      "type": "array",
+                      "minItems": 0,
+                      "items": {
+                        "title": "label",
+                        "type": "object",
+                        "required": [
+                          "label_id",
+                          "status",
+                          "shipment_id",
+                          "ship_date",
+                          "created_at",
+                          "tracking_number",
+                          "is_return_label",
+                          "rma_number",
+                          "is_international",
+                          "batch_id",
+                          "carrier_id",
+                          "service_code",
+                          "package_code",
+                          "voided",
+                          "voided_at",
+                          "label_format",
+                          "label_layout",
+                          "trackable",
+                          "carrier_code",
+                          "tracking_status",
+                          "shipment_cost",
+                          "insurance_cost",
+                          "label_download",
+                          "form_download",
+                          "insurance_claim",
+                          "packages"
+                        ],
+                        "properties": {
+                          "label_id": {
+                            "readOnly": true,
+                            "description": "A string that uniquely identifies the label. This ID is generated by ShipEngine when the label is created.\n",
+                            "title": "se_id",
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 25,
+                            "pattern": "^se(-[a-z0-9]+)+$",
+                            "example": "se-28529731"
+                          },
+                          "status": {
+                            "readOnly": true,
+                            "title": "label_status",
+                            "type": "string",
+                            "enum": [
+                              "processing",
+                              "completed",
+                              "error",
+                              "voided"
+                            ],
+                            "description": "The possible statuses that a [shipping label](https://docs.shipengine.com/docs/quickstart-create-a-label) can be in.\n\n|Status       |Description\n|:------------|:-----------------------------------------------------\n|`processing` |When labels are created in a [batch](https://docs.shipengine.com/docs/using-batches), it may take a few minutes for all of the labels in the batch to be created.  During this period, they will be in `processing` status.\n|`completed`  |The label was successfully created\n|`error`      |The label could not be created due to an error, such as an invalid delivery address\n|`voided`     |The label has been [voided](https://docs.shipengine.com/docs/void-a-label)\n"
+                          },
+                          "shipment_id": {
+                            "readOnly": true,
+                            "description": "The shipment that this label is for.  ShipEngine can create a shipment for you automatically when you [create a label](https://docs.shipengine.com/docs/quickstart-create-a-label), or you can [create your own shipment](https://docs.shipengine.com/docs/create-a-shipment) and then [use it to print a label](https://docs.shipengine.com/docs/use-a-shipment-to-print-a-label)\n",
+                            "title": "se_id",
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 25,
+                            "pattern": "^se(-[a-z0-9]+)+$",
+                            "example": "se-28529731"
+                          },
+                          "ship_date": {
+                            "description": "The date that the package was (or will be) shippped.  ShipEngine will take the day of week into consideration when setting this.  For example, if a carrier does not operate on Sundays, then a package that would have shipped on Sunday will ship on Monday instead.\n",
+                            "title": "date",
+                            "type": "string",
+                            "format": "date-time",
+                            "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[-+]\\d{2}:\\d{2}))?$",
+                            "example": "2018-09-23T00:00:00.000Z"
+                          },
+                          "created_at": {
+                            "readOnly": true,
+                            "description": "The date and time that the label was created in ShipEngine.",
+                            "title": "date_time",
+                            "type": "string",
+                            "format": "date-time",
+                            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[-+]\\d{2}:\\d{2})$",
+                            "example": "2018-09-23T15:00:00.000Z"
+                          },
+                          "tracking_number": {
+                            "type": "string",
+                            "minLength": 1,
+                            "readOnly": true,
+                            "example": "782758401696",
+                            "description": "The tracking number for the package. Tracking number formats vary across carriers."
+                          },
+                          "is_return_label": {
+                            "type": "boolean",
+                            "description": "Indicates whether this is a return label.  You may also want to set the `rma_number` so you know what is being returned."
+                          },
+                          "rma_number": {
+                            "type": "string",
+                            "description": "An optional Return Merchandise Authorization number.  This field is useful for return labels.  You can set it to any string value."
+                          },
+                          "is_international": {
+                            "type": "boolean",
+                            "readOnly": true,
+                            "description": "Indicates whether this is an international shipment.  That is, the originating country and destination country are different."
+                          },
+                          "batch_id": {
+                            "readOnly": true,
+                            "description": "If this label was created as part of a [batch](https://docs.shipengine.com/docs/using-batches), then this is the unique ID of that batch.",
+                            "title": "se_id",
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 25,
+                            "pattern": "^se(-[a-z0-9]+)+$",
+                            "example": "se-28529731"
+                          },
+                          "carrier_id": {
+                            "readOnly": true,
+                            "description": "The unique ID of the [carrier account](https://docs.shipengine.com/docs/setup-a-carrier) that was used to create this label",
+                            "title": "se_id",
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 25,
+                            "pattern": "^se(-[a-z0-9]+)+$",
+                            "example": "se-28529731"
+                          },
+                          "service_code": {
+                            "readOnly": true,
+                            "description": "The [carrier service](https://docs.shipengine.com/docs/use-a-specific-service) that will be used to ship the package, such as `fedex_ground`, `usps_first_class_mail`, `flat_rate_envelope`, etc.",
+                            "title": "service_code",
+                            "type": "string",
+                            "pattern": "^[a-z0-9]+(_[a-z0-9-]+)* ?$"
+                          },
+                          "voided": {
+                            "type": "boolean",
+                            "readOnly": true,
+                            "description": "Indicates whether the label has been [voided](https://docs.shipengine.com/docs/void-a-label)"
+                          },
+                          "voided_at": {
+                            "nullable": true,
+                            "readOnly": true,
+                            "description": "The date and time that the label was [voided](https://docs.shipengine.com/docs/void-a-label), or `null` if the label has not been voided",
+                            "title": "date_time",
+                            "type": "string",
+                            "format": "date-time",
+                            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[-+]\\d{2}:\\d{2})$",
+                            "example": "2018-09-23T15:00:00.000Z"
+                          },
+                          "label_format": {
+                            "default": "pdf",
+                            "description": "The file format that you want the label to be in.  We recommend `pdf` format because it is supported by all carriers, whereas some carriers do not support the `png` or `zpl` formats.",
+                            "title": "label_format",
+                            "type": "string",
+                            "enum": [
+                              "pdf",
+                              "png",
+                              "zpl"
+                            ]
+                          },
+                          "label_layout": {
+                            "default": "4x6",
+                            "description": "The layout (size) that you want the label to be in.  The `label_format` determines which sizes are allowed.  `4x6` is supported for all label formats, whereas `letter` (8.5\" x 11\") is only supported for `pdf` format.",
+                            "title": "label_layout",
+                            "type": "string",
+                            "enum": [
+                              "4x6",
+                              "letter"
+                            ]
+                          },
+                          "trackable": {
+                            "type": "boolean",
+                            "readOnly": true,
+                            "description": "Indicates whether the shipment is trackable, in which case the `tracking_status` field will reflect the current status and each package will have a `tracking_number`."
+                          },
+                          "carrier_code": {
+                            "readOnly": true,
+                            "description": "The [shipping carrier](https://docs.shipengine.com/docs/setup-a-carrier) who will ship the package, such as `fedex`, `dhl_express`, `stamps_com`, etc.",
+                            "title": "carrier_code",
+                            "type": "string",
+                            "pattern": "^[a-z0-9]+(_[a-z0-9]+)*$"
+                          },
+                          "tracking_status": {
+                            "readOnly": true,
+                            "description": "The current status of the package, such as `in_transit` or `delivered`",
+                            "title": "tracking_status",
+                            "type": "string",
+                            "enum": [
+                              "unknown",
+                              "in_transit",
+                              "error",
+                              "delivered"
+                            ]
+                          }
+                        },
+                        "description": "A label represents the physical sticker that you affix to a package to ship it.  ShipEngine makes it easy for you to [create labels](https://docs.shipengine.com/docs/quickstart-create-a-label) and then download them in PDF, PNG, or ZPL format so you can print them.\n"
+                      },
+                      "description": "The labels that matched the query criteria.  If no matching labels were found, then this array will be empty; otherwise, it will contain one page of results.  The last page of results may have fewer labels than the `page_size`.\n"
+                    },
+                    "total": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "example": 2750,
+                      "description": "The total number of items across all pages of results"
+                    },
+                    "page": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "example": 1,
+                      "description": "The current page number of results.  For example, if there are 80 results, and the page size is 25, then `page` could be 1, 2, 3, or 4.  The first three pages would contain 25 items each, and the fourth page would contain the five remaining items."
+                    },
+                    "pages": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "example": 4,
+                      "description": "The total number of pages of results.  For example, if there are 80 results, and the page size is 25, then `pages` would be 4.  The first three pages would contain 25 items each, and the fourth page would contain the five remaining items.  If there are no results, then `pages` will be zero."
+                    },
+                    "links": {
+                      "title": "pagination_link",
+                      "type": "object",
+                      "description": "Helpful links to other pages of results",
+                      "required": [
+                        "first",
+                        "last",
+                        "prev",
+                        "next"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "first": {
+                          "required": [
+                            "href"
+                          ],
+                          "description": "The link to the first page of results.  This object will _always_ have an `href` property. If there are no results, then the first page will contain an empty array of items.\n",
+                          "title": "link",
+                          "type": "object",
+                          "additionalProperties": false,
+                          "properties": {
+                            "href": {
+                              "description": "The URL of the linked resource",
+                              "title": "url",
+                              "type": "string",
+                              "format": "url",
+                              "minLength": 1,
+                              "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                            },
+                            "type": {
+                              "type": "string",
+                              "minLength": 1,
+                              "description": "The type of resource, or the type of relationship to the parent resource"
+                            }
+                          }
+                        },
+                        "last": {
+                          "required": [
+                            "href"
+                          ],
+                          "description": "The link to the final page of results.  This object will _always_ have an `href` property. If there are no results, then the final page will contain an empty array of items.\n",
+                          "title": "link",
+                          "type": "object",
+                          "additionalProperties": false,
+                          "properties": {
+                            "href": {
+                              "description": "The URL of the linked resource",
+                              "title": "url",
+                              "type": "string",
+                              "format": "url",
+                              "minLength": 1,
+                              "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                            },
+                            "type": {
+                              "type": "string",
+                              "minLength": 1,
+                              "description": "The type of resource, or the type of relationship to the parent resource"
+                            }
+                          }
+                        },
+                        "prev": {
+                          "description": "The link to the previous page of results.  The `href` property will only be set when the `page` is 2 or greater.\n",
+                          "title": "link",
+                          "type": "object",
+                          "additionalProperties": false,
+                          "properties": {
+                            "href": {
+                              "description": "The URL of the linked resource",
+                              "title": "url",
+                              "type": "string",
+                              "format": "url",
+                              "minLength": 1,
+                              "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                            },
+                            "type": {
+                              "type": "string",
+                              "minLength": 1,
+                              "description": "The type of resource, or the type of relationship to the parent resource"
+                            }
+                          }
+                        },
+                        "next": {
+                          "description": "The link to the next page of results.  The `href` property will only be set when the `page` is less than `pages`.\n",
+                          "title": "link",
+                          "type": "object",
+                          "additionalProperties": false,
+                          "properties": {
+                            "href": {
+                              "description": "The URL of the linked resource",
+                              "title": "url",
+                              "type": "string",
+                              "format": "url",
+                              "minLength": 1,
+                              "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                            },
+                            "type": {
+                              "type": "string",
+                              "minLength": 1,
+                              "description": "The type of resource, or the type of relationship to the parent resource"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "description": "Many ShipEngine endpoints return a paged list of items.  In addition to the returned items, these responses also include information about the total number of items, the number of pages of results, and URLs of other pages of results.\n"
                 }
               }
             }

@@ -1,77 +1,3 @@
-carrier_code:
-  title: carrier_code
-  type: string
-  pattern: '^[a-z0-9]+(_[a-z0-9]+)*$'
-  description: |
-    A [shipping carrier](https://docs.shipengine.com/docs/setup-a-carrier), such as `fedex`, `dhl_express`, `stamps_com`, etc.
-label_format:
-  title: label_format
-  type: string
-  enum:
-    - pdf
-    - png
-    - zpl
-  description: |
-    The possible file formats in which shipping labels can be downloaded.  We recommend `pdf` format because it is supported by all carriers, whereas some carriers do not support the `png` or `zpl` formats.
-
-    |Label Format  | Supported Carriers
-    |--------------|-----------------------------------
-    |`pdf`         | All carriers
-    |`png`         | `fedex` <br> `stamps_com` <br> `ups` <br> `usps`
-    |`zpl`         | `access_worldwide` <br> `apc` <br> `asendia` <br> `dhl_global_mail` <br> `dhl_express` <br> `dhl_express_australia` <br> `dhl_express_canada` <br> `dhl_express_worldwide` <br> `dhl_express_uk` <br> `dpd` <br> `endicia` <br> `fedex` <br> `fedex_uk` <br> `firstmile` <br> `globegistics` <br> `imex` <br> `newgistics` <br> `ontrac` <br> `rr_donnelley` <br> `stamps_com` <br> `ups` <br> `usps`
-label_layout:
-  title: label_layout
-  type: string
-  enum:
-    - 4x6
-    - letter
-  description: |
-    The available layouts (sizes) in which shipping labels can be downloaded.  The label format determines which sizes are supported.  `4x6` is supported for all label formats, whereas `letter` (8.5" x 11") is only supported for `pdf` format.
-label_status:
-  title: label_status
-  type: string
-  enum:
-    - processing
-    - completed
-    - error
-    - voided
-  description: |
-    The possible statuses that a [shipping label](https://docs.shipengine.com/docs/quickstart-create-a-label) can be in.
-
-    |Status       |Description
-    |:------------|:-----------------------------------------------------
-    |`processing` |When labels are created in a [batch](https://docs.shipengine.com/docs/using-batches), it may take a few minutes for all of the labels in the batch to be created.  During this period, they will be in `processing` status.
-    |`completed`  |The label was successfully created
-    |`error`      |The label could not be created due to an error, such as an invalid delivery address
-    |`voided`     |The label has been [voided](https://docs.shipengine.com/docs/void-a-label)
-service_code:
-  title: service_code
-  type: string
-  pattern: '^[a-z0-9]+(_[a-z0-9-]+)* ?$'
-  description: |
-    A [carrier service](https://docs.shipengine.com/docs/use-a-specific-service), such as `fedex_ground`, `usps_first_class_mail`, `flat_rate_envelope`, etc.
-tracking_status:
-  title: tracking_status
-  type: string
-  enum:
-    - unknown
-    - in_transit
-    - error
-    - delivered
-  description: The different statuses that can apply to a shipment.
-sort_dir:
-  title: sort_dir
-  type: string
-  enum:
-    - asc
-    - desc
-  description: |
-    Controls the sort order of queries
-
-    |Value     |Description
-    |:---------|:-----------------------------------------------------
-    |`asc`     |Return results in ascending order
-    |`desc`    |Return results in descending order
 address_residential_indicator:
   title: address_residential_indicator
   type: string
@@ -130,6 +56,12 @@ capture_payment:
     - when_order_is_shipped
     - when_order_is_placed
   description: The possible capture payment values
+carrier_code:
+  title: carrier_code
+  type: string
+  pattern: '^[a-z0-9]+(_[a-z0-9]+)*$'
+  description: |
+    A [shipping carrier](https://docs.shipengine.com/docs/setup-a-carrier), such as `fedex`, `dhl_express`, `stamps_com`, etc.
 channel_advisor_product_identifier:
   title: channel_advisor_product_identifier
   type: string
@@ -271,6 +203,46 @@ insurance_provider:
     - shipsurance
     - carrier
   description: The possible insurance provider values
+label_format:
+  title: label_format
+  type: string
+  enum:
+    - pdf
+    - png
+    - zpl
+  description: |
+    The possible file formats in which shipping labels can be downloaded.  We recommend `pdf` format because it is supported by all carriers, whereas some carriers do not support the `png` or `zpl` formats.
+
+    |Label Format  | Supported Carriers
+    |--------------|-----------------------------------
+    |`pdf`         | All carriers
+    |`png`         | `fedex` <br> `stamps_com` <br> `ups` <br> `usps`
+    |`zpl`         | `access_worldwide` <br> `apc` <br> `asendia` <br> `dhl_global_mail` <br> `dhl_express` <br> `dhl_express_australia` <br> `dhl_express_canada` <br> `dhl_express_worldwide` <br> `dhl_express_uk` <br> `dpd` <br> `endicia` <br> `fedex` <br> `fedex_uk` <br> `firstmile` <br> `globegistics` <br> `imex` <br> `newgistics` <br> `ontrac` <br> `rr_donnelley` <br> `stamps_com` <br> `ups` <br> `usps`
+label_layout:
+  title: label_layout
+  type: string
+  enum:
+    - 4x6
+    - letter
+  description: |
+    The available layouts (sizes) in which shipping labels can be downloaded.  The label format determines which sizes are supported.  `4x6` is supported for all label formats, whereas `letter` (8.5" x 11") is only supported for `pdf` format.
+label_status:
+  title: label_status
+  type: string
+  enum:
+    - processing
+    - completed
+    - error
+    - voided
+  description: |
+    The possible statuses that a [shipping label](https://docs.shipengine.com/docs/quickstart-create-a-label) can be in.
+
+    |Status       |Description
+    |:------------|:-----------------------------------------------------
+    |`processing` |When labels are created in a [batch](https://docs.shipengine.com/docs/using-batches), it may take a few minutes for all of the labels in the batch to be created.  During this period, they will be in `processing` status.
+    |`completed`  |The label was successfully created
+    |`error`      |The label could not be created due to an error, such as an invalid delivery address
+    |`voided`     |The label has been [voided](https://docs.shipengine.com/docs/void-a-label)
 labels_sort_by:
   title: labels_sort_by
   type: string
@@ -312,6 +284,12 @@ rate_type:
     - check
     - shipment
   description: The possible rate type values
+service_code:
+  title: service_code
+  type: string
+  pattern: '^[a-z0-9]+(_[a-z0-9-]+)* ?$'
+  description: |
+    A [carrier service](https://docs.shipengine.com/docs/use-a-specific-service), such as `fedex_ground`, `usps_first_class_mail`, `flat_rate_envelope`, etc.
 shipment_status:
   title: shipment_status
   type: string
@@ -378,6 +356,28 @@ smart_post_hub:
     - scranton_pa
     - wheeling_il
   description: The possible smart post hub values
+sort_dir:
+  title: sort_dir
+  type: string
+  enum:
+    - asc
+    - desc
+  description: |
+    Controls the sort order of queries
+
+    |Value     |Description
+    |:---------|:-----------------------------------------------------
+    |`asc`     |Return results in ascending order
+    |`desc`    |Return results in descending order
+tracking_status:
+  title: tracking_status
+  type: string
+  enum:
+    - unknown
+    - in_transit
+    - error
+    - delivered
+  description: The different statuses that can apply to a shipment.
 type:
   title: type
   type: string
