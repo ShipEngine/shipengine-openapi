@@ -4037,8 +4037,7 @@ components:
           description: 'The unique ID of the [carrier account](https://docs.shipengine.com/docs/setup-a-carrier) that was used to create this label'
         service_code:
           readOnly: true
-          description: |
-            A [carrier service](https://docs.shipengine.com/docs/use-a-specific-service), such as `fedex_ground`, `usps_first_class_mail`, `flat_rate_envelope`, etc.
+          description: 'The [carrier service](https://docs.shipengine.com/docs/use-a-specific-service) that will be used to ship the package, such as `fedex_ground`, `usps_first_class_mail`, `flat_rate_envelope`, etc.'
           title: service_code
           type: string
           pattern: '^[a-z0-9]+(_[a-z0-9-]+)* ?$'
@@ -4059,8 +4058,7 @@ components:
           description: 'The file format that you want the label to be in.  We recommend `pdf` format because it is supported by all carriers, whereas some carriers do not support the `png` or `zpl` formats.'
         label_layout:
           default: 4x6
-          description: |
-            The available layouts (sizes) in which shipping labels can be downloaded.  The label format determines which sizes are supported.  `4x6` is supported for all label formats, whereas `letter` (8.5" x 11") is only supported for `pdf` format.
+          description: 'The layout (size) that you want the label to be in.  The `label_format` determines which sizes are allowed.  `4x6` is supported for all label formats, whereas `letter` (8.5" x 11") is only supported for `pdf` format.'
           title: label_layout
           type: string
           enum:
@@ -4072,8 +4070,7 @@ components:
           description: 'Indicates whether the shipment is trackable, in which case the `tracking_status` field will reflect the current status and each package will have a `tracking_number`.'
         carrier_code:
           readOnly: true
-          description: |
-            A [shipping carrier](https://docs.shipengine.com/docs/setup-a-carrier), such as `fedex`, `dhl_express`, `stamps_com`, etc.
+          description: 'The [shipping carrier](https://docs.shipengine.com/docs/setup-a-carrier) who will ship the package, such as `fedex`, `dhl_express`, `stamps_com`, etc.'
           title: carrier_code
           type: string
           pattern: '^[a-z0-9]+(_[a-z0-9]+)*$'
