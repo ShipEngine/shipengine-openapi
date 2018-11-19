@@ -1,6 +1,5 @@
 # Files that we edit manually and should never be overwritten by auto-generated files
 .git
 .keep
-img
 README.md
 package.json
