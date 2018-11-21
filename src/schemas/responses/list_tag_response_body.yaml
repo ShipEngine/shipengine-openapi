@@ -5,6 +5,4 @@ properties:
   tags:
     type: array
     items:
-      additionalProperties: false
-      allOf:
-        - $ref: ../responses/tag_response_body.yaml
+      $ref: ../responses/tag_response_body.yaml

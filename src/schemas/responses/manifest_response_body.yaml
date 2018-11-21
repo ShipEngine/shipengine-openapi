@@ -32,6 +32,4 @@ properties:
       - $ref: '../primitives.yaml#/se_id'
     description: A string that uniquely identifies the carrier id
   manifest_download:
-    additionalProperties: false
-    allOf:
-      - $ref: ../link.yaml
+    $ref: ../optional_link.yaml

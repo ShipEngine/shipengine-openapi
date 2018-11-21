@@ -7,12 +7,8 @@ properties:
     items:
       type: string
   rate_options:
-    additionalProperties: false
-    allOf:
-      - $ref: ../requests/rate_request_body.yaml
+    $ref: ../requests/rate_request_body.yaml
   shipments:
     type: array
     items:
-      additionalProperties: false
-      allOf:
-        - $ref: ../address_validating_shipment.yaml
+      $ref: ../address_validating_shipment.yaml

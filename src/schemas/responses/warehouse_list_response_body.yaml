@@ -5,6 +5,4 @@ properties:
   warehouses:
     type: array
     items:
-      additionalProperties: false
-      allOf:
-        - $ref: ../warehouse.yaml
+      $ref: ../warehouse.yaml

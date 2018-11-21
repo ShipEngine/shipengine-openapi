@@ -13,8 +13,6 @@ properties:
   name:
     type: string
   dimensions:
-    additionalProperties: false
-    allOf:
-      - $ref: dimensions.yaml
+    $ref: dimensions.yaml
   description:
     type: string

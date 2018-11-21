@@ -13,21 +13,13 @@ properties:
       - $ref: 'primitives.yaml#/se_id'
     description: A string that uniquely identifies the carrier id
   shipping_amount:
-    additionalProperties: false
-    allOf:
-      - $ref: money.yaml
+    $ref: monetary_value.yaml
   insurance_amount:
-    additionalProperties: false
-    allOf:
-      - $ref: money.yaml
+    $ref: monetary_value.yaml
   confirmation_amount:
-    additionalProperties: false
-    allOf:
-      - $ref: money.yaml
+    $ref: monetary_value.yaml
   other_amount:
-    additionalProperties: false
-    allOf:
-      - $ref: money.yaml
+    $ref: monetary_value.yaml
   zone:
     type: integer
     format: int32

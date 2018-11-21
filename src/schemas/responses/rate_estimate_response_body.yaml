@@ -1,6 +1,4 @@
 title: rate_estimate_response_body
 type: array
 items:
-  additionalProperties: false
-  allOf:
-    - $ref: ../rate.yaml
+  $ref: ../rate.yaml

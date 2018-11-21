@@ -7,9 +7,9 @@ properties:
   labels:
     type: array
     minItems: 0
+    description: |
+      The labels that matched the query criteria.  If no matching labels were found, then this array is empty; otherwise, it contains one page of results.  The last page of results may have fewer labels than the `page_size`.
     items:
       $ref: ../label.yaml
-    description: |
-      The labels that matched the query criteria.  If no matching labels were found, then this array will be empty; otherwise, it will contain one page of results.  The last page of results may have fewer labels than the `page_size`.
 allOf:
   - $ref: paged_list_response_body.yaml

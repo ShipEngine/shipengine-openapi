@@ -21,6 +21,4 @@ items:
     errors:
       type: array
       items:
-        additionalProperties: false
-        allOf:
-          - $ref: ../provider_error.yaml
+        $ref: ../provider_error.yaml

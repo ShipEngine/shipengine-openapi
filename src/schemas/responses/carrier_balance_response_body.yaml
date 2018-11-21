@@ -3,6 +3,4 @@ type: object
 additionalProperties: false
 properties:
   balance:
-    additionalProperties: false
-    allOf:
-      - $ref: ../money.yaml
+    $ref: ../monetary_value.yaml

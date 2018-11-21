@@ -1,6 +1,4 @@
 title: address_validation_request_body
 type: array
 items:
-  additionalProperties: false
-  allOf:
-    - $ref: ../address.yaml
+  $ref: ../address.yaml

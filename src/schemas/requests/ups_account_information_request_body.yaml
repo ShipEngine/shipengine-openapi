@@ -37,8 +37,6 @@ properties:
   phone:
     type: string
   invoice:
-    additionalProperties: false
-    allOf:
-      - $ref: ../ups_invoice.yaml
+    $ref: ../ups_invoice.yaml
   agree_to_technology_agreement:
     type: boolean

@@ -8,7 +8,7 @@ description: |
   > Test labels (those created with `test_label: true`) are not included in the results.  If you've only ever created test labels, then the results will be empty.
 tags:
   - labels
-operationId: labels.list
+operationId: list_labels
 parameters:
   - name: label_status
     in: query
@@ -75,7 +75,7 @@ parameters:
       minimum: 1
       default: 1
     example: 3
-    description: 'Return a specific "page" of results. Defaults to the first page. If set to a number that''s greater than the number of pages of results, an empty page will be returned.'
+    description: 'Return a specific page of results. Defaults to the first page. If set to a number that''s greater than the number of pages of results, an empty page is returned.'
   - name: page_size
     in: query
     required: false
@@ -103,7 +103,7 @@ parameters:
         - modified_at
         - created_at
       default: created_at
-    description: Controls which property the query is sorted by.
+    description: Controls which field the query is sorted by.
 responses:
   '200':
     description: |

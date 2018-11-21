@@ -44,6 +44,8 @@ carrier_advanced_option:
   $ref: carrier_advanced_option.yaml
 carrier_balance_response_body:
   $ref: responses/carrier_balance_response_body.yaml
+carrier_code:
+  $ref: 'primitives.yaml#/carrier_code'
 carrier_list_options_response_body:
   $ref: responses/carrier_list_options_response_body.yaml
 carrier_list_response_body:
@@ -134,8 +136,12 @@ label:
   $ref: label.yaml
 label_format:
   $ref: 'enums.yaml#/label_format'
+label_layout:
+  $ref: 'enums.yaml#/label_layout'
 label_messages:
   $ref: label_messages.yaml
+label_package:
+  $ref: label_package.yaml
 label_response_body:
   $ref: responses/label_response_body.yaml
 label_status:
@@ -164,8 +170,8 @@ manifest_response_body:
   $ref: responses/manifest_response_body.yaml
 modify_batch_request_body:
   $ref: requests/modify_batch_request_body.yaml
-money:
-  $ref: money.yaml
+monetary_value:
+  $ref: monetary_value.yaml
 money_request_body:
   $ref: requests/money_request_body.yaml
 newgistics_account_information_request_body:
@@ -176,8 +182,12 @@ non_delivery:
   $ref: 'enums.yaml#/non_delivery'
 ontrac_account_information_request_body:
   $ref: requests/ontrac_account_information_request_body.yaml
+optional_link:
+  $ref: optional_link.yaml
 package:
   $ref: package.yaml
+package_code:
+  $ref: 'primitives.yaml#/package_code'
 package_list_response_body:
   $ref: responses/package_list_response_body.yaml
 package_request_body:

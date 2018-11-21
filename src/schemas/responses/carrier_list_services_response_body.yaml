@@ -5,6 +5,4 @@ properties:
   services:
     type: array
     items:
-      additionalProperties: false
-      allOf:
-        - $ref: ../service.yaml
+      $ref: ../service.yaml

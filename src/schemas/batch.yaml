@@ -38,24 +38,14 @@ properties:
     type: integer
     format: int32
   batch_shipments_url:
-    additionalProperties: false
-    allOf:
-      - $ref: link.yaml
+    $ref: optional_link.yaml
   batch_labels_url:
-    additionalProperties: false
-    allOf:
-      - $ref: link.yaml
+    $ref: optional_link.yaml
   batch_errors_url:
-    additionalProperties: false
-    allOf:
-      - $ref: link.yaml
+    $ref: optional_link.yaml
   label_download:
-    additionalProperties: false
-    allOf:
-      - $ref: link.yaml
+    $ref: optional_link.yaml
   form_download:
-    additionalProperties: false
-    allOf:
-      - $ref: link.yaml
+    $ref: optional_link.yaml
   status:
     $ref: 'enums.yaml#/batch_status'

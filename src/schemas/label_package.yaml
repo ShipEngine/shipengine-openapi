@@ -1,0 +1,27 @@
+title: label_package
+type: object
+description: 'A package associated with a [shipping label](https://docs.shipengine.com/docs/quickstart-create-a-label)'
+required:
+  - weight
+additionalProperties: false
+properties:
+  package_code:
+    type: string
+  weight:
+    additionalProperties: false
+    allOf:
+      - $ref: weight.yaml
+  dimensions:
+    additionalProperties: false
+    allOf:
+      - $ref: dimensions.yaml
+  insured_value:
+    additionalProperties: false
+    allOf:
+      - $ref: monetary_value.yaml
+  tracking_number:
+    type: string
+  label_messages:
+    additionalProperties: false
+    allOf:
+      - $ref: label_messages.yaml

@@ -5,15 +5,11 @@ properties:
   rates:
     type: array
     items:
-      additionalProperties: false
-      allOf:
-        - $ref: ../rate.yaml
+      $ref: ../rate.yaml
   invalid_rates:
     type: array
     items:
-      additionalProperties: false
-      allOf:
-        - $ref: ../rate.yaml
+      $ref: ../rate.yaml
   rate_request_id:
     allOf:
       - $ref: '../primitives.yaml#/se_id'
@@ -30,6 +26,4 @@ properties:
   errors:
     type: array
     items:
-      additionalProperties: false
-      allOf:
-        - $ref: ../provider_error.yaml
+      $ref: ../provider_error.yaml

@@ -23,13 +23,9 @@ properties:
   to_state_province:
     type: string
   weight:
-    additionalProperties: false
-    allOf:
-      - $ref: ../weight.yaml
+    $ref: ../weight.yaml
   dimensions:
-    additionalProperties: false
-    allOf:
-      - $ref: ../dimensions.yaml
+    $ref: ../dimensions.yaml
   confirmation:
     $ref: '../enums.yaml#/confirmation'
   address_residential_indicator:

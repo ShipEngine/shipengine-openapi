@@ -12,10 +12,6 @@ properties:
     type: string
     format: date-time
   origin_address:
-    additionalProperties: false
-    allOf:
-      - $ref: address.yaml
+    $ref: address.yaml
   return_address:
-    additionalProperties: false
-    allOf:
-      - $ref: address.yaml
+    $ref: address.yaml

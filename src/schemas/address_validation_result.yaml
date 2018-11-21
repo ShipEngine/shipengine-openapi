@@ -5,13 +5,9 @@ properties:
   status:
     $ref: 'enums.yaml#/address_validation_status'
   original_address:
-    additionalProperties: false
-    allOf:
-      - $ref: address.yaml
+    $ref: address.yaml
   matched_address:
-    additionalProperties: false
-    allOf:
-      - $ref: address.yaml
+    $ref: address.yaml
   messages:
     type: array
     items:

@@ -3,9 +3,7 @@ type: object
 additionalProperties: false
 properties:
   shipment:
-    additionalProperties: false
-    allOf:
-      - $ref: ../shipment.yaml
+    $ref: ../shipment.yaml
   is_return_label:
     type: boolean
   rma_number:

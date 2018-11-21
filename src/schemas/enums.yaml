@@ -56,12 +56,6 @@ capture_payment:
     - when_order_is_shipped
     - when_order_is_placed
   description: The possible capture payment values
-carrier_code:
-  title: carrier_code
-  type: string
-  pattern: '^[a-z0-9]+(_[a-z0-9]+)*$'
-  description: |
-    A [shipping carrier](https://docs.shipengine.com/docs/setup-a-carrier), such as `fedex`, `dhl_express`, `stamps_com`, etc.
 channel_advisor_product_identifier:
   title: channel_advisor_product_identifier
   type: string
@@ -116,7 +110,16 @@ currency:
     - aud
     - gbp
     - eur
-  description: The possible currency values
+  description: |
+    The currencies that are supported by ShipEngine.
+
+    |Currency Code  | Description
+    |---------------|-----------------------
+    |`usd`          | United States Dollar
+    |`cad`          | Canadian Dollar
+    |`aud`          | Australian Dollar
+    |`gbp`          | Great British Pound
+    |`eur`          | Euro
 detail_code:
   title: detail_code
   type: string
@@ -284,12 +287,6 @@ rate_type:
     - check
     - shipment
   description: The possible rate type values
-service_code:
-  title: service_code
-  type: string
-  pattern: '^[a-z0-9]+(_[a-z0-9-]+)* ?$'
-  description: |
-    A [carrier service](https://docs.shipengine.com/docs/use-a-specific-service), such as `fedex_ground`, `usps_first_class_mail`, `flat_rate_envelope`, etc.
 shipment_status:
   title: shipment_status
   type: string

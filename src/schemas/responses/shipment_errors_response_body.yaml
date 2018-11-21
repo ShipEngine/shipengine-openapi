@@ -20,6 +20,4 @@ properties:
             - $ref: '../primitives.yaml#/se_id'
           description: A string that uniquely identifies the external shipment id
   links:
-    additionalProperties: false
-    allOf:
-      - $ref: ../pagination_link.yaml
+    $ref: ../pagination_link.yaml

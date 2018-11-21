@@ -1,9 +1,0 @@
-title: money
-type: object
-additionalProperties: false
-properties:
-  currency:
-    $ref: 'enums.yaml#/currency'
-  amount:
-    type: number
-    format: double

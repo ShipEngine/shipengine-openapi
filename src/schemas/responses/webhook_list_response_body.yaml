@@ -1,6 +1,4 @@
 title: webhook_list_response_body
 type: array
 items:
-  additionalProperties: false
-  allOf:
-    - $ref: ../responses/webhook_response_body.yaml
+  $ref: ../responses/webhook_response_body.yaml

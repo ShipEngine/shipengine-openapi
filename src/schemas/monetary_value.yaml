@@ -1,0 +1,16 @@
+title: monetary_value
+type: object
+description: |
+  A monetary value, such as the price of a shipping label, the insured value of a package, or an account balance.
+required:
+  - currency
+  - amount
+additionalProperties: false
+properties:
+  currency:
+    $ref: 'enums.yaml#/currency'
+  amount:
+    type: number
+    format: double
+    minimum: 0
+    description: 'The monetary amount, in the specified currency.'
