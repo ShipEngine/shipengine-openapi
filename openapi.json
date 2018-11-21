@@ -800,25 +800,64 @@
                           "additionalProperties": false,
                           "required": [
                             "href"
-                          ]
+                          ],
+                          "properties": {
+                            "href": {
+                              "description": "The URL of the linked resource, if any",
+                              "title": "url",
+                              "type": "string",
+                              "format": "url",
+                              "minLength": 1,
+                              "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                            },
+                            "type": {
+                              "type": "string",
+                              "minLength": 1,
+                              "description": "The type of resource, or the type of relationship to the parent resource"
+                            }
+                          }
                         },
                         "prev": {
                           "description": "The link to the previous page of results.  The `href` field will only be set when the `page` is 2 or greater.\n",
-                          "title": "link",
+                          "title": "optional_link",
                           "type": "object",
                           "additionalProperties": false,
-                          "required": [
-                            "href"
-                          ]
+                          "properties": {
+                            "href": {
+                              "description": "The URL of the linked resource, if any",
+                              "title": "url",
+                              "type": "string",
+                              "format": "url",
+                              "minLength": 1,
+                              "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                            },
+                            "type": {
+                              "type": "string",
+                              "minLength": 1,
+                              "description": "The type of resource, or the type of relationship to the parent resource"
+                            }
+                          }
                         },
                         "next": {
                           "description": "The link to the next page of results.  The `href` field will only be set when the `page` is less than `pages`.\n",
-                          "title": "link",
+                          "title": "optional_link",
                           "type": "object",
                           "additionalProperties": false,
-                          "required": [
-                            "href"
-                          ]
+                          "properties": {
+                            "href": {
+                              "description": "The URL of the linked resource, if any",
+                              "title": "url",
+                              "type": "string",
+                              "format": "url",
+                              "minLength": 1,
+                              "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                            },
+                            "type": {
+                              "type": "string",
+                              "minLength": 1,
+                              "description": "The type of resource, or the type of relationship to the parent resource"
+                            }
+                          }
                         }
                       }
                     }
@@ -2182,25 +2221,64 @@
                           "additionalProperties": false,
                           "required": [
                             "href"
-                          ]
+                          ],
+                          "properties": {
+                            "href": {
+                              "description": "The URL of the linked resource, if any",
+                              "title": "url",
+                              "type": "string",
+                              "format": "url",
+                              "minLength": 1,
+                              "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                            },
+                            "type": {
+                              "type": "string",
+                              "minLength": 1,
+                              "description": "The type of resource, or the type of relationship to the parent resource"
+                            }
+                          }
                         },
                         "prev": {
                           "description": "The link to the previous page of results.  The `href` field will only be set when the `page` is 2 or greater.\n",
-                          "title": "link",
+                          "title": "optional_link",
                           "type": "object",
                           "additionalProperties": false,
-                          "required": [
-                            "href"
-                          ]
+                          "properties": {
+                            "href": {
+                              "description": "The URL of the linked resource, if any",
+                              "title": "url",
+                              "type": "string",
+                              "format": "url",
+                              "minLength": 1,
+                              "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                            },
+                            "type": {
+                              "type": "string",
+                              "minLength": 1,
+                              "description": "The type of resource, or the type of relationship to the parent resource"
+                            }
+                          }
                         },
                         "next": {
                           "description": "The link to the next page of results.  The `href` field will only be set when the `page` is less than `pages`.\n",
-                          "title": "link",
+                          "title": "optional_link",
                           "type": "object",
                           "additionalProperties": false,
-                          "required": [
-                            "href"
-                          ]
+                          "properties": {
+                            "href": {
+                              "description": "The URL of the linked resource, if any",
+                              "title": "url",
+                              "type": "string",
+                              "format": "url",
+                              "minLength": 1,
+                              "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                            },
+                            "type": {
+                              "type": "string",
+                              "minLength": 1,
+                              "description": "The type of resource, or the type of relationship to the parent resource"
+                            }
+                          }
                         }
                       }
                     }
@@ -12262,7 +12340,22 @@
                             "additionalProperties": false,
                             "required": [
                               "href"
-                            ]
+                            ],
+                            "properties": {
+                              "href": {
+                                "description": "The URL of the linked resource, if any",
+                                "title": "url",
+                                "type": "string",
+                                "format": "url",
+                                "minLength": 1,
+                                "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                              },
+                              "type": {
+                                "type": "string",
+                                "minLength": 1,
+                                "description": "The type of resource, or the type of relationship to the parent resource"
+                              }
+                            }
                           },
                           "form_download": {
                             "readOnly": true,
@@ -12273,7 +12366,22 @@
                             "additionalProperties": false,
                             "required": [
                               "href"
-                            ]
+                            ],
+                            "properties": {
+                              "href": {
+                                "description": "The URL of the linked resource, if any",
+                                "title": "url",
+                                "type": "string",
+                                "format": "url",
+                                "minLength": 1,
+                                "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                              },
+                              "type": {
+                                "type": "string",
+                                "minLength": 1,
+                                "description": "The type of resource, or the type of relationship to the parent resource"
+                              }
+                            }
                           },
                           "insurance_claim": {
                             "readOnly": true,
@@ -12284,7 +12392,22 @@
                             "additionalProperties": false,
                             "required": [
                               "href"
-                            ]
+                            ],
+                            "properties": {
+                              "href": {
+                                "description": "The URL of the linked resource, if any",
+                                "title": "url",
+                                "type": "string",
+                                "format": "url",
+                                "minLength": 1,
+                                "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                              },
+                              "type": {
+                                "type": "string",
+                                "minLength": 1,
+                                "description": "The type of resource, or the type of relationship to the parent resource"
+                              }
+                            }
                           },
                           "packages": {
                             "type": "array",
@@ -12467,25 +12590,64 @@
                           "additionalProperties": false,
                           "required": [
                             "href"
-                          ]
+                          ],
+                          "properties": {
+                            "href": {
+                              "description": "The URL of the linked resource, if any",
+                              "title": "url",
+                              "type": "string",
+                              "format": "url",
+                              "minLength": 1,
+                              "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                            },
+                            "type": {
+                              "type": "string",
+                              "minLength": 1,
+                              "description": "The type of resource, or the type of relationship to the parent resource"
+                            }
+                          }
                         },
                         "prev": {
                           "description": "The link to the previous page of results.  The `href` field will only be set when the `page` is 2 or greater.\n",
-                          "title": "link",
+                          "title": "optional_link",
                           "type": "object",
                           "additionalProperties": false,
-                          "required": [
-                            "href"
-                          ]
+                          "properties": {
+                            "href": {
+                              "description": "The URL of the linked resource, if any",
+                              "title": "url",
+                              "type": "string",
+                              "format": "url",
+                              "minLength": 1,
+                              "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                            },
+                            "type": {
+                              "type": "string",
+                              "minLength": 1,
+                              "description": "The type of resource, or the type of relationship to the parent resource"
+                            }
+                          }
                         },
                         "next": {
                           "description": "The link to the next page of results.  The `href` field will only be set when the `page` is less than `pages`.\n",
-                          "title": "link",
+                          "title": "optional_link",
                           "type": "object",
                           "additionalProperties": false,
-                          "required": [
-                            "href"
-                          ]
+                          "properties": {
+                            "href": {
+                              "description": "The URL of the linked resource, if any",
+                              "title": "url",
+                              "type": "string",
+                              "format": "url",
+                              "minLength": 1,
+                              "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                            },
+                            "type": {
+                              "type": "string",
+                              "minLength": 1,
+                              "description": "The type of resource, or the type of relationship to the parent resource"
+                            }
+                          }
                         }
                       }
                     }
@@ -13395,7 +13557,22 @@
                       "additionalProperties": false,
                       "required": [
                         "href"
-                      ]
+                      ],
+                      "properties": {
+                        "href": {
+                          "description": "The URL of the linked resource, if any",
+                          "title": "url",
+                          "type": "string",
+                          "format": "url",
+                          "minLength": 1,
+                          "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                        },
+                        "type": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "The type of resource, or the type of relationship to the parent resource"
+                        }
+                      }
                     },
                     "form_download": {
                       "readOnly": true,
@@ -13406,7 +13583,22 @@
                       "additionalProperties": false,
                       "required": [
                         "href"
-                      ]
+                      ],
+                      "properties": {
+                        "href": {
+                          "description": "The URL of the linked resource, if any",
+                          "title": "url",
+                          "type": "string",
+                          "format": "url",
+                          "minLength": 1,
+                          "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                        },
+                        "type": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "The type of resource, or the type of relationship to the parent resource"
+                        }
+                      }
                     },
                     "insurance_claim": {
                       "readOnly": true,
@@ -13417,7 +13609,22 @@
                       "additionalProperties": false,
                       "required": [
                         "href"
-                      ]
+                      ],
+                      "properties": {
+                        "href": {
+                          "description": "The URL of the linked resource, if any",
+                          "title": "url",
+                          "type": "string",
+                          "format": "url",
+                          "minLength": 1,
+                          "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                        },
+                        "type": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "The type of resource, or the type of relationship to the parent resource"
+                        }
+                      }
                     },
                     "packages": {
                       "type": "array",
@@ -14000,7 +14207,22 @@
                       "additionalProperties": false,
                       "required": [
                         "href"
-                      ]
+                      ],
+                      "properties": {
+                        "href": {
+                          "description": "The URL of the linked resource, if any",
+                          "title": "url",
+                          "type": "string",
+                          "format": "url",
+                          "minLength": 1,
+                          "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                        },
+                        "type": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "The type of resource, or the type of relationship to the parent resource"
+                        }
+                      }
                     },
                     "form_download": {
                       "readOnly": true,
@@ -14011,7 +14233,22 @@
                       "additionalProperties": false,
                       "required": [
                         "href"
-                      ]
+                      ],
+                      "properties": {
+                        "href": {
+                          "description": "The URL of the linked resource, if any",
+                          "title": "url",
+                          "type": "string",
+                          "format": "url",
+                          "minLength": 1,
+                          "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                        },
+                        "type": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "The type of resource, or the type of relationship to the parent resource"
+                        }
+                      }
                     },
                     "insurance_claim": {
                       "readOnly": true,
@@ -14022,7 +14259,22 @@
                       "additionalProperties": false,
                       "required": [
                         "href"
-                      ]
+                      ],
+                      "properties": {
+                        "href": {
+                          "description": "The URL of the linked resource, if any",
+                          "title": "url",
+                          "type": "string",
+                          "format": "url",
+                          "minLength": 1,
+                          "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                        },
+                        "type": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "The type of resource, or the type of relationship to the parent resource"
+                        }
+                      }
                     },
                     "packages": {
                       "type": "array",
@@ -14605,7 +14857,22 @@
                       "additionalProperties": false,
                       "required": [
                         "href"
-                      ]
+                      ],
+                      "properties": {
+                        "href": {
+                          "description": "The URL of the linked resource, if any",
+                          "title": "url",
+                          "type": "string",
+                          "format": "url",
+                          "minLength": 1,
+                          "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                        },
+                        "type": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "The type of resource, or the type of relationship to the parent resource"
+                        }
+                      }
                     },
                     "form_download": {
                       "readOnly": true,
@@ -14616,7 +14883,22 @@
                       "additionalProperties": false,
                       "required": [
                         "href"
-                      ]
+                      ],
+                      "properties": {
+                        "href": {
+                          "description": "The URL of the linked resource, if any",
+                          "title": "url",
+                          "type": "string",
+                          "format": "url",
+                          "minLength": 1,
+                          "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                        },
+                        "type": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "The type of resource, or the type of relationship to the parent resource"
+                        }
+                      }
                     },
                     "insurance_claim": {
                       "readOnly": true,
@@ -14627,7 +14909,22 @@
                       "additionalProperties": false,
                       "required": [
                         "href"
-                      ]
+                      ],
+                      "properties": {
+                        "href": {
+                          "description": "The URL of the linked resource, if any",
+                          "title": "url",
+                          "type": "string",
+                          "format": "url",
+                          "minLength": 1,
+                          "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                        },
+                        "type": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "The type of resource, or the type of relationship to the parent resource"
+                        }
+                      }
                     },
                     "packages": {
                       "type": "array",
@@ -15170,7 +15467,22 @@
                       "additionalProperties": false,
                       "required": [
                         "href"
-                      ]
+                      ],
+                      "properties": {
+                        "href": {
+                          "description": "The URL of the linked resource, if any",
+                          "title": "url",
+                          "type": "string",
+                          "format": "url",
+                          "minLength": 1,
+                          "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                        },
+                        "type": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "The type of resource, or the type of relationship to the parent resource"
+                        }
+                      }
                     },
                     "form_download": {
                       "readOnly": true,
@@ -15181,7 +15493,22 @@
                       "additionalProperties": false,
                       "required": [
                         "href"
-                      ]
+                      ],
+                      "properties": {
+                        "href": {
+                          "description": "The URL of the linked resource, if any",
+                          "title": "url",
+                          "type": "string",
+                          "format": "url",
+                          "minLength": 1,
+                          "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                        },
+                        "type": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "The type of resource, or the type of relationship to the parent resource"
+                        }
+                      }
                     },
                     "insurance_claim": {
                       "readOnly": true,
@@ -15192,7 +15519,22 @@
                       "additionalProperties": false,
                       "required": [
                         "href"
-                      ]
+                      ],
+                      "properties": {
+                        "href": {
+                          "description": "The URL of the linked resource, if any",
+                          "title": "url",
+                          "type": "string",
+                          "format": "url",
+                          "minLength": 1,
+                          "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                        },
+                        "type": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "The type of resource, or the type of relationship to the parent resource"
+                        }
+                      }
                     },
                     "packages": {
                       "type": "array",
@@ -16073,25 +16415,64 @@
                           "additionalProperties": false,
                           "required": [
                             "href"
-                          ]
+                          ],
+                          "properties": {
+                            "href": {
+                              "description": "The URL of the linked resource, if any",
+                              "title": "url",
+                              "type": "string",
+                              "format": "url",
+                              "minLength": 1,
+                              "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                            },
+                            "type": {
+                              "type": "string",
+                              "minLength": 1,
+                              "description": "The type of resource, or the type of relationship to the parent resource"
+                            }
+                          }
                         },
                         "prev": {
                           "description": "The link to the previous page of results.  The `href` field will only be set when the `page` is 2 or greater.\n",
-                          "title": "link",
+                          "title": "optional_link",
                           "type": "object",
                           "additionalProperties": false,
-                          "required": [
-                            "href"
-                          ]
+                          "properties": {
+                            "href": {
+                              "description": "The URL of the linked resource, if any",
+                              "title": "url",
+                              "type": "string",
+                              "format": "url",
+                              "minLength": 1,
+                              "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                            },
+                            "type": {
+                              "type": "string",
+                              "minLength": 1,
+                              "description": "The type of resource, or the type of relationship to the parent resource"
+                            }
+                          }
                         },
                         "next": {
                           "description": "The link to the next page of results.  The `href` field will only be set when the `page` is less than `pages`.\n",
-                          "title": "link",
+                          "title": "optional_link",
                           "type": "object",
                           "additionalProperties": false,
-                          "required": [
-                            "href"
-                          ]
+                          "properties": {
+                            "href": {
+                              "description": "The URL of the linked resource, if any",
+                              "title": "url",
+                              "type": "string",
+                              "format": "url",
+                              "minLength": 1,
+                              "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                            },
+                            "type": {
+                              "type": "string",
+                              "minLength": 1,
+                              "description": "The type of resource, or the type of relationship to the parent resource"
+                            }
+                          }
                         }
                       }
                     }
@@ -21806,25 +22187,64 @@
                           "additionalProperties": false,
                           "required": [
                             "href"
-                          ]
+                          ],
+                          "properties": {
+                            "href": {
+                              "description": "The URL of the linked resource, if any",
+                              "title": "url",
+                              "type": "string",
+                              "format": "url",
+                              "minLength": 1,
+                              "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                            },
+                            "type": {
+                              "type": "string",
+                              "minLength": 1,
+                              "description": "The type of resource, or the type of relationship to the parent resource"
+                            }
+                          }
                         },
                         "prev": {
                           "description": "The link to the previous page of results.  The `href` field will only be set when the `page` is 2 or greater.\n",
-                          "title": "link",
+                          "title": "optional_link",
                           "type": "object",
                           "additionalProperties": false,
-                          "required": [
-                            "href"
-                          ]
+                          "properties": {
+                            "href": {
+                              "description": "The URL of the linked resource, if any",
+                              "title": "url",
+                              "type": "string",
+                              "format": "url",
+                              "minLength": 1,
+                              "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                            },
+                            "type": {
+                              "type": "string",
+                              "minLength": 1,
+                              "description": "The type of resource, or the type of relationship to the parent resource"
+                            }
+                          }
                         },
                         "next": {
                           "description": "The link to the next page of results.  The `href` field will only be set when the `page` is less than `pages`.\n",
-                          "title": "link",
+                          "title": "optional_link",
                           "type": "object",
                           "additionalProperties": false,
-                          "required": [
-                            "href"
-                          ]
+                          "properties": {
+                            "href": {
+                              "description": "The URL of the linked resource, if any",
+                              "title": "url",
+                              "type": "string",
+                              "format": "url",
+                              "minLength": 1,
+                              "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                            },
+                            "type": {
+                              "type": "string",
+                              "minLength": 1,
+                              "description": "The type of resource, or the type of relationship to the parent resource"
+                            }
+                          }
                         }
                       }
                     }
@@ -26236,25 +26656,64 @@
                           "additionalProperties": false,
                           "required": [
                             "href"
-                          ]
+                          ],
+                          "properties": {
+                            "href": {
+                              "description": "The URL of the linked resource, if any",
+                              "title": "url",
+                              "type": "string",
+                              "format": "url",
+                              "minLength": 1,
+                              "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                            },
+                            "type": {
+                              "type": "string",
+                              "minLength": 1,
+                              "description": "The type of resource, or the type of relationship to the parent resource"
+                            }
+                          }
                         },
                         "prev": {
                           "description": "The link to the previous page of results.  The `href` field will only be set when the `page` is 2 or greater.\n",
-                          "title": "link",
+                          "title": "optional_link",
                           "type": "object",
                           "additionalProperties": false,
-                          "required": [
-                            "href"
-                          ]
+                          "properties": {
+                            "href": {
+                              "description": "The URL of the linked resource, if any",
+                              "title": "url",
+                              "type": "string",
+                              "format": "url",
+                              "minLength": 1,
+                              "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                            },
+                            "type": {
+                              "type": "string",
+                              "minLength": 1,
+                              "description": "The type of resource, or the type of relationship to the parent resource"
+                            }
+                          }
                         },
                         "next": {
                           "description": "The link to the next page of results.  The `href` field will only be set when the `page` is less than `pages`.\n",
-                          "title": "link",
+                          "title": "optional_link",
                           "type": "object",
                           "additionalProperties": false,
-                          "required": [
-                            "href"
-                          ]
+                          "properties": {
+                            "href": {
+                              "description": "The URL of the linked resource, if any",
+                              "title": "url",
+                              "type": "string",
+                              "format": "url",
+                              "minLength": 1,
+                              "example": "http://api.shipengine.com/v1/labels/se-28529731"
+                            },
+                            "type": {
+                              "type": "string",
+                              "minLength": 1,
+                              "description": "The type of resource, or the type of relationship to the parent resource"
+                            }
+                          }
                         }
                       }
                     }

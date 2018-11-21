@@ -20,11 +20,11 @@ properties:
       The link to the final page of results.  This object will _always_ have an `href` field. If there are no results, then the final page will contain an empty array of items.
   prev:
     allOf:
-      - $ref: link.yaml
+      - $ref: optional_link.yaml
     description: |
       The link to the previous page of results.  The `href` field will only be set when the `page` is 2 or greater.
   next:
     allOf:
-      - $ref: link.yaml
+      - $ref: optional_link.yaml
     description: |
       The link to the next page of results.  The `href` field will only be set when the `page` is less than `pages`.
