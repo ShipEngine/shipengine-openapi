@@ -105,7 +105,6 @@ properties:
     description: |
       The [carrier service](https://docs.shipengine.com/docs/use-a-specific-service) used to ship the package, such as `fedex_ground`, `usps_first_class_mail`, `flat_rate_envelope`, etc.
   package_code:
-    readOnly: true
     allOf:
       - $ref: 'primitives.yaml#/package_code'
     description: |
@@ -178,4 +177,4 @@ properties:
       > ###### Note
       > Some carriers only allow one package per label.  If you attempt to create a multi-package label for a carrier that doesn't allow it, an error will be returned.
     items:
-      $ref: label_package.yaml
+      $ref: package.yaml

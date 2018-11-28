@@ -2,4 +2,4 @@ title: package_response_body
 type: object
 additionalProperties: false
 allOf:
-  - $ref: ../package.yaml
+  - $ref: ../package_type.yaml

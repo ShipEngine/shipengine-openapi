@@ -3188,7 +3188,7 @@ components:
         packages:
           type: array
           items:
-            $ref: '#/components/schemas/package'
+            $ref: '#/components/schemas/package_type'
         options:
           type: array
           items:
@@ -3591,23 +3591,40 @@ components:
       enum:
         - inch
         - centimeter
-      description: The possible dimension unit values
+      description: The dimension units that are supported by ShipEngine.
     dimensions:
       title: dimensions
       type: object
+      description: The dimensions of a package
+      required:
+        - unit
+        - length
+        - width
+        - height
       additionalProperties: false
       properties:
         unit:
-          $ref: '#/components/schemas/dimension_unit'
+          default: inch
+          allOf:
+            - $ref: '#/components/schemas/dimension_unit'
         length:
           type: number
           format: double
+          minimum: 0
+          default: 0
+          description: 'The length of the package, in the specified unit'
         width:
           type: number
           format: double
+          minimum: 0
+          default: 0
+          description: 'The width of the package, in the specified unit'
         height:
           type: number
           format: double
+          minimum: 0
+          default: 0
+          description: 'The length of the package, in the specified unit'
     dpd_account_information_request_body:
       title: dpd_account_information_request_body
       type: object
@@ -3965,7 +3982,6 @@ components:
           description: |
             The [carrier service](https://docs.shipengine.com/docs/use-a-specific-service) used to ship the package, such as `fedex_ground`, `usps_first_class_mail`, `flat_rate_envelope`, etc.
         package_code:
-          readOnly: true
           allOf:
             - $ref: '#/components/schemas/package_code'
           description: |
@@ -4038,7 +4054,7 @@ components:
             > ###### Note
             > Some carriers only allow one package per label.  If you attempt to create a multi-package label for a carrier that doesn't allow it, an error will be returned.
           items:
-            $ref: '#/components/schemas/label_package'
+            $ref: '#/components/schemas/package'
     label_format:
       title: label_format
       type: string
@@ -4073,34 +4089,6 @@ components:
           type: string
         reference3:
           type: string
-    label_package:
-      title: label_package
-      type: object
-      description: 'A package associated with a [shipping label](https://docs.shipengine.com/docs/quickstart-create-a-label)'
-      required:
-        - weight
-      additionalProperties: false
-      properties:
-        package_code:
-          type: string
-        weight:
-          additionalProperties: false
-          allOf:
-            - $ref: '#/components/schemas/weight'
-        dimensions:
-          additionalProperties: false
-          allOf:
-            - $ref: '#/components/schemas/dimensions'
-        insured_value:
-          additionalProperties: false
-          allOf:
-            - $ref: '#/components/schemas/monetary_value'
-        tracking_number:
-          type: string
-        label_messages:
-          additionalProperties: false
-          allOf:
-            - $ref: '#/components/schemas/label_messages'
     label_response_body:
       title: label_response_body
       type: object
@@ -4431,6 +4419,106 @@ components:
     package:
       title: package
       type: object
+      description: 'A package associated with a [shipping label](https://docs.shipengine.com/docs/quickstart-create-a-label)'
+      required:
+        - weight
+      additionalProperties: false
+      properties:
+        package_code:
+          allOf:
+            - $ref: '#/components/schemas/package_code'
+          description: |
+            The [package type](https://docs.shipengine.com/docs/list-carrier-package-types), such as `thick_envelope`, `small_flat_rate_box`, `large_package`, etc.  The code `package` indicates a custom or unknown package type.
+        weight:
+          allOf:
+            - $ref: '#/components/schemas/weight'
+          description: The package weight
+        dimensions:
+          allOf:
+            - $ref: '#/components/schemas/dimensions'
+          description: The package dimensions
+        insured_value:
+          allOf:
+            - $ref: '#/components/schemas/monetary_value'
+          default:
+            - currency: usd
+              amount: 0
+          description: |
+            The insured value of the package.  Requires the `insurance_provider` field of the shipment to be set.
+        tracking_number:
+          readOnly: true
+          description: |
+            The tracking number for the package.  The format depends on the carrier.
+          title: tracking_number
+          type: string
+          minLength: 1
+          example: 1Z932R800392060079
+        label_messages:
+          type: object
+          description: |
+            Custom messages to print on the shipping label for the package.  These are typically used to print invoice numbers, product numbers, or other internal reference numbers.  Not all carriers support label messages. The number of lines and the maximum length of each line also varies by carrier.
+
+            |Carrier            |Max lines |Max line length
+            |-------------------|----------|--------------------
+            |USPS (Stamps.com)  |3         |60
+            |FedEx              |3         |35 for the first line. 30 for additional lines.
+            |UPS                |2         |35
+            |OnTrac             |2         |25
+          required:
+            - reference1
+            - reference2
+            - reference3
+          additionalProperties: false
+          properties:
+            reference1:
+              type: string
+              nullable: true
+              default: null
+              description: |
+                The first line of the custom label message.  Some carriers may prefix this line with something like "REF", "Reference", "Trx Ref No.", etc.
+            reference2:
+              type: string
+              nullable: true
+              default: null
+              description: |
+                The second line of the custom label message.  Some carriers may prefix this line with something like "INV", "Reference 2", "Trx Ref No.", etc.
+            reference3:
+              type: string
+              nullable: true
+              default: null
+              description: |
+                The third line of the custom label message.  Some carriers may prefix this line with something like "PO", "Reference 3", etc.
+    package_code:
+      title: package_code
+      type: string
+      pattern: '^[a-z0-9]+(_[a-z0-9]+)*$'
+      example: small_flat_rate_box
+      description: |
+        A [package type](https://docs.shipengine.com/docs/list-carrier-package-types), such as `thick_envelope`, `small_flat_rate_box`, `large_package`, etc.  Use the code `package` for custom or unknown package types.
+    package_list_response_body:
+      title: package_list_response_body
+      type: object
+      additionalProperties: false
+      properties:
+        packages:
+          type: array
+          items:
+            $ref: '#/components/schemas/package_type'
+    package_request_body:
+      title: package_request_body
+      type: object
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/package_type'
+    package_response_body:
+      title: package_response_body
+      type: object
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/package_type'
+    package_type:
+      title: package_type
+      type: object
       required:
         - name
       additionalProperties: false
@@ -4447,34 +4535,6 @@ components:
           $ref: '#/components/schemas/dimensions'
         description:
           type: string
-    package_code:
-      title: package_code
-      type: string
-      pattern: '^[a-z0-9]+(_[a-z0-9]+)*$'
-      example: small_flat_rate_box
-      description: |
-        A [package type](https://docs.shipengine.com/docs/list-carrier-package-types), such as `thick_envelope`, `small_flat_rate_box`, `large_package`, etc.  Use the code `package` for custom or unknown package types.
-    package_list_response_body:
-      title: package_list_response_body
-      type: object
-      additionalProperties: false
-      properties:
-        packages:
-          type: array
-          items:
-            $ref: '#/components/schemas/package'
-    package_request_body:
-      title: package_request_body
-      type: object
-      additionalProperties: false
-      allOf:
-        - $ref: '#/components/schemas/package'
-    package_response_body:
-      title: package_response_body
-      type: object
-      additionalProperties: false
-      allOf:
-        - $ref: '#/components/schemas/package'
     paged_list_response_body:
       title: paged_list_response_body
       type: object
@@ -5480,11 +5540,18 @@ components:
     weight:
       title: weight
       type: object
+      description: The weight of a package
+      required:
+        - value
+        - unit
       additionalProperties: false
       properties:
         value:
           type: number
           format: double
+          minimum: 0
+          exclusiveMinimum: true
+          description: 'The weight, in the specified unit'
         unit:
           $ref: '#/components/schemas/weight_unit'
     weight_unit:

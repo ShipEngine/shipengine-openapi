@@ -140,8 +140,6 @@ label_layout:
   $ref: 'enums.yaml#/label_layout'
 label_messages:
   $ref: label_messages.yaml
-label_package:
-  $ref: label_package.yaml
 label_response_body:
   $ref: responses/label_response_body.yaml
 label_status:
@@ -194,6 +192,8 @@ package_request_body:
   $ref: requests/package_request_body.yaml
 package_response_body:
   $ref: responses/package_response_body.yaml
+package_type:
+  $ref: package_type.yaml
 paged_list_response_body:
   $ref: responses/paged_list_response_body.yaml
 pagination_link:

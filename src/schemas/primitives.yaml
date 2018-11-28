@@ -50,6 +50,12 @@ service_code:
   example: usps_first_class_mail
   description: |
     A [carrier service](https://docs.shipengine.com/docs/use-a-specific-service), such as `fedex_ground`, `usps_first_class_mail`, `flat_rate_envelope`, etc.
+tracking_number:
+  title: tracking_number
+  type: string
+  minLength: 1
+  example: 1Z932R800392060079
+  description: A tracking number for a package. The format depends on the carrier.
 url:
   title: url
   type: string

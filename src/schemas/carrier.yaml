@@ -32,7 +32,7 @@ properties:
   packages:
     type: array
     items:
-      $ref: package.yaml
+      $ref: package_type.yaml
   options:
     type: array
     items:

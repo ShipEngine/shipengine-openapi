@@ -2897,7 +2897,7 @@
                           "packages": {
                             "type": "array",
                             "items": {
-                              "title": "package",
+                              "title": "package_type",
                               "type": "object",
                               "required": [
                                 "name"
@@ -2922,28 +2922,45 @@
                                 "dimensions": {
                                   "title": "dimensions",
                                   "type": "object",
+                                  "description": "The dimensions of a package",
+                                  "required": [
+                                    "unit",
+                                    "length",
+                                    "width",
+                                    "height"
+                                  ],
                                   "additionalProperties": false,
                                   "properties": {
                                     "unit": {
+                                      "default": "inch",
                                       "title": "dimension_unit",
                                       "type": "string",
                                       "enum": [
                                         "inch",
                                         "centimeter"
                                       ],
-                                      "description": "The possible dimension unit values"
+                                      "description": "The dimension units that are supported by ShipEngine."
                                     },
                                     "length": {
                                       "type": "number",
-                                      "format": "double"
+                                      "format": "double",
+                                      "minimum": 0,
+                                      "default": 0,
+                                      "description": "The length of the package, in the specified unit"
                                     },
                                     "width": {
                                       "type": "number",
-                                      "format": "double"
+                                      "format": "double",
+                                      "minimum": 0,
+                                      "default": 0,
+                                      "description": "The width of the package, in the specified unit"
                                     },
                                     "height": {
                                       "type": "number",
-                                      "format": "double"
+                                      "format": "double",
+                                      "minimum": 0,
+                                      "default": 0,
+                                      "description": "The length of the package, in the specified unit"
                                     }
                                   }
                                 },
@@ -3212,7 +3229,7 @@
                     "packages": {
                       "type": "array",
                       "items": {
-                        "title": "package",
+                        "title": "package_type",
                         "type": "object",
                         "required": [
                           "name"
@@ -3237,28 +3254,45 @@
                           "dimensions": {
                             "title": "dimensions",
                             "type": "object",
+                            "description": "The dimensions of a package",
+                            "required": [
+                              "unit",
+                              "length",
+                              "width",
+                              "height"
+                            ],
                             "additionalProperties": false,
                             "properties": {
                               "unit": {
+                                "default": "inch",
                                 "title": "dimension_unit",
                                 "type": "string",
                                 "enum": [
                                   "inch",
                                   "centimeter"
                                 ],
-                                "description": "The possible dimension unit values"
+                                "description": "The dimension units that are supported by ShipEngine."
                               },
                               "length": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The length of the package, in the specified unit"
                               },
                               "width": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The width of the package, in the specified unit"
                               },
                               "height": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The length of the package, in the specified unit"
                               }
                             }
                           },
@@ -3856,7 +3890,7 @@
                     "packages": {
                       "type": "array",
                       "items": {
-                        "title": "package",
+                        "title": "package_type",
                         "type": "object",
                         "required": [
                           "name"
@@ -3881,28 +3915,45 @@
                           "dimensions": {
                             "title": "dimensions",
                             "type": "object",
+                            "description": "The dimensions of a package",
+                            "required": [
+                              "unit",
+                              "length",
+                              "width",
+                              "height"
+                            ],
                             "additionalProperties": false,
                             "properties": {
                               "unit": {
+                                "default": "inch",
                                 "title": "dimension_unit",
                                 "type": "string",
                                 "enum": [
                                   "inch",
                                   "centimeter"
                                 ],
-                                "description": "The possible dimension unit values"
+                                "description": "The dimension units that are supported by ShipEngine."
                               },
                               "length": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The length of the package, in the specified unit"
                               },
                               "width": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The width of the package, in the specified unit"
                               },
                               "height": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The length of the package, in the specified unit"
                               }
                             }
                           },
@@ -12264,7 +12315,6 @@
                             "example": "usps_first_class_mail"
                           },
                           "package_code": {
-                            "readOnly": true,
                             "description": "The [package type](https://docs.shipengine.com/docs/list-carrier-package-types), such as `thick_envelope`, `small_flat_rate_box`, `large_package`, etc.  The code `package` indicates a custom or unknown package type.\n",
                             "title": "package_code",
                             "type": "string",
@@ -12413,7 +12463,7 @@
                             "type": "array",
                             "description": "The label's package(s).\n\n> ###### Note\n> Some carriers only allow one package per label.  If you attempt to create a multi-package label for a carrier that doesn't allow it, an error will be returned.\n",
                             "items": {
-                              "title": "label_package",
+                              "title": "package",
                               "type": "object",
                               "description": "A package associated with a [shipping label](https://docs.shipengine.com/docs/quickstart-create-a-label)",
                               "required": [
@@ -12422,16 +12472,28 @@
                               "additionalProperties": false,
                               "properties": {
                                 "package_code": {
-                                  "type": "string"
+                                  "description": "The [package type](https://docs.shipengine.com/docs/list-carrier-package-types), such as `thick_envelope`, `small_flat_rate_box`, `large_package`, etc.  The code `package` indicates a custom or unknown package type.\n",
+                                  "title": "package_code",
+                                  "type": "string",
+                                  "pattern": "^[a-z0-9]+(_[a-z0-9]+)*$",
+                                  "example": "small_flat_rate_box"
                                 },
                                 "weight": {
-                                  "additionalProperties": false,
+                                  "description": "The package weight",
                                   "title": "weight",
                                   "type": "object",
+                                  "required": [
+                                    "value",
+                                    "unit"
+                                  ],
+                                  "additionalProperties": false,
                                   "properties": {
                                     "value": {
                                       "type": "number",
-                                      "format": "double"
+                                      "format": "double",
+                                      "minimum": 0,
+                                      "exclusiveMinimum": true,
+                                      "description": "The weight, in the specified unit"
                                     },
                                     "unit": {
                                       "title": "weight_unit",
@@ -12447,42 +12509,65 @@
                                   }
                                 },
                                 "dimensions": {
-                                  "additionalProperties": false,
+                                  "description": "The package dimensions",
                                   "title": "dimensions",
                                   "type": "object",
+                                  "required": [
+                                    "unit",
+                                    "length",
+                                    "width",
+                                    "height"
+                                  ],
+                                  "additionalProperties": false,
                                   "properties": {
                                     "unit": {
+                                      "default": "inch",
                                       "title": "dimension_unit",
                                       "type": "string",
                                       "enum": [
                                         "inch",
                                         "centimeter"
                                       ],
-                                      "description": "The possible dimension unit values"
+                                      "description": "The dimension units that are supported by ShipEngine."
                                     },
                                     "length": {
                                       "type": "number",
-                                      "format": "double"
+                                      "format": "double",
+                                      "minimum": 0,
+                                      "default": 0,
+                                      "description": "The length of the package, in the specified unit"
                                     },
                                     "width": {
                                       "type": "number",
-                                      "format": "double"
+                                      "format": "double",
+                                      "minimum": 0,
+                                      "default": 0,
+                                      "description": "The width of the package, in the specified unit"
                                     },
                                     "height": {
                                       "type": "number",
-                                      "format": "double"
+                                      "format": "double",
+                                      "minimum": 0,
+                                      "default": 0,
+                                      "description": "The length of the package, in the specified unit"
                                     }
                                   }
                                 },
                                 "insured_value": {
-                                  "additionalProperties": false,
+                                  "default": [
+                                    {
+                                      "currency": "usd",
+                                      "amount": 0
+                                    }
+                                  ],
+                                  "description": "The insured value of the package.  Requires the `insurance_provider` field of the shipment to be set.\n",
                                   "title": "monetary_value",
                                   "type": "object",
-                                  "description": "A monetary value, such as the price of a shipping label, the insured value of a package, or an account balance.\n",
                                   "required": [
                                     "currency",
                                     "amount"
                                   ],
+                                  "additionalProperties": false,
                                   "properties": {
                                     "currency": {
                                       "title": "currency",
@@ -12505,21 +12590,40 @@
                                   }
                                 },
                                 "tracking_number": {
-                                  "type": "string"
+                                  "readOnly": true,
+                                  "description": "The tracking number for the package.  The format depends on the carrier.\n",
+                                  "title": "tracking_number",
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "example": "1Z932R800392060079"
                                 },
                                 "label_messages": {
-                                  "additionalProperties": false,
-                                  "title": "label_messages",
                                   "type": "object",
+                                  "description": "Custom messages to print on the shipping label for the package.  These are typically used to print invoice numbers, product numbers, or other internal reference numbers.  Not all carriers support label messages. The number of lines and the maximum length of each line also varies by carrier.\n\n|Carrier            |Max lines |Max line length\n|-------------------|----------|--------------------\n|USPS (Stamps.com)  |3         |60\n|FedEx              |3         |35 for the first line. 30 for additional lines.\n|UPS                |2         |35\n|OnTrac             |2         |25\n",
+                                  "required": [
+                                    "reference1",
+                                    "reference2",
+                                    "reference3"
+                                  ],
+                                  "additionalProperties": false,
                                   "properties": {
                                     "reference1": {
-                                      "type": "string"
+                                      "type": "string",
+                                      "nullable": true,
+                                      "default": null,
+                                      "description": "The first line of the custom label message.  Some carriers may prefix this line with something like \"REF\", \"Reference\", \"Trx Ref No.\", etc.\n"
                                     },
                                     "reference2": {
-                                      "type": "string"
+                                      "type": "string",
+                                      "nullable": true,
+                                      "default": null,
+                                      "description": "The second line of the custom label message.  Some carriers may prefix this line with something like \"INV\", \"Reference 2\", \"Trx Ref No.\", etc.\n"
                                     },
                                     "reference3": {
-                                      "type": "string"
+                                      "type": "string",
+                                      "nullable": true,
+                                      "default": null,
+                                      "description": "The third line of the custom label message.  Some carriers may prefix this line with something like \"PO\", \"Reference 3\", etc.\n"
                                     }
                                   }
                                 }
@@ -13125,11 +13229,19 @@
                             "weight": {
                               "title": "weight",
                               "type": "object",
+                              "description": "The weight of a package",
+                              "required": [
+                                "value",
+                                "unit"
+                              ],
                               "additionalProperties": false,
                               "properties": {
                                 "value": {
                                   "type": "number",
-                                  "format": "double"
+                                  "format": "double",
+                                  "minimum": 0,
+                                  "exclusiveMinimum": true,
+                                  "description": "The weight, in the specified unit"
                                 },
                                 "unit": {
                                   "title": "weight_unit",
@@ -13147,28 +13259,45 @@
                             "dimensions": {
                               "title": "dimensions",
                               "type": "object",
+                              "description": "The dimensions of a package",
+                              "required": [
+                                "unit",
+                                "length",
+                                "width",
+                                "height"
+                              ],
                               "additionalProperties": false,
                               "properties": {
                                 "unit": {
+                                  "default": "inch",
                                   "title": "dimension_unit",
                                   "type": "string",
                                   "enum": [
                                     "inch",
                                     "centimeter"
                                   ],
-                                  "description": "The possible dimension unit values"
+                                  "description": "The dimension units that are supported by ShipEngine."
                                 },
                                 "length": {
                                   "type": "number",
-                                  "format": "double"
+                                  "format": "double",
+                                  "minimum": 0,
+                                  "default": 0,
+                                  "description": "The length of the package, in the specified unit"
                                 },
                                 "width": {
                                   "type": "number",
-                                  "format": "double"
+                                  "format": "double",
+                                  "minimum": 0,
+                                  "default": 0,
+                                  "description": "The width of the package, in the specified unit"
                                 },
                                 "height": {
                                   "type": "number",
-                                  "format": "double"
+                                  "format": "double",
+                                  "minimum": 0,
+                                  "default": 0,
+                                  "description": "The length of the package, in the specified unit"
                                 }
                               }
                             },
@@ -13225,11 +13354,19 @@
                         "readOnly": true,
                         "title": "weight",
                         "type": "object",
+                        "description": "The weight of a package",
+                        "required": [
+                          "value",
+                          "unit"
+                        ],
                         "additionalProperties": false,
                         "properties": {
                           "value": {
                             "type": "number",
-                            "format": "double"
+                            "format": "double",
+                            "minimum": 0,
+                            "exclusiveMinimum": true,
+                            "description": "The weight, in the specified unit"
                           },
                           "unit": {
                             "title": "weight_unit",
@@ -13481,7 +13618,6 @@
                       "example": "usps_first_class_mail"
                     },
                     "package_code": {
-                      "readOnly": true,
                       "description": "The [package type](https://docs.shipengine.com/docs/list-carrier-package-types), such as `thick_envelope`, `small_flat_rate_box`, `large_package`, etc.  The code `package` indicates a custom or unknown package type.\n",
                       "title": "package_code",
                       "type": "string",
@@ -13630,7 +13766,7 @@
                       "type": "array",
                       "description": "The label's package(s).\n\n> ###### Note\n> Some carriers only allow one package per label.  If you attempt to create a multi-package label for a carrier that doesn't allow it, an error will be returned.\n",
                       "items": {
-                        "title": "label_package",
+                        "title": "package",
                         "type": "object",
                         "description": "A package associated with a [shipping label](https://docs.shipengine.com/docs/quickstart-create-a-label)",
                         "required": [
@@ -13639,16 +13775,28 @@
                         "additionalProperties": false,
                         "properties": {
                           "package_code": {
-                            "type": "string"
+                            "description": "The [package type](https://docs.shipengine.com/docs/list-carrier-package-types), such as `thick_envelope`, `small_flat_rate_box`, `large_package`, etc.  The code `package` indicates a custom or unknown package type.\n",
+                            "title": "package_code",
+                            "type": "string",
+                            "pattern": "^[a-z0-9]+(_[a-z0-9]+)*$",
+                            "example": "small_flat_rate_box"
                           },
                           "weight": {
-                            "additionalProperties": false,
+                            "description": "The package weight",
                             "title": "weight",
                             "type": "object",
+                            "required": [
+                              "value",
+                              "unit"
+                            ],
+                            "additionalProperties": false,
                             "properties": {
                               "value": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "exclusiveMinimum": true,
+                                "description": "The weight, in the specified unit"
                               },
                               "unit": {
                                 "title": "weight_unit",
@@ -13664,42 +13812,65 @@
                             }
                           },
                           "dimensions": {
-                            "additionalProperties": false,
+                            "description": "The package dimensions",
                             "title": "dimensions",
                             "type": "object",
+                            "required": [
+                              "unit",
+                              "length",
+                              "width",
+                              "height"
+                            ],
+                            "additionalProperties": false,
                             "properties": {
                               "unit": {
+                                "default": "inch",
                                 "title": "dimension_unit",
                                 "type": "string",
                                 "enum": [
                                   "inch",
                                   "centimeter"
                                 ],
-                                "description": "The possible dimension unit values"
+                                "description": "The dimension units that are supported by ShipEngine."
                               },
                               "length": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The length of the package, in the specified unit"
                               },
                               "width": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The width of the package, in the specified unit"
                               },
                               "height": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The length of the package, in the specified unit"
                               }
                             }
                           },
                           "insured_value": {
-                            "additionalProperties": false,
+                            "default": [
+                              {
+                                "currency": "usd",
+                                "amount": 0
+                              }
+                            ],
+                            "description": "The insured value of the package.  Requires the `insurance_provider` field of the shipment to be set.\n",
                             "title": "monetary_value",
                             "type": "object",
-                            "description": "A monetary value, such as the price of a shipping label, the insured value of a package, or an account balance.\n",
                             "required": [
                               "currency",
                               "amount"
                             ],
+                            "additionalProperties": false,
                             "properties": {
                               "currency": {
                                 "title": "currency",
@@ -13722,21 +13893,40 @@
                             }
                           },
                           "tracking_number": {
-                            "type": "string"
+                            "readOnly": true,
+                            "description": "The tracking number for the package.  The format depends on the carrier.\n",
+                            "title": "tracking_number",
+                            "type": "string",
+                            "minLength": 1,
+                            "example": "1Z932R800392060079"
                           },
                           "label_messages": {
-                            "additionalProperties": false,
-                            "title": "label_messages",
                             "type": "object",
+                            "description": "Custom messages to print on the shipping label for the package.  These are typically used to print invoice numbers, product numbers, or other internal reference numbers.  Not all carriers support label messages. The number of lines and the maximum length of each line also varies by carrier.\n\n|Carrier            |Max lines |Max line length\n|-------------------|----------|--------------------\n|USPS (Stamps.com)  |3         |60\n|FedEx              |3         |35 for the first line. 30 for additional lines.\n|UPS                |2         |35\n|OnTrac             |2         |25\n",
+                            "required": [
+                              "reference1",
+                              "reference2",
+                              "reference3"
+                            ],
+                            "additionalProperties": false,
                             "properties": {
                               "reference1": {
-                                "type": "string"
+                                "type": "string",
+                                "nullable": true,
+                                "default": null,
+                                "description": "The first line of the custom label message.  Some carriers may prefix this line with something like \"REF\", \"Reference\", \"Trx Ref No.\", etc.\n"
                               },
                               "reference2": {
-                                "type": "string"
+                                "type": "string",
+                                "nullable": true,
+                                "default": null,
+                                "description": "The second line of the custom label message.  Some carriers may prefix this line with something like \"INV\", \"Reference 2\", \"Trx Ref No.\", etc.\n"
                               },
                               "reference3": {
-                                "type": "string"
+                                "type": "string",
+                                "nullable": true,
+                                "default": null,
+                                "description": "The third line of the custom label message.  Some carriers may prefix this line with something like \"PO\", \"Reference 3\", etc.\n"
                               }
                             }
                           }
@@ -14131,7 +14321,6 @@
                       "example": "usps_first_class_mail"
                     },
                     "package_code": {
-                      "readOnly": true,
                       "description": "The [package type](https://docs.shipengine.com/docs/list-carrier-package-types), such as `thick_envelope`, `small_flat_rate_box`, `large_package`, etc.  The code `package` indicates a custom or unknown package type.\n",
                       "title": "package_code",
                       "type": "string",
@@ -14280,7 +14469,7 @@
                       "type": "array",
                       "description": "The label's package(s).\n\n> ###### Note\n> Some carriers only allow one package per label.  If you attempt to create a multi-package label for a carrier that doesn't allow it, an error will be returned.\n",
                       "items": {
-                        "title": "label_package",
+                        "title": "package",
                         "type": "object",
                         "description": "A package associated with a [shipping label](https://docs.shipengine.com/docs/quickstart-create-a-label)",
                         "required": [
@@ -14289,16 +14478,28 @@
                         "additionalProperties": false,
                         "properties": {
                           "package_code": {
-                            "type": "string"
+                            "description": "The [package type](https://docs.shipengine.com/docs/list-carrier-package-types), such as `thick_envelope`, `small_flat_rate_box`, `large_package`, etc.  The code `package` indicates a custom or unknown package type.\n",
+                            "title": "package_code",
+                            "type": "string",
+                            "pattern": "^[a-z0-9]+(_[a-z0-9]+)*$",
+                            "example": "small_flat_rate_box"
                           },
                           "weight": {
-                            "additionalProperties": false,
+                            "description": "The package weight",
                             "title": "weight",
                             "type": "object",
+                            "required": [
+                              "value",
+                              "unit"
+                            ],
+                            "additionalProperties": false,
                             "properties": {
                               "value": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "exclusiveMinimum": true,
+                                "description": "The weight, in the specified unit"
                               },
                               "unit": {
                                 "title": "weight_unit",
@@ -14314,42 +14515,65 @@
                             }
                           },
                           "dimensions": {
-                            "additionalProperties": false,
+                            "description": "The package dimensions",
                             "title": "dimensions",
                             "type": "object",
+                            "required": [
+                              "unit",
+                              "length",
+                              "width",
+                              "height"
+                            ],
+                            "additionalProperties": false,
                             "properties": {
                               "unit": {
+                                "default": "inch",
                                 "title": "dimension_unit",
                                 "type": "string",
                                 "enum": [
                                   "inch",
                                   "centimeter"
                                 ],
-                                "description": "The possible dimension unit values"
+                                "description": "The dimension units that are supported by ShipEngine."
                               },
                               "length": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The length of the package, in the specified unit"
                               },
                               "width": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The width of the package, in the specified unit"
                               },
                               "height": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The length of the package, in the specified unit"
                               }
                             }
                           },
                           "insured_value": {
-                            "additionalProperties": false,
+                            "default": [
+                              {
+                                "currency": "usd",
+                                "amount": 0
+                              }
+                            ],
+                            "description": "The insured value of the package.  Requires the `insurance_provider` field of the shipment to be set.\n",
                             "title": "monetary_value",
                             "type": "object",
-                            "description": "A monetary value, such as the price of a shipping label, the insured value of a package, or an account balance.\n",
                             "required": [
                               "currency",
                               "amount"
                             ],
+                            "additionalProperties": false,
                             "properties": {
                               "currency": {
                                 "title": "currency",
@@ -14372,21 +14596,40 @@
                             }
                           },
                           "tracking_number": {
-                            "type": "string"
+                            "readOnly": true,
+                            "description": "The tracking number for the package.  The format depends on the carrier.\n",
+                            "title": "tracking_number",
+                            "type": "string",
+                            "minLength": 1,
+                            "example": "1Z932R800392060079"
                           },
                           "label_messages": {
-                            "additionalProperties": false,
-                            "title": "label_messages",
                             "type": "object",
+                            "description": "Custom messages to print on the shipping label for the package.  These are typically used to print invoice numbers, product numbers, or other internal reference numbers.  Not all carriers support label messages. The number of lines and the maximum length of each line also varies by carrier.\n\n|Carrier            |Max lines |Max line length\n|-------------------|----------|--------------------\n|USPS (Stamps.com)  |3         |60\n|FedEx              |3         |35 for the first line. 30 for additional lines.\n|UPS                |2         |35\n|OnTrac             |2         |25\n",
+                            "required": [
+                              "reference1",
+                              "reference2",
+                              "reference3"
+                            ],
+                            "additionalProperties": false,
                             "properties": {
                               "reference1": {
-                                "type": "string"
+                                "type": "string",
+                                "nullable": true,
+                                "default": null,
+                                "description": "The first line of the custom label message.  Some carriers may prefix this line with something like \"REF\", \"Reference\", \"Trx Ref No.\", etc.\n"
                               },
                               "reference2": {
-                                "type": "string"
+                                "type": "string",
+                                "nullable": true,
+                                "default": null,
+                                "description": "The second line of the custom label message.  Some carriers may prefix this line with something like \"INV\", \"Reference 2\", \"Trx Ref No.\", etc.\n"
                               },
                               "reference3": {
-                                "type": "string"
+                                "type": "string",
+                                "nullable": true,
+                                "default": null,
+                                "description": "The third line of the custom label message.  Some carriers may prefix this line with something like \"PO\", \"Reference 3\", etc.\n"
                               }
                             }
                           }
@@ -14781,7 +15024,6 @@
                       "example": "usps_first_class_mail"
                     },
                     "package_code": {
-                      "readOnly": true,
                       "description": "The [package type](https://docs.shipengine.com/docs/list-carrier-package-types), such as `thick_envelope`, `small_flat_rate_box`, `large_package`, etc.  The code `package` indicates a custom or unknown package type.\n",
                       "title": "package_code",
                       "type": "string",
@@ -14930,7 +15172,7 @@
                       "type": "array",
                       "description": "The label's package(s).\n\n> ###### Note\n> Some carriers only allow one package per label.  If you attempt to create a multi-package label for a carrier that doesn't allow it, an error will be returned.\n",
                       "items": {
-                        "title": "label_package",
+                        "title": "package",
                         "type": "object",
                         "description": "A package associated with a [shipping label](https://docs.shipengine.com/docs/quickstart-create-a-label)",
                         "required": [
@@ -14939,16 +15181,28 @@
                         "additionalProperties": false,
                         "properties": {
                           "package_code": {
-                            "type": "string"
+                            "description": "The [package type](https://docs.shipengine.com/docs/list-carrier-package-types), such as `thick_envelope`, `small_flat_rate_box`, `large_package`, etc.  The code `package` indicates a custom or unknown package type.\n",
+                            "title": "package_code",
+                            "type": "string",
+                            "pattern": "^[a-z0-9]+(_[a-z0-9]+)*$",
+                            "example": "small_flat_rate_box"
                           },
                           "weight": {
-                            "additionalProperties": false,
+                            "description": "The package weight",
                             "title": "weight",
                             "type": "object",
+                            "required": [
+                              "value",
+                              "unit"
+                            ],
+                            "additionalProperties": false,
                             "properties": {
                               "value": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "exclusiveMinimum": true,
+                                "description": "The weight, in the specified unit"
                               },
                               "unit": {
                                 "title": "weight_unit",
@@ -14964,42 +15218,65 @@
                             }
                           },
                           "dimensions": {
-                            "additionalProperties": false,
+                            "description": "The package dimensions",
                             "title": "dimensions",
                             "type": "object",
+                            "required": [
+                              "unit",
+                              "length",
+                              "width",
+                              "height"
+                            ],
+                            "additionalProperties": false,
                             "properties": {
                               "unit": {
+                                "default": "inch",
                                 "title": "dimension_unit",
                                 "type": "string",
                                 "enum": [
                                   "inch",
                                   "centimeter"
                                 ],
-                                "description": "The possible dimension unit values"
+                                "description": "The dimension units that are supported by ShipEngine."
                               },
                               "length": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The length of the package, in the specified unit"
                               },
                               "width": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The width of the package, in the specified unit"
                               },
                               "height": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The length of the package, in the specified unit"
                               }
                             }
                           },
                           "insured_value": {
-                            "additionalProperties": false,
+                            "default": [
+                              {
+                                "currency": "usd",
+                                "amount": 0
+                              }
+                            ],
+                            "description": "The insured value of the package.  Requires the `insurance_provider` field of the shipment to be set.\n",
                             "title": "monetary_value",
                             "type": "object",
-                            "description": "A monetary value, such as the price of a shipping label, the insured value of a package, or an account balance.\n",
                             "required": [
                               "currency",
                               "amount"
                             ],
+                            "additionalProperties": false,
                             "properties": {
                               "currency": {
                                 "title": "currency",
@@ -15022,21 +15299,40 @@
                             }
                           },
                           "tracking_number": {
-                            "type": "string"
+                            "readOnly": true,
+                            "description": "The tracking number for the package.  The format depends on the carrier.\n",
+                            "title": "tracking_number",
+                            "type": "string",
+                            "minLength": 1,
+                            "example": "1Z932R800392060079"
                           },
                           "label_messages": {
-                            "additionalProperties": false,
-                            "title": "label_messages",
                             "type": "object",
+                            "description": "Custom messages to print on the shipping label for the package.  These are typically used to print invoice numbers, product numbers, or other internal reference numbers.  Not all carriers support label messages. The number of lines and the maximum length of each line also varies by carrier.\n\n|Carrier            |Max lines |Max line length\n|-------------------|----------|--------------------\n|USPS (Stamps.com)  |3         |60\n|FedEx              |3         |35 for the first line. 30 for additional lines.\n|UPS                |2         |35\n|OnTrac             |2         |25\n",
+                            "required": [
+                              "reference1",
+                              "reference2",
+                              "reference3"
+                            ],
+                            "additionalProperties": false,
                             "properties": {
                               "reference1": {
-                                "type": "string"
+                                "type": "string",
+                                "nullable": true,
+                                "default": null,
+                                "description": "The first line of the custom label message.  Some carriers may prefix this line with something like \"REF\", \"Reference\", \"Trx Ref No.\", etc.\n"
                               },
                               "reference2": {
-                                "type": "string"
+                                "type": "string",
+                                "nullable": true,
+                                "default": null,
+                                "description": "The second line of the custom label message.  Some carriers may prefix this line with something like \"INV\", \"Reference 2\", \"Trx Ref No.\", etc.\n"
                               },
                               "reference3": {
-                                "type": "string"
+                                "type": "string",
+                                "nullable": true,
+                                "default": null,
+                                "description": "The third line of the custom label message.  Some carriers may prefix this line with something like \"PO\", \"Reference 3\", etc.\n"
                               }
                             }
                           }
@@ -15391,7 +15687,6 @@
                       "example": "usps_first_class_mail"
                     },
                     "package_code": {
-                      "readOnly": true,
                       "description": "The [package type](https://docs.shipengine.com/docs/list-carrier-package-types), such as `thick_envelope`, `small_flat_rate_box`, `large_package`, etc.  The code `package` indicates a custom or unknown package type.\n",
                       "title": "package_code",
                       "type": "string",
@@ -15540,7 +15835,7 @@
                       "type": "array",
                       "description": "The label's package(s).\n\n> ###### Note\n> Some carriers only allow one package per label.  If you attempt to create a multi-package label for a carrier that doesn't allow it, an error will be returned.\n",
                       "items": {
-                        "title": "label_package",
+                        "title": "package",
                         "type": "object",
                         "description": "A package associated with a [shipping label](https://docs.shipengine.com/docs/quickstart-create-a-label)",
                         "required": [
@@ -15549,16 +15844,28 @@
                         "additionalProperties": false,
                         "properties": {
                           "package_code": {
-                            "type": "string"
+                            "description": "The [package type](https://docs.shipengine.com/docs/list-carrier-package-types), such as `thick_envelope`, `small_flat_rate_box`, `large_package`, etc.  The code `package` indicates a custom or unknown package type.\n",
+                            "title": "package_code",
+                            "type": "string",
+                            "pattern": "^[a-z0-9]+(_[a-z0-9]+)*$",
+                            "example": "small_flat_rate_box"
                           },
                           "weight": {
-                            "additionalProperties": false,
+                            "description": "The package weight",
                             "title": "weight",
                             "type": "object",
+                            "required": [
+                              "value",
+                              "unit"
+                            ],
+                            "additionalProperties": false,
                             "properties": {
                               "value": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "exclusiveMinimum": true,
+                                "description": "The weight, in the specified unit"
                               },
                               "unit": {
                                 "title": "weight_unit",
@@ -15574,42 +15881,65 @@
                             }
                           },
                           "dimensions": {
-                            "additionalProperties": false,
+                            "description": "The package dimensions",
                             "title": "dimensions",
                             "type": "object",
+                            "required": [
+                              "unit",
+                              "length",
+                              "width",
+                              "height"
+                            ],
+                            "additionalProperties": false,
                             "properties": {
                               "unit": {
+                                "default": "inch",
                                 "title": "dimension_unit",
                                 "type": "string",
                                 "enum": [
                                   "inch",
                                   "centimeter"
                                 ],
-                                "description": "The possible dimension unit values"
+                                "description": "The dimension units that are supported by ShipEngine."
                               },
                               "length": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The length of the package, in the specified unit"
                               },
                               "width": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The width of the package, in the specified unit"
                               },
                               "height": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The length of the package, in the specified unit"
                               }
                             }
                           },
                           "insured_value": {
-                            "additionalProperties": false,
+                            "default": [
+                              {
+                                "currency": "usd",
+                                "amount": 0
+                              }
+                            ],
+                            "description": "The insured value of the package.  Requires the `insurance_provider` field of the shipment to be set.\n",
                             "title": "monetary_value",
                             "type": "object",
-                            "description": "A monetary value, such as the price of a shipping label, the insured value of a package, or an account balance.\n",
                             "required": [
                               "currency",
                               "amount"
                             ],
+                            "additionalProperties": false,
                             "properties": {
                               "currency": {
                                 "title": "currency",
@@ -15632,21 +15962,40 @@
                             }
                           },
                           "tracking_number": {
-                            "type": "string"
+                            "readOnly": true,
+                            "description": "The tracking number for the package.  The format depends on the carrier.\n",
+                            "title": "tracking_number",
+                            "type": "string",
+                            "minLength": 1,
+                            "example": "1Z932R800392060079"
                           },
                           "label_messages": {
-                            "additionalProperties": false,
-                            "title": "label_messages",
                             "type": "object",
+                            "description": "Custom messages to print on the shipping label for the package.  These are typically used to print invoice numbers, product numbers, or other internal reference numbers.  Not all carriers support label messages. The number of lines and the maximum length of each line also varies by carrier.\n\n|Carrier            |Max lines |Max line length\n|-------------------|----------|--------------------\n|USPS (Stamps.com)  |3         |60\n|FedEx              |3         |35 for the first line. 30 for additional lines.\n|UPS                |2         |35\n|OnTrac             |2         |25\n",
+                            "required": [
+                              "reference1",
+                              "reference2",
+                              "reference3"
+                            ],
+                            "additionalProperties": false,
                             "properties": {
                               "reference1": {
-                                "type": "string"
+                                "type": "string",
+                                "nullable": true,
+                                "default": null,
+                                "description": "The first line of the custom label message.  Some carriers may prefix this line with something like \"REF\", \"Reference\", \"Trx Ref No.\", etc.\n"
                               },
                               "reference2": {
-                                "type": "string"
+                                "type": "string",
+                                "nullable": true,
+                                "default": null,
+                                "description": "The second line of the custom label message.  Some carriers may prefix this line with something like \"INV\", \"Reference 2\", \"Trx Ref No.\", etc.\n"
                               },
                               "reference3": {
-                                "type": "string"
+                                "type": "string",
+                                "nullable": true,
+                                "default": null,
+                                "description": "The third line of the custom label message.  Some carriers may prefix this line with something like \"PO\", \"Reference 3\", etc.\n"
                               }
                             }
                           }
@@ -17083,7 +17432,7 @@
                     "packages": {
                       "type": "array",
                       "items": {
-                        "title": "package",
+                        "title": "package_type",
                         "type": "object",
                         "required": [
                           "name"
@@ -17108,28 +17457,45 @@
                           "dimensions": {
                             "title": "dimensions",
                             "type": "object",
+                            "description": "The dimensions of a package",
+                            "required": [
+                              "unit",
+                              "length",
+                              "width",
+                              "height"
+                            ],
                             "additionalProperties": false,
                             "properties": {
                               "unit": {
+                                "default": "inch",
                                 "title": "dimension_unit",
                                 "type": "string",
                                 "enum": [
                                   "inch",
                                   "centimeter"
                                 ],
-                                "description": "The possible dimension unit values"
+                                "description": "The dimension units that are supported by ShipEngine."
                               },
                               "length": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The length of the package, in the specified unit"
                               },
                               "width": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The width of the package, in the specified unit"
                               },
                               "height": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The length of the package, in the specified unit"
                               }
                             }
                           },
@@ -17301,28 +17667,45 @@
                   "dimensions": {
                     "title": "dimensions",
                     "type": "object",
+                    "description": "The dimensions of a package",
+                    "required": [
+                      "unit",
+                      "length",
+                      "width",
+                      "height"
+                    ],
                     "additionalProperties": false,
                     "properties": {
                       "unit": {
+                        "default": "inch",
                         "title": "dimension_unit",
                         "type": "string",
                         "enum": [
                           "inch",
                           "centimeter"
                         ],
-                        "description": "The possible dimension unit values"
+                        "description": "The dimension units that are supported by ShipEngine."
                       },
                       "length": {
                         "type": "number",
-                        "format": "double"
+                        "format": "double",
+                        "minimum": 0,
+                        "default": 0,
+                        "description": "The length of the package, in the specified unit"
                       },
                       "width": {
                         "type": "number",
-                        "format": "double"
+                        "format": "double",
+                        "minimum": 0,
+                        "default": 0,
+                        "description": "The width of the package, in the specified unit"
                       },
                       "height": {
                         "type": "number",
-                        "format": "double"
+                        "format": "double",
+                        "minimum": 0,
+                        "default": 0,
+                        "description": "The length of the package, in the specified unit"
                       }
                     }
                   },
@@ -17365,28 +17748,45 @@
                     "dimensions": {
                       "title": "dimensions",
                       "type": "object",
+                      "description": "The dimensions of a package",
+                      "required": [
+                        "unit",
+                        "length",
+                        "width",
+                        "height"
+                      ],
                       "additionalProperties": false,
                       "properties": {
                         "unit": {
+                          "default": "inch",
                           "title": "dimension_unit",
                           "type": "string",
                           "enum": [
                             "inch",
                             "centimeter"
                           ],
-                          "description": "The possible dimension unit values"
+                          "description": "The dimension units that are supported by ShipEngine."
                         },
                         "length": {
                           "type": "number",
-                          "format": "double"
+                          "format": "double",
+                          "minimum": 0,
+                          "default": 0,
+                          "description": "The length of the package, in the specified unit"
                         },
                         "width": {
                           "type": "number",
-                          "format": "double"
+                          "format": "double",
+                          "minimum": 0,
+                          "default": 0,
+                          "description": "The width of the package, in the specified unit"
                         },
                         "height": {
                           "type": "number",
-                          "format": "double"
+                          "format": "double",
+                          "minimum": 0,
+                          "default": 0,
+                          "description": "The length of the package, in the specified unit"
                         }
                       }
                     },
@@ -17534,28 +17934,45 @@
                     "dimensions": {
                       "title": "dimensions",
                       "type": "object",
+                      "description": "The dimensions of a package",
+                      "required": [
+                        "unit",
+                        "length",
+                        "width",
+                        "height"
+                      ],
                       "additionalProperties": false,
                       "properties": {
                         "unit": {
+                          "default": "inch",
                           "title": "dimension_unit",
                           "type": "string",
                           "enum": [
                             "inch",
                             "centimeter"
                           ],
-                          "description": "The possible dimension unit values"
+                          "description": "The dimension units that are supported by ShipEngine."
                         },
                         "length": {
                           "type": "number",
-                          "format": "double"
+                          "format": "double",
+                          "minimum": 0,
+                          "default": 0,
+                          "description": "The length of the package, in the specified unit"
                         },
                         "width": {
                           "type": "number",
-                          "format": "double"
+                          "format": "double",
+                          "minimum": 0,
+                          "default": 0,
+                          "description": "The width of the package, in the specified unit"
                         },
                         "height": {
                           "type": "number",
-                          "format": "double"
+                          "format": "double",
+                          "minimum": 0,
+                          "default": 0,
+                          "description": "The length of the package, in the specified unit"
                         }
                       }
                     },
@@ -17740,28 +18157,45 @@
                   "dimensions": {
                     "title": "dimensions",
                     "type": "object",
+                    "description": "The dimensions of a package",
+                    "required": [
+                      "unit",
+                      "length",
+                      "width",
+                      "height"
+                    ],
                     "additionalProperties": false,
                     "properties": {
                       "unit": {
+                        "default": "inch",
                         "title": "dimension_unit",
                         "type": "string",
                         "enum": [
                           "inch",
                           "centimeter"
                         ],
-                        "description": "The possible dimension unit values"
+                        "description": "The dimension units that are supported by ShipEngine."
                       },
                       "length": {
                         "type": "number",
-                        "format": "double"
+                        "format": "double",
+                        "minimum": 0,
+                        "default": 0,
+                        "description": "The length of the package, in the specified unit"
                       },
                       "width": {
                         "type": "number",
-                        "format": "double"
+                        "format": "double",
+                        "minimum": 0,
+                        "default": 0,
+                        "description": "The width of the package, in the specified unit"
                       },
                       "height": {
                         "type": "number",
-                        "format": "double"
+                        "format": "double",
+                        "minimum": 0,
+                        "default": 0,
+                        "description": "The length of the package, in the specified unit"
                       }
                     }
                   },
@@ -18445,11 +18879,19 @@
                             "weight": {
                               "title": "weight",
                               "type": "object",
+                              "description": "The weight of a package",
+                              "required": [
+                                "value",
+                                "unit"
+                              ],
                               "additionalProperties": false,
                               "properties": {
                                 "value": {
                                   "type": "number",
-                                  "format": "double"
+                                  "format": "double",
+                                  "minimum": 0,
+                                  "exclusiveMinimum": true,
+                                  "description": "The weight, in the specified unit"
                                 },
                                 "unit": {
                                   "title": "weight_unit",
@@ -18467,28 +18909,45 @@
                             "dimensions": {
                               "title": "dimensions",
                               "type": "object",
+                              "description": "The dimensions of a package",
+                              "required": [
+                                "unit",
+                                "length",
+                                "width",
+                                "height"
+                              ],
                               "additionalProperties": false,
                               "properties": {
                                 "unit": {
+                                  "default": "inch",
                                   "title": "dimension_unit",
                                   "type": "string",
                                   "enum": [
                                     "inch",
                                     "centimeter"
                                   ],
-                                  "description": "The possible dimension unit values"
+                                  "description": "The dimension units that are supported by ShipEngine."
                                 },
                                 "length": {
                                   "type": "number",
-                                  "format": "double"
+                                  "format": "double",
+                                  "minimum": 0,
+                                  "default": 0,
+                                  "description": "The length of the package, in the specified unit"
                                 },
                                 "width": {
                                   "type": "number",
-                                  "format": "double"
+                                  "format": "double",
+                                  "minimum": 0,
+                                  "default": 0,
+                                  "description": "The width of the package, in the specified unit"
                                 },
                                 "height": {
                                   "type": "number",
-                                  "format": "double"
+                                  "format": "double",
+                                  "minimum": 0,
+                                  "default": 0,
+                                  "description": "The length of the package, in the specified unit"
                                 }
                               }
                             },
@@ -18545,11 +19004,19 @@
                         "readOnly": true,
                         "title": "weight",
                         "type": "object",
+                        "description": "The weight of a package",
+                        "required": [
+                          "value",
+                          "unit"
+                        ],
                         "additionalProperties": false,
                         "properties": {
                           "value": {
                             "type": "number",
-                            "format": "double"
+                            "format": "double",
+                            "minimum": 0,
+                            "exclusiveMinimum": true,
+                            "description": "The weight, in the specified unit"
                           },
                           "unit": {
                             "title": "weight_unit",
@@ -19475,11 +19942,19 @@
                           "weight": {
                             "title": "weight",
                             "type": "object",
+                            "description": "The weight of a package",
+                            "required": [
+                              "value",
+                              "unit"
+                            ],
                             "additionalProperties": false,
                             "properties": {
                               "value": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "exclusiveMinimum": true,
+                                "description": "The weight, in the specified unit"
                               },
                               "unit": {
                                 "title": "weight_unit",
@@ -19497,28 +19972,45 @@
                           "dimensions": {
                             "title": "dimensions",
                             "type": "object",
+                            "description": "The dimensions of a package",
+                            "required": [
+                              "unit",
+                              "length",
+                              "width",
+                              "height"
+                            ],
                             "additionalProperties": false,
                             "properties": {
                               "unit": {
+                                "default": "inch",
                                 "title": "dimension_unit",
                                 "type": "string",
                                 "enum": [
                                   "inch",
                                   "centimeter"
                                 ],
-                                "description": "The possible dimension unit values"
+                                "description": "The dimension units that are supported by ShipEngine."
                               },
                               "length": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The length of the package, in the specified unit"
                               },
                               "width": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The width of the package, in the specified unit"
                               },
                               "height": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The length of the package, in the specified unit"
                               }
                             }
                           },
@@ -19575,11 +20067,19 @@
                       "readOnly": true,
                       "title": "weight",
                       "type": "object",
+                      "description": "The weight of a package",
+                      "required": [
+                        "value",
+                        "unit"
+                      ],
                       "additionalProperties": false,
                       "properties": {
                         "value": {
                           "type": "number",
-                          "format": "double"
+                          "format": "double",
+                          "minimum": 0,
+                          "exclusiveMinimum": true,
+                          "description": "The weight, in the specified unit"
                         },
                         "unit": {
                           "title": "weight_unit",
@@ -20100,11 +20600,19 @@
                               "weight": {
                                 "title": "weight",
                                 "type": "object",
+                                "description": "The weight of a package",
+                                "required": [
+                                  "value",
+                                  "unit"
+                                ],
                                 "additionalProperties": false,
                                 "properties": {
                                   "value": {
                                     "type": "number",
-                                    "format": "double"
+                                    "format": "double",
+                                    "minimum": 0,
+                                    "exclusiveMinimum": true,
+                                    "description": "The weight, in the specified unit"
                                   },
                                   "unit": {
                                     "title": "weight_unit",
@@ -20122,28 +20630,45 @@
                               "dimensions": {
                                 "title": "dimensions",
                                 "type": "object",
+                                "description": "The dimensions of a package",
+                                "required": [
+                                  "unit",
+                                  "length",
+                                  "width",
+                                  "height"
+                                ],
                                 "additionalProperties": false,
                                 "properties": {
                                   "unit": {
+                                    "default": "inch",
                                     "title": "dimension_unit",
                                     "type": "string",
                                     "enum": [
                                       "inch",
                                       "centimeter"
                                     ],
-                                    "description": "The possible dimension unit values"
+                                    "description": "The dimension units that are supported by ShipEngine."
                                   },
                                   "length": {
                                     "type": "number",
-                                    "format": "double"
+                                    "format": "double",
+                                    "minimum": 0,
+                                    "default": 0,
+                                    "description": "The length of the package, in the specified unit"
                                   },
                                   "width": {
                                     "type": "number",
-                                    "format": "double"
+                                    "format": "double",
+                                    "minimum": 0,
+                                    "default": 0,
+                                    "description": "The width of the package, in the specified unit"
                                   },
                                   "height": {
                                     "type": "number",
-                                    "format": "double"
+                                    "format": "double",
+                                    "minimum": 0,
+                                    "default": 0,
+                                    "description": "The length of the package, in the specified unit"
                                   }
                                 }
                               },
@@ -20200,11 +20725,19 @@
                           "readOnly": true,
                           "title": "weight",
                           "type": "object",
+                          "description": "The weight of a package",
+                          "required": [
+                            "value",
+                            "unit"
+                          ],
                           "additionalProperties": false,
                           "properties": {
                             "value": {
                               "type": "number",
-                              "format": "double"
+                              "format": "double",
+                              "minimum": 0,
+                              "exclusiveMinimum": true,
+                              "description": "The weight, in the specified unit"
                             },
                             "unit": {
                               "title": "weight_unit",
@@ -20435,11 +20968,19 @@
                   "weight": {
                     "title": "weight",
                     "type": "object",
+                    "description": "The weight of a package",
+                    "required": [
+                      "value",
+                      "unit"
+                    ],
                     "additionalProperties": false,
                     "properties": {
                       "value": {
                         "type": "number",
-                        "format": "double"
+                        "format": "double",
+                        "minimum": 0,
+                        "exclusiveMinimum": true,
+                        "description": "The weight, in the specified unit"
                       },
                       "unit": {
                         "title": "weight_unit",
@@ -20457,28 +20998,45 @@
                   "dimensions": {
                     "title": "dimensions",
                     "type": "object",
+                    "description": "The dimensions of a package",
+                    "required": [
+                      "unit",
+                      "length",
+                      "width",
+                      "height"
+                    ],
                     "additionalProperties": false,
                     "properties": {
                       "unit": {
+                        "default": "inch",
                         "title": "dimension_unit",
                         "type": "string",
                         "enum": [
                           "inch",
                           "centimeter"
                         ],
-                        "description": "The possible dimension unit values"
+                        "description": "The dimension units that are supported by ShipEngine."
                       },
                       "length": {
                         "type": "number",
-                        "format": "double"
+                        "format": "double",
+                        "minimum": 0,
+                        "default": 0,
+                        "description": "The length of the package, in the specified unit"
                       },
                       "width": {
                         "type": "number",
-                        "format": "double"
+                        "format": "double",
+                        "minimum": 0,
+                        "default": 0,
+                        "description": "The width of the package, in the specified unit"
                       },
                       "height": {
                         "type": "number",
-                        "format": "double"
+                        "format": "double",
+                        "minimum": 0,
+                        "default": 0,
+                        "description": "The length of the package, in the specified unit"
                       }
                     }
                   },
@@ -22010,11 +22568,19 @@
                                 "weight": {
                                   "title": "weight",
                                   "type": "object",
+                                  "description": "The weight of a package",
+                                  "required": [
+                                    "value",
+                                    "unit"
+                                  ],
                                   "additionalProperties": false,
                                   "properties": {
                                     "value": {
                                       "type": "number",
-                                      "format": "double"
+                                      "format": "double",
+                                      "minimum": 0,
+                                      "exclusiveMinimum": true,
+                                      "description": "The weight, in the specified unit"
                                     },
                                     "unit": {
                                       "title": "weight_unit",
@@ -22032,28 +22598,45 @@
                                 "dimensions": {
                                   "title": "dimensions",
                                   "type": "object",
+                                  "description": "The dimensions of a package",
+                                  "required": [
+                                    "unit",
+                                    "length",
+                                    "width",
+                                    "height"
+                                  ],
                                   "additionalProperties": false,
                                   "properties": {
                                     "unit": {
+                                      "default": "inch",
                                       "title": "dimension_unit",
                                       "type": "string",
                                       "enum": [
                                         "inch",
                                         "centimeter"
                                       ],
-                                      "description": "The possible dimension unit values"
+                                      "description": "The dimension units that are supported by ShipEngine."
                                     },
                                     "length": {
                                       "type": "number",
-                                      "format": "double"
+                                      "format": "double",
+                                      "minimum": 0,
+                                      "default": 0,
+                                      "description": "The length of the package, in the specified unit"
                                     },
                                     "width": {
                                       "type": "number",
-                                      "format": "double"
+                                      "format": "double",
+                                      "minimum": 0,
+                                      "default": 0,
+                                      "description": "The width of the package, in the specified unit"
                                     },
                                     "height": {
                                       "type": "number",
-                                      "format": "double"
+                                      "format": "double",
+                                      "minimum": 0,
+                                      "default": 0,
+                                      "description": "The length of the package, in the specified unit"
                                     }
                                   }
                                 },
@@ -22110,11 +22693,19 @@
                             "readOnly": true,
                             "title": "weight",
                             "type": "object",
+                            "description": "The weight of a package",
+                            "required": [
+                              "value",
+                              "unit"
+                            ],
                             "additionalProperties": false,
                             "properties": {
                               "value": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "exclusiveMinimum": true,
+                                "description": "The weight, in the specified unit"
                               },
                               "unit": {
                                 "title": "weight_unit",
@@ -22773,11 +23364,19 @@
                               "weight": {
                                 "title": "weight",
                                 "type": "object",
+                                "description": "The weight of a package",
+                                "required": [
+                                  "value",
+                                  "unit"
+                                ],
                                 "additionalProperties": false,
                                 "properties": {
                                   "value": {
                                     "type": "number",
-                                    "format": "double"
+                                    "format": "double",
+                                    "minimum": 0,
+                                    "exclusiveMinimum": true,
+                                    "description": "The weight, in the specified unit"
                                   },
                                   "unit": {
                                     "title": "weight_unit",
@@ -22795,28 +23394,45 @@
                               "dimensions": {
                                 "title": "dimensions",
                                 "type": "object",
+                                "description": "The dimensions of a package",
+                                "required": [
+                                  "unit",
+                                  "length",
+                                  "width",
+                                  "height"
+                                ],
                                 "additionalProperties": false,
                                 "properties": {
                                   "unit": {
+                                    "default": "inch",
                                     "title": "dimension_unit",
                                     "type": "string",
                                     "enum": [
                                       "inch",
                                       "centimeter"
                                     ],
-                                    "description": "The possible dimension unit values"
+                                    "description": "The dimension units that are supported by ShipEngine."
                                   },
                                   "length": {
                                     "type": "number",
-                                    "format": "double"
+                                    "format": "double",
+                                    "minimum": 0,
+                                    "default": 0,
+                                    "description": "The length of the package, in the specified unit"
                                   },
                                   "width": {
                                     "type": "number",
-                                    "format": "double"
+                                    "format": "double",
+                                    "minimum": 0,
+                                    "default": 0,
+                                    "description": "The width of the package, in the specified unit"
                                   },
                                   "height": {
                                     "type": "number",
-                                    "format": "double"
+                                    "format": "double",
+                                    "minimum": 0,
+                                    "default": 0,
+                                    "description": "The length of the package, in the specified unit"
                                   }
                                 }
                               },
@@ -22873,11 +23489,19 @@
                           "readOnly": true,
                           "title": "weight",
                           "type": "object",
+                          "description": "The weight of a package",
+                          "required": [
+                            "value",
+                            "unit"
+                          ],
                           "additionalProperties": false,
                           "properties": {
                             "value": {
                               "type": "number",
-                              "format": "double"
+                              "format": "double",
+                              "minimum": 0,
+                              "exclusiveMinimum": true,
+                              "description": "The weight, in the specified unit"
                             },
                             "unit": {
                               "title": "weight_unit",
@@ -23499,11 +24123,19 @@
                                 "weight": {
                                   "title": "weight",
                                   "type": "object",
+                                  "description": "The weight of a package",
+                                  "required": [
+                                    "value",
+                                    "unit"
+                                  ],
                                   "additionalProperties": false,
                                   "properties": {
                                     "value": {
                                       "type": "number",
-                                      "format": "double"
+                                      "format": "double",
+                                      "minimum": 0,
+                                      "exclusiveMinimum": true,
+                                      "description": "The weight, in the specified unit"
                                     },
                                     "unit": {
                                       "title": "weight_unit",
@@ -23521,28 +24153,45 @@
                                 "dimensions": {
                                   "title": "dimensions",
                                   "type": "object",
+                                  "description": "The dimensions of a package",
+                                  "required": [
+                                    "unit",
+                                    "length",
+                                    "width",
+                                    "height"
+                                  ],
                                   "additionalProperties": false,
                                   "properties": {
                                     "unit": {
+                                      "default": "inch",
                                       "title": "dimension_unit",
                                       "type": "string",
                                       "enum": [
                                         "inch",
                                         "centimeter"
                                       ],
-                                      "description": "The possible dimension unit values"
+                                      "description": "The dimension units that are supported by ShipEngine."
                                     },
                                     "length": {
                                       "type": "number",
-                                      "format": "double"
+                                      "format": "double",
+                                      "minimum": 0,
+                                      "default": 0,
+                                      "description": "The length of the package, in the specified unit"
                                     },
                                     "width": {
                                       "type": "number",
-                                      "format": "double"
+                                      "format": "double",
+                                      "minimum": 0,
+                                      "default": 0,
+                                      "description": "The width of the package, in the specified unit"
                                     },
                                     "height": {
                                       "type": "number",
-                                      "format": "double"
+                                      "format": "double",
+                                      "minimum": 0,
+                                      "default": 0,
+                                      "description": "The length of the package, in the specified unit"
                                     }
                                   }
                                 },
@@ -23599,11 +24248,19 @@
                             "readOnly": true,
                             "title": "weight",
                             "type": "object",
+                            "description": "The weight of a package",
+                            "required": [
+                              "value",
+                              "unit"
+                            ],
                             "additionalProperties": false,
                             "properties": {
                               "value": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "exclusiveMinimum": true,
+                                "description": "The weight, in the specified unit"
                               },
                               "unit": {
                                 "title": "weight_unit",
@@ -24108,11 +24765,19 @@
                           "weight": {
                             "title": "weight",
                             "type": "object",
+                            "description": "The weight of a package",
+                            "required": [
+                              "value",
+                              "unit"
+                            ],
                             "additionalProperties": false,
                             "properties": {
                               "value": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "exclusiveMinimum": true,
+                                "description": "The weight, in the specified unit"
                               },
                               "unit": {
                                 "title": "weight_unit",
@@ -24130,28 +24795,45 @@
                           "dimensions": {
                             "title": "dimensions",
                             "type": "object",
+                            "description": "The dimensions of a package",
+                            "required": [
+                              "unit",
+                              "length",
+                              "width",
+                              "height"
+                            ],
                             "additionalProperties": false,
                             "properties": {
                               "unit": {
+                                "default": "inch",
                                 "title": "dimension_unit",
                                 "type": "string",
                                 "enum": [
                                   "inch",
                                   "centimeter"
                                 ],
-                                "description": "The possible dimension unit values"
+                                "description": "The dimension units that are supported by ShipEngine."
                               },
                               "length": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The length of the package, in the specified unit"
                               },
                               "width": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The width of the package, in the specified unit"
                               },
                               "height": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The length of the package, in the specified unit"
                               }
                             }
                           },
@@ -24208,11 +24890,19 @@
                       "readOnly": true,
                       "title": "weight",
                       "type": "object",
+                      "description": "The weight of a package",
+                      "required": [
+                        "value",
+                        "unit"
+                      ],
                       "additionalProperties": false,
                       "properties": {
                         "value": {
                           "type": "number",
-                          "format": "double"
+                          "format": "double",
+                          "minimum": 0,
+                          "exclusiveMinimum": true,
+                          "description": "The weight, in the specified unit"
                         },
                         "unit": {
                           "title": "weight_unit",
@@ -24754,11 +25444,19 @@
                           "weight": {
                             "title": "weight",
                             "type": "object",
+                            "description": "The weight of a package",
+                            "required": [
+                              "value",
+                              "unit"
+                            ],
                             "additionalProperties": false,
                             "properties": {
                               "value": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "exclusiveMinimum": true,
+                                "description": "The weight, in the specified unit"
                               },
                               "unit": {
                                 "title": "weight_unit",
@@ -24776,28 +25474,45 @@
                           "dimensions": {
                             "title": "dimensions",
                             "type": "object",
+                            "description": "The dimensions of a package",
+                            "required": [
+                              "unit",
+                              "length",
+                              "width",
+                              "height"
+                            ],
                             "additionalProperties": false,
                             "properties": {
                               "unit": {
+                                "default": "inch",
                                 "title": "dimension_unit",
                                 "type": "string",
                                 "enum": [
                                   "inch",
                                   "centimeter"
                                 ],
-                                "description": "The possible dimension unit values"
+                                "description": "The dimension units that are supported by ShipEngine."
                               },
                               "length": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The length of the package, in the specified unit"
                               },
                               "width": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The width of the package, in the specified unit"
                               },
                               "height": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The length of the package, in the specified unit"
                               }
                             }
                           },
@@ -24854,11 +25569,19 @@
                       "readOnly": true,
                       "title": "weight",
                       "type": "object",
+                      "description": "The weight of a package",
+                      "required": [
+                        "value",
+                        "unit"
+                      ],
                       "additionalProperties": false,
                       "properties": {
                         "value": {
                           "type": "number",
-                          "format": "double"
+                          "format": "double",
+                          "minimum": 0,
+                          "exclusiveMinimum": true,
+                          "description": "The weight, in the specified unit"
                         },
                         "unit": {
                           "title": "weight_unit",
@@ -25407,11 +26130,19 @@
                         "weight": {
                           "title": "weight",
                           "type": "object",
+                          "description": "The weight of a package",
+                          "required": [
+                            "value",
+                            "unit"
+                          ],
                           "additionalProperties": false,
                           "properties": {
                             "value": {
                               "type": "number",
-                              "format": "double"
+                              "format": "double",
+                              "minimum": 0,
+                              "exclusiveMinimum": true,
+                              "description": "The weight, in the specified unit"
                             },
                             "unit": {
                               "title": "weight_unit",
@@ -25429,28 +26160,45 @@
                         "dimensions": {
                           "title": "dimensions",
                           "type": "object",
+                          "description": "The dimensions of a package",
+                          "required": [
+                            "unit",
+                            "length",
+                            "width",
+                            "height"
+                          ],
                           "additionalProperties": false,
                           "properties": {
                             "unit": {
+                              "default": "inch",
                               "title": "dimension_unit",
                               "type": "string",
                               "enum": [
                                 "inch",
                                 "centimeter"
                               ],
-                              "description": "The possible dimension unit values"
+                              "description": "The dimension units that are supported by ShipEngine."
                             },
                             "length": {
                               "type": "number",
-                              "format": "double"
+                              "format": "double",
+                              "minimum": 0,
+                              "default": 0,
+                              "description": "The length of the package, in the specified unit"
                             },
                             "width": {
                               "type": "number",
-                              "format": "double"
+                              "format": "double",
+                              "minimum": 0,
+                              "default": 0,
+                              "description": "The width of the package, in the specified unit"
                             },
                             "height": {
                               "type": "number",
-                              "format": "double"
+                              "format": "double",
+                              "minimum": 0,
+                              "default": 0,
+                              "description": "The length of the package, in the specified unit"
                             }
                           }
                         },
@@ -25507,11 +26255,19 @@
                     "readOnly": true,
                     "title": "weight",
                     "type": "object",
+                    "description": "The weight of a package",
+                    "required": [
+                      "value",
+                      "unit"
+                    ],
                     "additionalProperties": false,
                     "properties": {
                       "value": {
                         "type": "number",
-                        "format": "double"
+                        "format": "double",
+                        "minimum": 0,
+                        "exclusiveMinimum": true,
+                        "description": "The weight, in the specified unit"
                       },
                       "unit": {
                         "title": "weight_unit",
@@ -26120,11 +26876,19 @@
                           "weight": {
                             "title": "weight",
                             "type": "object",
+                            "description": "The weight of a package",
+                            "required": [
+                              "value",
+                              "unit"
+                            ],
                             "additionalProperties": false,
                             "properties": {
                               "value": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "exclusiveMinimum": true,
+                                "description": "The weight, in the specified unit"
                               },
                               "unit": {
                                 "title": "weight_unit",
@@ -26142,28 +26906,45 @@
                           "dimensions": {
                             "title": "dimensions",
                             "type": "object",
+                            "description": "The dimensions of a package",
+                            "required": [
+                              "unit",
+                              "length",
+                              "width",
+                              "height"
+                            ],
                             "additionalProperties": false,
                             "properties": {
                               "unit": {
+                                "default": "inch",
                                 "title": "dimension_unit",
                                 "type": "string",
                                 "enum": [
                                   "inch",
                                   "centimeter"
                                 ],
-                                "description": "The possible dimension unit values"
+                                "description": "The dimension units that are supported by ShipEngine."
                               },
                               "length": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The length of the package, in the specified unit"
                               },
                               "width": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The width of the package, in the specified unit"
                               },
                               "height": {
                                 "type": "number",
-                                "format": "double"
+                                "format": "double",
+                                "minimum": 0,
+                                "default": 0,
+                                "description": "The length of the package, in the specified unit"
                               }
                             }
                           },
@@ -26220,11 +27001,19 @@
                       "readOnly": true,
                       "title": "weight",
                       "type": "object",
+                      "description": "The weight of a package",
+                      "required": [
+                        "value",
+                        "unit"
+                      ],
                       "additionalProperties": false,
                       "properties": {
                         "value": {
                           "type": "number",
-                          "format": "double"
+                          "format": "double",
+                          "minimum": 0,
+                          "exclusiveMinimum": true,
+                          "description": "The weight, in the specified unit"
                         },
                         "unit": {
                           "title": "weight_unit",

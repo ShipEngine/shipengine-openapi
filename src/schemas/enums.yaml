@@ -175,7 +175,7 @@ dimension_unit:
   enum:
     - inch
     - centimeter
-  description: The possible dimension unit values
+  description: The dimension units that are supported by ShipEngine.
 event:
   title: event
   type: string
