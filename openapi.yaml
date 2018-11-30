@@ -60,6 +60,12 @@ tags:
   - name: marketplace_accounts
     description: |
       marketplace accounts
+  - name: natural_language_processing
+    description: |
+      ShipEngine's NLP (Natural Language Processing) APIs make it easy for you to extract structured shipping data — such as addresses, names, package weight and dimensions, insurance options, and more — from unstructured text like emails, PDFs, and chat messages.
+    externalDocs:
+      url: 'https://docs.shipengine.com/docs/natural-language-processing-nlp'
+      description: 'Find out how our Natural Language Processing APIs can help you extract useful and meaningful data from emails, documents, chat messages, or any other text source.'
   - name: packages
     description: |
       packages
@@ -94,6 +100,243 @@ servers:
 security:
   - api_key: []
 paths:
+  /v1/addresses/recognize:
+    summary: Parse addresses
+    description: |
+      Data often enters your system as unstructured text (for example: emails, SMS messages, support tickets, or other documents). ShipEngine's address-recognition API helps you extract meaningful address data (e.g. recipient name, address line 1, line 2, city, postal code) from this unstructured text.
+    put:
+      summary: Parse addresses
+      description: |
+        The address-recognition API makes it easy for you to extract address data from unstructured text, including the recipient name, line 1, line 2, city, postal code, and more.
+
+        Data often enters your system as unstructured text (for example: emails, SMS messages, support tickets, or other documents). ShipEngine's address-recognition API helps you extract meaningful, structured data from this unstructured text. The parsed address data is returned in the same structure that's used for other ShipEngine APIs, such as address validation, rate quotes, and shipping labels.
+
+        > ###### Note
+        > Address recognition is currently supported for the United States, Canada, Australia, New Zealand, the United Kingdom, and Ireland.
+      tags:
+        - address_validation
+        - natural_language_processing
+      operationId: address.parse
+      requestBody:
+        required: true
+        description: |
+          The only required field is `text`, which is the text to be parsed. You can optionally also provide an `address` containing already-known values. For example, you may already know the recipient's name, city, and country, and only want to parse the street address into separate lines.
+        content:
+          application/json:
+            schema:
+              title: recognize_address_request_body
+              type: object
+              description: |
+                The only required field is `text`, which is the text to be parsed. You can optionally also provide an `address` containing already-known values. For example, you may already know the recipient's name, city, and country, and only want to parse the street address into separate lines.
+              required:
+                - text
+              additionalProperties: false
+              properties:
+                text:
+                  type: string
+                  minLength: 1
+                  example: 'Margie McMiller at 3800 North Lamar suite 200 in austin, tx.  The zip code there is 78652.'
+                  description: The unstructured text that contains address-related entities
+                address:
+                  allOf:
+                    - $ref: '#/components/schemas/address'
+                  description: |
+                    This field lets you optionally provide any already-known address values. For example, you may already know the recipient's name, city, and country, and only want to parse the street address into separate lines.
+            examples:
+              text_only:
+                summary: Text only
+                description: |
+                  This is the simplest way to call the address-recognition API. Just pass the text to be parsed and nothing else.
+                value:
+                  text: 'Margie McMiller at 3800 North Lamar suite 200 in austin, tx.  The zip code there is 78652.'
+              some_known_fields:
+                summary: Some known fields
+                description: |
+                  You can optionally provide an `address` object containing any already-known values. For example, you may already know the recipient's name, city, and country, and only want to parse the street address into separate lines.
+                value:
+                  text: 'Margie McMiller at 3800 North Lamar suite 200 in austin, tx.  The zip code there is 78652.'
+                  address:
+                    country_code: US
+                    address_residential_indicator: 'yes'
+      responses:
+        '200':
+          description: |
+            Returns the parsed address, as well as a confidence score and a list of all the entities that were recognized in the text.
+          content:
+            application/json:
+              schema:
+                title: recognize_address_response_body
+                type: object
+                description: |
+                  The parsed address, as well as a confidence score and a list of all the entities that were recognized in the text.
+                required:
+                  - score
+                  - address
+                  - entities
+                additionalProperties: false
+                properties:
+                  score:
+                    type: number
+                    format: double
+                    minimum: 0
+                    maximum: 1
+                    description: |
+                      A confidence score between zero and one that indicates how certain the API is that it understood the text.
+                  address:
+                    allOf:
+                      - $ref: '#/components/schemas/address'
+                    description: |
+                      The parsed address.  This address may not be complete, depending on how much information was included in the text and how confident the API is about each recognized entity.
+
+                      > ###### Note
+                      > The address-recognition API does not currently perform any validation of the parsed address, so we recommend that you use the [address-validation API](https://docs.shipengine.com/docs/address-validation) to ensure that the address is correct.
+                  entities:
+                    type: array
+                    minItems: 0
+                    items:
+                      title: recognized_entity
+                      type: object
+                      description: |
+                        An entity is a single piece of data that was recognized in unstructured text.  For example, a city, a postal code, package dimensions, insured value, etc.  Each entity includes the original text and the parsed value.
+                      required:
+                        - type
+                        - score
+                        - text
+                        - start_index
+                        - end_index
+                      additionalProperties: false
+                      properties:
+                        type:
+                          type: string
+                          minLength: 1
+                          description: 'The Entity type (e.g. "weight", "person", "address_line1", etc.)'
+                        score:
+                          format: double
+                          minimum: 0
+                          maximum: 1
+                          type: number
+                          description: |
+                            A confidence score between zero and one that indicates how certain the API is that it correctly recognized this entity
+                        text:
+                          type: string
+                          minLength: 1
+                          description: The substring from the original text that was recognized as this entity
+                        start_index:
+                          type: number
+                          format: integer
+                          minimum: 0
+                          description: The index of the first character of this entity within the original text
+                        end_index:
+                          type: number
+                          format: integer
+                          minimum: 0
+                          description: The index of the last character of this entity within the original text
+                        result:
+                          type: object
+                          description: |
+                            The result object is different for each entity type.
+
+                            Most entity results have a `value` field, which is the normalized value of the entity.  For example, if the substring "john doe" was recognized as a "person" entity, then the value might be normalized to have proper capitalization (e.g. "John Doe").  Or if the substring "ft worth" was recognized as a "city" entity, then the value might be normalized to "Fort Worth".
+
+                            Some entities have other information in addition to, or instead of a `value`.  For example, a "dimensions" entity will have separate fields for `length`, `width`, `height`, and `unit`.
+                    description: |
+                      All of the entities that were recognized in the text. An "entity" is a single piece of data, such as a city, a postal code, or an address line.  Each entity includes the original text and the parsed value.
+              examples:
+                text_only:
+                  description: |
+                    This response shows that the address-recognition API was able to recognize all the address entities in the text.  Notice that the `country_code` is not populated and the `address_residential_indicator` is "unknown", since neither of these fields was included in the text.
+                  value:
+                    score: 0.9122137426845613
+                    address:
+                      name: Margie McMiller
+                      address_line1: 3800 North Lamar
+                      address_line2: Suite 200
+                      city_locality: Austin
+                      state_province: TX
+                      postal_code: 78652
+                      address_residential_indicator: unknown
+                    entities:
+                      - type: person
+                        score: 0.9519646137063122
+                        text: Margie McMiller
+                        start_index: 0
+                        end_index: 14
+                        result:
+                          value: Margie McMiller
+                      - type: address_line
+                        score: 0.9805313966503588
+                        text: 3800 North Lamar
+                        start_index: 19
+                        end_index: 34
+                        result:
+                          line: 1
+                          value: 3800 North Lamar
+                      - type: number
+                        score: 0.9805313966503588
+                        text: 3800
+                        start_index: 19
+                        end_index: 22
+                        result:
+                          type: cardinal
+                          value: 3800
+                      - type: address_line
+                        score: 1
+                        text: suite 200
+                        start_index: 36
+                        end_index: 44
+                        result:
+                          line: 2
+                          value: Suite 200
+                      - type: number
+                        score: 0.9805313966503588
+                        text: 200
+                        start_index: 42
+                        end_index: 44
+                        result:
+                          type: cardinal
+                          value: 200
+                      - type: city_locality
+                        score: 0.9805313966503588
+                        text: austin
+                        start_index: 49
+                        end_index: 54
+                        result:
+                          value: Austin
+                      - type: state_province
+                        score: 0.6082904353940255
+                        text: tx
+                        start_index: 57
+                        end_index: 58
+                        result:
+                          name: Texas
+                          value: TX
+                      - type: postal_code
+                        score: 0.9519646137063122
+                        text: 78652
+                        start_index: 84
+                        end_index: 88
+                        result:
+                          value: 78652
+                some_known_fields:
+                  description: |
+                    This response is shows that the address-recognition API was able to recognize all the address entities in the text.  Notice that the `country_code` and `address_residential_indicator` fields are populated with the values that were provided in the request.
+                  value:
+                    score: 0.9122137426845613
+                    address:
+                      name: Margie McMiller
+                      address_line1: 3800 North Lamar
+                      address_line2: Suite 200
+                      city_locality: Austin
+                      state_province: TX
+                      postal_code: 78652
+                      country_code: US
+                      address_residential_indicator: 'yes'
+                    entities:
+                      $ref: '#/paths/~1v1~1addresses~1recognize/put/responses/200/content/application~1json/examples/text_only/value/entities'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/server_error'
   /v1/addresses/validate:
     post:
       tags:
@@ -2857,17 +3100,17 @@ components:
         shipment_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the shipment id
+          description: A string that uniquely identifies the shipment
         carrier_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the carrier id
+          description: A string that uniquely identifies the carrier
         service_code:
           type: string
         external_shipment_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the external shipment id
+          description: A string that uniquely identifies the external shipment
         ship_date:
           type: string
           format: date-time
@@ -2886,7 +3129,7 @@ components:
         warehouse_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the warehouse id
+          description: A string that uniquely identifies the warehouse
         return_to:
           $ref: '#/components/schemas/address'
         confirmation:
@@ -2904,7 +3147,7 @@ components:
         packages:
           type: array
           items:
-            $ref: '#/components/schemas/shipment_package'
+            $ref: '#/components/schemas/package'
         total_weight:
           readOnly: true
           allOf:
@@ -3028,11 +3271,11 @@ components:
         batch_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the batch id
+          description: A string that uniquely identifies the batch
         external_batch_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the external batch id
+          description: A string that uniquely identifies the external batch
         batch_notes:
           type: string
         created_at:
@@ -3085,7 +3328,7 @@ components:
               shipment_id:
                 allOf:
                   - $ref: '#/components/schemas/se_id'
-                description: A string that uniquely identifies the shipment id
+                description: A string that uniquely identifies the shipment
         links:
           $ref: '#/components/schemas/pagination_link'
     batch_status:
@@ -3132,11 +3375,11 @@ components:
           rate_request_id:
             allOf:
               - $ref: '#/components/schemas/se_id'
-            description: A string that uniquely identifies the rate request id
+            description: A string that uniquely identifies the rate request
           shipment_id:
             allOf:
               - $ref: '#/components/schemas/se_id'
-            description: A string that uniquely identifies the shipment id
+            description: A string that uniquely identifies the shipment
           created_at:
             type: string
             format: date-time
@@ -3161,7 +3404,7 @@ components:
         carrier_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the carrier id
+          description: A string that uniquely identifies the carrier
         carrier_code:
           type: string
         account_number:
@@ -3294,7 +3537,7 @@ components:
         carrier_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the carrier id
+          description: A string that uniquely identifies the carrier
     contents:
       title: contents
       type: string
@@ -3313,7 +3556,7 @@ components:
         external_batch_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the external batch id
+          description: A string that uniquely identifies the external batch
         batch_notes:
           type: string
         shipment_ids:
@@ -3338,7 +3581,7 @@ components:
         carrier_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the carrier id
+          description: A string that uniquely identifies the carrier
         excluded_label_ids:
           type: array
           items:
@@ -3346,7 +3589,7 @@ components:
         warehouse_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the warehouse id
+          description: A string that uniquely identifies the warehouse
         ship_date:
           type: string
           format: date-time
@@ -3364,17 +3607,17 @@ components:
         shipment_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the shipment id
+          description: A string that uniquely identifies the shipment
         carrier_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the carrier id
+          description: A string that uniquely identifies the carrier
         service_code:
           type: string
         external_shipment_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the external shipment id
+          description: A string that uniquely identifies the external shipment
         ship_date:
           type: string
           format: date-time
@@ -3393,7 +3636,7 @@ components:
         warehouse_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the warehouse id
+          description: A string that uniquely identifies the warehouse
         return_to:
           $ref: '#/components/schemas/address'
         confirmation:
@@ -3411,7 +3654,7 @@ components:
         packages:
           type: array
           items:
-            $ref: '#/components/schemas/shipment_package'
+            $ref: '#/components/schemas/package'
         total_weight:
           readOnly: true
           allOf:
@@ -3580,7 +3823,7 @@ components:
         site_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the site id
+          description: A string that uniquely identifies the site
         password:
           type: string
         nickname:
@@ -3801,7 +4044,7 @@ components:
         mailer_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the mailer id
+          description: A string that uniquely identifies the mailer
         profile_name:
           type: string
         password:
@@ -3859,7 +4102,7 @@ components:
               customs_item_id:
                 allOf:
                   - $ref: '#/components/schemas/se_id'
-                description: A string that uniquely identifies the customs item id
+                description: A string that uniquely identifies the customs item
               description:
                 type: string
               quantity:
@@ -3906,6 +4149,7 @@ components:
         - form_download
         - insurance_claim
         - packages
+      additionalProperties: false
       properties:
         label_id:
           readOnly: true
@@ -4172,7 +4416,7 @@ components:
         warehouse_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the warehouse id
+          description: A string that uniquely identifies the warehouse
         ship_date_start:
           type: string
           format: date-time
@@ -4188,7 +4432,7 @@ components:
         carrier_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the carrier id
+          description: A string that uniquely identifies the carrier
         page:
           type: integer
           format: int32
@@ -4296,11 +4540,11 @@ components:
         manifest_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the manifest id
+          description: A string that uniquely identifies the manifest
         form_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the form id
+          description: A string that uniquely identifies the form
         created_at:
           type: string
           format: date-time
@@ -4313,15 +4557,15 @@ components:
         warehouse_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the warehouse id
+          description: A string that uniquely identifies the warehouse
         submission_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the submission id
+          description: A string that uniquely identifies the submission
         carrier_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the carrier id
+          description: A string that uniquely identifies the carrier
         manifest_download:
           $ref: '#/components/schemas/optional_link'
     modify_batch_request_body:
@@ -4447,12 +4691,10 @@ components:
             The insured value of the package.  Requires the `insurance_provider` field of the shipment to be set.
         tracking_number:
           readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/tracking_number'
           description: |
             The tracking number for the package.  The format depends on the carrier.
-          title: tracking_number
-          type: string
-          minLength: 1
-          example: 1Z932R800392060079
         label_messages:
           type: object
           description: |
@@ -4526,7 +4768,7 @@ components:
         package_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the package id
+          description: A string that uniquely identifies the package
         package_code:
           type: string
         name:
@@ -4614,7 +4856,7 @@ components:
         carrier_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the carrier id
+          description: A string that uniquely identifies the carrier
         message:
           type: string
     purchase_label_request_body:
@@ -4657,13 +4899,13 @@ components:
         rate_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the rate id
+          description: A string that uniquely identifies the rate
         rate_type:
           $ref: '#/components/schemas/rate_type'
         carrier_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the carrier id
+          description: A string that uniquely identifies the carrier
         shipping_amount:
           $ref: '#/components/schemas/monetary_value'
         insurance_amount:
@@ -4722,7 +4964,7 @@ components:
         carrier_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the carrier id
+          description: A string that uniquely identifies the carrier
         carrier_ids:
           type: array
           items:
@@ -4780,11 +5022,11 @@ components:
         rate_request_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the rate request id
+          description: A string that uniquely identifies the rate request
         shipment_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the shipment id
+          description: A string that uniquely identifies the shipment
         created_at:
           type: string
           format: date-time
@@ -4811,7 +5053,7 @@ components:
         shipment_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the shipment id
+          description: A string that uniquely identifies the shipment
         shipment:
           $ref: '#/components/schemas/address_validating_shipment'
         rate_options:
@@ -4826,17 +5068,17 @@ components:
         shipment_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the shipment id
+          description: A string that uniquely identifies the shipment
         carrier_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the carrier id
+          description: A string that uniquely identifies the carrier
         service_code:
           type: string
         external_shipment_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the external shipment id
+          description: A string that uniquely identifies the external shipment
         ship_date:
           type: string
           format: date-time
@@ -4855,7 +5097,7 @@ components:
         warehouse_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the warehouse id
+          description: A string that uniquely identifies the warehouse
         return_to:
           $ref: '#/components/schemas/address'
         confirmation:
@@ -4873,7 +5115,7 @@ components:
         packages:
           type: array
           items:
-            $ref: '#/components/schemas/shipment_package'
+            $ref: '#/components/schemas/package'
         total_weight:
           readOnly: true
           allOf:
@@ -4960,7 +5202,7 @@ components:
         carrier_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the carrier id
+          description: A string that uniquely identifies the carrier
         carrier_code:
           type: string
         service_code:
@@ -4988,17 +5230,17 @@ components:
         shipment_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the shipment id
+          description: A string that uniquely identifies the shipment
         carrier_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the carrier id
+          description: A string that uniquely identifies the carrier
         service_code:
           type: string
         external_shipment_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the external shipment id
+          description: A string that uniquely identifies the external shipment
         ship_date:
           type: string
           format: date-time
@@ -5017,7 +5259,7 @@ components:
         warehouse_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the warehouse id
+          description: A string that uniquely identifies the warehouse
         return_to:
           $ref: '#/components/schemas/address'
         confirmation:
@@ -5035,7 +5277,7 @@ components:
         packages:
           type: array
           items:
-            $ref: '#/components/schemas/shipment_package'
+            $ref: '#/components/schemas/package'
         total_weight:
           readOnly: true
           allOf:
@@ -5048,7 +5290,7 @@ components:
         shipment_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the shipment id
+          description: A string that uniquely identifies the shipment
         tag:
           $ref: '#/components/schemas/tag_response_body'
     shipment_errors_response_body:
@@ -5068,28 +5310,13 @@ components:
               shipment_id:
                 allOf:
                   - $ref: '#/components/schemas/se_id'
-                description: A string that uniquely identifies the shipment id
+                description: A string that uniquely identifies the shipment
               external_shipment_id:
                 allOf:
                   - $ref: '#/components/schemas/se_id'
-                description: A string that uniquely identifies the external shipment id
+                description: A string that uniquely identifies the external shipment
         links:
           $ref: '#/components/schemas/pagination_link'
-    shipment_package:
-      title: shipment_package
-      type: object
-      additionalProperties: false
-      properties:
-        package_code:
-          type: string
-        weight:
-          $ref: '#/components/schemas/weight'
-        dimensions:
-          $ref: '#/components/schemas/dimensions'
-        insured_value:
-          $ref: '#/components/schemas/monetary_value'
-        label_messages:
-          $ref: '#/components/schemas/label_messages'
     shipment_response_body:
       title: shipment_response_body
       type: object
@@ -5270,6 +5497,12 @@ components:
                 type: string
               signer:
                 type: string
+    tracking_number:
+      title: tracking_number
+      type: string
+      minLength: 1
+      example: 1Z932R800392060079
+      description: A tracking number for a package. The format depends on the carrier.
     tracking_status:
       title: tracking_status
       type: string
@@ -5403,7 +5636,7 @@ components:
         control_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the control id
+          description: A string that uniquely identifies the control
         invoice_amount:
           type: number
           format: double
@@ -5479,7 +5712,7 @@ components:
         warehouse_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the warehouse id
+          description: A string that uniquely identifies the warehouse
         name:
           type: string
         created_at:
@@ -5506,7 +5739,7 @@ components:
         warehouse_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the warehouse id
+          description: A string that uniquely identifies the warehouse
         name:
           type: string
         origin_address:
@@ -5532,7 +5765,7 @@ components:
         webhook_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the webhook id
+          description: A string that uniquely identifies the webhook
         url:
           type: string
         event:

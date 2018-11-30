@@ -8,11 +8,11 @@ items:
     rate_request_id:
       allOf:
         - $ref: '../primitives.yaml#/se_id'
-      description: A string that uniquely identifies the rate request id
+      description: A string that uniquely identifies the rate request
     shipment_id:
       allOf:
         - $ref: '../primitives.yaml#/se_id'
-      description: A string that uniquely identifies the shipment id
+      description: A string that uniquely identifies the shipment
     created_at:
       type: string
       format: date-time

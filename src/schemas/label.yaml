@@ -29,6 +29,7 @@ required:
   - form_download
   - insurance_claim
   - packages
+additionalProperties: false
 properties:
   label_id:
     readOnly: true

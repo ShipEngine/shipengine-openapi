@@ -242,8 +242,6 @@ shipment_add_tag_response_body:
   $ref: responses/shipment_add_tag_response_body.yaml
 shipment_errors_response_body:
   $ref: responses/shipment_errors_response_body.yaml
-shipment_package:
-  $ref: shipment_package.yaml
 shipment_response_body:
   $ref: responses/shipment_response_body.yaml
 shipment_status:
@@ -268,6 +266,8 @@ tag_response_body:
   $ref: responses/tag_response_body.yaml
 tracking_information_response_body:
   $ref: responses/tracking_information_response_body.yaml
+tracking_number:
+  $ref: 'primitives.yaml#/tracking_number'
 tracking_status:
   $ref: 'enums.yaml#/tracking_status'
 type:

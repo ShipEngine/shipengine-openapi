@@ -14,7 +14,7 @@ properties:
         customs_item_id:
           allOf:
             - $ref: 'primitives.yaml#/se_id'
-          description: A string that uniquely identifies the customs item id
+          description: A string that uniquely identifies the customs item
         description:
           type: string
         quantity:

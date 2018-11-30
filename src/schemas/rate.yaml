@@ -5,13 +5,13 @@ properties:
   rate_id:
     allOf:
       - $ref: 'primitives.yaml#/se_id'
-    description: A string that uniquely identifies the rate id
+    description: A string that uniquely identifies the rate
   rate_type:
     $ref: 'enums.yaml#/rate_type'
   carrier_id:
     allOf:
       - $ref: 'primitives.yaml#/se_id'
-    description: A string that uniquely identifies the carrier id
+    description: A string that uniquely identifies the carrier
   shipping_amount:
     $ref: monetary_value.yaml
   insurance_amount:

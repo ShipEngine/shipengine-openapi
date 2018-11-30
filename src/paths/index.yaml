@@ -1,3 +1,5 @@
+/v1/addresses/recognize:
+  $ref: v1/addresses/recognize/path.yaml
 /v1/addresses/validate:
   $ref: v1/addresses/validate/path.yaml
 /v1/batches:

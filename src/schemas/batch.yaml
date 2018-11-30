@@ -9,11 +9,11 @@ properties:
   batch_id:
     allOf:
       - $ref: 'primitives.yaml#/se_id'
-    description: A string that uniquely identifies the batch id
+    description: A string that uniquely identifies the batch
   external_batch_id:
     allOf:
       - $ref: 'primitives.yaml#/se_id'
-    description: A string that uniquely identifies the external batch id
+    description: A string that uniquely identifies the external batch
   batch_notes:
     type: string
   created_at:

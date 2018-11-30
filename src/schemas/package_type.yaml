@@ -7,7 +7,7 @@ properties:
   package_id:
     allOf:
       - $ref: 'primitives.yaml#/se_id'
-    description: A string that uniquely identifies the package id
+    description: A string that uniquely identifies the package
   package_code:
     type: string
   name:
