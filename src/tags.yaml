@@ -1,4 +1,4 @@
-- name: address_validation
+- name: addresses
   description: |
     No matter your shipping volume, failed deliveries and address change surcharges cut into your bottom line and damage perception with customers. Our address validation services ensure your packages make it to the right place the first time. [Learn how to leverage our address validation services here.](https://docs.shipengine.com/docs/address-validation)
 

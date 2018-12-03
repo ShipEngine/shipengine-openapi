@@ -1,4 +1,4 @@
-summary: Parse addresses
+summary: Parse an address
 description: |
   Data often enters your system as unstructured text (for example: emails, SMS messages, support tickets, or other documents). ShipEngine's address-recognition API helps you extract meaningful address data (e.g. recipient name, address line 1, line 2, city, postal code) from this unstructured text.
 put:

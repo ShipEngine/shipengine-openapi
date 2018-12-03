@@ -13,7 +13,7 @@
   },
   "tags": [
     {
-      "name": "address_validation",
+      "name": "addresses",
       "description": "No matter your shipping volume, failed deliveries and address change surcharges cut into your bottom line and damage perception with customers. Our address validation services ensure your packages make it to the right place the first time. [Learn how to leverage our address validation services here.](https://docs.shipengine.com/docs/address-validation)\n\nShipEngine supports address validation for virtually every country on Earth, including the United States, Canada, Great Britain, Australia, Germany, France, Norway, Spain, Sweden, Israel, Italy, and over 160 others.\n",
       "externalDocs": {
         "url": "https://docs.shipengine.com/docs/address-validation",
@@ -113,13 +113,13 @@
   ],
   "paths": {
     "/v1/addresses/recognize": {
-      "summary": "Parse addresses",
+      "summary": "Parse an address",
       "description": "Data often enters your system as unstructured text (for example: emails, SMS messages, support tickets, or other documents). ShipEngine's address-recognition API helps you extract meaningful address data (e.g. recipient name, address line 1, line 2, city, postal code) from this unstructured text.\n",
       "put": {
-        "summary": "Parse addresses",
+        "summary": "Parse an address",
         "description": "The address-recognition API makes it easy for you to extract address data from unstructured text, including the recipient name, line 1, line 2, city, postal code, and more.\n\nData often enters your system as unstructured text (for example: emails, SMS messages, support tickets, or other documents). ShipEngine's address-recognition API helps you extract meaningful, structured data from this unstructured text. The parsed address data is returned in the same structure that's used for other ShipEngine APIs, such as address validation, rate quotes, and shipping labels.\n\n> ###### Note\n> Address recognition is currently supported for the United States, Canada, Australia, New Zealand, the United Kingdom, and Ireland.\n",
         "tags": [
-          "address_validation",
+          "addresses",
           "natural_language_processing"
         ],
         "operationId": "address.parse",
@@ -638,7 +638,7 @@
     "/v1/addresses/validate": {
       "post": {
         "tags": [
-          "address_validation"
+          "addresses"
         ],
         "operationId": "addresses.validate_addresses",
         "requestBody": {

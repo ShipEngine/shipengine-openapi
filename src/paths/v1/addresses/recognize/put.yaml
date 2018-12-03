@@ -1,4 +1,4 @@
-summary: Parse addresses
+summary: Parse an address
 description: |
   The address-recognition API makes it easy for you to extract address data from unstructured text, including the recipient name, line 1, line 2, city, postal code, and more.
 
@@ -7,7 +7,7 @@ description: |
   > ###### Note
   > Address recognition is currently supported for the United States, Canada, Australia, New Zealand, the United Kingdom, and Ireland.
 tags:
-  - address_validation
+  - addresses
   - natural_language_processing
 operationId: address.parse
 requestBody:
