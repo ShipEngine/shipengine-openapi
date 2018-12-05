@@ -19,7 +19,7 @@ Other API Definition Formats
 -----------------------------------
 
 ### ![JSON Schema Logo](https://shipengine.github.io/img/json-schema-logo-small.png) JSON Schema
-If you need to validate API requests and responses, then you may want to use [our JSON Schema definitions](https://github.com/shipengine/JSON-Schema).
+If you need to validate API requests and responses, then you may want to use [our JSON Schema definitions](https://github.com/ShipEngine/shipengine-json-schema).
 
 ### ![Postman Logo](https://shipengine.github.io/img/postman-logo-small.png) Postman
 An official ShipEngine [Postman](https://getpostman.com) collection is **coming soon!**
