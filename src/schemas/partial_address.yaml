@@ -1,4 +1,4 @@
-title: address
+title: partial_address
 type: object
 description: A complete or partial mailing address.
 additionalProperties: false
