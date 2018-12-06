@@ -17,11 +17,11 @@ properties:
       A confidence score between zero and one that indicates how certain the API is that it understood the text.
   address:
     allOf:
-      - $ref: ../address.yaml
+      - $ref: ../partial_address.yaml
     description: |
       The parsed address.  This address may not be complete, depending on how much information was included in the text and how confident the API is about each recognized entity.
 
-      > ###### Note
+      > ###### Note:
       > The address-recognition API does not currently perform any validation of the parsed address, so we recommend that you use the [address-validation API](https://docs.shipengine.com/docs/address-validation) to ensure that the address is correct.
   entities:
     type: array

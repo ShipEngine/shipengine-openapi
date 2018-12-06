@@ -13,6 +13,6 @@ properties:
     description: The unstructured text that contains address-related entities
   address:
     allOf:
-      - $ref: ../address.yaml
+      - $ref: ../partial_address.yaml
     description: |
-      This field lets you optionally provide any already-known address values. For example, you may already know the recipient's name, city, and country, and only want to parse the street address into separate lines.
+      You can optionally provide any already-known address values. For example, you may already know the recipient's name, city, and country, and only want to parse the street address into separate lines.

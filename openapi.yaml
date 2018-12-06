@@ -111,7 +111,7 @@ paths:
 
         Data often enters your system as unstructured text (for example: emails, SMS messages, support tickets, or other documents). ShipEngine's address-recognition API helps you extract meaningful, structured data from this unstructured text. The parsed address data is returned in the same structure that's used for other ShipEngine APIs, such as address validation, rate quotes, and shipping labels.
 
-        > ###### Note
+        > ###### Note:
         > Address recognition is currently supported for the United States, Canada, Australia, New Zealand, the United Kingdom, and Ireland.
       tags:
         - addresses
@@ -141,7 +141,7 @@ paths:
                   allOf:
                     - $ref: '#/components/schemas/address'
                   description: |
-                    This field lets you optionally provide any already-known address values. For example, you may already know the recipient's name, city, and country, and only want to parse the street address into separate lines.
+                    You can optionally provide any already-known address values. For example, you may already know the recipient's name, city, and country, and only want to parse the street address into separate lines.
             examples:
               text_only:
                 summary: Text only
@@ -188,7 +188,7 @@ paths:
                     description: |
                       The parsed address.  This address may not be complete, depending on how much information was included in the text and how confident the API is about each recognized entity.
 
-                      > ###### Note
+                      > ###### Note:
                       > The address-recognition API does not currently perform any validation of the parsed address, so we recommend that you use the [address-validation API](https://docs.shipengine.com/docs/address-validation) to ensure that the address is correct.
                   entities:
                     type: array
@@ -1827,7 +1827,7 @@ paths:
 
         By default, all labels are returned, 25 at a time, starting with the most recently created ones.  You can combine multiple filter options to narrow-down the results.  For example, if you only want to get your UPS labels for your east coast warehouse you could query by both `warehouse_id` and `carrier_id`
 
-        > ###### Warning
+        > ###### Warning:
         > Test labels (those created with `test_label: true`) are not included in the results.  If you've only ever created test labels, then the results will be empty.
       tags:
         - labels
@@ -3058,30 +3058,81 @@ components:
     address:
       title: address
       type: object
+      description: A complete or partial mailing address.
+      required:
+        - address_line1
+        - city_locality
+        - state_province
+        - postal_code
+        - country_code
+        - address_residential_indicator
       additionalProperties: false
       properties:
         name:
           type: string
+          minLength: 1
+          example: John Doe
+          description: |
+            The name of a contact person at the address.  This field may be set instead of - or in addition to - the `company_name` field.
         phone:
           type: string
+          minLength: 1
+          example: +1 204-253-9411 ext. 123
+          description: |
+            The phone number of a contact person at the address.  The format of this phone number varies depending on the country.
         company_name:
           type: string
+          minLength: 1
+          example: The Home Depot
+          description: |
+            If this is a business address, then the company name should be specified here.
         address_line1:
           type: string
+          minLength: 1
+          example: 1999 Bishop Grandin Blvd.
+          description: |
+            The first line of the street address.  For some addresses, this may be the only line.  Other addresses may require 2 or 3 lines.
         address_line2:
           type: string
+          minLength: 1
+          example: Unit 408
+          description: |
+            The second line of the street address.  For some addresses, this line may not be needed.
         address_line3:
           type: string
+          minLength: 1
+          example: 'Building #7'
+          description: |
+            The third line of the street address.  For some addresses, this line may not be needed.
         city_locality:
           type: string
+          minLength: 1
+          example: Winnipeg
+          description: The name of the city or locality
         state_province:
           type: string
+          minLength: 1
+          example: Manitoba
+          description: |
+            The state or province.  For some countries (including the U.S.) only abbreviations are allowed.  Other countries allow the full name or abbreviation.
         postal_code:
           type: string
+          minLength: 1
+          example: MB R2M 3E8
+          description: postal code
         country_code:
           type: string
+          minLength: 2
+          maxLength: 2
+          example: CA
+          description: |
+            The two-letter [ISO 3166-1 country code](https://en.wikipedia.org/wiki/ISO_3166-1)
         address_residential_indicator:
-          $ref: '#/components/schemas/address_residential_indicator'
+          default: unknown
+          example: 'no'
+          description: Indicates whether this is a residential address.
+          allOf:
+            - $ref: '#/components/schemas/address_residential_indicator'
     address_residential_indicator:
       title: address_residential_indicator
       type: string
@@ -3089,7 +3140,7 @@ components:
         - unknown
         - 'yes'
         - 'no'
-      description: The possible address residential indicator values
+      description: Indicates whether an address is residential.
     address_validating_shipment:
       title: address_validating_shipment
       type: object
@@ -4295,7 +4346,7 @@ components:
           description: |
             The label's package(s).
 
-            > ###### Note
+            > ###### Note:
             > Some carriers only allow one package per label.  If you attempt to create a multi-package label for a carrier that doesn't allow it, an error will be returned.
           items:
             $ref: '#/components/schemas/package'

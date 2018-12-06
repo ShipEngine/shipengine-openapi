@@ -5,7 +5,7 @@ address_residential_indicator:
     - unknown
     - 'yes'
     - 'no'
-  description: The possible address residential indicator values
+  description: Indicates whether an address is residential.
 address_validation_status:
   title: address_validation_status
   type: string

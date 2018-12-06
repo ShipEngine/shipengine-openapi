@@ -175,7 +175,7 @@ properties:
     description: |
       The label's package(s).
 
-      > ###### Note
+      > ###### Note:
       > Some carriers only allow one package per label.  If you attempt to create a multi-package label for a carrier that doesn't allow it, an error will be returned.
     items:
       $ref: package.yaml
