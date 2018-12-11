@@ -8,13 +8,13 @@ properties:
     minLength: 1
     example: John Doe
     description: |
-      The name of a contact person at the address.  This field may be set instead of - or in addition to - the `company_name` field.
+      The name of a contact person at this address.  This field may be set instead of - or in addition to - the `company_name` field.
   phone:
     type: string
     minLength: 1
     example: +1 204-253-9411 ext. 123
     description: |
-      The phone number of a contact person at the address.  The format of this phone number varies depending on the country.
+      The phone number of a contact person at this address.  The format of this phone number varies depending on the country.
   company_name:
     type: string
     minLength: 1
@@ -56,10 +56,8 @@ properties:
     example: MB R2M 3E8
     description: postal code
   country_code:
-    type: string
-    minLength: 2
-    maxLength: 2
-    example: CA
+    allOf:
+      - $ref: 'primitives.yaml#/country_code'
     description: |
       The two-letter [ISO 3166-1 country code](https://en.wikipedia.org/wiki/ISO_3166-1)
   address_residential_indicator:

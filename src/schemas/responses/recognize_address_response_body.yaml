@@ -21,8 +21,7 @@ properties:
     description: |
       The parsed address.  This address may not be complete, depending on how much information was included in the text and how confident the API is about each recognized entity.
 
-      > ###### Note:
-      > The address-recognition API does not currently perform any validation of the parsed address, so we recommend that you use the [address-validation API](https://docs.shipengine.com/docs/address-validation) to ensure that the address is correct.
+      > **Note:** The address-recognition API does not currently perform any validation of the parsed address, so we recommend that you use the [address-validation API](https://docs.shipengine.com/docs/address-validation) to ensure that the address is correct.
   entities:
     type: array
     minItems: 0

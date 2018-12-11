@@ -5,6 +5,14 @@ carrier_code:
   example: dhl_express
   description: |
     A [shipping carrier](https://docs.shipengine.com/docs/setup-a-carrier), such as `fedex`, `dhl_express`, `stamps_com`, etc.
+country_code:
+  title: country_code
+  type: string
+  minLength: 2
+  maxLength: 2
+  example: CA
+  description: |
+    A two-letter [ISO 3166-1 country code](https://en.wikipedia.org/wiki/ISO_3166-1)
 date:
   title: date
   type: string

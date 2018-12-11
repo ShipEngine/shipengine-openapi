@@ -1,0 +1,19 @@
+title: recognize_shipment_request_body
+type: object
+description: |
+  The only required field is `text`, which is the text to be parsed. You can optionally also provide a `shipment` containing any already-known values. For example, you probably already know the `ship_from` address, and you may also already know what carrier and service you want to use.
+required:
+  - text
+additionalProperties: false
+properties:
+  text:
+    type: string
+    minLength: 1
+    example: |
+      I have a 4oz package that's 5x10x14in, and I need to ship it to Margie McMiller at 3800 North Lamar suite 200 in austin, tx 78652. Please send it via USPS first class and require an adult signature. It also needs to be insured for $400.
+    description: The unstructured text that contains shipping-related entities
+  shipment:
+    allOf:
+      - $ref: ../partial_shipment.yaml
+    description: |
+      You can optionally provide a `shipment` object containing any already-known values. For example, you probably already know the `ship_from` address, and you may also already know what carrier and service you want to use.

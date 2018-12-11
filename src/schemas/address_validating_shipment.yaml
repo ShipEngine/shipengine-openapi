@@ -42,9 +42,9 @@ properties:
   confirmation:
     $ref: 'enums.yaml#/confirmation'
   customs:
-    $ref: international_options.yaml
+    $ref: international_shipment_options.yaml
   advanced_options:
-    $ref: advanced_options.yaml
+    $ref: advanced_shipment_options.yaml
   insurance_provider:
     $ref: 'enums.yaml#/insurance_provider'
   tags:

@@ -154,6 +154,8 @@
   $ref: v1/shipments/path.yaml
 '/v1/shipments/external_shipment_id/{external_shipment_id}':
   $ref: 'v1/shipments/external_shipment_id/{external_shipment_id}/path.yaml'
+/v1/shipments/recognize:
+  $ref: v1/shipments/recognize/path.yaml
 '/v1/shipments/{shipment_id}':
   $ref: 'v1/shipments/{shipment_id}/path.yaml'
 '/v1/shipments/{shipment_id}/cancel':

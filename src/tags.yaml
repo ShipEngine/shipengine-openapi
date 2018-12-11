@@ -16,9 +16,6 @@
 - name: carriers
   description: |
     carriers
-- name: environment
-  description: |
-    environment
 - name: insurance
   description: |
     insurance
@@ -52,7 +49,11 @@
       This quick start guide shows you how to get shipping rates for multiple carriers so you can choose the fastest, cheapest, or most reliable option.
 - name: shipments
   description: |
-    shipments
+    Shipments are at the center of the ShipEngine API.  A shipment is the first step in [creating a shipping label](https://docs.shipengine.com/docs/quickstart-create-a-label), or [creating a manifest](https://docs.shipengine.com/docs/understand-and-create-manifests).  It's also essential for [getting shipping rates](https://docs.shipengine.com/docs/get-shipping-rates).
+  externalDocs:
+    url: 'https://docs.shipengine.com/docs/create-a-shipment'
+    description: |
+      Learn about the shipment object model concept, and how to persist and re-use shipment data inside ShipEngine.
 - name: tags
   description: |
     tags
@@ -65,3 +66,9 @@
 - name: warehouses
   description: |
     warehouses
+- name: webhooks
+  description: |
+    [Webhooks](https://docs.shipengine.com/docs/setting-up-web-hooks) are a powerful feature of ShipEngine that can save you from sending repeated polling requests to check on the state of something.  With webhooks, ShipEngine will automatically contact your servers when the stage changes.  This can include [parcel tracking](https://docs.shipengine.com/docs/track-a-package) events, notification of the completion of a [batch operation](https://docs.shipengine.com/docs/using-batches),  or new [salses orders](https://docs.shipengine.com/docs/sales-orders-getting-started).
+  externalDocs:
+    url: 'https://docs.shipengine.com/docs/setting-up-web-hooks'
+    description: Learn how to setup webhooks and start listening to ShipEngine events.

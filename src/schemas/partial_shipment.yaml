@@ -1,0 +1,115 @@
+title: partial_shipment
+type: object
+description: |
+  The information necessary to ship a package, such as the origin, the destination, the carrier service, and the package dimensions and weight.
+additionalProperties: false
+properties:
+  shipment_id:
+    readOnly: true
+    allOf:
+      - $ref: 'primitives.yaml#/se_id'
+    description: A string that uniquely identifies the shipment
+  carrier_id:
+    allOf:
+      - $ref: 'primitives.yaml#/se_id'
+    description: The carrier account that is billed for the shipping charges
+  service_code:
+    allOf:
+      - $ref: 'primitives.yaml#/service_code'
+    description: |
+      The [carrier service](https://docs.shipengine.com/docs/use-a-specific-service) used to ship the package, such as `fedex_ground`, `usps_first_class_mail`, `flat_rate_envelope`, etc.
+  external_shipment_id:
+    type: string
+    maxLength: 50
+    nullable: true
+    description: |
+      You can optionally use this field to store your own identifier for this shipment.
+
+      > **Warning:** The `external_shipment_id` is limited to 50 characters. Any additional characters will be truncated.
+  ship_date:
+    allOf:
+      - $ref: 'primitives.yaml#/date'
+    description: |
+      The date that the shipment was (or will be) shippped.  ShipEngine will take the day of week into consideration. For example, if the carrier does not operate on Sundays, then a package that would have shipped on Sunday will ship on Monday instead.
+  created_at:
+    readOnly: true
+    allOf:
+      - $ref: 'primitives.yaml#/date_time'
+    description: The date and time that the shipment was created in ShipEngine.
+  modified_at:
+    readOnly: true
+    allOf:
+      - $ref: 'primitives.yaml#/date_time'
+    description: The date and time that the shipment was created or last modified.
+  shipment_status:
+    readOnly: true
+    default: pending
+    allOf:
+      - $ref: 'enums.yaml#/shipment_status'
+    description: The current status of the shipment
+  ship_to:
+    allOf:
+      - $ref: address.yaml
+    description: The recipient's mailing address
+  ship_from:
+    allOf:
+      - $ref: address.yaml
+    description: |
+      The shipment's origin address. If you frequently ship from the same location, consider [creating a warehouse](https://docs.shipengine.com/docs/create-a-warehouse).  Then you can simply specify the `warehouse_id` rather than the complete address each time.
+  warehouse_id:
+    nullable: true
+    default: null
+    allOf:
+      - $ref: 'primitives.yaml#/se_id'
+    description: |
+      The [warehouse](https://docs.shipengine.com/docs/ship-from-a-warehouse) that the shipment is being shipped from.  Either `warehouse_id` or `ship_from` must be specified.
+  return_to:
+    allOf:
+      - $ref: address.yaml
+    description: |
+      The return address for this shipment.  Defaults to the `ship_from` address.
+  confirmation:
+    default: none
+    allOf:
+      - $ref: 'enums.yaml#/confirmation'
+    description: The type of delivery confirmation that is required for this shipment.
+  customs:
+    nullable: true
+    default: null
+    allOf:
+      - $ref: international_shipment_options.yaml
+    description: |
+      Customs information.  This is usually only needed for international shipments.
+  advanced_options:
+    allOf:
+      - $ref: advanced_shipment_options.yaml
+    description: Advanced shipment options.  These are entirely optional.
+  insurance_provider:
+    default: none
+    allOf:
+      - $ref: 'enums.yaml#/insurance_provider'
+    description: |
+      The insurance provider to use for any insured packages in the shipment.
+  tags:
+    type: array
+    readOnly: true
+    default: []
+    minItems: 0
+    items:
+      $ref: tag.yaml
+    description: |
+      Arbitrary tags associated with this shipment.  Tags can be used to categorize shipments, and shipments can be queried by their tags.
+  packages:
+    type: array
+    minItems: 1
+    items:
+      $ref: package.yaml
+    description: |
+      The packages in the shipment.
+
+      > **Note:** Some carriers only allow one package per shipment.  If you attempt to create a multi-package shipment for a carrier that doesn't allow it, an error will be returned.
+  total_weight:
+    readOnly: true
+    allOf:
+      - $ref: weight.yaml
+    description: The combined weight of all packages in the shipment

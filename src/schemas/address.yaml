@@ -1,10 +1,9 @@
 title: address
 type: object
 description: |
-  A mailing address, including any residential or business address anywhere in the world.
+  Any residential or business mailing address, anywhere in the world.
 
-  > ###### Note:
-  > Either `name` or `company_name` must be set. Both may be specified, if relevant.
+  > **Note:** Either `name` or `company_name` must be set. Both may be specified, if relevant.
 required:
   - address_line1
   - city_locality

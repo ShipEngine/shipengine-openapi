@@ -14,8 +14,8 @@ address_validation_result:
   $ref: address_validation_result.yaml
 address_validation_status:
   $ref: 'enums.yaml#/address_validation_status'
-advanced_options:
-  $ref: advanced_options.yaml
+advanced_shipment_options:
+  $ref: advanced_shipment_options.yaml
 amazon_product_identifier:
   $ref: 'enums.yaml#/amazon_product_identifier'
 apc_account_information_request_body:
@@ -64,6 +64,8 @@ connect_account_response_body:
   $ref: responses/connect_account_response_body.yaml
 contents:
   $ref: 'enums.yaml#/contents'
+country_code:
+  $ref: 'primitives.yaml#/country_code'
 create_batch_request_body:
   $ref: requests/create_batch_request_body.yaml
 create_batch_response_body:
@@ -130,8 +132,8 @@ insurance_balance_response_body:
   $ref: responses/insurance_balance_response_body.yaml
 insurance_provider:
   $ref: 'enums.yaml#/insurance_provider'
-international_options:
-  $ref: international_options.yaml
+international_shipment_options:
+  $ref: international_shipment_options.yaml
 label:
   $ref: label.yaml
 label_format:

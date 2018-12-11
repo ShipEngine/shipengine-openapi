@@ -51,7 +51,7 @@ properties:
     allOf:
       - $ref: 'primitives.yaml#/date'
     description: |
-      The date that the package was (or will be) shippped.  ShipEngine will take the day of week into consideration when setting this.  For example, if a carrier does not operate on Sundays, then a package that would have shipped on Sunday will ship on Monday instead.
+      The date that the package was (or will be) shippped.  ShipEngine will take the day of week into consideration. For example, if the carrier does not operate on Sundays, then a package that would have shipped on Sunday will ship on Monday instead.
   created_at:
     readOnly: true
     allOf:
@@ -175,7 +175,6 @@ properties:
     description: |
       The label's package(s).
 
-      > ###### Note:
-      > Some carriers only allow one package per label.  If you attempt to create a multi-package label for a carrier that doesn't allow it, an error will be returned.
+      > **Note:** Some carriers only allow one package per label.  If you attempt to create a multi-package label for a carrier that doesn't allow it, an error will be returned.
     items:
       $ref: package.yaml
