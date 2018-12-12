@@ -40,6 +40,10 @@
   $ref: v1/connections/carriers/asendia/path.yaml
 '/v1/connections/carriers/asendia/{carrier_id}':
   $ref: 'v1/connections/carriers/asendia/{carrier_id}/path.yaml'
+/v1/connections/carriers/australia_post:
+  $ref: v1/connections/carriers/australia_post/path.yaml
+'/v1/connections/carriers/australia_post/{carrier_id}':
+  $ref: 'v1/connections/carriers/australia_post/{carrier_id}/path.yaml'
 /v1/connections/carriers/dhl_ecommerce:
   $ref: v1/connections/carriers/dhl_ecommerce/path.yaml
 '/v1/connections/carriers/dhl_ecommerce/{carrier_id}':
@@ -50,6 +54,14 @@
   $ref: 'v1/connections/carriers/dhl_express/{carrier_id}/path.yaml'
 '/v1/connections/carriers/dhl_express/{carrier_id}/settings':
   $ref: 'v1/connections/carriers/dhl_express/{carrier_id}/settings/path.yaml'
+/v1/connections/carriers/dhl_express_au:
+  $ref: v1/connections/carriers/dhl_express_au/path.yaml
+'/v1/connections/carriers/dhl_express_au/{carrier_id}':
+  $ref: 'v1/connections/carriers/dhl_express_au/{carrier_id}/path.yaml'
+/v1/connections/carriers/dhl_express_ca:
+  $ref: v1/connections/carriers/dhl_express_ca/path.yaml
+'/v1/connections/carriers/dhl_express_ca/{carrier_id}':
+  $ref: 'v1/connections/carriers/dhl_express_ca/{carrier_id}/path.yaml'
 /v1/connections/carriers/dhl_express_uk:
   $ref: v1/connections/carriers/dhl_express_uk/path.yaml
 '/v1/connections/carriers/dhl_express_uk/{carrier_id}':
@@ -94,6 +106,10 @@
   $ref: v1/connections/carriers/ontrac/path.yaml
 '/v1/connections/carriers/ontrac/{carrier_id}':
   $ref: 'v1/connections/carriers/ontrac/{carrier_id}/path.yaml'
+/v1/connections/carriers/purolator_canada:
+  $ref: v1/connections/carriers/purolator_canada/path.yaml
+'/v1/connections/carriers/purolator_canada/{carrier_id}':
+  $ref: 'v1/connections/carriers/purolator_canada/{carrier_id}/path.yaml'
 /v1/connections/carriers/royal_mail:
   $ref: v1/connections/carriers/royal_mail/path.yaml
 '/v1/connections/carriers/royal_mail/{carrier_id}':
@@ -102,6 +118,10 @@
   $ref: v1/connections/carriers/rr_donnelley/path.yaml
 '/v1/connections/carriers/rr_donnelley/{carrier_id}':
   $ref: 'v1/connections/carriers/rr_donnelley/{carrier_id}/path.yaml'
+/v1/connections/carriers/sendle:
+  $ref: v1/connections/carriers/sendle/path.yaml
+'/v1/connections/carriers/sendle/{carrier_id}':
+  $ref: 'v1/connections/carriers/sendle/{carrier_id}/path.yaml'
 /v1/connections/carriers/stamps_com:
   $ref: v1/connections/carriers/stamps_com/path.yaml
 '/v1/connections/carriers/stamps_com/{carrier_id}':
@@ -154,8 +174,6 @@
   $ref: v1/shipments/path.yaml
 '/v1/shipments/external_shipment_id/{external_shipment_id}':
   $ref: 'v1/shipments/external_shipment_id/{external_shipment_id}/path.yaml'
-/v1/shipments/recognize:
-  $ref: v1/shipments/recognize/path.yaml
 '/v1/shipments/{shipment_id}':
   $ref: 'v1/shipments/{shipment_id}/path.yaml'
 '/v1/shipments/{shipment_id}/cancel':
@@ -166,6 +184,8 @@
   $ref: 'v1/shipments/{shipment_id}/rates/path.yaml'
 '/v1/shipments/{shipment_id}/tags/{tag}':
   $ref: 'v1/shipments/{shipment_id}/tags/{tag}/path.yaml'
+/v1/shipments/recognize:
+  $ref: v1/shipments/recognize/path.yaml
 /v1/tags:
   $ref: v1/tags/path.yaml
 '/v1/tags/{tag_name}':

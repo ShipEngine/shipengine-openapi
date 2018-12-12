@@ -28,15 +28,15 @@
 - name: manifests
   description: |
     manifests
-- name: marketplace_accounts
-  description: |
-    marketplace accounts
 - name: natural_language_processing
   description: |
     ShipEngine's NLP (Natural Language Processing) APIs make it easy for you to extract structured shipping data — such as addresses, names, package weight and dimensions, insurance options, and more — from unstructured text like emails, PDFs, and chat messages.
   externalDocs:
     url: 'https://docs.shipengine.com/docs/natural-language-processing-nlp'
     description: 'Find out how our Natural Language Processing APIs can help you extract useful and meaningful data from emails, documents, chat messages, or any other text source.'
+- name: order_source_accounts
+  description: |
+    order source accounts
 - name: packages
   description: |
     packages

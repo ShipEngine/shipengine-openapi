@@ -1,0 +1,8 @@
+title: dhl_express_au_account_information_request_body
+type: object
+additionalProperties: false
+properties:
+  account_number:
+    type: string
+  nickname:
+    type: string

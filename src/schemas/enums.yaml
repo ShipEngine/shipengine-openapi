@@ -120,10 +120,19 @@ currency:
     |`aud`          | Australian Dollar
     |`gbp`          | Great British Pound
     |`eur`          | Euro
+data_center_code:
+  title: data_center_code
+  type: string
+  enum:
+    - use
+    - usw
+    - eu1
+  description: The possible data center code values
 detail_code:
   title: detail_code
   type: string
   enum:
+    - unsupported_country
     - non_supported_country
     - minimum_postal_code_verification_failed
     - street_does_not_match_unique_street_name
@@ -168,6 +177,16 @@ detail_code:
     - coded_to_state_level
     - coded_to_rooftop_level
     - coded_to_rooftop_interpolation_level
+    - name_max_length_exceeded
+    - phone_max_length_exceeded
+    - company_name_max_length_exceeded
+    - line1_min_max_length
+    - line2_max_length_exceeded
+    - line3_max_length_exceeded
+    - city_locality_max_length_exceeded
+    - state_province_max_length_exceeded
+    - invalid_postal_code
+    - country_invalid_length
   description: The possible detail code values
 dimension_unit:
   title: dimension_unit
@@ -183,7 +202,7 @@ event:
     - rate
     - track
     - batch
-    - store_refresh_complete
+    - order_source_refresh_complete
     - sales_orders_imported
     - carrier_connected
   description: The possible event values
@@ -198,6 +217,15 @@ fedex_pickup_type:
     - business_service_center
     - station
   description: The possible fedex pickup type values
+goods_out:
+  title: goods_out
+  type: string
+  enum:
+    - all
+    - printed
+    - picked
+    - packed
+  description: The possible goods out values
 insurance_provider:
   title: insurance_provider
   type: string
@@ -287,6 +315,13 @@ rate_type:
     - check
     - shipment
   description: The possible rate type values
+ship_action:
+  title: ship_action
+  type: string
+  enum:
+    - pack
+    - ship
+  description: The possible ship action values
 shipment_status:
   title: shipment_status
   type: string

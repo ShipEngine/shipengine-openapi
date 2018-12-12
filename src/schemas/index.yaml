@@ -22,6 +22,8 @@ apc_account_information_request_body:
   $ref: requests/apc_account_information_request_body.yaml
 asendia_account_information_request_body:
   $ref: requests/asendia_account_information_request_body.yaml
+australia_post_account_information_request_body:
+  $ref: requests/australia_post_account_information_request_body.yaml
 batch:
   $ref: batch.yaml
 batch_errors_response_body:
@@ -82,6 +84,8 @@ create_webhook_request_body:
   $ref: requests/create_webhook_request_body.yaml
 currency:
   $ref: 'enums.yaml#/currency'
+data_center_code:
+  $ref: 'enums.yaml#/data_center_code'
 date:
   $ref: 'primitives.yaml#/date'
 date_time:
@@ -94,6 +98,10 @@ dhl_express_account_information_request_body:
   $ref: requests/dhl_express_account_information_request_body.yaml
 dhl_express_account_settings:
   $ref: dhl_express_account_settings.yaml
+dhl_express_au_account_information_request_body:
+  $ref: requests/dhl_express_au_account_information_request_body.yaml
+dhl_express_ca_account_information_request_body:
+  $ref: requests/dhl_express_ca_account_information_request_body.yaml
 dhl_express_settings_response_body:
   $ref: responses/dhl_express_settings_response_body.yaml
 dhl_express_uk_account_information_request_body:
@@ -126,6 +134,8 @@ first_mile_account_information_request_body:
   $ref: requests/first_mile_account_information_request_body.yaml
 globegistics_account_information_request_body:
   $ref: requests/globegistics_account_information_request_body.yaml
+goods_out:
+  $ref: 'enums.yaml#/goods_out'
 imex_account_information_request_body:
   $ref: requests/imex_account_information_request_body.yaml
 insurance_balance_response_body:
@@ -208,6 +218,8 @@ purchase_label_request_body:
   $ref: requests/purchase_label_request_body.yaml
 purchase_label_without_shipment_request_body:
   $ref: requests/purchase_label_without_shipment_request_body.yaml
+purolator_account_information_request_body:
+  $ref: requests/purolator_account_information_request_body.yaml
 rate:
   $ref: rate.yaml
 rate_estimate_request_body:
@@ -234,10 +246,14 @@ rr_donnelley_account_information_request_body:
   $ref: requests/rr_donnelley_account_information_request_body.yaml
 se_id:
   $ref: 'primitives.yaml#/se_id'
+sendle_account_information_request_body:
+  $ref: requests/sendle_account_information_request_body.yaml
 service:
   $ref: service.yaml
 service_code:
   $ref: 'primitives.yaml#/service_code'
+ship_action:
+  $ref: 'enums.yaml#/ship_action'
 shipment:
   $ref: shipment.yaml
 shipment_add_tag_response_body:

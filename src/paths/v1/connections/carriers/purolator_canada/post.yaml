@@ -1,0 +1,20 @@
+tags:
+  - carrier_accounts
+operationId: purolator_account_carrier.connect_account
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: ../../../../../schemas/requests/purolator_account_information_request_body.yaml
+responses:
+  '200':
+    description: The request was a success.
+    content:
+      application/json:
+        schema:
+          $ref: ../../../../../schemas/responses/connect_account_response_body.yaml
+  '400':
+    $ref: ../../../../../responses/bad_request.yaml
+  '500':
+    $ref: ../../../../../responses/server_error.yaml

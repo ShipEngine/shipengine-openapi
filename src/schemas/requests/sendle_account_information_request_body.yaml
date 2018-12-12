@@ -1,0 +1,12 @@
+title: sendle_account_information_request_body
+type: object
+additionalProperties: false
+properties:
+  nickname:
+    type: string
+  sendle_id:
+    allOf:
+      - $ref: '../primitives.yaml#/se_id'
+    description: A string that uniquely identifies the sendle
+  api_key:
+    type: string
