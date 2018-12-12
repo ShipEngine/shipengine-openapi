@@ -240,6 +240,8 @@ rate_shipments_request_body:
   $ref: requests/rate_shipments_request_body.yaml
 rate_type:
   $ref: 'enums.yaml#/rate_type'
+recognized_entity:
+  $ref: recognized_entity.yaml
 royal_mail_account_information_request_body:
   $ref: requests/royal_mail_account_information_request_body.yaml
 rr_donnelley_account_information_request_body:
