@@ -1,10 +1,10 @@
-title: stamps_account_information_request_body
+title: connect_ontrac_request_body
 type: object
 additionalProperties: false
 properties:
   nickname:
     type: string
-  username:
+  account_number:
     type: string
   password:
     type: string

@@ -1,10 +1,8 @@
-title: access_worldwide_account_information_request_body
+title: connect_dhl_express_request_body
 type: object
 additionalProperties: false
 properties:
   nickname:
     type: string
-  username:
-    type: string
-  password:
+  account_number:
     type: string

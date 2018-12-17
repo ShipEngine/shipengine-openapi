@@ -1,10 +1,10 @@
-title: dpd_account_information_request_body
+title: connect_endicia_request_body
 type: object
 additionalProperties: false
 properties:
-  account_number:
-    type: string
-  password:
-    type: string
   nickname:
+    type: string
+  account:
+    type: string
+  passphrase:
     type: string

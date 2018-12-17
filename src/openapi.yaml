@@ -23,6 +23,8 @@ components:
         All requests to ShipEngine must include an API key in order to be authenticated. Any number of API keys can be generated within the ShipEngine dashboard and are unique to your account. Your API keys give full access to ShipEngine's functionality and therefore should be guarded in the same way you would guard a password or other application credentials. Once you have generated an API key you simply add it to your request as an HTTP header named the api-key.
 
         Find your ShipEngine API keys in the Dashboard: https://app.shipengine.com/#/portal/apimanagement
+  parameters:
+    $ref: parameters/index.yaml
   responses:
     $ref: responses/index.yaml
   schemas:

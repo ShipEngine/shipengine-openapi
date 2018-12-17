@@ -1,4 +1,4 @@
-title: newgistics_account_information_request_body
+title: connect_newgistics_request_body
 type: object
 additionalProperties: false
 properties:

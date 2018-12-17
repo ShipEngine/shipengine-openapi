@@ -1,12 +1,10 @@
-title: asendia_account_information_request_body
+title: connect_apc_request_body
 type: object
 additionalProperties: false
 properties:
   nickname:
     type: string
-  account_number:
+  username:
     type: string
-  ftp_username:
-    type: string
-  ftp_password:
+  password:
     type: string

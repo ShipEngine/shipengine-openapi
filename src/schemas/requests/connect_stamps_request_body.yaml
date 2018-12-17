@@ -1,8 +1,10 @@
-title: dhl_express_account_information_request_body
+title: connect_stamps_request_body
 type: object
 additionalProperties: false
 properties:
   nickname:
     type: string
-  account_number:
+  username:
+    type: string
+  password:
     type: string

@@ -1,4 +1,4 @@
-title: dhl_ecommerce_account_information_request_body
+title: connect_dhl_ecommerce_request_body
 type: object
 additionalProperties: false
 properties:

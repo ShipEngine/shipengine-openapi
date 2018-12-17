@@ -6,7 +6,7 @@ requestBody:
   content:
     application/json:
       schema:
-        $ref: ../../../../../schemas/requests/globegistics_account_information_request_body.yaml
+        $ref: ../../../../../schemas/requests/connect_globegistics_request_body.yaml
 responses:
   '200':
     description: The request was a success.

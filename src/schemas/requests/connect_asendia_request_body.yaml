@@ -1,10 +1,12 @@
-title: purolator_account_information_request_body
+title: connect_asendia_request_body
 type: object
 additionalProperties: false
 properties:
+  nickname:
+    type: string
   account_number:
     type: string
-  activation_key:
+  ftp_username:
     type: string
-  nickname:
+  ftp_password:
     type: string

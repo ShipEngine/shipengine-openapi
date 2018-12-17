@@ -6,7 +6,7 @@ requestBody:
   content:
     application/json:
       schema:
-        $ref: ../../../../../schemas/requests/royal_mail_account_information_request_body.yaml
+        $ref: ../../../../../schemas/requests/connect_royal_mail_request_body.yaml
 responses:
   '200':
     description: The request was a success.

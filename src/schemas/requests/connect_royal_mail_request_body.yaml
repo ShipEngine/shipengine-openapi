@@ -1,4 +1,4 @@
-title: royal_mail_account_information_request_body
+title: connect_royal_mail_request_body
 type: object
 additionalProperties: false
 properties:

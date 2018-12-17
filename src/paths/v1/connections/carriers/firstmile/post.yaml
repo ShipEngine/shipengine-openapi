@@ -6,7 +6,7 @@ requestBody:
   content:
     application/json:
       schema:
-        $ref: ../../../../../schemas/requests/first_mile_account_information_request_body.yaml
+        $ref: ../../../../../schemas/requests/connect_first_mile_request_body.yaml
 responses:
   '200':
     description: The request was a success.

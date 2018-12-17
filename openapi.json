@@ -5046,7 +5046,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "access_worldwide_account_information_request_body",
+                "title": "connect_access_worldwide_request_body",
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
@@ -5307,7 +5307,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "apc_account_information_request_body",
+                "title": "connect_apc_request_body",
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
@@ -5568,7 +5568,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "asendia_account_information_request_body",
+                "title": "connect_asendia_request_body",
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
@@ -5832,7 +5832,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "australia_post_account_information_request_body",
+                "title": "connect_australia_post_request_body",
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
@@ -6096,7 +6096,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "dhl_ecommerce_account_information_request_body",
+                "title": "connect_dhl_ecommerce_request_body",
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
@@ -6363,7 +6363,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "dhl_express_account_information_request_body",
+                "title": "connect_dhl_express_request_body",
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
@@ -6896,7 +6896,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "dhl_express_au_account_information_request_body",
+                "title": "connect_dhl_express_au_request_body",
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
@@ -7154,7 +7154,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "dhl_express_ca_account_information_request_body",
+                "title": "connect_dhl_express_ca_request_body",
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
@@ -7412,7 +7412,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "dhl_express_uk_account_information_request_body",
+                "title": "connect_dhl_express_uk_request_body",
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
@@ -7682,7 +7682,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "dpd_account_information_request_body",
+                "title": "connect_dpd_request_body",
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
@@ -7943,7 +7943,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "endicia_account_information_request_body",
+                "title": "connect_endicia_request_body",
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
@@ -8204,7 +8204,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "fedex_account_information_request_body",
+                "title": "connect_fedex_request_body",
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
@@ -8909,7 +8909,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "fedex_uk_account_information_request_body",
+                "title": "connect_fedex_uk_request_body",
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
@@ -9211,7 +9211,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "first_mile_account_information_request_body",
+                "title": "connect_first_mile_request_body",
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
@@ -9481,7 +9481,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "globegistics_account_information_request_body",
+                "title": "connect_globegistics_request_body",
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
@@ -9742,7 +9742,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "imex_account_information_request_body",
+                "title": "connect_imex_request_body",
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
@@ -10003,7 +10003,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "newgistics_account_information_request_body",
+                "title": "connect_newgistics_request_body",
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
@@ -10414,7 +10414,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "ontrac_account_information_request_body",
+                "title": "connect_ontrac_request_body",
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
@@ -10675,7 +10675,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "purolator_account_information_request_body",
+                "title": "connect_purolator_request_body",
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
@@ -10936,7 +10936,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "royal_mail_account_information_request_body",
+                "title": "connect_royal_mail_request_body",
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
@@ -11234,7 +11234,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "rr_donnelley_account_information_request_body",
+                "title": "connect_rr_donnelley_request_body",
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
@@ -11495,7 +11495,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "sendle_account_information_request_body",
+                "title": "connect_sendle_request_body",
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
@@ -11762,7 +11762,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "stamps_account_information_request_body",
+                "title": "connect_stamps_request_body",
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
@@ -12195,7 +12195,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "ups_account_information_request_body",
+                "title": "connect_ups_request_body",
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
@@ -39132,6 +39132,49 @@
         "name": "api-key",
         "in": "header",
         "description": "All requests to ShipEngine must include an API key in order to be authenticated. Any number of API keys can be generated within the ShipEngine dashboard and are unique to your account. Your API keys give full access to ShipEngine's functionality and therefore should be guarded in the same way you would guard a password or other application credentials. Once you have generated an API key you simply add it to your request as an HTTP header named the api-key.\n\nFind your ShipEngine API keys in the Dashboard: https://app.shipengine.com/#/portal/apimanagement\n"
+      }
+    },
+    "parameters": {
+      "order_source_name": {
+        "name": "order_source_name",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "title": "order_source_name",
+          "type": "string",
+          "enum": [
+            "amazon",
+            "amazon_ca",
+            "api",
+            "brightpearl",
+            "channeladvisor",
+            "ebay",
+            "etsy",
+            "magento",
+            "shopify",
+            "threedcart"
+          ],
+          "description": "The order sources that are supported by ShipEngine"
+        },
+        "example": "amazon",
+        "description": "The name of the order source, such as `amazon` or `shopify`."
+      },
+      "order_source_id": {
+        "name": "order_source_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "title": "uuid",
+          "type": "string",
+          "format": "uuid",
+          "minLength": 36,
+          "maxLength": 36,
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "example": "aa3d8e8e-462b-4476-9618-72db7f7b7009",
+          "description": "A UUID (a.k.a. GUID) that uniquely identifies a resource"
+        },
+        "example": "aa3d8e8e-462b-4476-9618-72db7f7b7009",
+        "description": "The unique ID of the order source"
       }
     }
   }

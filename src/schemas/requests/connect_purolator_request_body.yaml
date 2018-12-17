@@ -1,10 +1,10 @@
-title: endicia_account_information_request_body
+title: connect_purolator_request_body
 type: object
 additionalProperties: false
 properties:
+  account_number:
+    type: string
+  activation_key:
+    type: string
   nickname:
-    type: string
-  account:
-    type: string
-  passphrase:
     type: string

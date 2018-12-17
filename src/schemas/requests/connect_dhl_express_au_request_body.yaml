@@ -1,10 +1,8 @@
-title: ontrac_account_information_request_body
+title: connect_dhl_express_au_request_body
 type: object
 additionalProperties: false
 properties:
-  nickname:
-    type: string
   account_number:
     type: string
-  password:
+  nickname:
     type: string

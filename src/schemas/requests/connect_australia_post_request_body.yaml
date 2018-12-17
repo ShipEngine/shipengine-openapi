@@ -1,4 +1,4 @@
-title: australia_post_account_information_request_body
+title: connect_australia_post_request_body
 type: object
 additionalProperties: false
 properties:

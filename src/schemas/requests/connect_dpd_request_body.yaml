@@ -1,8 +1,10 @@
-title: dhl_express_ca_account_information_request_body
+title: connect_dpd_request_body
 type: object
 additionalProperties: false
 properties:
   account_number:
+    type: string
+  password:
     type: string
   nickname:
     type: string

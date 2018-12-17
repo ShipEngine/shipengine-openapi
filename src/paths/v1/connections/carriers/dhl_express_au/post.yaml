@@ -6,7 +6,7 @@ requestBody:
   content:
     application/json:
       schema:
-        $ref: ../../../../../schemas/requests/dhl_express_au_account_information_request_body.yaml
+        $ref: ../../../../../schemas/requests/connect_dhl_express_au_request_body.yaml
 responses:
   '200':
     description: The request was a success.

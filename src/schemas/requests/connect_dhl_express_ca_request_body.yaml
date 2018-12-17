@@ -1,4 +1,4 @@
-title: dhl_express_au_account_information_request_body
+title: connect_dhl_express_ca_request_body
 type: object
 additionalProperties: false
 properties:

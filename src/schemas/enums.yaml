@@ -299,6 +299,21 @@ non_delivery:
     - return_to_sender
     - treat_as_abandoned
   description: The possible non delivery values
+order_source_name:
+  title: order_source_name
+  type: string
+  enum:
+    - amazon
+    - amazon_ca
+    - api
+    - brightpearl
+    - channeladvisor
+    - ebay
+    - etsy
+    - magento
+    - shopify
+    - threedcart
+  description: The order sources that are supported by ShipEngine
 rate_response_status:
   title: rate_response_status
   type: string

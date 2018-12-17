@@ -1,4 +1,4 @@
-title: rr_donnelley_account_information_request_body
+title: connect_imex_request_body
 type: object
 additionalProperties: false
 properties:

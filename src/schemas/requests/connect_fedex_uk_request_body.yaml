@@ -1,4 +1,4 @@
-title: fedex_account_information_request_body
+title: connect_fedex_uk_request_body
 type: object
 additionalProperties: false
 properties:
@@ -26,7 +26,7 @@ properties:
     type: string
   postal_code:
     type: string
-  state:
+  state_province:
     type: string
   nickname:
     type: string

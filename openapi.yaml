@@ -699,7 +699,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/access_worldwide_account_information_request_body'
+              $ref: '#/components/schemas/connect_access_worldwide_request_body'
       responses:
         '200':
           description: The request was a success.
@@ -739,7 +739,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/apc_account_information_request_body'
+              $ref: '#/components/schemas/connect_apc_request_body'
       responses:
         '200':
           description: The request was a success.
@@ -779,7 +779,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/asendia_account_information_request_body'
+              $ref: '#/components/schemas/connect_asendia_request_body'
       responses:
         '200':
           description: The request was a success.
@@ -819,7 +819,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/australia_post_account_information_request_body'
+              $ref: '#/components/schemas/connect_australia_post_request_body'
       responses:
         '200':
           description: The request was a success.
@@ -859,7 +859,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/dhl_ecommerce_account_information_request_body'
+              $ref: '#/components/schemas/connect_dhl_ecommerce_request_body'
       responses:
         '200':
           description: The request was a success.
@@ -899,7 +899,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/dhl_express_account_information_request_body'
+              $ref: '#/components/schemas/connect_dhl_express_request_body'
       responses:
         '200':
           description: The request was a success.
@@ -984,7 +984,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/dhl_express_au_account_information_request_body'
+              $ref: '#/components/schemas/connect_dhl_express_au_request_body'
       responses:
         '200':
           description: The request was a success.
@@ -1024,7 +1024,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/dhl_express_ca_account_information_request_body'
+              $ref: '#/components/schemas/connect_dhl_express_ca_request_body'
       responses:
         '200':
           description: The request was a success.
@@ -1064,7 +1064,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/dhl_express_uk_account_information_request_body'
+              $ref: '#/components/schemas/connect_dhl_express_uk_request_body'
       responses:
         '200':
           description: The request was a success.
@@ -1104,7 +1104,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/dpd_account_information_request_body'
+              $ref: '#/components/schemas/connect_dpd_request_body'
       responses:
         '200':
           description: The request was a success.
@@ -1144,7 +1144,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/endicia_account_information_request_body'
+              $ref: '#/components/schemas/connect_endicia_request_body'
       responses:
         '200':
           description: The request was a success.
@@ -1184,7 +1184,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/fedex_account_information_request_body'
+              $ref: '#/components/schemas/connect_fedex_request_body'
       responses:
         '200':
           description: The request was a success.
@@ -1269,7 +1269,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/fedex_uk_account_information_request_body'
+              $ref: '#/components/schemas/connect_fedex_uk_request_body'
       responses:
         '200':
           description: The request was a success.
@@ -1309,7 +1309,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/first_mile_account_information_request_body'
+              $ref: '#/components/schemas/connect_first_mile_request_body'
       responses:
         '200':
           description: The request was a success.
@@ -1349,7 +1349,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/globegistics_account_information_request_body'
+              $ref: '#/components/schemas/connect_globegistics_request_body'
       responses:
         '200':
           description: The request was a success.
@@ -1389,7 +1389,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/imex_account_information_request_body'
+              $ref: '#/components/schemas/connect_imex_request_body'
       responses:
         '200':
           description: The request was a success.
@@ -1429,7 +1429,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/newgistics_account_information_request_body'
+              $ref: '#/components/schemas/connect_newgistics_request_body'
       responses:
         '200':
           description: The request was a success.
@@ -1493,7 +1493,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ontrac_account_information_request_body'
+              $ref: '#/components/schemas/connect_ontrac_request_body'
       responses:
         '200':
           description: The request was a success.
@@ -1533,7 +1533,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/purolator_account_information_request_body'
+              $ref: '#/components/schemas/connect_purolator_request_body'
       responses:
         '200':
           description: The request was a success.
@@ -1573,7 +1573,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/royal_mail_account_information_request_body'
+              $ref: '#/components/schemas/connect_royal_mail_request_body'
       responses:
         '200':
           description: The request was a success.
@@ -1613,7 +1613,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/rr_donnelley_account_information_request_body'
+              $ref: '#/components/schemas/connect_rr_donnelley_request_body'
       responses:
         '200':
           description: The request was a success.
@@ -1653,7 +1653,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/sendle_account_information_request_body'
+              $ref: '#/components/schemas/connect_sendle_request_body'
       responses:
         '200':
           description: The request was a success.
@@ -1693,7 +1693,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/stamps_account_information_request_body'
+              $ref: '#/components/schemas/connect_stamps_request_body'
       responses:
         '200':
           description: The request was a success.
@@ -1761,7 +1761,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ups_account_information_request_body'
+              $ref: '#/components/schemas/connect_ups_request_body'
       responses:
         '200':
           description: The request was a success.
@@ -3503,6 +3503,36 @@ components:
         All requests to ShipEngine must include an API key in order to be authenticated. Any number of API keys can be generated within the ShipEngine dashboard and are unique to your account. Your API keys give full access to ShipEngine's functionality and therefore should be guarded in the same way you would guard a password or other application credentials. Once you have generated an API key you simply add it to your request as an HTTP header named the api-key.
 
         Find your ShipEngine API keys in the Dashboard: https://app.shipengine.com/#/portal/apimanagement
+  parameters:
+    order_source_name:
+      name: order_source_name
+      in: path
+      required: true
+      schema:
+        title: order_source_name
+        type: string
+        enum:
+          - amazon
+          - amazon_ca
+          - api
+          - brightpearl
+          - channeladvisor
+          - ebay
+          - etsy
+          - magento
+          - shopify
+          - threedcart
+        description: The order sources that are supported by ShipEngine
+      example: amazon
+      description: 'The name of the order source, such as `amazon` or `shopify`.'
+    order_source_id:
+      name: order_source_id
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/uuid'
+      example: aa3d8e8e-462b-4476-9618-72db7f7b7009
+      description: The unique ID of the order source
   responses:
     no_content:
       description: The request was successful.
@@ -3545,8 +3575,8 @@ components:
           schema:
             $ref: '#/components/schemas/error_response_body'
   schemas:
-    access_worldwide_account_information_request_body:
-      title: access_worldwide_account_information_request_body
+    connect_access_worldwide_request_body:
+      title: connect_access_worldwide_request_body
       type: object
       additionalProperties: false
       properties:
@@ -3841,8 +3871,8 @@ components:
         - sku
         - asin
       description: The possible amazon product identifier values
-    apc_account_information_request_body:
-      title: apc_account_information_request_body
+    connect_apc_request_body:
+      title: connect_apc_request_body
       type: object
       additionalProperties: false
       properties:
@@ -3852,8 +3882,8 @@ components:
           type: string
         password:
           type: string
-    asendia_account_information_request_body:
-      title: asendia_account_information_request_body
+    connect_asendia_request_body:
+      title: connect_asendia_request_body
       type: object
       additionalProperties: false
       properties:
@@ -3865,8 +3895,8 @@ components:
           type: string
         ftp_password:
           type: string
-    australia_post_account_information_request_body:
-      title: australia_post_account_information_request_body
+    connect_australia_post_request_body:
+      title: connect_australia_post_request_body
       type: object
       additionalProperties: false
       properties:
@@ -4418,8 +4448,8 @@ components:
         - invalid_postal_code
         - country_invalid_length
       description: The possible detail code values
-    dhl_ecommerce_account_information_request_body:
-      title: dhl_ecommerce_account_information_request_body
+    connect_dhl_ecommerce_request_body:
+      title: connect_dhl_ecommerce_request_body
       type: object
       additionalProperties: false
       properties:
@@ -4433,8 +4463,8 @@ components:
           type: string
         ftp_password:
           type: string
-    dhl_express_account_information_request_body:
-      title: dhl_express_account_information_request_body
+    connect_dhl_express_request_body:
+      title: connect_dhl_express_request_body
       type: object
       additionalProperties: false
       properties:
@@ -4453,8 +4483,8 @@ components:
           type: boolean
         is_primary_account:
           type: boolean
-    dhl_express_au_account_information_request_body:
-      title: dhl_express_au_account_information_request_body
+    connect_dhl_express_au_request_body:
+      title: connect_dhl_express_au_request_body
       type: object
       additionalProperties: false
       properties:
@@ -4462,8 +4492,8 @@ components:
           type: string
         nickname:
           type: string
-    dhl_express_ca_account_information_request_body:
-      title: dhl_express_ca_account_information_request_body
+    connect_dhl_express_ca_request_body:
+      title: connect_dhl_express_ca_request_body
       type: object
       additionalProperties: false
       properties:
@@ -4477,8 +4507,8 @@ components:
       additionalProperties: false
       allOf:
         - $ref: '#/components/schemas/dhl_express_account_settings'
-    dhl_express_uk_account_information_request_body:
-      title: dhl_express_uk_account_information_request_body
+    connect_dhl_express_uk_request_body:
+      title: connect_dhl_express_uk_request_body
       type: object
       additionalProperties: false
       properties:
@@ -4532,8 +4562,8 @@ components:
           minimum: 0
           default: 0
           description: 'The length of the package, in the specified unit'
-    dpd_account_information_request_body:
-      title: dpd_account_information_request_body
+    connect_dpd_request_body:
+      title: connect_dpd_request_body
       type: object
       additionalProperties: false
       properties:
@@ -4550,8 +4580,8 @@ components:
       minLength: 1
       example: john.doe@example.com
       description: An email address.
-    endicia_account_information_request_body:
-      title: endicia_account_information_request_body
+    connect_endicia_request_body:
+      title: connect_endicia_request_body
       type: object
       additionalProperties: false
       properties:
@@ -4592,8 +4622,8 @@ components:
         - sales_orders_imported
         - carrier_connected
       description: The possible event values
-    fedex_account_information_request_body:
-      title: fedex_account_information_request_body
+    connect_fedex_request_body:
+      title: connect_fedex_request_body
       type: object
       additionalProperties: false
       properties:
@@ -4661,8 +4691,8 @@ components:
       additionalProperties: false
       allOf:
         - $ref: '#/components/schemas/fedex_account_settings_request_body'
-    fedex_uk_account_information_request_body:
-      title: fedex_uk_account_information_request_body
+    connect_fedex_uk_request_body:
+      title: connect_fedex_uk_request_body
       type: object
       additionalProperties: false
       properties:
@@ -4698,8 +4728,8 @@ components:
           type: boolean
         meter_number:
           type: string
-    first_mile_account_information_request_body:
-      title: first_mile_account_information_request_body
+    connect_first_mile_request_body:
+      title: connect_first_mile_request_body
       type: object
       additionalProperties: false
       properties:
@@ -4713,8 +4743,8 @@ components:
           type: string
         password:
           type: string
-    globegistics_account_information_request_body:
-      title: globegistics_account_information_request_body
+    connect_globegistics_request_body:
+      title: connect_globegistics_request_body
       type: object
       additionalProperties: false
       properties:
@@ -4733,8 +4763,8 @@ components:
         - picked
         - packed
       description: The possible goods out values
-    imex_account_information_request_body:
-      title: imex_account_information_request_body
+    connect_imex_request_body:
+      title: connect_imex_request_body
       type: object
       additionalProperties: false
       properties:
@@ -5310,8 +5340,8 @@ components:
       additionalProperties: false
       allOf:
         - $ref: '#/components/schemas/monetary_value'
-    newgistics_account_information_request_body:
-      title: newgistics_account_information_request_body
+    connect_newgistics_request_body:
+      title: connect_newgistics_request_body
       type: object
       additionalProperties: false
       properties:
@@ -5341,8 +5371,8 @@ components:
         - return_to_sender
         - treat_as_abandoned
       description: The possible non delivery values
-    ontrac_account_information_request_body:
-      title: ontrac_account_information_request_body
+    connect_ontrac_request_body:
+      title: connect_ontrac_request_body
       type: object
       additionalProperties: false
       properties:
@@ -5597,8 +5627,8 @@ components:
           type: string
         label_format:
           $ref: '#/components/schemas/label_format'
-    purolator_account_information_request_body:
-      title: purolator_account_information_request_body
+    connect_purolator_request_body:
+      title: connect_purolator_request_body
       type: object
       additionalProperties: false
       properties:
@@ -5905,8 +5935,8 @@ components:
             Most entity results have a `value` field, which is the normalized value of the entity.  For example, if the substring "john doe" was recognized as a "person" entity, then the value might be normalized to have proper capitalization (e.g. "John Doe").  Or if the substring "ft worth" was recognized as a "city" entity, then the value might be normalized to "Fort Worth".
 
             Some entities have other information in addition to, or instead of a `value`.  For example, a "dimensions" entity will have separate fields for `length`, `width`, `height`, and `unit`.
-    royal_mail_account_information_request_body:
-      title: royal_mail_account_information_request_body
+    connect_royal_mail_request_body:
+      title: connect_royal_mail_request_body
       type: object
       additionalProperties: false
       properties:
@@ -5938,8 +5968,8 @@ components:
           type: string
         nickname:
           type: string
-    rr_donnelley_account_information_request_body:
-      title: rr_donnelley_account_information_request_body
+    connect_rr_donnelley_request_body:
+      title: connect_rr_donnelley_request_body
       type: object
       additionalProperties: false
       properties:
@@ -5957,8 +5987,8 @@ components:
       pattern: '^se(-[a-z0-9]+)+$'
       example: se-28529731
       description: 'A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc.'
-    sendle_account_information_request_body:
-      title: sendle_account_information_request_body
+    connect_sendle_request_body:
+      title: connect_sendle_request_body
       type: object
       additionalProperties: false
       properties:
@@ -6274,8 +6304,8 @@ components:
         |:---------|:-----------------------------------------------------
         |`asc`     |Return results in ascending order
         |`desc`    |Return results in descending order
-    stamps_account_information_request_body:
-      title: stamps_account_information_request_body
+    connect_stamps_request_body:
+      title: connect_stamps_request_body
       type: object
       additionalProperties: false
       properties:
@@ -6423,8 +6453,8 @@ components:
       properties:
         url:
           type: string
-    ups_account_information_request_body:
-      title: ups_account_information_request_body
+    connect_ups_request_body:
+      title: connect_ups_request_body
       type: object
       additionalProperties: false
       properties:
