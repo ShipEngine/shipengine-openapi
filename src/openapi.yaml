@@ -24,7 +24,7 @@ components:
 
         Find your ShipEngine API keys in the Dashboard: https://app.shipengine.com/#/portal/apimanagement
   parameters:
-    $ref: parameters/index.yaml
+    $ref: parameters.yaml
   responses:
     $ref: responses/index.yaml
   schemas:
