@@ -2,11 +2,7 @@ tags:
   - carrier_accounts
 operationId: globegistics_account_carrier.disconnect_account
 parameters:
-  - name: carrier_id
-    in: path
-    required: true
-    schema:
-      $ref: '../../../../../../schemas/primitives.yaml#/se_id'
+  - $ref: '../../../../../../parameters.yaml#/carrier_id_path_param'
 responses:
   '204':
     $ref: ../../../../../../responses/no_content.yaml

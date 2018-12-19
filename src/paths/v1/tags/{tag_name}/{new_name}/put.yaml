@@ -2,11 +2,7 @@ tags:
   - tags
 operationId: tags.update_tag
 parameters:
-  - name: tag_name
-    in: path
-    required: true
-    schema:
-      type: string
+  - $ref: '../../../../../parameters.yaml#/tag_name_path_param'
   - name: new_name
     in: path
     required: true

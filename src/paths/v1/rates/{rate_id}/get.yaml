@@ -2,11 +2,7 @@ tags:
   - rates
 operationId: rates.get_by_id
 parameters:
-  - name: rate_id
-    in: path
-    required: true
-    schema:
-      $ref: '../../../../schemas/primitives.yaml#/se_id'
+  - $ref: '../../../../parameters.yaml#/rate_id_path_param'
 responses:
   '200':
     description: The request was a success.

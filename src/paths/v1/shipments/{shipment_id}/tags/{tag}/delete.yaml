@@ -2,16 +2,8 @@ tags:
   - shipments
 operationId: shipments.remove_tag
 parameters:
-  - name: shipment_id
-    in: path
-    required: true
-    schema:
-      $ref: '../../../../../../schemas/primitives.yaml#/se_id'
-  - name: tag
-    in: path
-    required: true
-    schema:
-      type: string
+  - $ref: '../../../../../../parameters.yaml#/shipment_id_path_param'
+  - $ref: '../../../../../../parameters.yaml#/tag_name_path_param'
 responses:
   '204':
     $ref: ../../../../../../responses/no_content.yaml

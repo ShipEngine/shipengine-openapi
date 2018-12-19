@@ -2884,7 +2884,7 @@
             }
           },
           {
-            "name": "pagesize",
+            "name": "page_size",
             "in": "query",
             "required": false,
             "schema": {
@@ -13998,22 +13998,6 @@
             "description": "Only return labels that are currently in the specified status"
           },
           {
-            "name": "carrier_id",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "title": "se_id",
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 25,
-              "pattern": "^se(-[a-z0-9]+)+$",
-              "example": "se-28529731",
-              "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc."
-            },
-            "example": "se-28529731",
-            "description": "Only return labels for a specific [carrier account](https://docs.shipengine.com/docs/setup-a-carrier)"
-          },
-          {
             "name": "service_code",
             "in": "query",
             "required": false,
@@ -14028,15 +14012,26 @@
             "description": "Only return labels for a specific [carrier service](https://docs.shipengine.com/docs/use-a-specific-service)"
           },
           {
+            "name": "carrier_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "title": "se_id",
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 25,
+              "pattern": "^se(-[a-z0-9]+)+$",
+              "example": "se-28529731",
+              "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc."
+            }
+          },
+          {
             "name": "tracking_number",
             "in": "query",
             "required": false,
             "schema": {
-              "type": "string",
-              "minLength": 1
-            },
-            "example": "1Z5615280351136446",
-            "description": "Only return labels with a specific tracking number"
+              "type": "string"
+            }
           },
           {
             "name": "batch_id",
@@ -14050,9 +14045,7 @@
               "pattern": "^se(-[a-z0-9]+)+$",
               "example": "se-28529731",
               "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc."
-            },
-            "example": "se-28529731",
-            "description": "Only return labels that were created in a specific [batch](https://docs.shipengine.com/docs/using-batches)"
+            }
           },
           {
             "name": "warehouse_id",
@@ -14066,39 +14059,25 @@
               "pattern": "^se(-[a-z0-9]+)+$",
               "example": "se-28529731",
               "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc."
-            },
-            "example": "se-28529731",
-            "description": "Only return labels that originate from a specific [warehouse](https://docs.shipengine.com/docs/ship-from-a-warehouse)"
+            }
           },
           {
             "name": "created_at_start",
             "in": "query",
             "required": false,
             "schema": {
-              "title": "date_time",
               "type": "string",
-              "format": "date-time",
-              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[-+]\\d{2}:\\d{2})$",
-              "example": "2018-09-23T15:00:00.000Z",
-              "description": "An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string that represents a date and time.\n"
-            },
-            "example": "2018-09-23T15:00:00.000Z",
-            "description": "Only return labels that were created on or after a specific date/time"
+              "format": "date-time"
+            }
           },
           {
             "name": "created_at_end",
             "in": "query",
             "required": false,
             "schema": {
-              "title": "date_time",
               "type": "string",
-              "format": "date-time",
-              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[-+]\\d{2}:\\d{2})$",
-              "example": "2018-09-23T15:00:00.000Z",
-              "description": "An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string that represents a date and time.\n"
-            },
-            "example": "2018-09-30T15:00:00.000Z",
-            "description": "Only return labels that were created on or before a specific date/time"
+              "format": "date-time"
+            }
           },
           {
             "name": "page",
@@ -14106,12 +14085,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "format": "int32",
-              "minimum": 1,
-              "default": 1
-            },
-            "example": 3,
-            "description": "Return a specific page of results. Defaults to the first page. If set to a number that's greater than the number of pages of results, an empty page is returned."
+              "format": "int32"
+            }
           },
           {
             "name": "page_size",
@@ -14119,19 +14094,14 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "format": "int32",
-              "minimum": 1,
-              "default": 25
-            },
-            "example": 50,
-            "description": "The number of labels to return per response."
+              "format": "int32"
+            }
           },
           {
             "name": "sort_dir",
             "in": "query",
             "required": false,
             "schema": {
-              "default": "desc",
               "title": "sort_dir",
               "type": "string",
               "enum": [
@@ -14139,8 +14109,7 @@
                 "desc"
               ],
               "description": "Controls the sort order of queries\n\n|Value     |Description\n|:---------|:-----------------------------------------------------\n|`asc`     |Return results in ascending order\n|`desc`    |Return results in descending order\n"
-            },
-            "description": "Controls the sort order of the query."
+            }
           },
           {
             "name": "sort_by",
@@ -25146,6 +25115,22 @@
         "operationId": "shipments.list",
         "parameters": [
           {
+            "name": "shipment_status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "title": "shipment_status",
+              "type": "string",
+              "enum": [
+                "pending",
+                "processing",
+                "label_purchased",
+                "cancelled"
+              ],
+              "description": "The possible shipment status values"
+            }
+          },
+          {
             "name": "batch_id",
             "in": "query",
             "required": false,
@@ -25168,19 +25153,21 @@
             }
           },
           {
-            "name": "shipment_status",
+            "name": "created_at_start",
             "in": "query",
             "required": false,
             "schema": {
-              "title": "shipment_status",
               "type": "string",
-              "enum": [
-                "pending",
-                "processing",
-                "label_purchased",
-                "cancelled"
-              ],
-              "description": "The possible shipment status values"
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "created_at_end",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
             }
           },
           {
@@ -25194,24 +25181,6 @@
           },
           {
             "name": "modified_at_end",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "created_at_start",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "created_at_end",
             "in": "query",
             "required": false,
             "schema": {
@@ -32496,7 +32465,7 @@
             }
           },
           {
-            "name": "pagesize",
+            "name": "page_size",
             "in": "query",
             "required": false,
             "schema": {
@@ -33476,7 +33445,7 @@
             }
           },
           {
-            "name": "tag",
+            "name": "tag_name",
             "in": "path",
             "required": true,
             "schema": {
@@ -33661,7 +33630,7 @@
             }
           },
           {
-            "name": "tag",
+            "name": "tag_name",
             "in": "path",
             "required": true,
             "schema": {
@@ -39231,6 +39200,24 @@
           "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc."
         }
       },
+      "modified_at_start_query_param": {
+        "name": "modified_at_start",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "modified_at_end_query_param": {
+        "name": "modified_at_end",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
       "package_id_path_param": {
         "name": "package_id",
         "in": "path",
@@ -39312,6 +39299,14 @@
             "desc"
           ],
           "description": "Controls the sort order of queries\n\n|Value     |Description\n|:---------|:-----------------------------------------------------\n|`asc`     |Return results in ascending order\n|`desc`    |Return results in descending order\n"
+        }
+      },
+      "tag_query_param": {
+        "name": "tag",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "string"
         }
       },
       "tag_name_path_param": {

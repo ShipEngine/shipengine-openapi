@@ -2,17 +2,8 @@ tags:
   - shipments
 operationId: shipments.get_rates_for_shipment
 parameters:
-  - name: shipment_id
-    in: path
-    required: true
-    schema:
-      $ref: '../../../../../schemas/primitives.yaml#/se_id'
-  - name: created_at_start
-    in: query
-    required: false
-    schema:
-      type: string
-      format: date-time
+  - $ref: '../../../../../parameters.yaml#/shipment_id_path_param'
+  - $ref: '../../../../../parameters.yaml#/created_at_start_query_param'
 responses:
   '200':
     description: The request was a success.

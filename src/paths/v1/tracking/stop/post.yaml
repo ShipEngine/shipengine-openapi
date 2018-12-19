@@ -2,16 +2,8 @@ tags:
   - tracking
 operationId: tracking.stop_tracking
 parameters:
-  - name: carrier_code
-    in: query
-    required: false
-    schema:
-      type: string
-  - name: tracking_number
-    in: query
-    required: false
-    schema:
-      type: string
+  - $ref: '../../../../parameters.yaml#/carrier_code_query_param'
+  - $ref: '../../../../parameters.yaml#/tracking_number_query_param'
 responses:
   '204':
     $ref: ../../../../responses/no_content.yaml

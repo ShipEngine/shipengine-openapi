@@ -2,11 +2,7 @@ tags:
   - manifests
 operationId: manifests.list
 parameters:
-  - name: warehouse_id
-    in: query
-    required: false
-    schema:
-      $ref: '../../../schemas/primitives.yaml#/se_id'
+  - $ref: '../../../parameters.yaml#/warehouse_id_query_param'
   - name: ship_date_start
     in: query
     required: false
@@ -19,35 +15,11 @@ parameters:
     schema:
       type: string
       format: date-time
-  - name: created_at_start
-    in: query
-    required: false
-    schema:
-      type: string
-      format: date-time
-  - name: created_at_end
-    in: query
-    required: false
-    schema:
-      type: string
-      format: date-time
-  - name: carrier_id
-    in: query
-    required: false
-    schema:
-      $ref: '../../../schemas/primitives.yaml#/se_id'
-  - name: page
-    in: query
-    required: false
-    schema:
-      type: integer
-      format: int32
-  - name: page_size
-    in: query
-    required: false
-    schema:
-      type: integer
-      format: int32
+  - $ref: '../../../parameters.yaml#/created_at_start_query_param'
+  - $ref: '../../../parameters.yaml#/created_at_end_query_param'
+  - $ref: '../../../parameters.yaml#/carrier_id_query_param'
+  - $ref: '../../../parameters.yaml#/page_query_param'
+  - $ref: '../../../parameters.yaml#/page_size_query_param'
 responses:
   '200':
     description: The request was a success.

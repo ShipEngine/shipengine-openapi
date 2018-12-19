@@ -2,11 +2,7 @@ tags:
   - warehouses
 operationId: warehouses.delete
 parameters:
-  - name: warehouse_id
-    in: path
-    required: true
-    schema:
-      $ref: '../../../../schemas/primitives.yaml#/se_id'
+  - $ref: '../../../../parameters.yaml#/warehouse_id_path_param'
 responses:
   '204':
     $ref: ../../../../responses/no_content.yaml

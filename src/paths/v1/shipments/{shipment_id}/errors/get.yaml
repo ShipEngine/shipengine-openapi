@@ -2,23 +2,9 @@ tags:
   - shipments
 operationId: shipments.list_errors
 parameters:
-  - name: shipment_id
-    in: path
-    required: true
-    schema:
-      $ref: '../../../../../schemas/primitives.yaml#/se_id'
-  - name: page
-    in: query
-    required: false
-    schema:
-      type: integer
-      format: int32
-  - name: pagesize
-    in: query
-    required: false
-    schema:
-      type: integer
-      format: int32
+  - $ref: '../../../../../parameters.yaml#/shipment_id_path_param'
+  - $ref: '../../../../../parameters.yaml#/page_query_param'
+  - $ref: '../../../../../parameters.yaml#/page_size_query_param'
 responses:
   '200':
     description: The request was a success.

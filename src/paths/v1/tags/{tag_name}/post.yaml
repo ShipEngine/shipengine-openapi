@@ -2,11 +2,7 @@ tags:
   - tags
 operationId: tags.add_tag
 parameters:
-  - name: tag_name
-    in: path
-    required: true
-    schema:
-      type: string
+  - $ref: '../../../../parameters.yaml#/tag_name_path_param'
 responses:
   '200':
     description: The request was a success.

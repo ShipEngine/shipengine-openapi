@@ -48,6 +48,20 @@ label_id_path_param:
   required: true
   schema:
     $ref: 'schemas/primitives.yaml#/se_id'
+modified_at_start_query_param:
+  name: modified_at_start
+  in: query
+  required: false
+  schema:
+    type: string
+    format: date-time
+modified_at_end_query_param:
+  name: modified_at_end
+  in: query
+  required: false
+  schema:
+    type: string
+    format: date-time
 package_id_path_param:
   name: package_id
   in: path
@@ -93,6 +107,12 @@ sort_dir_query_param:
   required: false
   schema:
     $ref: 'schemas/enums.yaml#/sort_dir'
+tag_query_param:
+  name: tag
+  in: query
+  required: false
+  schema:
+    type: string
 tag_name_path_param:
   name: tag_name
   in: path

@@ -2,11 +2,7 @@ tags:
   - carrier_accounts
 operationId: stamps_account_carrier.get_account_url
 parameters:
-  - name: carrier_id
-    in: path
-    required: true
-    schema:
-      $ref: '../../../../../../../schemas/primitives.yaml#/se_id'
+  - $ref: '../../../../../../../parameters.yaml#/carrier_id_path_param'
 requestBody:
   required: true
   content:
