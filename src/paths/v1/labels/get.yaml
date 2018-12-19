@@ -22,12 +22,24 @@ parameters:
       $ref: '../../../schemas/primitives.yaml#/service_code'
     example: usps_first_class_mail
     description: 'Only return labels for a specific [carrier service](https://docs.shipengine.com/docs/use-a-specific-service)'
-  - $ref: '../../../parameters.yaml#/carrier_id_query_param'
-  - $ref: '../../../parameters.yaml#/tracking_number_query_param'
-  - $ref: '../../../parameters.yaml#/batch_id_query_param'
-  - $ref: '../../../parameters.yaml#/warehouse_id_query_param'
-  - $ref: '../../../parameters.yaml#/created_at_start_query_param'
-  - $ref: '../../../parameters.yaml#/created_at_end_query_param'
+  - allOf:
+      - $ref: '../../../parameters.yaml#/carrier_id_query_param'
+    description: 'Only return labels for a specific [carrier account](https://docs.shipengine.com/docs/setup-a-carrier)'
+  - allOf:
+      - $ref: '../../../parameters.yaml#/tracking_number_query_param'
+    description: Only return labels with a specific tracking number
+  - allOf:
+      - $ref: '../../../parameters.yaml#/batch_id_query_param'
+    description: 'Only return labels that were created in a specific [batch](https://docs.shipengine.com/docs/using-batches)'
+  - allOf:
+      - $ref: '../../../parameters.yaml#/warehouse_id_query_param'
+    description: 'Only return labels that originate from a specific [warehouse](https://docs.shipengine.com/docs/ship-from-a-warehouse)'
+  - allOf:
+      - $ref: '../../../parameters.yaml#/created_at_start_query_param'
+    description: Only return labels that were created on or after a specific date/time
+  - allOf:
+      - $ref: '../../../parameters.yaml#/created_at_end_query_param'
+    description: Only return labels that were created on or before a specific date/time
   - $ref: '../../../parameters.yaml#/page_query_param'
   - $ref: '../../../parameters.yaml#/page_size_query_param'
   - $ref: '../../../parameters.yaml#/sort_dir_query_param'

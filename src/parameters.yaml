@@ -75,6 +75,11 @@ page_query_param:
   schema:
     type: integer
     format: int32
+    minimum: 1
+    default: 1
+  example: 2
+  description: |
+    Return a specific page of results. Defaults to the first page. If set to a number that's greater than the number of pages of results, an empty page is returned.
 page_size_query_param:
   name: page_size
   in: query
@@ -82,6 +87,10 @@ page_size_query_param:
   schema:
     type: integer
     format: int32
+    minimum: 1
+    default: 25
+  example: 50
+  description: The number of results to return per response.
 pagesize_query_param:
   name: pagesize
   in: query
@@ -106,7 +115,10 @@ sort_dir_query_param:
   in: query
   required: false
   schema:
-    $ref: 'schemas/enums.yaml#/sort_dir'
+    allOf:
+      - $ref: 'schemas/enums.yaml#/sort_dir'
+    default: desc
+  description: Controls the sort order of the query.
 tag_query_param:
   name: tag
   in: query

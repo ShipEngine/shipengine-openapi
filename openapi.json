@@ -1249,8 +1249,12 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "format": "int32"
-            }
+              "format": "int32",
+              "minimum": 1,
+              "default": 1
+            },
+            "example": 2,
+            "description": "Return a specific page of results. Defaults to the first page. If set to a number that's greater than the number of pages of results, an empty page is returned.\n"
           },
           {
             "name": "page_size",
@@ -1258,14 +1262,19 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "format": "int32"
-            }
+              "format": "int32",
+              "minimum": 1,
+              "default": 25
+            },
+            "example": 50,
+            "description": "The number of results to return per response."
           },
           {
             "name": "sort_dir",
             "in": "query",
             "required": false,
             "schema": {
+              "default": "desc",
               "title": "sort_dir",
               "type": "string",
               "enum": [
@@ -1273,7 +1282,8 @@
                 "desc"
               ],
               "description": "Controls the sort order of queries\n\n|Value     |Description\n|:---------|:-----------------------------------------------------\n|`asc`     |Return results in ascending order\n|`desc`    |Return results in descending order\n"
-            }
+            },
+            "description": "Controls the sort order of the query."
           },
           {
             "name": "sort_by",
@@ -2880,8 +2890,12 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "format": "int32"
-            }
+              "format": "int32",
+              "minimum": 1,
+              "default": 1
+            },
+            "example": 2,
+            "description": "Return a specific page of results. Defaults to the first page. If set to a number that's greater than the number of pages of results, an empty page is returned.\n"
           },
           {
             "name": "page_size",
@@ -2889,8 +2903,12 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "format": "int32"
-            }
+              "format": "int32",
+              "minimum": 1,
+              "default": 25
+            },
+            "example": 50,
+            "description": "The number of results to return per response."
           }
         ],
         "responses": {
@@ -14012,6 +14030,7 @@
             "description": "Only return labels for a specific [carrier service](https://docs.shipengine.com/docs/use-a-specific-service)"
           },
           {
+            "description": "Only return labels for a specific [carrier account](https://docs.shipengine.com/docs/setup-a-carrier)",
             "name": "carrier_id",
             "in": "query",
             "required": false,
@@ -14026,6 +14045,7 @@
             }
           },
           {
+            "description": "Only return labels with a specific tracking number",
             "name": "tracking_number",
             "in": "query",
             "required": false,
@@ -14034,6 +14054,7 @@
             }
           },
           {
+            "description": "Only return labels that were created in a specific [batch](https://docs.shipengine.com/docs/using-batches)",
             "name": "batch_id",
             "in": "query",
             "required": false,
@@ -14048,6 +14069,7 @@
             }
           },
           {
+            "description": "Only return labels that originate from a specific [warehouse](https://docs.shipengine.com/docs/ship-from-a-warehouse)",
             "name": "warehouse_id",
             "in": "query",
             "required": false,
@@ -14062,6 +14084,7 @@
             }
           },
           {
+            "description": "Only return labels that were created on or after a specific date/time",
             "name": "created_at_start",
             "in": "query",
             "required": false,
@@ -14071,6 +14094,7 @@
             }
           },
           {
+            "description": "Only return labels that were created on or before a specific date/time",
             "name": "created_at_end",
             "in": "query",
             "required": false,
@@ -14085,8 +14109,12 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "format": "int32"
-            }
+              "format": "int32",
+              "minimum": 1,
+              "default": 1
+            },
+            "example": 2,
+            "description": "Return a specific page of results. Defaults to the first page. If set to a number that's greater than the number of pages of results, an empty page is returned.\n"
           },
           {
             "name": "page_size",
@@ -14094,14 +14122,19 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "format": "int32"
-            }
+              "format": "int32",
+              "minimum": 1,
+              "default": 25
+            },
+            "example": 50,
+            "description": "The number of results to return per response."
           },
           {
             "name": "sort_dir",
             "in": "query",
             "required": false,
             "schema": {
+              "default": "desc",
               "title": "sort_dir",
               "type": "string",
               "enum": [
@@ -14109,7 +14142,8 @@
                 "desc"
               ],
               "description": "Controls the sort order of queries\n\n|Value     |Description\n|:---------|:-----------------------------------------------------\n|`asc`     |Return results in ascending order\n|`desc`    |Return results in descending order\n"
-            }
+            },
+            "description": "Controls the sort order of the query."
           },
           {
             "name": "sort_by",
@@ -18923,8 +18957,12 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "format": "int32"
-            }
+              "format": "int32",
+              "minimum": 1,
+              "default": 1
+            },
+            "example": 2,
+            "description": "Return a specific page of results. Defaults to the first page. If set to a number that's greater than the number of pages of results, an empty page is returned.\n"
           },
           {
             "name": "page_size",
@@ -18932,8 +18970,12 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "format": "int32"
-            }
+              "format": "int32",
+              "minimum": 1,
+              "default": 25
+            },
+            "example": 50,
+            "description": "The number of results to return per response."
           }
         ],
         "responses": {
@@ -25194,8 +25236,12 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "format": "int32"
-            }
+              "format": "int32",
+              "minimum": 1,
+              "default": 1
+            },
+            "example": 2,
+            "description": "Return a specific page of results. Defaults to the first page. If set to a number that's greater than the number of pages of results, an empty page is returned.\n"
           },
           {
             "name": "page_size",
@@ -25203,14 +25249,19 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "format": "int32"
-            }
+              "format": "int32",
+              "minimum": 1,
+              "default": 25
+            },
+            "example": 50,
+            "description": "The number of results to return per response."
           },
           {
             "name": "sort_dir",
             "in": "query",
             "required": false,
             "schema": {
+              "default": "desc",
               "title": "sort_dir",
               "type": "string",
               "enum": [
@@ -25218,7 +25269,8 @@
                 "desc"
               ],
               "description": "Controls the sort order of queries\n\n|Value     |Description\n|:---------|:-----------------------------------------------------\n|`asc`     |Return results in ascending order\n|`desc`    |Return results in descending order\n"
-            }
+            },
+            "description": "Controls the sort order of the query."
           },
           {
             "name": "sort_by",
@@ -32461,8 +32513,12 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "format": "int32"
-            }
+              "format": "int32",
+              "minimum": 1,
+              "default": 1
+            },
+            "example": 2,
+            "description": "Return a specific page of results. Defaults to the first page. If set to a number that's greater than the number of pages of results, an empty page is returned.\n"
           },
           {
             "name": "page_size",
@@ -32470,8 +32526,12 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "format": "int32"
-            }
+              "format": "int32",
+              "minimum": 1,
+              "default": 25
+            },
+            "example": 50,
+            "description": "The number of results to return per response."
           }
         ],
         "responses": {
@@ -39101,271 +39161,6 @@
         "name": "api-key",
         "in": "header",
         "description": "All requests to ShipEngine must include an API key in order to be authenticated. Any number of API keys can be generated within the ShipEngine dashboard and are unique to your account. Your API keys give full access to ShipEngine's functionality and therefore should be guarded in the same way you would guard a password or other application credentials. Once you have generated an API key you simply add it to your request as an HTTP header named the api-key.\n\nFind your ShipEngine API keys in the Dashboard: https://app.shipengine.com/#/portal/apimanagement\n"
-      }
-    },
-    "parameters": {
-      "batch_id_path_param": {
-        "name": "batch_id",
-        "in": "path",
-        "required": true,
-        "schema": {
-          "title": "se_id",
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 25,
-          "pattern": "^se(-[a-z0-9]+)+$",
-          "example": "se-28529731",
-          "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc."
-        }
-      },
-      "batch_id_query_param": {
-        "name": "batch_id",
-        "in": "query",
-        "required": false,
-        "schema": {
-          "title": "se_id",
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 25,
-          "pattern": "^se(-[a-z0-9]+)+$",
-          "example": "se-28529731",
-          "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc."
-        }
-      },
-      "carrier_code_query_param": {
-        "name": "carrier_code",
-        "in": "query",
-        "required": false,
-        "schema": {
-          "type": "string"
-        }
-      },
-      "carrier_id_path_param": {
-        "name": "carrier_id",
-        "in": "path",
-        "required": true,
-        "schema": {
-          "title": "se_id",
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 25,
-          "pattern": "^se(-[a-z0-9]+)+$",
-          "example": "se-28529731",
-          "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc."
-        }
-      },
-      "carrier_id_query_param": {
-        "name": "carrier_id",
-        "in": "query",
-        "required": false,
-        "schema": {
-          "title": "se_id",
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 25,
-          "pattern": "^se(-[a-z0-9]+)+$",
-          "example": "se-28529731",
-          "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc."
-        }
-      },
-      "created_at_end_query_param": {
-        "name": "created_at_end",
-        "in": "query",
-        "required": false,
-        "schema": {
-          "type": "string",
-          "format": "date-time"
-        }
-      },
-      "created_at_start_query_param": {
-        "name": "created_at_start",
-        "in": "query",
-        "required": false,
-        "schema": {
-          "type": "string",
-          "format": "date-time"
-        }
-      },
-      "label_id_path_param": {
-        "name": "label_id",
-        "in": "path",
-        "required": true,
-        "schema": {
-          "title": "se_id",
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 25,
-          "pattern": "^se(-[a-z0-9]+)+$",
-          "example": "se-28529731",
-          "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc."
-        }
-      },
-      "modified_at_start_query_param": {
-        "name": "modified_at_start",
-        "in": "query",
-        "required": false,
-        "schema": {
-          "type": "string",
-          "format": "date-time"
-        }
-      },
-      "modified_at_end_query_param": {
-        "name": "modified_at_end",
-        "in": "query",
-        "required": false,
-        "schema": {
-          "type": "string",
-          "format": "date-time"
-        }
-      },
-      "package_id_path_param": {
-        "name": "package_id",
-        "in": "path",
-        "required": true,
-        "schema": {
-          "title": "se_id",
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 25,
-          "pattern": "^se(-[a-z0-9]+)+$",
-          "example": "se-28529731",
-          "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc."
-        }
-      },
-      "page_query_param": {
-        "name": "page",
-        "in": "query",
-        "required": false,
-        "schema": {
-          "type": "integer",
-          "format": "int32"
-        }
-      },
-      "page_size_query_param": {
-        "name": "page_size",
-        "in": "query",
-        "required": false,
-        "schema": {
-          "type": "integer",
-          "format": "int32"
-        }
-      },
-      "pagesize_query_param": {
-        "name": "pagesize",
-        "in": "query",
-        "required": false,
-        "schema": {
-          "type": "integer",
-          "format": "int32"
-        }
-      },
-      "rate_id_path_param": {
-        "name": "rate_id",
-        "in": "path",
-        "required": true,
-        "schema": {
-          "title": "se_id",
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 25,
-          "pattern": "^se(-[a-z0-9]+)+$",
-          "example": "se-28529731",
-          "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc."
-        }
-      },
-      "shipment_id_path_param": {
-        "name": "shipment_id",
-        "in": "path",
-        "required": true,
-        "schema": {
-          "title": "se_id",
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 25,
-          "pattern": "^se(-[a-z0-9]+)+$",
-          "example": "se-28529731",
-          "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc."
-        }
-      },
-      "sort_dir_query_param": {
-        "name": "sort_dir",
-        "in": "query",
-        "required": false,
-        "schema": {
-          "title": "sort_dir",
-          "type": "string",
-          "enum": [
-            "asc",
-            "desc"
-          ],
-          "description": "Controls the sort order of queries\n\n|Value     |Description\n|:---------|:-----------------------------------------------------\n|`asc`     |Return results in ascending order\n|`desc`    |Return results in descending order\n"
-        }
-      },
-      "tag_query_param": {
-        "name": "tag",
-        "in": "query",
-        "required": false,
-        "schema": {
-          "type": "string"
-        }
-      },
-      "tag_name_path_param": {
-        "name": "tag_name",
-        "in": "path",
-        "required": true,
-        "schema": {
-          "type": "string"
-        }
-      },
-      "tracking_number_query_param": {
-        "name": "tracking_number",
-        "in": "query",
-        "required": false,
-        "schema": {
-          "type": "string"
-        }
-      },
-      "warehouse_id_path_param": {
-        "name": "warehouse_id",
-        "in": "path",
-        "required": true,
-        "schema": {
-          "title": "se_id",
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 25,
-          "pattern": "^se(-[a-z0-9]+)+$",
-          "example": "se-28529731",
-          "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc."
-        }
-      },
-      "warehouse_id_query_param": {
-        "name": "warehouse_id",
-        "in": "query",
-        "required": false,
-        "schema": {
-          "title": "se_id",
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 25,
-          "pattern": "^se(-[a-z0-9]+)+$",
-          "example": "se-28529731",
-          "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc."
-        }
-      },
-      "webhook_id_path_param": {
-        "name": "webhook_id",
-        "in": "path",
-        "required": true,
-        "schema": {
-          "title": "se_id",
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 25,
-          "pattern": "^se(-[a-z0-9]+)+$",
-          "example": "se-28529731",
-          "description": "A string that uniquely identifies a ShipEngine resource, such as a carrier, label, shipment, etc."
-        }
       }
     }
   }

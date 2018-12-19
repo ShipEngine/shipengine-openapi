@@ -1802,12 +1802,24 @@ paths:
             $ref: '#/components/schemas/service_code'
           example: usps_first_class_mail
           description: 'Only return labels for a specific [carrier service](https://docs.shipengine.com/docs/use-a-specific-service)'
-        - $ref: '#/components/parameters/carrier_id_query_param'
-        - $ref: '#/components/parameters/tracking_number_query_param'
-        - $ref: '#/components/parameters/batch_id_query_param'
-        - $ref: '#/components/parameters/warehouse_id_query_param'
-        - $ref: '#/components/parameters/created_at_start_query_param'
-        - $ref: '#/components/parameters/created_at_end_query_param'
+        - allOf:
+            - $ref: '#/components/parameters/carrier_id_query_param'
+          description: 'Only return labels for a specific [carrier account](https://docs.shipengine.com/docs/setup-a-carrier)'
+        - allOf:
+            - $ref: '#/components/parameters/tracking_number_query_param'
+          description: Only return labels with a specific tracking number
+        - allOf:
+            - $ref: '#/components/parameters/batch_id_query_param'
+          description: 'Only return labels that were created in a specific [batch](https://docs.shipengine.com/docs/using-batches)'
+        - allOf:
+            - $ref: '#/components/parameters/warehouse_id_query_param'
+          description: 'Only return labels that originate from a specific [warehouse](https://docs.shipengine.com/docs/ship-from-a-warehouse)'
+        - allOf:
+            - $ref: '#/components/parameters/created_at_start_query_param'
+          description: Only return labels that were created on or after a specific date/time
+        - allOf:
+            - $ref: '#/components/parameters/created_at_end_query_param'
+          description: Only return labels that were created on or before a specific date/time
         - $ref: '#/components/parameters/page_query_param'
         - $ref: '#/components/parameters/page_size_query_param'
         - $ref: '#/components/parameters/sort_dir_query_param'
@@ -3110,6 +3122,11 @@ components:
       schema:
         type: integer
         format: int32
+        minimum: 1
+        default: 1
+      example: 2
+      description: |
+        Return a specific page of results. Defaults to the first page. If set to a number that's greater than the number of pages of results, an empty page is returned.
     page_size_query_param:
       name: page_size
       in: query
@@ -3117,6 +3134,10 @@ components:
       schema:
         type: integer
         format: int32
+        minimum: 1
+        default: 25
+      example: 50
+      description: The number of results to return per response.
     pagesize_query_param:
       name: pagesize
       in: query
@@ -3141,7 +3162,10 @@ components:
       in: query
       required: false
       schema:
-        $ref: '#/components/schemas/sort_dir'
+        allOf:
+          - $ref: '#/components/schemas/sort_dir'
+        default: desc
+      description: Controls the sort order of the query.
     tag_query_param:
       name: tag
       in: query
