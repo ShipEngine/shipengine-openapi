@@ -1171,13 +1171,13 @@ paths:
     post:
       tags:
         - carrier_accounts
-      operationId: first_mile_account_carrier.connect_account
+      operationId: firstmile_account_carrier.connect_account
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/connect_first_mile_request_body'
+              $ref: '#/components/schemas/connect_firstmile_request_body'
       responses:
         '200':
           description: The request was a success.
@@ -1193,7 +1193,7 @@ paths:
     delete:
       tags:
         - carrier_accounts
-      operationId: first_mile_account_carrier.disconnect_account
+      operationId: firstmile_account_carrier.disconnect_account
       parameters:
         - $ref: '#/components/parameters/carrier_id_path_param'
       responses:
@@ -4397,8 +4397,8 @@ components:
           type: boolean
         meter_number:
           type: string
-    connect_first_mile_request_body:
-      title: connect_first_mile_request_body
+    connect_firstmile_request_body:
+      title: connect_firstmile_request_body
       type: object
       additionalProperties: false
       properties:

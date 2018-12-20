@@ -1,12 +1,12 @@
 tags:
   - carrier_accounts
-operationId: first_mile_account_carrier.connect_account
+operationId: firstmile_account_carrier.connect_account
 requestBody:
   required: true
   content:
     application/json:
       schema:
-        $ref: ../../../../../schemas/requests/connect_first_mile_request_body.yaml
+        $ref: ../../../../../schemas/requests/connect_firstmile_request_body.yaml
 responses:
   '200':
     description: The request was a success.

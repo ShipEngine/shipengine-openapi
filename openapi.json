@@ -9223,13 +9223,13 @@
         "tags": [
           "carrier_accounts"
         ],
-        "operationId": "first_mile_account_carrier.connect_account",
+        "operationId": "firstmile_account_carrier.connect_account",
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "title": "connect_first_mile_request_body",
+                "title": "connect_firstmile_request_body",
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
@@ -9368,7 +9368,7 @@
         "tags": [
           "carrier_accounts"
         ],
-        "operationId": "first_mile_account_carrier.disconnect_account",
+        "operationId": "firstmile_account_carrier.disconnect_account",
         "parameters": [
           {
             "name": "carrier_id",

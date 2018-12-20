@@ -130,8 +130,8 @@ fedex_settings_response_body:
   $ref: responses/fedex_settings_response_body.yaml
 connect_fedex_uk_request_body:
   $ref: requests/connect_fedex_uk_request_body.yaml
-connect_first_mile_request_body:
-  $ref: requests/connect_first_mile_request_body.yaml
+connect_firstmile_request_body:
+  $ref: requests/connect_firstmile_request_body.yaml
 connect_globegistics_request_body:
   $ref: requests/connect_globegistics_request_body.yaml
 goods_out:

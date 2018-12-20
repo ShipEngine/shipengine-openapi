@@ -1,6 +1,6 @@
 tags:
   - carrier_accounts
-operationId: first_mile_account_carrier.disconnect_account
+operationId: firstmile_account_carrier.disconnect_account
 parameters:
   - $ref: '../../../../../../parameters.yaml#/carrier_id_path_param'
 responses:

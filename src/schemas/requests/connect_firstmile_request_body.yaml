@@ -1,4 +1,4 @@
-title: connect_first_mile_request_body
+title: connect_firstmile_request_body
 type: object
 additionalProperties: false
 properties:
