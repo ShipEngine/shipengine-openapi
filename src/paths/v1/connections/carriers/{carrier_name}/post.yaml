@@ -1,0 +1,46 @@
+summary: Connect a carrier account
+tags:
+  - carrier_accounts
+operationId: connect_carrier
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        title: connect_carrier_request_body
+        oneOf:
+          - $ref: ../../../../../schemas/requests/connect_access_worldwide_request_body.yaml
+          - $ref: ../../../../../schemas/requests/connect_apc_request_body.yaml
+          - $ref: ../../../../../schemas/requests/connect_asendia_request_body.yaml
+          - $ref: ../../../../../schemas/requests/connect_australia_post_request_body.yaml
+          - $ref: ../../../../../schemas/requests/connect_dhl_ecommerce_request_body.yaml
+          - $ref: ../../../../../schemas/requests/connect_dhl_express_request_body.yaml
+          - $ref: ../../../../../schemas/requests/connect_dhl_express_au_request_body.yaml
+          - $ref: ../../../../../schemas/requests/connect_dhl_express_ca_request_body.yaml
+          - $ref: ../../../../../schemas/requests/connect_dhl_express_uk_request_body.yaml
+          - $ref: ../../../../../schemas/requests/connect_dpd_request_body.yaml
+          - $ref: ../../../../../schemas/requests/connect_endicia_request_body.yaml
+          - $ref: ../../../../../schemas/requests/connect_fedex_request_body.yaml
+          - $ref: ../../../../../schemas/requests/connect_fedex_uk_request_body.yaml
+          - $ref: ../../../../../schemas/requests/connect_firstmile_request_body.yaml
+          - $ref: ../../../../../schemas/requests/connect_globegistics_request_body.yaml
+          - $ref: ../../../../../schemas/requests/connect_imex_request_body.yaml
+          - $ref: ../../../../../schemas/requests/connect_newgistics_request_body.yaml
+          - $ref: ../../../../../schemas/requests/connect_ontrac_request_body.yaml
+          - $ref: ../../../../../schemas/requests/connect_purolator_request_body.yaml
+          - $ref: ../../../../../schemas/requests/connect_royal_mail_request_body.yaml
+          - $ref: ../../../../../schemas/requests/connect_rr_donnelley_request_body.yaml
+          - $ref: ../../../../../schemas/requests/connect_sendle_request_body.yaml
+          - $ref: ../../../../../schemas/requests/connect_stamps_request_body.yaml
+          - $ref: ../../../../../schemas/requests/connect_ups_request_body.yaml
+responses:
+  '200':
+    description: The request was a success.
+    content:
+      application/json:
+        schema:
+          $ref: ../../../../../schemas/responses/connect_account_response_body.yaml
+  '400':
+    $ref: ../../../../../responses/bad_request.yaml
+  '500':
+    $ref: ../../../../../responses/server_error.yaml

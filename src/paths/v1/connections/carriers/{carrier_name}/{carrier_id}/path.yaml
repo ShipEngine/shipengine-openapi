@@ -1,0 +1,6 @@
+summary: Disconnect a carrier
+parameters:
+  - $ref: '../../../../../../parameters.yaml#/carrier_name_path_param'
+  - $ref: '../../../../../../parameters.yaml#/carrier_id_path_param'
+delete:
+  $ref: delete.yaml

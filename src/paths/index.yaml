@@ -28,112 +28,14 @@
   $ref: 'v1/carriers/{carrier_id}/packages/path.yaml'
 '/v1/carriers/{carrier_id}/services':
   $ref: 'v1/carriers/{carrier_id}/services/path.yaml'
-/v1/connections/carriers/access_worldwide:
-  $ref: v1/connections/carriers/access_worldwide/path.yaml
-'/v1/connections/carriers/access_worldwide/{carrier_id}':
-  $ref: 'v1/connections/carriers/access_worldwide/{carrier_id}/path.yaml'
-/v1/connections/carriers/apc:
-  $ref: v1/connections/carriers/apc/path.yaml
-'/v1/connections/carriers/apc/{carrier_id}':
-  $ref: 'v1/connections/carriers/apc/{carrier_id}/path.yaml'
-/v1/connections/carriers/asendia:
-  $ref: v1/connections/carriers/asendia/path.yaml
-'/v1/connections/carriers/asendia/{carrier_id}':
-  $ref: 'v1/connections/carriers/asendia/{carrier_id}/path.yaml'
-/v1/connections/carriers/australia_post:
-  $ref: v1/connections/carriers/australia_post/path.yaml
-'/v1/connections/carriers/australia_post/{carrier_id}':
-  $ref: 'v1/connections/carriers/australia_post/{carrier_id}/path.yaml'
-/v1/connections/carriers/dhl_ecommerce:
-  $ref: v1/connections/carriers/dhl_ecommerce/path.yaml
-'/v1/connections/carriers/dhl_ecommerce/{carrier_id}':
-  $ref: 'v1/connections/carriers/dhl_ecommerce/{carrier_id}/path.yaml'
-/v1/connections/carriers/dhl_express:
-  $ref: v1/connections/carriers/dhl_express/path.yaml
-'/v1/connections/carriers/dhl_express/{carrier_id}':
-  $ref: 'v1/connections/carriers/dhl_express/{carrier_id}/path.yaml'
-'/v1/connections/carriers/dhl_express/{carrier_id}/settings':
-  $ref: 'v1/connections/carriers/dhl_express/{carrier_id}/settings/path.yaml'
-/v1/connections/carriers/dhl_express_au:
-  $ref: v1/connections/carriers/dhl_express_au/path.yaml
-'/v1/connections/carriers/dhl_express_au/{carrier_id}':
-  $ref: 'v1/connections/carriers/dhl_express_au/{carrier_id}/path.yaml'
-/v1/connections/carriers/dhl_express_ca:
-  $ref: v1/connections/carriers/dhl_express_ca/path.yaml
-'/v1/connections/carriers/dhl_express_ca/{carrier_id}':
-  $ref: 'v1/connections/carriers/dhl_express_ca/{carrier_id}/path.yaml'
-/v1/connections/carriers/dhl_express_uk:
-  $ref: v1/connections/carriers/dhl_express_uk/path.yaml
-'/v1/connections/carriers/dhl_express_uk/{carrier_id}':
-  $ref: 'v1/connections/carriers/dhl_express_uk/{carrier_id}/path.yaml'
-/v1/connections/carriers/dpd:
-  $ref: v1/connections/carriers/dpd/path.yaml
-'/v1/connections/carriers/dpd/{carrier_id}':
-  $ref: 'v1/connections/carriers/dpd/{carrier_id}/path.yaml'
-/v1/connections/carriers/endicia:
-  $ref: v1/connections/carriers/endicia/path.yaml
-'/v1/connections/carriers/endicia/{carrier_id}':
-  $ref: 'v1/connections/carriers/endicia/{carrier_id}/path.yaml'
-/v1/connections/carriers/fedex:
-  $ref: v1/connections/carriers/fedex/path.yaml
-'/v1/connections/carriers/fedex/{carrier_id}':
-  $ref: 'v1/connections/carriers/fedex/{carrier_id}/path.yaml'
-'/v1/connections/carriers/fedex/{carrier_id}/settings':
-  $ref: 'v1/connections/carriers/fedex/{carrier_id}/settings/path.yaml'
-/v1/connections/carriers/fedex_uk:
-  $ref: v1/connections/carriers/fedex_uk/path.yaml
-'/v1/connections/carriers/fedex_uk/{carrier_id}':
-  $ref: 'v1/connections/carriers/fedex_uk/{carrier_id}/path.yaml'
-/v1/connections/carriers/firstmile:
-  $ref: v1/connections/carriers/firstmile/path.yaml
-'/v1/connections/carriers/firstmile/{carrier_id}':
-  $ref: 'v1/connections/carriers/firstmile/{carrier_id}/path.yaml'
-/v1/connections/carriers/globegistics:
-  $ref: v1/connections/carriers/globegistics/path.yaml
-'/v1/connections/carriers/globegistics/{carrier_id}':
-  $ref: 'v1/connections/carriers/globegistics/{carrier_id}/path.yaml'
-/v1/connections/carriers/imex:
-  $ref: v1/connections/carriers/imex/path.yaml
-'/v1/connections/carriers/imex/{carrier_id}':
-  $ref: 'v1/connections/carriers/imex/{carrier_id}/path.yaml'
-/v1/connections/carriers/newgistics:
-  $ref: v1/connections/carriers/newgistics/path.yaml
-'/v1/connections/carriers/newgistics/{carrier_id}':
-  $ref: 'v1/connections/carriers/newgistics/{carrier_id}/path.yaml'
-'/v1/connections/carriers/newgistics/{carrier_id}/settings':
-  $ref: 'v1/connections/carriers/newgistics/{carrier_id}/settings/path.yaml'
-/v1/connections/carriers/ontrac:
-  $ref: v1/connections/carriers/ontrac/path.yaml
-'/v1/connections/carriers/ontrac/{carrier_id}':
-  $ref: 'v1/connections/carriers/ontrac/{carrier_id}/path.yaml'
-/v1/connections/carriers/purolator_canada:
-  $ref: v1/connections/carriers/purolator_canada/path.yaml
-'/v1/connections/carriers/purolator_canada/{carrier_id}':
-  $ref: 'v1/connections/carriers/purolator_canada/{carrier_id}/path.yaml'
-/v1/connections/carriers/royal_mail:
-  $ref: v1/connections/carriers/royal_mail/path.yaml
-'/v1/connections/carriers/royal_mail/{carrier_id}':
-  $ref: 'v1/connections/carriers/royal_mail/{carrier_id}/path.yaml'
-/v1/connections/carriers/rr_donnelley:
-  $ref: v1/connections/carriers/rr_donnelley/path.yaml
-'/v1/connections/carriers/rr_donnelley/{carrier_id}':
-  $ref: 'v1/connections/carriers/rr_donnelley/{carrier_id}/path.yaml'
-/v1/connections/carriers/sendle:
-  $ref: v1/connections/carriers/sendle/path.yaml
-'/v1/connections/carriers/sendle/{carrier_id}':
-  $ref: 'v1/connections/carriers/sendle/{carrier_id}/path.yaml'
-/v1/connections/carriers/stamps_com:
-  $ref: v1/connections/carriers/stamps_com/path.yaml
-'/v1/connections/carriers/stamps_com/{carrier_id}':
-  $ref: 'v1/connections/carriers/stamps_com/{carrier_id}/path.yaml'
+'/v1/connections/carriers/{carrier_name}':
+  $ref: 'v1/connections/carriers/{carrier_name}/path.yaml'
+'/v1/connections/carriers/{carrier_name}/{carrier_id}':
+  $ref: 'v1/connections/carriers/{carrier_name}/{carrier_id}/path.yaml'
+'/v1/connections/carriers/{carrier_name}/{carrier_id}/settings':
+  $ref: 'v1/connections/carriers/{carrier_name}/{carrier_id}/settings/path.yaml'
 '/v1/connections/carriers/stamps_com/{carrier_id}/request_account_url':
   $ref: 'v1/connections/carriers/stamps_com/{carrier_id}/request_account_url/path.yaml'
-/v1/connections/carriers/ups:
-  $ref: v1/connections/carriers/ups/path.yaml
-'/v1/connections/carriers/ups/{carrier_id}':
-  $ref: 'v1/connections/carriers/ups/{carrier_id}/path.yaml'
-'/v1/connections/carriers/ups/{carrier_id}/settings':
-  $ref: 'v1/connections/carriers/ups/{carrier_id}/settings/path.yaml'
 /v1/environment/webhooks:
   $ref: v1/environment/webhooks/path.yaml
 '/v1/environment/webhooks/{webhook_id}':

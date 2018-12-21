@@ -60,7 +60,7 @@ tags:
     externalDocs:
       url: 'https://docs.shipengine.com/docs/natural-language-processing-nlp'
       description: 'Find out how our Natural Language Processing APIs can help you extract useful and meaningful data from emails, documents, chat messages, or any other text source.'
-  - name: order_source_accounts
+  - name: order_sources
     description: |
       order source accounts
   - name: packages
@@ -625,17 +625,46 @@ paths:
           $ref: '#/components/responses/not_found'
         '500':
           $ref: '#/components/responses/server_error'
-  /v1/connections/carriers/access_worldwide:
+  '/v1/connections/carriers/{carrier_name}':
+    summary: Carrier connections
+    parameters:
+      - $ref: '#/components/parameters/carrier_name_path_param'
     post:
+      summary: Connect a carrier account
       tags:
         - carrier_accounts
-      operationId: access_worldwide_account_carrier.connect_account
+      operationId: connect_carrier
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/connect_access_worldwide_request_body'
+              title: connect_carrier_request_body
+              oneOf:
+                - $ref: '#/components/schemas/connect_access_worldwide_request_body'
+                - $ref: '#/components/schemas/connect_apc_request_body'
+                - $ref: '#/components/schemas/connect_asendia_request_body'
+                - $ref: '#/components/schemas/connect_australia_post_request_body'
+                - $ref: '#/components/schemas/connect_dhl_ecommerce_request_body'
+                - $ref: '#/components/schemas/connect_dhl_express_request_body'
+                - $ref: '#/components/schemas/connect_dhl_express_au_request_body'
+                - $ref: '#/components/schemas/connect_dhl_express_ca_request_body'
+                - $ref: '#/components/schemas/connect_dhl_express_uk_request_body'
+                - $ref: '#/components/schemas/connect_dpd_request_body'
+                - $ref: '#/components/schemas/connect_endicia_request_body'
+                - $ref: '#/components/schemas/connect_fedex_request_body'
+                - $ref: '#/components/schemas/connect_fedex_uk_request_body'
+                - $ref: '#/components/schemas/connect_firstmile_request_body'
+                - $ref: '#/components/schemas/connect_globegistics_request_body'
+                - $ref: '#/components/schemas/connect_imex_request_body'
+                - $ref: '#/components/schemas/connect_newgistics_request_body'
+                - $ref: '#/components/schemas/connect_ontrac_request_body'
+                - $ref: '#/components/schemas/connect_purolator_request_body'
+                - $ref: '#/components/schemas/connect_royal_mail_request_body'
+                - $ref: '#/components/schemas/connect_rr_donnelley_request_body'
+                - $ref: '#/components/schemas/connect_sendle_request_body'
+                - $ref: '#/components/schemas/connect_stamps_request_body'
+                - $ref: '#/components/schemas/connect_ups_request_body'
       responses:
         '200':
           description: The request was a success.
@@ -647,13 +676,16 @@ paths:
           $ref: '#/components/responses/bad_request'
         '500':
           $ref: '#/components/responses/server_error'
-  '/v1/connections/carriers/access_worldwide/{carrier_id}':
+  '/v1/connections/carriers/{carrier_name}/{carrier_id}':
+    summary: Disconnect a carrier
+    parameters:
+      - $ref: '#/components/parameters/carrier_name_path_param'
+      - $ref: '#/components/parameters/carrier_id_path_param'
     delete:
+      summary: Disconnect a carrier
       tags:
         - carrier_accounts
-      operationId: access_worldwide_account_carrier.disconnect_account
-      parameters:
-        - $ref: '#/components/parameters/carrier_id_path_param'
+      operationId: disconnect_carrier
       responses:
         '204':
           $ref: '#/components/responses/no_content'
@@ -661,885 +693,47 @@ paths:
           $ref: '#/components/responses/not_found'
         '500':
           $ref: '#/components/responses/server_error'
-  /v1/connections/carriers/apc:
-    post:
-      tags:
-        - carrier_accounts
-      operationId: apc_account_carrier.connect_account
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/connect_apc_request_body'
-      responses:
-        '200':
-          description: The request was a success.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect_account_response_body'
-        '400':
-          $ref: '#/components/responses/bad_request'
-        '500':
-          $ref: '#/components/responses/server_error'
-  '/v1/connections/carriers/apc/{carrier_id}':
-    delete:
-      tags:
-        - carrier_accounts
-      operationId: apc_account_carrier.disconnect_account
-      parameters:
-        - $ref: '#/components/parameters/carrier_id_path_param'
-      responses:
-        '204':
-          $ref: '#/components/responses/no_content'
-        '404':
-          $ref: '#/components/responses/not_found'
-        '500':
-          $ref: '#/components/responses/server_error'
-  /v1/connections/carriers/asendia:
-    post:
-      tags:
-        - carrier_accounts
-      operationId: asendia_account_carrier.connect_account
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/connect_asendia_request_body'
-      responses:
-        '200':
-          description: The request was a success.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect_account_response_body'
-        '400':
-          $ref: '#/components/responses/bad_request'
-        '500':
-          $ref: '#/components/responses/server_error'
-  '/v1/connections/carriers/asendia/{carrier_id}':
-    delete:
-      tags:
-        - carrier_accounts
-      operationId: asendia_account_carrier.disconnect_account
-      parameters:
-        - $ref: '#/components/parameters/carrier_id_path_param'
-      responses:
-        '204':
-          $ref: '#/components/responses/no_content'
-        '404':
-          $ref: '#/components/responses/not_found'
-        '500':
-          $ref: '#/components/responses/server_error'
-  /v1/connections/carriers/australia_post:
-    post:
-      tags:
-        - carrier_accounts
-      operationId: australia_post_account_carrier.connect_account
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/connect_australia_post_request_body'
-      responses:
-        '200':
-          description: The request was a success.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect_account_response_body'
-        '400':
-          $ref: '#/components/responses/bad_request'
-        '500':
-          $ref: '#/components/responses/server_error'
-  '/v1/connections/carriers/australia_post/{carrier_id}':
-    delete:
-      tags:
-        - carrier_accounts
-      operationId: australia_post_account_carrier.disconnect_account
-      parameters:
-        - $ref: '#/components/parameters/carrier_id_path_param'
-      responses:
-        '204':
-          $ref: '#/components/responses/no_content'
-        '404':
-          $ref: '#/components/responses/not_found'
-        '500':
-          $ref: '#/components/responses/server_error'
-  /v1/connections/carriers/dhl_ecommerce:
-    post:
-      tags:
-        - carrier_accounts
-      operationId: dhl_ecommerce_account_carrier.connect_account
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/connect_dhl_ecommerce_request_body'
-      responses:
-        '200':
-          description: The request was a success.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect_account_response_body'
-        '400':
-          $ref: '#/components/responses/bad_request'
-        '500':
-          $ref: '#/components/responses/server_error'
-  '/v1/connections/carriers/dhl_ecommerce/{carrier_id}':
-    delete:
-      tags:
-        - carrier_accounts
-      operationId: dhl_ecommerce_account_carrier.disconnect_account
-      parameters:
-        - $ref: '#/components/parameters/carrier_id_path_param'
-      responses:
-        '204':
-          $ref: '#/components/responses/no_content'
-        '404':
-          $ref: '#/components/responses/not_found'
-        '500':
-          $ref: '#/components/responses/server_error'
-  /v1/connections/carriers/dhl_express:
-    post:
-      tags:
-        - carrier_accounts
-      operationId: dhl_express_account_carrier.connect_account
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/connect_dhl_express_request_body'
-      responses:
-        '200':
-          description: The request was a success.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect_account_response_body'
-        '400':
-          $ref: '#/components/responses/bad_request'
-        '500':
-          $ref: '#/components/responses/server_error'
-  '/v1/connections/carriers/dhl_express/{carrier_id}':
-    delete:
-      tags:
-        - carrier_accounts
-      operationId: dhl_express_account_carrier.disconnect_account
-      parameters:
-        - $ref: '#/components/parameters/carrier_id_path_param'
-      responses:
-        '204':
-          $ref: '#/components/responses/no_content'
-        '404':
-          $ref: '#/components/responses/not_found'
-        '500':
-          $ref: '#/components/responses/server_error'
-  '/v1/connections/carriers/dhl_express/{carrier_id}/settings':
+  '/v1/connections/carriers/{carrier_name}/{carrier_id}/settings':
+    summary: Carrier settings
+    parameters:
+      - $ref: '#/components/parameters/carrier_name_settings_path_param'
+      - $ref: '#/components/parameters/carrier_id_path_param'
     get:
+      summary: Get carrier settings
       tags:
         - carrier_accounts
-      operationId: dhl_express_account_carrier.get_settings
-      parameters:
-        - $ref: '#/components/parameters/carrier_id_path_param'
+      operationId: get_carrier_settings
       responses:
         '200':
           description: The request was a success.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/dhl_express_settings_response_body'
+                title: get_carrier_settings_response_body
+                oneOf:
+                  - $ref: '#/components/schemas/dhl_express_settings_response_body'
+                  - $ref: '#/components/schemas/fedex_settings_response_body'
+                  - $ref: '#/components/schemas/ups_settings_response_body'
         '404':
           $ref: '#/components/responses/not_found'
         '500':
           $ref: '#/components/responses/server_error'
     put:
+      summary: Edit carrier settings
       tags:
         - carrier_accounts
-      operationId: dhl_express_account_carrier.update_settings
-      parameters:
-        - $ref: '#/components/parameters/carrier_id_path_param'
+      operationId: update_carrier_settings
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/update_dhl_express_settings_request_body'
-      responses:
-        '204':
-          $ref: '#/components/responses/no_content'
-        '404':
-          $ref: '#/components/responses/not_found'
-        '500':
-          $ref: '#/components/responses/server_error'
-  /v1/connections/carriers/dhl_express_au:
-    post:
-      tags:
-        - carrier_accounts
-      operationId: dhl_express_au_account_carrier.connect_account
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/connect_dhl_express_au_request_body'
-      responses:
-        '200':
-          description: The request was a success.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect_account_response_body'
-        '400':
-          $ref: '#/components/responses/bad_request'
-        '500':
-          $ref: '#/components/responses/server_error'
-  '/v1/connections/carriers/dhl_express_au/{carrier_id}':
-    delete:
-      tags:
-        - carrier_accounts
-      operationId: dhl_express_au_account_carrier.disconnect_account
-      parameters:
-        - $ref: '#/components/parameters/carrier_id_path_param'
-      responses:
-        '204':
-          $ref: '#/components/responses/no_content'
-        '404':
-          $ref: '#/components/responses/not_found'
-        '500':
-          $ref: '#/components/responses/server_error'
-  /v1/connections/carriers/dhl_express_ca:
-    post:
-      tags:
-        - carrier_accounts
-      operationId: dhl_express_ca_account_carrier.connect_account
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/connect_dhl_express_ca_request_body'
-      responses:
-        '200':
-          description: The request was a success.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect_account_response_body'
-        '400':
-          $ref: '#/components/responses/bad_request'
-        '500':
-          $ref: '#/components/responses/server_error'
-  '/v1/connections/carriers/dhl_express_ca/{carrier_id}':
-    delete:
-      tags:
-        - carrier_accounts
-      operationId: dhl_express_ca_account_carrier.disconnect_account
-      parameters:
-        - $ref: '#/components/parameters/carrier_id_path_param'
-      responses:
-        '204':
-          $ref: '#/components/responses/no_content'
-        '404':
-          $ref: '#/components/responses/not_found'
-        '500':
-          $ref: '#/components/responses/server_error'
-  /v1/connections/carriers/dhl_express_uk:
-    post:
-      tags:
-        - carrier_accounts
-      operationId: dhl_express_uk_account_carrier.connect_account
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/connect_dhl_express_uk_request_body'
-      responses:
-        '200':
-          description: The request was a success.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect_account_response_body'
-        '400':
-          $ref: '#/components/responses/bad_request'
-        '500':
-          $ref: '#/components/responses/server_error'
-  '/v1/connections/carriers/dhl_express_uk/{carrier_id}':
-    delete:
-      tags:
-        - carrier_accounts
-      operationId: dhl_express_uk_account_carrier.disconnect_account
-      parameters:
-        - $ref: '#/components/parameters/carrier_id_path_param'
-      responses:
-        '204':
-          $ref: '#/components/responses/no_content'
-        '404':
-          $ref: '#/components/responses/not_found'
-        '500':
-          $ref: '#/components/responses/server_error'
-  /v1/connections/carriers/dpd:
-    post:
-      tags:
-        - carrier_accounts
-      operationId: dpd_account_carrier.connect_account
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/connect_dpd_request_body'
-      responses:
-        '200':
-          description: The request was a success.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect_account_response_body'
-        '400':
-          $ref: '#/components/responses/bad_request'
-        '500':
-          $ref: '#/components/responses/server_error'
-  '/v1/connections/carriers/dpd/{carrier_id}':
-    delete:
-      tags:
-        - carrier_accounts
-      operationId: dpd_account_carrier.disconnect_account
-      parameters:
-        - $ref: '#/components/parameters/carrier_id_path_param'
-      responses:
-        '204':
-          $ref: '#/components/responses/no_content'
-        '404':
-          $ref: '#/components/responses/not_found'
-        '500':
-          $ref: '#/components/responses/server_error'
-  /v1/connections/carriers/endicia:
-    post:
-      tags:
-        - carrier_accounts
-      operationId: endicia_account_carrier.connect_account
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/connect_endicia_request_body'
-      responses:
-        '200':
-          description: The request was a success.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect_account_response_body'
-        '400':
-          $ref: '#/components/responses/bad_request'
-        '500':
-          $ref: '#/components/responses/server_error'
-  '/v1/connections/carriers/endicia/{carrier_id}':
-    delete:
-      tags:
-        - carrier_accounts
-      operationId: endicia_account_carrier.disconnect_account
-      parameters:
-        - $ref: '#/components/parameters/carrier_id_path_param'
-      responses:
-        '204':
-          $ref: '#/components/responses/no_content'
-        '404':
-          $ref: '#/components/responses/not_found'
-        '500':
-          $ref: '#/components/responses/server_error'
-  /v1/connections/carriers/fedex:
-    post:
-      tags:
-        - carrier_accounts
-      operationId: fedex_account_carrier.connect_account
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/connect_fedex_request_body'
-      responses:
-        '200':
-          description: The request was a success.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect_account_response_body'
-        '400':
-          $ref: '#/components/responses/bad_request'
-        '500':
-          $ref: '#/components/responses/server_error'
-  '/v1/connections/carriers/fedex/{carrier_id}':
-    delete:
-      tags:
-        - carrier_accounts
-      operationId: fedex_account_carrier.disconnect_account
-      parameters:
-        - $ref: '#/components/parameters/carrier_id_path_param'
-      responses:
-        '204':
-          $ref: '#/components/responses/no_content'
-        '404':
-          $ref: '#/components/responses/not_found'
-        '500':
-          $ref: '#/components/responses/server_error'
-  '/v1/connections/carriers/fedex/{carrier_id}/settings':
-    get:
-      tags:
-        - carrier_accounts
-      operationId: fedex_account_carrier.get_settings
-      parameters:
-        - $ref: '#/components/parameters/carrier_id_path_param'
-      responses:
-        '200':
-          description: The request was a success.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/fedex_settings_response_body'
-        '404':
-          $ref: '#/components/responses/not_found'
-        '500':
-          $ref: '#/components/responses/server_error'
-    put:
-      tags:
-        - carrier_accounts
-      operationId: fedex_account_carrier.update_settings
-      parameters:
-        - $ref: '#/components/parameters/carrier_id_path_param'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/update_fedex_settings_request_body'
-      responses:
-        '204':
-          $ref: '#/components/responses/no_content'
-        '404':
-          $ref: '#/components/responses/not_found'
-        '500':
-          $ref: '#/components/responses/server_error'
-  /v1/connections/carriers/fedex_uk:
-    post:
-      tags:
-        - carrier_accounts
-      operationId: fedex_uk_account_carrier.connect_account
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/connect_fedex_uk_request_body'
-      responses:
-        '200':
-          description: The request was a success.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect_account_response_body'
-        '400':
-          $ref: '#/components/responses/bad_request'
-        '500':
-          $ref: '#/components/responses/server_error'
-  '/v1/connections/carriers/fedex_uk/{carrier_id}':
-    delete:
-      tags:
-        - carrier_accounts
-      operationId: fedex_uk_account_carrier.disconnect_account
-      parameters:
-        - $ref: '#/components/parameters/carrier_id_path_param'
-      responses:
-        '204':
-          $ref: '#/components/responses/no_content'
-        '404':
-          $ref: '#/components/responses/not_found'
-        '500':
-          $ref: '#/components/responses/server_error'
-  /v1/connections/carriers/firstmile:
-    post:
-      tags:
-        - carrier_accounts
-      operationId: firstmile_account_carrier.connect_account
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/connect_firstmile_request_body'
-      responses:
-        '200':
-          description: The request was a success.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect_account_response_body'
-        '400':
-          $ref: '#/components/responses/bad_request'
-        '500':
-          $ref: '#/components/responses/server_error'
-  '/v1/connections/carriers/firstmile/{carrier_id}':
-    delete:
-      tags:
-        - carrier_accounts
-      operationId: firstmile_account_carrier.disconnect_account
-      parameters:
-        - $ref: '#/components/parameters/carrier_id_path_param'
-      responses:
-        '204':
-          $ref: '#/components/responses/no_content'
-        '404':
-          $ref: '#/components/responses/not_found'
-        '500':
-          $ref: '#/components/responses/server_error'
-  /v1/connections/carriers/globegistics:
-    post:
-      tags:
-        - carrier_accounts
-      operationId: globegistics_account_carrier.connect_account
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/connect_globegistics_request_body'
-      responses:
-        '200':
-          description: The request was a success.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect_account_response_body'
-        '400':
-          $ref: '#/components/responses/bad_request'
-        '500':
-          $ref: '#/components/responses/server_error'
-  '/v1/connections/carriers/globegistics/{carrier_id}':
-    delete:
-      tags:
-        - carrier_accounts
-      operationId: globegistics_account_carrier.disconnect_account
-      parameters:
-        - $ref: '#/components/parameters/carrier_id_path_param'
-      responses:
-        '204':
-          $ref: '#/components/responses/no_content'
-        '404':
-          $ref: '#/components/responses/not_found'
-        '500':
-          $ref: '#/components/responses/server_error'
-  /v1/connections/carriers/imex:
-    post:
-      tags:
-        - carrier_accounts
-      operationId: imex_account_carrier.connect_account
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/connect_imex_request_body'
-      responses:
-        '200':
-          description: The request was a success.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect_account_response_body'
-        '400':
-          $ref: '#/components/responses/bad_request'
-        '500':
-          $ref: '#/components/responses/server_error'
-  '/v1/connections/carriers/imex/{carrier_id}':
-    delete:
-      tags:
-        - carrier_accounts
-      operationId: imex_account_carrier.disconnect_account
-      parameters:
-        - $ref: '#/components/parameters/carrier_id_path_param'
-      responses:
-        '204':
-          $ref: '#/components/responses/no_content'
-        '404':
-          $ref: '#/components/responses/not_found'
-        '500':
-          $ref: '#/components/responses/server_error'
-  /v1/connections/carriers/newgistics:
-    post:
-      tags:
-        - carrier_accounts
-      operationId: newgistics_account_carrier.connect_account
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/connect_newgistics_request_body'
-      responses:
-        '200':
-          description: The request was a success.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect_account_response_body'
-        '400':
-          $ref: '#/components/responses/bad_request'
-        '500':
-          $ref: '#/components/responses/server_error'
-  '/v1/connections/carriers/newgistics/{carrier_id}':
-    delete:
-      tags:
-        - carrier_accounts
-      operationId: newgistics_account_carrier.disconnect_account
-      parameters:
-        - $ref: '#/components/parameters/carrier_id_path_param'
-      responses:
-        '204':
-          $ref: '#/components/responses/no_content'
-        '404':
-          $ref: '#/components/responses/not_found'
-        '500':
-          $ref: '#/components/responses/server_error'
-  '/v1/connections/carriers/newgistics/{carrier_id}/settings':
-    put:
-      tags:
-        - carrier_accounts
-      operationId: newgistics_account_carrier.update_settings
-      parameters:
-        - $ref: '#/components/parameters/carrier_id_path_param'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/newgistics_account_settings_request_body'
-      responses:
-        '204':
-          $ref: '#/components/responses/no_content'
-        '404':
-          $ref: '#/components/responses/not_found'
-        '500':
-          $ref: '#/components/responses/server_error'
-  /v1/connections/carriers/ontrac:
-    post:
-      tags:
-        - carrier_accounts
-      operationId: ontrac_account_carrier.connect_account
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/connect_ontrac_request_body'
-      responses:
-        '200':
-          description: The request was a success.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect_account_response_body'
-        '400':
-          $ref: '#/components/responses/bad_request'
-        '500':
-          $ref: '#/components/responses/server_error'
-  '/v1/connections/carriers/ontrac/{carrier_id}':
-    delete:
-      tags:
-        - carrier_accounts
-      operationId: ontrac_account_carrier.disconnect_account
-      parameters:
-        - $ref: '#/components/parameters/carrier_id_path_param'
-      responses:
-        '204':
-          $ref: '#/components/responses/no_content'
-        '404':
-          $ref: '#/components/responses/not_found'
-        '500':
-          $ref: '#/components/responses/server_error'
-  /v1/connections/carriers/purolator_canada:
-    post:
-      tags:
-        - carrier_accounts
-      operationId: purolator_account_carrier.connect_account
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/connect_purolator_request_body'
-      responses:
-        '200':
-          description: The request was a success.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect_account_response_body'
-        '400':
-          $ref: '#/components/responses/bad_request'
-        '500':
-          $ref: '#/components/responses/server_error'
-  '/v1/connections/carriers/purolator_canada/{carrier_id}':
-    delete:
-      tags:
-        - carrier_accounts
-      operationId: purolator_account_carrier.disconnect_account
-      parameters:
-        - $ref: '#/components/parameters/carrier_id_path_param'
-      responses:
-        '204':
-          $ref: '#/components/responses/no_content'
-        '404':
-          $ref: '#/components/responses/not_found'
-        '500':
-          $ref: '#/components/responses/server_error'
-  /v1/connections/carriers/royal_mail:
-    post:
-      tags:
-        - carrier_accounts
-      operationId: royal_mail_account_carrier.connect_account
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/connect_royal_mail_request_body'
-      responses:
-        '200':
-          description: The request was a success.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect_account_response_body'
-        '400':
-          $ref: '#/components/responses/bad_request'
-        '500':
-          $ref: '#/components/responses/server_error'
-  '/v1/connections/carriers/royal_mail/{carrier_id}':
-    delete:
-      tags:
-        - carrier_accounts
-      operationId: royal_mail_account_carrier.disconnect_account
-      parameters:
-        - $ref: '#/components/parameters/carrier_id_path_param'
-      responses:
-        '204':
-          $ref: '#/components/responses/no_content'
-        '404':
-          $ref: '#/components/responses/not_found'
-        '500':
-          $ref: '#/components/responses/server_error'
-  /v1/connections/carriers/rr_donnelley:
-    post:
-      tags:
-        - carrier_accounts
-      operationId: rr_donnelley_account_carrier.connect_account
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/connect_rr_donnelley_request_body'
-      responses:
-        '200':
-          description: The request was a success.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect_account_response_body'
-        '400':
-          $ref: '#/components/responses/bad_request'
-        '500':
-          $ref: '#/components/responses/server_error'
-  '/v1/connections/carriers/rr_donnelley/{carrier_id}':
-    delete:
-      tags:
-        - carrier_accounts
-      operationId: rr_donnelley_account_carrier.disconnect_account
-      parameters:
-        - $ref: '#/components/parameters/carrier_id_path_param'
-      responses:
-        '204':
-          $ref: '#/components/responses/no_content'
-        '404':
-          $ref: '#/components/responses/not_found'
-        '500':
-          $ref: '#/components/responses/server_error'
-  /v1/connections/carriers/sendle:
-    post:
-      tags:
-        - carrier_accounts
-      operationId: sendle_account_carrier.connect_account
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/connect_sendle_request_body'
-      responses:
-        '200':
-          description: The request was a success.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect_account_response_body'
-        '400':
-          $ref: '#/components/responses/bad_request'
-        '500':
-          $ref: '#/components/responses/server_error'
-  '/v1/connections/carriers/sendle/{carrier_id}':
-    delete:
-      tags:
-        - carrier_accounts
-      operationId: sendle_account_carrier.disconnect_account
-      parameters:
-        - $ref: '#/components/parameters/carrier_id_path_param'
-      responses:
-        '204':
-          $ref: '#/components/responses/no_content'
-        '404':
-          $ref: '#/components/responses/not_found'
-        '500':
-          $ref: '#/components/responses/server_error'
-  /v1/connections/carriers/stamps_com:
-    post:
-      tags:
-        - carrier_accounts
-      operationId: stamps_account_carrier.connect_account
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/connect_stamps_request_body'
-      responses:
-        '200':
-          description: The request was a success.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect_account_response_body'
-        '400':
-          $ref: '#/components/responses/bad_request'
-        '500':
-          $ref: '#/components/responses/server_error'
-  '/v1/connections/carriers/stamps_com/{carrier_id}':
-    delete:
-      tags:
-        - carrier_accounts
-      operationId: stamps_account_carrier.disconnect_account
-      parameters:
-        - $ref: '#/components/parameters/carrier_id_path_param'
+              title: update_carrier_settings_request_body
+              oneOf:
+                - $ref: '#/components/schemas/update_dhl_express_settings_request_body'
+                - $ref: '#/components/schemas/update_fedex_settings_request_body'
+                - $ref: '#/components/schemas/update_newgistics_settings_request_body'
+                - $ref: '#/components/schemas/update_ups_settings_request_body'
       responses:
         '204':
           $ref: '#/components/responses/no_content'
@@ -1548,12 +742,13 @@ paths:
         '500':
           $ref: '#/components/responses/server_error'
   '/v1/connections/carriers/stamps_com/{carrier_id}/request_account_url':
+    parameters:
+      - $ref: '#/components/parameters/carrier_id_path_param'
     put:
+      summary: Get carrier account URL
       tags:
         - carrier_accounts
-      operationId: stamps_account_carrier.get_account_url
-      parameters:
-        - $ref: '#/components/parameters/carrier_id_path_param'
+      operationId: get_stamps_account_url
       requestBody:
         required: true
         content:
@@ -1567,79 +762,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/stamps_account_url_list_response_body'
-        '404':
-          $ref: '#/components/responses/not_found'
-        '500':
-          $ref: '#/components/responses/server_error'
-  /v1/connections/carriers/ups:
-    post:
-      tags:
-        - carrier_accounts
-      operationId: ups_account_carrier.connect_account
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/connect_ups_request_body'
-      responses:
-        '200':
-          description: The request was a success.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/connect_account_response_body'
-        '400':
-          $ref: '#/components/responses/bad_request'
-        '500':
-          $ref: '#/components/responses/server_error'
-  '/v1/connections/carriers/ups/{carrier_id}':
-    delete:
-      tags:
-        - carrier_accounts
-      operationId: ups_account_carrier.disconnect_account
-      parameters:
-        - $ref: '#/components/parameters/carrier_id_path_param'
-      responses:
-        '204':
-          $ref: '#/components/responses/no_content'
-        '404':
-          $ref: '#/components/responses/not_found'
-        '500':
-          $ref: '#/components/responses/server_error'
-  '/v1/connections/carriers/ups/{carrier_id}/settings':
-    get:
-      tags:
-        - carrier_accounts
-      operationId: ups_account_carrier.get_settings
-      parameters:
-        - $ref: '#/components/parameters/carrier_id_path_param'
-      responses:
-        '200':
-          description: The request was a success.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ups_settings_response_body'
-        '404':
-          $ref: '#/components/responses/not_found'
-        '500':
-          $ref: '#/components/responses/server_error'
-    put:
-      tags:
-        - carrier_accounts
-      operationId: ups_account_carrier.update_settings
-      parameters:
-        - $ref: '#/components/parameters/carrier_id_path_param'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/update_ups_settings_request_body'
-      responses:
-        '204':
-          $ref: '#/components/responses/no_content'
         '404':
           $ref: '#/components/responses/not_found'
         '500':
@@ -3075,6 +2197,56 @@ components:
       required: false
       schema:
         $ref: '#/components/schemas/se_id'
+    carrier_name_path_param:
+      name: carrier_name
+      in: path
+      required: true
+      schema:
+        title: carrier_name
+        type: string
+        enum:
+          - access_worldwide
+          - apc
+          - asendia
+          - australia_post
+          - dhl_ecommerce
+          - dhl_express
+          - dhl_express_au
+          - dhl_express_ca
+          - dhl_express_uk
+          - dpd
+          - endicia
+          - fedex
+          - fedex_uk
+          - firstmile
+          - globegistics
+          - imex
+          - newgistics
+          - ontrac
+          - purolator_canada
+          - royal_mail
+          - rr_donnelley
+          - sendle
+          - stamps_com
+          - ups
+        description: The shipping carriers that are supported by ShipEngine
+      example: dhl_express
+      description: 'The carrier name, such as `stamps_com`, `ups`, `fedex`, or `dhl_express`.'
+    carrier_name_settings_path_param:
+      name: carrier_name
+      in: path
+      required: true
+      schema:
+        title: carrier_name_with_settings
+        type: string
+        enum:
+          - dhl_express
+          - fedex
+          - newgistics
+          - ups
+        description: The shipping carriers for which ShipEngine supports carrier settings
+      example: dhl_express
+      description: 'The carrier name, such as `stamps_com`, `ups`, `fedex`, or `dhl_express`.'
     created_at_end_query_param:
       name: created_at_end
       in: query
@@ -4332,17 +3504,8 @@ components:
       title: fedex_account_settings_request_body
       type: object
       additionalProperties: false
-      properties:
-        nickname:
-          type: string
-        pickup_type:
-          $ref: '#/components/schemas/fedex_pickup_type'
-        smart_post_hub:
-          $ref: '#/components/schemas/smart_post_hub'
-        smart_post_endorsement:
-          $ref: '#/components/schemas/smart_post_endorsement'
-        is_primary_account:
-          type: boolean
+      allOf:
+        - $ref: '#/components/schemas/update_fedex_settings_request_body'
     fedex_pickup_type:
       title: fedex_pickup_type
       type: string
@@ -5024,15 +4187,6 @@ components:
           type: string
         nickname:
           type: string
-    newgistics_account_settings_request_body:
-      title: newgistics_account_settings_request_body
-      type: object
-      additionalProperties: false
-      properties:
-        include_barcode_with_order_number:
-          type: boolean
-        receive_email_on_manifest_processing:
-          type: boolean
     non_delivery:
       title: non_delivery
       type: string
@@ -5992,16 +5146,13 @@ components:
         urls:
           type: array
           items:
-            $ref: '#/components/schemas/stamps_account_url_response_body'
-    stamps_account_url_response_body:
-      title: stamps_account_url_response_body
-      type: object
-      additionalProperties: false
-      properties:
-        url_type:
-          $ref: '#/components/schemas/url_type'
-        url:
-          type: string
+            type: object
+            additionalProperties: false
+            properties:
+              url_type:
+                $ref: '#/components/schemas/url_type'
+              url:
+                type: string
     stamps_account_urls_request_body:
       title: stamps_account_urls_request_body
       type: object
@@ -6101,8 +5252,17 @@ components:
       title: update_fedex_settings_request_body
       type: object
       additionalProperties: false
-      allOf:
-        - $ref: '#/components/schemas/fedex_account_settings_request_body'
+      properties:
+        nickname:
+          type: string
+        pickup_type:
+          $ref: '#/components/schemas/fedex_pickup_type'
+        smart_post_hub:
+          $ref: '#/components/schemas/smart_post_hub'
+        smart_post_endorsement:
+          $ref: '#/components/schemas/smart_post_endorsement'
+        is_primary_account:
+          type: boolean
     update_shipment_request_body:
       title: update_shipment_request_body
       type: object
@@ -6122,6 +5282,15 @@ components:
       properties:
         url:
           type: string
+    update_newgistics_settings_request_body:
+      title: update_newgistics_settings_request_body
+      type: object
+      additionalProperties: false
+      properties:
+        include_barcode_with_order_number:
+          type: boolean
+        receive_email_on_manifest_processing:
+          type: boolean
     connect_ups_request_body:
       title: connect_ups_request_body
       type: object

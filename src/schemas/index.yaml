@@ -186,8 +186,6 @@ money_request_body:
   $ref: requests/money_request_body.yaml
 connect_newgistics_request_body:
   $ref: requests/connect_newgistics_request_body.yaml
-newgistics_account_settings_request_body:
-  $ref: requests/newgistics_account_settings_request_body.yaml
 non_delivery:
   $ref: 'enums.yaml#/non_delivery'
 connect_ontrac_request_body:
@@ -278,8 +276,6 @@ connect_stamps_request_body:
   $ref: requests/connect_stamps_request_body.yaml
 stamps_account_url_list_response_body:
   $ref: responses/stamps_account_url_list_response_body.yaml
-stamps_account_url_response_body:
-  $ref: responses/stamps_account_url_response_body.yaml
 stamps_account_urls_request_body:
   $ref: requests/stamps_account_urls_request_body.yaml
 tag_response_body:
@@ -302,6 +298,8 @@ update_ups_settings_request_body:
   $ref: requests/update_ups_settings_request_body.yaml
 update_webhook_request_body:
   $ref: requests/update_webhook_request_body.yaml
+update_newgistics_settings_request_body:
+  $ref: requests/update_newgistics_settings_request_body.yaml
 connect_ups_request_body:
   $ref: requests/connect_ups_request_body.yaml
 ups_account_settings:

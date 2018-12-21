@@ -1,8 +1,7 @@
+summary: Get carrier account URL
 tags:
   - carrier_accounts
-operationId: stamps_account_carrier.get_account_url
-parameters:
-  - $ref: '../../../../../../../parameters.yaml#/carrier_id_path_param'
+operationId: get_stamps_account_url
 requestBody:
   required: true
   content:

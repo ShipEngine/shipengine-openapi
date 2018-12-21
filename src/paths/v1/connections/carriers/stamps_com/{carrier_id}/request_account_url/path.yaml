@@ -1,2 +1,4 @@
+parameters:
+  - $ref: '../../../../../../../parameters.yaml#/carrier_id_path_param'
 put:
   $ref: put.yaml

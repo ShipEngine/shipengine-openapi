@@ -1,0 +1,22 @@
+summary: Edit carrier settings
+tags:
+  - carrier_accounts
+operationId: update_carrier_settings
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        title: update_carrier_settings_request_body
+        oneOf:
+          - $ref: ../../../../../../../schemas/requests/update_dhl_express_settings_request_body.yaml
+          - $ref: ../../../../../../../schemas/requests/update_fedex_settings_request_body.yaml
+          - $ref: ../../../../../../../schemas/requests/update_newgistics_settings_request_body.yaml
+          - $ref: ../../../../../../../schemas/requests/update_ups_settings_request_body.yaml
+responses:
+  '204':
+    $ref: ../../../../../../../responses/no_content.yaml
+  '404':
+    $ref: ../../../../../../../responses/not_found.yaml
+  '500':
+    $ref: ../../../../../../../responses/server_error.yaml

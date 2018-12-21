@@ -5,4 +5,10 @@ properties:
   urls:
     type: array
     items:
-      $ref: ../responses/stamps_account_url_response_body.yaml
+      type: object
+      additionalProperties: false
+      properties:
+        url_type:
+          $ref: '../enums.yaml#/url_type'
+        url:
+          type: string

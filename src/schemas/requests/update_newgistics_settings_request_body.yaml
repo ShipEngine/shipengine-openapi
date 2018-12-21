@@ -1,0 +1,8 @@
+title: update_newgistics_settings_request_body
+type: object
+additionalProperties: false
+properties:
+  include_barcode_with_order_number:
+    type: boolean
+  receive_email_on_manifest_processing:
+    type: boolean

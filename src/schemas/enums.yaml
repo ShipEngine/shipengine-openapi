@@ -56,6 +56,44 @@ capture_payment:
     - when_order_is_shipped
     - when_order_is_placed
   description: The possible capture payment values
+carrier_name:
+  title: carrier_name
+  type: string
+  enum:
+    - access_worldwide
+    - apc
+    - asendia
+    - australia_post
+    - dhl_ecommerce
+    - dhl_express
+    - dhl_express_au
+    - dhl_express_ca
+    - dhl_express_uk
+    - dpd
+    - endicia
+    - fedex
+    - fedex_uk
+    - firstmile
+    - globegistics
+    - imex
+    - newgistics
+    - ontrac
+    - purolator_canada
+    - royal_mail
+    - rr_donnelley
+    - sendle
+    - stamps_com
+    - ups
+  description: The shipping carriers that are supported by ShipEngine
+carrier_name_with_settings:
+  title: carrier_name_with_settings
+  type: string
+  enum:
+    - dhl_express
+    - fedex
+    - newgistics
+    - ups
+  description: The shipping carriers for which ShipEngine supports carrier settings
 channel_advisor_product_identifier:
   title: channel_advisor_product_identifier
   type: string

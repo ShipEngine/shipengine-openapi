@@ -28,6 +28,22 @@ carrier_id_query_param:
   required: false
   schema:
     $ref: 'schemas/primitives.yaml#/se_id'
+carrier_name_path_param:
+  name: carrier_name
+  in: path
+  required: true
+  schema:
+    $ref: 'schemas/enums.yaml#/carrier_name'
+  example: dhl_express
+  description: 'The carrier name, such as `stamps_com`, `ups`, `fedex`, or `dhl_express`.'
+carrier_name_settings_path_param:
+  name: carrier_name
+  in: path
+  required: true
+  schema:
+    $ref: 'schemas/enums.yaml#/carrier_name_with_settings'
+  example: dhl_express
+  description: 'The carrier name, such as `stamps_com`, `ups`, `fedex`, or `dhl_express`.'
 created_at_end_query_param:
   name: created_at_end
   in: query

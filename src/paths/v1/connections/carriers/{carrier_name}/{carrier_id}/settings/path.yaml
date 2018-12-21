@@ -1,0 +1,8 @@
+summary: Carrier settings
+parameters:
+  - $ref: '../../../../../../../parameters.yaml#/carrier_name_settings_path_param'
+  - $ref: '../../../../../../../parameters.yaml#/carrier_id_path_param'
+get:
+  $ref: get.yaml
+put:
+  $ref: put.yaml

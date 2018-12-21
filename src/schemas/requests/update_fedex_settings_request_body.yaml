@@ -2,4 +2,4 @@ title: update_fedex_settings_request_body
 type: object
 additionalProperties: false
 allOf:
-  - $ref: ../requests/fedex_account_settings_request_body.yaml
+  - $ref: ../fedex_account_settings.yaml
