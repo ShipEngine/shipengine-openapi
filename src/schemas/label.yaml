@@ -156,6 +156,8 @@ properties:
       - $ref: link.yaml
     description: |
       The URL to download the label.  The file format depends on the `label_format` and `label_layout` fields.
+
+      There are two different ways to download a label, depending on the `label_download_type` that you specified when creating or querying the label.  The `label_download_type` field defaults to `url`, which will return a URL that you can use to download the label.  If you set `label_download_type` to `inline`, then a [Data URI](https://en.wikipedia.org/wiki/Data_URI_scheme) will be returned. Data URIs include the data inline, so no additmional HTTP request is needed.  See [Download a Label](https://docs.shipengine.com/docs/download-a-label) for more details.
   form_download:
     readOnly: true
     nullable: true

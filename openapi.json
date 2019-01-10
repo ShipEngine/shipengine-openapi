@@ -8299,7 +8299,7 @@
                           },
                           "label_download": {
                             "readOnly": true,
-                            "description": "The URL to download the label.  The file format depends on the `label_format` and `label_layout` fields.\n",
+                            "description": "The URL to download the label.  The file format depends on the `label_format` and `label_layout` fields.\n\nThere are two different ways to download a label, depending on the `label_download_type` that you specified when creating or querying the label.  The `label_download_type` field defaults to `url`, which will return a URL that you can use to download the label.  If you set `label_download_type` to `inline`, then a [Data URI](https://en.wikipedia.org/wiki/Data_URI_scheme) will be returned. Data URIs include the data inline, so no additmional HTTP request is needed.  See [Download a Label](https://docs.shipengine.com/docs/download-a-label) for more details.\n",
                             "title": "link",
                             "type": "object",
                             "additionalProperties": false,
@@ -9621,6 +9621,7 @@
                     "type": "string"
                   },
                   "label_format": {
+                    "default": "pdf",
                     "title": "label_format",
                     "type": "string",
                     "enum": [
@@ -9629,6 +9630,16 @@
                       "zpl"
                     ],
                     "description": "The possible file formats in which shipping labels can be downloaded.  We recommend `pdf` format because it is supported by all carriers, whereas some carriers do not support the `png` or `zpl` formats.\n\n|Label Format  | Supported Carriers\n|--------------|-----------------------------------\n|`pdf`         | All carriers\n|`png`         | `fedex` <br> `stamps_com` <br> `ups` <br> `usps`\n|`zpl`         | `access_worldwide` <br> `apc` <br> `asendia` <br> `dhl_global_mail` <br> `dhl_express` <br> `dhl_express_australia` <br> `dhl_express_canada` <br> `dhl_express_worldwide` <br> `dhl_express_uk` <br> `dpd` <br> `endicia` <br> `fedex` <br> `fedex_uk` <br> `firstmile` <br> `globegistics` <br> `imex` <br> `newgistics` <br> `ontrac` <br> `rr_donnelley` <br> `stamps_com` <br> `ups` <br> `usps`\n"
+                  },
+                  "label_download_type": {
+                    "default": "url",
+                    "title": "label_download_type",
+                    "type": "string",
+                    "enum": [
+                      "url",
+                      "inline"
+                    ],
+                    "description": "There are two different ways to [download a label](https://docs.shipengine.com/docs/download-a-label):\n\n|Label Download Type | Description\n|--------------------|------------------------------\n|`url`               |You will receive a URL, which you can use to download the label in a separate request. The URL will remain valid for 90 days.<br><br>This is the default if `label_download_type` is unspecified.\n|`inline`            |You will receive the Base64-encoded label as part of the response. No need for a second request to download the label.\n"
                   }
                 }
               }
@@ -9902,7 +9913,7 @@
                     },
                     "label_download": {
                       "readOnly": true,
-                      "description": "The URL to download the label.  The file format depends on the `label_format` and `label_layout` fields.\n",
+                      "description": "The URL to download the label.  The file format depends on the `label_format` and `label_layout` fields.\n\nThere are two different ways to download a label, depending on the `label_download_type` that you specified when creating or querying the label.  The `label_download_type` field defaults to `url`, which will return a URL that you can use to download the label.  If you set `label_download_type` to `inline`, then a [Data URI](https://en.wikipedia.org/wiki/Data_URI_scheme) will be returned. Data URIs include the data inline, so no additmional HTTP request is needed.  See [Download a Label](https://docs.shipengine.com/docs/download-a-label) for more details.\n",
                       "title": "link",
                       "type": "object",
                       "additionalProperties": false,
@@ -10605,7 +10616,7 @@
                     },
                     "label_download": {
                       "readOnly": true,
-                      "description": "The URL to download the label.  The file format depends on the `label_format` and `label_layout` fields.\n",
+                      "description": "The URL to download the label.  The file format depends on the `label_format` and `label_layout` fields.\n\nThere are two different ways to download a label, depending on the `label_download_type` that you specified when creating or querying the label.  The `label_download_type` field defaults to `url`, which will return a URL that you can use to download the label.  If you set `label_download_type` to `inline`, then a [Data URI](https://en.wikipedia.org/wiki/Data_URI_scheme) will be returned. Data URIs include the data inline, so no additmional HTTP request is needed.  See [Download a Label](https://docs.shipengine.com/docs/download-a-label) for more details.\n",
                       "title": "link",
                       "type": "object",
                       "additionalProperties": false,
@@ -11308,7 +11319,7 @@
                     },
                     "label_download": {
                       "readOnly": true,
-                      "description": "The URL to download the label.  The file format depends on the `label_format` and `label_layout` fields.\n",
+                      "description": "The URL to download the label.  The file format depends on the `label_format` and `label_layout` fields.\n\nThere are two different ways to download a label, depending on the `label_download_type` that you specified when creating or querying the label.  The `label_download_type` field defaults to `url`, which will return a URL that you can use to download the label.  If you set `label_download_type` to `inline`, then a [Data URI](https://en.wikipedia.org/wiki/Data_URI_scheme) will be returned. Data URIs include the data inline, so no additmional HTTP request is needed.  See [Download a Label](https://docs.shipengine.com/docs/download-a-label) for more details.\n",
                       "title": "link",
                       "type": "object",
                       "additionalProperties": false,
@@ -11971,7 +11982,7 @@
                     },
                     "label_download": {
                       "readOnly": true,
-                      "description": "The URL to download the label.  The file format depends on the `label_format` and `label_layout` fields.\n",
+                      "description": "The URL to download the label.  The file format depends on the `label_format` and `label_layout` fields.\n\nThere are two different ways to download a label, depending on the `label_download_type` that you specified when creating or querying the label.  The `label_download_type` field defaults to `url`, which will return a URL that you can use to download the label.  If you set `label_download_type` to `inline`, then a [Data URI](https://en.wikipedia.org/wiki/Data_URI_scheme) will be returned. Data URIs include the data inline, so no additmional HTTP request is needed.  See [Download a Label](https://docs.shipengine.com/docs/download-a-label) for more details.\n",
                       "title": "link",
                       "type": "object",
                       "additionalProperties": false,

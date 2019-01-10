@@ -15,4 +15,10 @@ properties:
   label_layout:
     type: string
   label_format:
-    $ref: '../enums.yaml#/label_format'
+    default: pdf
+    allOf:
+      - $ref: '../enums.yaml#/label_format'
+  label_download_type:
+    default: url
+    allOf:
+      - $ref: '../enums.yaml#/label_download_type'

@@ -272,6 +272,19 @@ insurance_provider:
     - shipsurance
     - carrier
   description: The possible insurance provider values
+label_download_type:
+  title: label_download_type
+  type: string
+  enum:
+    - url
+    - inline
+  description: |
+    There are two different ways to [download a label](https://docs.shipengine.com/docs/download-a-label):
+
+    |Label Download Type | Description
+    |--------------------|------------------------------
+    |`url`               |You will receive a URL, which you can use to download the label in a separate request. The URL will remain valid for 90 days.<br><br>This is the default if `label_download_type` is unspecified.
+    |`inline`            |You will receive the Base64-encoded label as part of the response. No need for a second request to download the label.
 label_format:
   title: label_format
   type: string

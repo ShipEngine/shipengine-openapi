@@ -2261,6 +2261,24 @@ components:
       schema:
         type: string
         format: date-time
+    label_download_type_query_param:
+      name: label_download_type
+      in: query
+      required: false
+      schema:
+        title: label_download_type
+        type: string
+        enum:
+          - url
+          - inline
+        description: |
+          There are two different ways to [download a label](https://docs.shipengine.com/docs/download-a-label):
+
+          |Label Download Type | Description
+          |--------------------|------------------------------
+          |`url`               |You will receive a URL, which you can use to download the label in a separate request. The URL will remain valid for 90 days.<br><br>This is the default if `label_download_type` is unspecified.
+          |`inline`            |You will receive the Base64-encoded label as part of the response. No need for a second request to download the label.
+      example: url
     label_id_path_param:
       name: label_id
       in: path
@@ -3845,6 +3863,8 @@ components:
             - $ref: '#/components/schemas/link'
           description: |
             The URL to download the label.  The file format depends on the `label_format` and `label_layout` fields.
+
+            There are two different ways to download a label, depending on the `label_download_type` that you specified when creating or querying the label.  The `label_download_type` field defaults to `url`, which will return a URL that you can use to download the label.  If you set `label_download_type` to `inline`, then a [Data URI](https://en.wikipedia.org/wiki/Data_URI_scheme) will be returned. Data URIs include the data inline, so no additmional HTTP request is needed.  See [Download a Label](https://docs.shipengine.com/docs/download-a-label) for more details.
         form_download:
           readOnly: true
           nullable: true
@@ -4436,7 +4456,13 @@ components:
         label_layout:
           type: string
         label_format:
-          $ref: '#/components/schemas/label_format'
+          default: pdf
+          allOf:
+            - $ref: '#/components/schemas/label_format'
+        label_download_type:
+          default: url
+          allOf:
+            - $ref: '#/components/parameters/label_download_type_query_param/schema'
     purchase_label_without_shipment_request_body:
       title: purchase_label_without_shipment_request_body
       type: object

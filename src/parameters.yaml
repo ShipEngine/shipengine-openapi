@@ -58,6 +58,13 @@ created_at_start_query_param:
   schema:
     type: string
     format: date-time
+label_download_type_query_param:
+  name: label_download_type
+  in: query
+  required: false
+  schema:
+    $ref: 'schemas/enums.yaml#/label_download_type'
+  example: url
 label_id_path_param:
   name: label_id
   in: path
