@@ -1030,7 +1030,7 @@
                           "additionalProperties": false,
                           "properties": {
                             "code": {
-                              "title": "code",
+                              "title": "address_validation_code",
                               "type": "string",
                               "enum": [
                                 "a1000",
@@ -1047,23 +1047,23 @@
                                 "r1002",
                                 "r1003"
                               ],
-                              "description": "The possible code values"
+                              "description": "The error codes that can be returned by the address validation API"
                             },
                             "message": {
                               "type": "string"
                             },
                             "type": {
-                              "title": "type",
+                              "title": "address_validation_message_type",
                               "type": "string",
                               "enum": [
                                 "error",
                                 "warning",
                                 "info"
                               ],
-                              "description": "The possible type values"
+                              "description": "The different types of messages that can be returned by the address validation API"
                             },
                             "detail_code": {
-                              "title": "detail_code",
+                              "title": "address_validation_detail_code",
                               "type": "string",
                               "enum": [
                                 "unsupported_country",
@@ -1122,7 +1122,7 @@
                                 "invalid_postal_code",
                                 "country_invalid_length"
                               ],
-                              "description": "The possible detail code values"
+                              "description": "The detailed error codes that can be returned by the address validation API"
                             }
                           }
                         }
@@ -9366,7 +9366,8 @@
                         "enum": [
                           "none",
                           "shipsurance",
-                          "carrier"
+                          "carrier",
+                          "third_party"
                         ]
                       },
                       "tags": {
@@ -9608,6 +9609,7 @@
                     "type": "boolean"
                   },
                   "validate_address": {
+                    "default": "validate_and_clean",
                     "title": "validate_address",
                     "type": "string",
                     "enum": [
@@ -15289,7 +15291,8 @@
                         "enum": [
                           "none",
                           "shipsurance",
-                          "carrier"
+                          "carrier",
+                          "third_party"
                         ],
                         "description": "The possible insurance provider values"
                       },
@@ -16594,7 +16597,8 @@
                       "enum": [
                         "none",
                         "shipsurance",
-                        "carrier"
+                        "carrier",
+                        "third_party"
                       ],
                       "description": "The possible insurance provider values"
                     },
@@ -17494,7 +17498,8 @@
                           "enum": [
                             "none",
                             "shipsurance",
-                            "carrier"
+                            "carrier",
+                            "third_party"
                           ],
                           "description": "The possible insurance provider values"
                         },
@@ -19760,7 +19765,8 @@
                             "enum": [
                               "none",
                               "shipsurance",
-                              "carrier"
+                              "carrier",
+                              "third_party"
                             ]
                           },
                           "tags": {
@@ -20810,7 +20816,8 @@
                           "enum": [
                             "none",
                             "shipsurance",
-                            "carrier"
+                            "carrier",
+                            "third_party"
                           ],
                           "description": "The possible insurance provider values"
                         },
@@ -21266,7 +21273,7 @@
                                   "additionalProperties": false,
                                   "properties": {
                                     "code": {
-                                      "title": "code",
+                                      "title": "address_validation_code",
                                       "type": "string",
                                       "enum": [
                                         "a1000",
@@ -21283,23 +21290,23 @@
                                         "r1002",
                                         "r1003"
                                       ],
-                                      "description": "The possible code values"
+                                      "description": "The error codes that can be returned by the address validation API"
                                     },
                                     "message": {
                                       "type": "string"
                                     },
                                     "type": {
-                                      "title": "type",
+                                      "title": "address_validation_message_type",
                                       "type": "string",
                                       "enum": [
                                         "error",
                                         "warning",
                                         "info"
                                       ],
-                                      "description": "The possible type values"
+                                      "description": "The different types of messages that can be returned by the address validation API"
                                     },
                                     "detail_code": {
-                                      "title": "detail_code",
+                                      "title": "address_validation_detail_code",
                                       "type": "string",
                                       "enum": [
                                         "unsupported_country",
@@ -21358,7 +21365,7 @@
                                         "invalid_postal_code",
                                         "country_invalid_length"
                                       ],
-                                      "description": "The possible detail code values"
+                                      "description": "The detailed error codes that can be returned by the address validation API"
                                     }
                                   }
                                 }
@@ -21908,7 +21915,8 @@
                             "enum": [
                               "none",
                               "shipsurance",
-                              "carrier"
+                              "carrier",
+                              "third_party"
                             ],
                             "description": "The possible insurance provider values"
                           },
@@ -22838,7 +22846,8 @@
                       "enum": [
                         "none",
                         "shipsurance",
-                        "carrier"
+                        "carrier",
+                        "third_party"
                       ]
                     },
                     "tags": {
@@ -23817,7 +23826,8 @@
                       "enum": [
                         "none",
                         "shipsurance",
-                        "carrier"
+                        "carrier",
+                        "third_party"
                       ]
                     },
                     "tags": {
@@ -24757,7 +24767,8 @@
                     "enum": [
                       "none",
                       "shipsurance",
-                      "carrier"
+                      "carrier",
+                      "third_party"
                     ],
                     "description": "The possible insurance provider values"
                   },
@@ -25200,7 +25211,7 @@
                             "additionalProperties": false,
                             "properties": {
                               "code": {
-                                "title": "code",
+                                "title": "address_validation_code",
                                 "type": "string",
                                 "enum": [
                                   "a1000",
@@ -25217,23 +25228,23 @@
                                   "r1002",
                                   "r1003"
                                 ],
-                                "description": "The possible code values"
+                                "description": "The error codes that can be returned by the address validation API"
                               },
                               "message": {
                                 "type": "string"
                               },
                               "type": {
-                                "title": "type",
+                                "title": "address_validation_message_type",
                                 "type": "string",
                                 "enum": [
                                   "error",
                                   "warning",
                                   "info"
                                 ],
-                                "description": "The possible type values"
+                                "description": "The different types of messages that can be returned by the address validation API"
                               },
                               "detail_code": {
-                                "title": "detail_code",
+                                "title": "address_validation_detail_code",
                                 "type": "string",
                                 "enum": [
                                   "unsupported_country",
@@ -25292,7 +25303,7 @@
                                   "invalid_postal_code",
                                   "country_invalid_length"
                                 ],
-                                "description": "The possible detail code values"
+                                "description": "The detailed error codes that can be returned by the address validation API"
                               }
                             }
                           }
@@ -25842,7 +25853,8 @@
                       "enum": [
                         "none",
                         "shipsurance",
-                        "carrier"
+                        "carrier",
+                        "third_party"
                       ],
                       "description": "The possible insurance provider values"
                     },
@@ -28313,7 +28325,8 @@
                         "enum": [
                           "none",
                           "shipsurance",
-                          "carrier"
+                          "carrier",
+                          "third_party"
                         ]
                       },
                       "tags": {
@@ -29177,7 +29190,8 @@
                           "enum": [
                             "none",
                             "shipsurance",
-                            "carrier"
+                            "carrier",
+                            "third_party"
                           ]
                         },
                         "tags": {

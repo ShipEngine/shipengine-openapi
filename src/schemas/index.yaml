@@ -6,6 +6,12 @@ address_residential_indicator:
   $ref: 'enums.yaml#/address_residential_indicator'
 address_validating_shipment:
   $ref: address_validating_shipment.yaml
+address_validation_code:
+  $ref: 'enums.yaml#/address_validation_code'
+address_validation_detail_code:
+  $ref: 'enums.yaml#/address_validation_detail_code'
+address_validation_message_type:
+  $ref: 'enums.yaml#/address_validation_message_type'
 address_validation_request_body:
   $ref: requests/address_validation_request_body.yaml
 address_validation_response_body:
@@ -58,8 +64,6 @@ carrier_response_body:
   $ref: responses/carrier_response_body.yaml
 channel_advisor_product_identifier:
   $ref: 'enums.yaml#/channel_advisor_product_identifier'
-code:
-  $ref: 'enums.yaml#/code'
 confirmation:
   $ref: 'enums.yaml#/confirmation'
 connect_account_response_body:
@@ -90,8 +94,6 @@ date:
   $ref: 'primitives.yaml#/date'
 date_time:
   $ref: 'primitives.yaml#/date_time'
-detail_code:
-  $ref: 'enums.yaml#/detail_code'
 connect_dhl_ecommerce_request_body:
   $ref: requests/connect_dhl_ecommerce_request_body.yaml
 connect_dhl_express_request_body:
@@ -286,8 +288,6 @@ tracking_number:
   $ref: 'primitives.yaml#/tracking_number'
 tracking_status:
   $ref: 'enums.yaml#/tracking_status'
-type:
-  $ref: 'enums.yaml#/type'
 update_dhl_express_settings_request_body:
   $ref: requests/update_dhl_express_settings_request_body.yaml
 update_fedex_settings_request_body:

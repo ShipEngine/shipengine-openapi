@@ -11,7 +11,9 @@ properties:
   test_label:
     type: boolean
   validate_address:
-    $ref: '../enums.yaml#/validate_address'
+    default: validate_and_clean
+    allOf:
+      - $ref: '../enums.yaml#/validate_address'
   label_layout:
     type: string
   label_format:

@@ -6,6 +6,92 @@ address_residential_indicator:
     - 'yes'
     - 'no'
   description: Indicates whether an address is residential.
+address_validation_code:
+  title: address_validation_code
+  type: string
+  enum:
+    - a1000
+    - a1001
+    - a1002
+    - a1003
+    - a1004
+    - a1005
+    - a1006
+    - a1007
+    - a1008
+    - r1000
+    - r1001
+    - r1002
+    - r1003
+  description: The error codes that can be returned by the address validation API
+address_validation_detail_code:
+  title: address_validation_detail_code
+  type: string
+  enum:
+    - unsupported_country
+    - non_supported_country
+    - minimum_postal_code_verification_failed
+    - street_does_not_match_unique_street_name
+    - multiple_directionals
+    - multiple_matches
+    - suite_not_valid
+    - suite_missing
+    - invalid_house_number
+    - missing_house_number
+    - invalid_box_number
+    - missing_box_number
+    - missing_cmra_or_private_mail_box_number
+    - suite_has_no_secondaries
+    - postal_code_changed_or_added
+    - state_province_changed_or_added
+    - city_locality_changed_or_added
+    - urbanization_changed
+    - street_name_spelling_changed_or_added
+    - street_name_type_changed_or_added
+    - street_direction_changed_or_added
+    - suite_type_changed_or_added
+    - suite_unit_number_changed_or_added
+    - double_dependent_locality_changed_or_added
+    - subadministrative_area_changed_or_added
+    - subnational_area_changed_or_added
+    - p_o_box_changed_or_added
+    - premise_type_changed_or_added
+    - house_number_changed
+    - organization_changed_or_added
+    - partially_verified_to_state_level
+    - partially_verified_to_city_level
+    - partially_verified_to_street_level
+    - partially_verified_to_premise_level
+    - verified_to_state_level
+    - verified_to_city_level
+    - verified_to_street_level
+    - verified_to_premise_level
+    - verified_to_suite_level
+    - coded_to_street_lavel
+    - coded_to_neighborhood_level
+    - coded_to_community_level
+    - coded_to_state_level
+    - coded_to_rooftop_level
+    - coded_to_rooftop_interpolation_level
+    - name_max_length_exceeded
+    - phone_max_length_exceeded
+    - company_name_max_length_exceeded
+    - line1_min_max_length
+    - line2_max_length_exceeded
+    - line3_max_length_exceeded
+    - city_locality_max_length_exceeded
+    - state_province_max_length_exceeded
+    - invalid_postal_code
+    - country_invalid_length
+  description: The detailed error codes that can be returned by the address validation API
+address_validation_message_type:
+  title: address_validation_message_type
+  type: string
+  enum:
+    - error
+    - warning
+    - info
+  description: The different types of messages that can be returned by the address validation API
 address_validation_status:
   title: address_validation_status
   type: string
@@ -101,24 +187,6 @@ channel_advisor_product_identifier:
     - client_order_number
     - channel_advisor_order_number
   description: The possible channel advisor product identifier values
-code:
-  title: code
-  type: string
-  enum:
-    - a1000
-    - a1001
-    - a1002
-    - a1003
-    - a1004
-    - a1005
-    - a1006
-    - a1007
-    - a1008
-    - r1000
-    - r1001
-    - r1002
-    - r1003
-  description: The possible code values
 confirmation:
   title: confirmation
   type: string
@@ -166,66 +234,6 @@ data_center_code:
     - usw
     - eu1
   description: The possible data center code values
-detail_code:
-  title: detail_code
-  type: string
-  enum:
-    - unsupported_country
-    - non_supported_country
-    - minimum_postal_code_verification_failed
-    - street_does_not_match_unique_street_name
-    - multiple_directionals
-    - multiple_matches
-    - suite_not_valid
-    - suite_missing
-    - invalid_house_number
-    - missing_house_number
-    - invalid_box_number
-    - missing_box_number
-    - missing_cmra_or_private_mail_box_number
-    - suite_has_no_secondaries
-    - postal_code_changed_or_added
-    - state_province_changed_or_added
-    - city_locality_changed_or_added
-    - urbanization_changed
-    - street_name_spelling_changed_or_added
-    - street_name_type_changed_or_added
-    - street_direction_changed_or_added
-    - suite_type_changed_or_added
-    - suite_unit_number_changed_or_added
-    - double_dependent_locality_changed_or_added
-    - subadministrative_area_changed_or_added
-    - subnational_area_changed_or_added
-    - p_o_box_changed_or_added
-    - premise_type_changed_or_added
-    - house_number_changed
-    - organization_changed_or_added
-    - partially_verified_to_state_level
-    - partially_verified_to_city_level
-    - partially_verified_to_street_level
-    - partially_verified_to_premise_level
-    - verified_to_state_level
-    - verified_to_city_level
-    - verified_to_street_level
-    - verified_to_premise_level
-    - verified_to_suite_level
-    - coded_to_street_lavel
-    - coded_to_neighborhood_level
-    - coded_to_community_level
-    - coded_to_state_level
-    - coded_to_rooftop_level
-    - coded_to_rooftop_interpolation_level
-    - name_max_length_exceeded
-    - phone_max_length_exceeded
-    - company_name_max_length_exceeded
-    - line1_min_max_length
-    - line2_max_length_exceeded
-    - line3_max_length_exceeded
-    - city_locality_max_length_exceeded
-    - state_province_max_length_exceeded
-    - invalid_postal_code
-    - country_invalid_length
-  description: The possible detail code values
 dimension_unit:
   title: dimension_unit
   type: string
@@ -271,6 +279,7 @@ insurance_provider:
     - none
     - shipsurance
     - carrier
+    - third_party
   description: The possible insurance provider values
 label_download_type:
   title: label_download_type
@@ -476,14 +485,6 @@ tracking_status:
     - error
     - delivered
   description: The different statuses that can apply to a shipment.
-type:
-  title: type
-  type: string
-  enum:
-    - error
-    - warning
-    - info
-  description: The possible type values
 ups_pickup_type:
   title: ups_pickup_type
   type: string

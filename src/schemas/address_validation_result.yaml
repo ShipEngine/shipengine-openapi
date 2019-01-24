@@ -16,10 +16,10 @@ properties:
       additionalProperties: false
       properties:
         code:
-          $ref: 'enums.yaml#/code'
+          $ref: 'enums.yaml#/address_validation_code'
         message:
           type: string
         type:
-          $ref: 'enums.yaml#/type'
+          $ref: 'enums.yaml#/address_validation_message_type'
         detail_code:
-          $ref: 'enums.yaml#/detail_code'
+          $ref: 'enums.yaml#/address_validation_detail_code'
