@@ -1,7 +1,7 @@
 ![OpenAPI Logo](https://shipengine.github.io/img/openapi-logo.png) ShipEngine™ OpenAPI Definition
 ==============================================
 
-This repo contains [OpenAPI 3.0](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md) definitions for the [ShipEngine API](https://shipengine.com).  You can use these definitions with any of countless [OpenAPI tools](https://openapi.tools/) to generate sample code, tests, mock servers, etc.
+This repo contains the official [OpenAPI 3.0](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md) definitions for the [ShipEngine API](https://shipengine.com).  You can use these definitions with any of countless [OpenAPI tools](https://openapi.tools/) to generate sample code, tests, mock servers, etc.
 
 
 Which file to use
@@ -22,4 +22,4 @@ Other API Definition Formats
 If you need to validate API requests and responses, then you may want to use [our JSON Schema definitions](https://github.com/ShipEngine/shipengine-json-schema).
 
 ### ![Postman Logo](https://shipengine.github.io/img/postman-logo-small.png) Postman
-An official ShipEngine [Postman](https://getpostman.com) collection is **coming soon!**
+The official [Postman collection](https://github.com/shipengine/shipengine-postman) for ShipEngine.  Just import it into [Postman](https://getpostman.com) and immediately begin interacting with the ShipEngine API.
