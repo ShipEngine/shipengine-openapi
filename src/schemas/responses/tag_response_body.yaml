@@ -1,6 +1,0 @@
-title: tag_response_body
-type: object
-additionalProperties: false
-properties:
-  name:
-    type: string

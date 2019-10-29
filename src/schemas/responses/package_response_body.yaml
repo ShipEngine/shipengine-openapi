@@ -1,5 +1,0 @@
-title: package_response_body
-type: object
-additionalProperties: false
-allOf:
-  - $ref: ../package_type.yaml

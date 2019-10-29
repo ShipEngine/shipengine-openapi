@@ -1,5 +1,0 @@
-title: update_fedex_settings_request_body
-type: object
-additionalProperties: false
-allOf:
-  - $ref: ../fedex_account_settings.yaml

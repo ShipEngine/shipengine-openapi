@@ -1,4 +1,0 @@
-post:
-  $ref: post.yaml
-delete:
-  $ref: delete.yaml

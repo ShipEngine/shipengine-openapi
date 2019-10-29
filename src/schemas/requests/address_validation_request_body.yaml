@@ -1,4 +1,0 @@
-title: address_validation_request_body
-type: array
-items:
-  $ref: ../address.yaml

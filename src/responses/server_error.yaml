@@ -1,8 +1,0 @@
-description: |
-  An error occurred on ShipEngine's side.
-
-  > This error will automatically be reported to our engineers.
-content:
-  application/json:
-    schema:
-      $ref: ../schemas/responses/error_response_body.yaml

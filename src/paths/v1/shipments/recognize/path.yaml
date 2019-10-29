@@ -1,5 +1,0 @@
-summary: Parse shipping info
-description: |
-  Data often enters your system as unstructured text (for example: emails, SMS messages, support tickets, or other documents). ShipEngine's shipment-recognition API helps you extract meaningful shipping data (people's names, addresses, package weights and dimensions, insurance and delivery requirements, etc.) from this unstructured text.
-put:
-  $ref: put.yaml

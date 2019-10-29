@@ -1,8 +1,0 @@
-title: carrier_list_response_body
-type: object
-additionalProperties: false
-properties:
-  carriers:
-    type: array
-    items:
-      $ref: ../carrier.yaml
