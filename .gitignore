@@ -1,0 +1,39 @@
+# Git ignore
+# https://git-scm.com/docs/gitignore
+
+# Private files
+.env
+
+# System files
+*~
+*#
+.DS_STORE
+Thumbs.db
+
+# IDEs & Text Editors
+.idea
+.sublime-*
+.vscode/settings.json
+.netbeans
+nbproject
+
+# Temporary files
+.tmp
+.temp
+.node_history
+.lock-wscript
+
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Dependencies
+node_modules
+
+# Build output
+/dist
