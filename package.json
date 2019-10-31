@@ -1,0 +1,30 @@
+{
+  "name": "shipengine-openapi",
+  "version": "1.0.0",
+  "description": "The Shipengine public OpenAPI definition ",
+  "main": "index.js",
+  "scripts": {
+    "bump:patch": "bump patch --commit --tag --push --all"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShipEngine/shipengine-openapi.git"
+  },
+  "keywords": [
+    "openapi",
+    "shipengine",
+    "public",
+    "npm",
+    "json",
+    "yaml"
+  ],
+  "author": "",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/ShipEngine/shipengine-openapi/issues"
+  },
+  "homepage": "https://github.com/ShipEngine/shipengine-openapi#readme",
+  "devDependencies": {
+    "version-bump-prompt": "^5.0.5"
+  }
+}
