@@ -1,5 +1,0 @@
-title: fedex_settings_response_body
-type: object
-additionalProperties: false
-allOf:
-  - $ref: ../requests/fedex_account_settings_request_body.yaml

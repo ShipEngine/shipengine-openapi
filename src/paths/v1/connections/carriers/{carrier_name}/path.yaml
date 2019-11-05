@@ -1,5 +1,0 @@
-summary: Carrier connections
-parameters:
-  - $ref: '../../../../../parameters.yaml#/carrier_name_path_param'
-post:
-  $ref: post.yaml

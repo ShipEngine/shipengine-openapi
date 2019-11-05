@@ -1,4 +1,0 @@
-title: webhook_list_response_body
-type: array
-items:
-  $ref: ../responses/webhook_response_body.yaml

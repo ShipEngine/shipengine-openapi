@@ -1,8 +1,0 @@
-title: connect_dhl_express_request_body
-type: object
-additionalProperties: false
-properties:
-  nickname:
-    type: string
-  account_number:
-    type: string

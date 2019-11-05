@@ -1,8 +1,0 @@
-title: link
-type: object
-description: A link to a related resource
-additionalProperties: false
-required:
-  - href
-allOf:
-  - $ref: optional_link.yaml

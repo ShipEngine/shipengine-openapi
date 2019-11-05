@@ -1,5 +1,0 @@
-title: warehouse_response_body
-type: object
-additionalProperties: false
-allOf:
-  - $ref: ../warehouse.yaml

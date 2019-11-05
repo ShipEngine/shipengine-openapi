@@ -1,5 +1,0 @@
-title: insurance_balance_response_body
-type: object
-additionalProperties: false
-allOf:
-  - $ref: ../monetary_value.yaml

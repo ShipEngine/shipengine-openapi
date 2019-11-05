@@ -1,8 +1,0 @@
-title: package_list_response_body
-type: object
-additionalProperties: false
-properties:
-  packages:
-    type: array
-    items:
-      $ref: ../package_type.yaml

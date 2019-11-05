@@ -1,7 +1,0 @@
-summary: Print shipping labels
-description: |
-  Print shipping labels for any of the top global carriers in minutes—instead of weeks. Simply [connect your existing carrier accounts](https://docs.shipengine.com/docs/setup-a-carrier) in the API dashboard, and then [begin creating labels](https://docs.shipengine.com/docs/use-a-specific-service).
-get:
-  $ref: get.yaml
-post:
-  $ref: post.yaml
