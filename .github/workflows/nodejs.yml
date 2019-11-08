@@ -3,7 +3,7 @@ name: Node/NPM CI
 on: 
   push:
     branches: 
-      - generated-branch
+      - master
 
 jobs:
   build:
