@@ -15,7 +15,10 @@ Depending on your preferences and/or tooling, you may choose to use one or more 
 
 
 Other API Definition Formats
------------------------------------
+----------------------------
+
+### ![Redoc Logo](https://shipengine.github.io/img/redoc-logo-small.png)
+View the ShipEngine API definition [online in your browser](https://shipengine.github.io/shipengine-openapi/). This web page is generated from the [OpenAPI definition](https://github.com/ShipEngine/shipengine-openapi) using [ReDoc](https://github.com/Redocly/redoc).
 
 ### ![JSON Schema Logo](https://shipengine.github.io/img/json-schema-logo-small.png) JSON Schema
 If you need to validate API requests and responses, then you may want to use [our JSON Schema definitions](https://github.com/ShipEngine/shipengine-json-schema).

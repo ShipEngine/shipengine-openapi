@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.0.0
+  version: 1.0.201911052011
   termsOfService: 'https://www.shipengine.com/terms-of-service'
   contact:
     name: ShipEngine Sales & Support
@@ -54,7 +54,6 @@ info:
     Spain, Sweden, Israel, Italy, and more.
 paths:
   /v1/addresses/recognize:
-    x-visibility: public
     summary: Parse an address
     description: >
       Data often enters your system as unstructured text (for example: emails,
@@ -294,7 +293,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   /v1/addresses/validate:
-    x-visibility: public
     summary: Address Validation
     description: >
       Address validation ensures accurate addresses and can lead to reduced
@@ -401,7 +399,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   /v1/batches:
-    x-visibility: public
     summary: Batches
     description: >
       Batches are an advanced feature of ShipEngine designed for users who need
@@ -495,7 +492,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/batches/external_batch_id/{external_batch_id}':
-    x-visibility: public
     summary: External Batch ID
     description: Retrive a batch from an external batch ID
     get:
@@ -525,7 +521,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/batches/{batch_id}':
-    x-visibility: public
     summary: Batch By ID
     description: Check the status of your batch by retrieving it with a Batch ID.
     delete:
@@ -613,7 +608,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/batches/{batch_id}/add':
-    x-visibility: public
     summary: Add Funds to a Carrier
     description: >
       You can check your balance for a particular carrier by calling [List
@@ -657,7 +651,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/batches/{batch_id}/errors':
-    x-visibility: public
     summary: Batch Errors
     description: >
       Error handling in batches are handled differently than in a single
@@ -722,7 +715,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/batches/{batch_id}/process/labels':
-    x-visibility: public
     summary: Process Batch ID Labels
     description: Process Batch ID Labels
     post:
@@ -761,7 +753,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/batches/{batch_id}/remove':
-    x-visibility: public
     summary: Remove Batch By ID
     description: Remove a list of shipments from a batch
     post:
@@ -800,7 +791,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   /v1/carriers:
-    x-visibility: public
     summary: Carriers
     description: >
       Carriers are a company or individual that specializes in transporting
@@ -828,7 +818,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/carriers/{carrier_id}':
-    x-visibility: public
     summary: Individual carriers
     description: >-
       Perform actions and get information on individual carriers connected with
@@ -861,7 +850,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/carriers/{carrier_id}/add_funds':
-    x-visibility: public
     summary: Carrier Funds
     description: >-
       All carriers require that funds to be attached to an account to ensure
@@ -900,7 +888,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/carriers/{carrier_id}/options':
-    x-visibility: public
     summary: Carrier Options
     description: >-
       Carriers support various options for particular shipments. Ex.
@@ -933,7 +920,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/carriers/{carrier_id}/packages':
-    x-visibility: public
     summary: Carrier Packages
     description: >
       Carriers support many different package types, Shipengine supports
@@ -968,7 +954,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/carriers/{carrier_id}/services':
-    x-visibility: public
     summary: Carrier Services
     description: >
       Carrier services usually refer to the various shipping options that a
@@ -1003,7 +988,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/connections/carriers/stamps_com/{carrier_id}/request_account_url':
-    x-visibility: public
     summary: Request Stamps Account URl
     description: Request Stamps Account Url
     parameters:
@@ -1038,7 +1022,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/connections/carriers/{carrier_name}':
-    x-visibility: public
     summary: Carrier connections
     description: Carrier connections
     parameters:
@@ -1077,7 +1060,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/connections/carriers/{carrier_name}/{carrier_id}':
-    x-visibility: public
     summary: Disconnect a carrier
     description: Disconnect a carrier
     parameters:
@@ -1118,7 +1100,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/connections/carriers/{carrier_name}/{carrier_id}/settings':
-    x-visibility: public
     summary: Carrier settings
     description: Carrier settings
     parameters:
@@ -1182,7 +1163,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   /v1/connections/insurance/shipsurance:
-    x-visibility: public
     summary: Shipsurance Connection
     description: Shipsurance Connection
     delete:
@@ -1227,7 +1207,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/downloads/{environment}/{key}/{filename}':
-    x-visibility: public
     summary: File Download
     description: >
       This endpoint is used to download forms that are generated in the various
@@ -1273,7 +1252,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/environment/webhooks/{webhook_id}':
-    x-visibility: public
     summary: Webhook
     description: 'Retrieve, update, and delete information for individual webhooks'
     get:
@@ -1367,7 +1345,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   /v1/insurance/shipsurance/add_funds:
-    x-visibility: public
     summary: Shipsurance
     description: >
       [Shipsurance](https://www.shipsurance.com/) is a shipping insurance
@@ -1402,7 +1379,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   /v1/insurance/shipsurance/balance:
-    x-visibility: public
     summary: Shipsurance
     description: >
       [Shipsurance](https://www.shipsurance.com/) is a shipping insurance
@@ -1426,7 +1402,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   /v1/labels:
-    x-visibility: public
     summary: Print shipping labels
     description: >
       Print shipping labels for any of the top global carriers in
@@ -1604,7 +1579,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/labels/rates/{rate_id}':
-    x-visibility: public
     summary: Use a rate to purchase a label
     description: >-
       Purchase a label using a `rate_id` that has been previously generated
@@ -1648,7 +1622,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/labels/shipment/{shipment_id}':
-    x-visibility: public
     summary: Purchase label using shipment ID
     description: >
       Purchase a label using a shipment ID that has already been created with
@@ -1693,7 +1666,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/labels/{label_id}':
-    x-visibility: public
     summary: Label
     description: Retrieve information for individual labels.
     parameters:
@@ -1730,7 +1702,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/labels/{label_id}/track':
-    x-visibility: public
     summary: Tracking a Label
     description: >-
       Carriers will provide tracking information so the status of your shipment
@@ -1762,7 +1733,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/labels/{label_id}/void':
-    x-visibility: public
     summary: Label Voiding
     description: >
       Some carriers charge for creating a label upon purchase vs upon use. The
@@ -1796,7 +1766,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   /v1/manifests:
-    x-visibility: public
     summary: Manifests
     description: >
       Many manifests are sent electronically to the carrier when you create a
@@ -1939,7 +1908,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/manifests/{manifest_id}':
-    x-visibility: public
     summary: Manifest ID
     description: Manifest ID
     get:
@@ -1969,7 +1937,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   /v1/packages:
-    x-visibility: public
     summary: Packages
     description: >
       Sometimes the default package types that carriers provide aren't enough
@@ -2028,7 +1995,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/packages/{package_id}':
-    x-visibility: public
     summary: Package
     description: 'Create, edit, and delete individual custom packages.'
     get:
@@ -2127,7 +2093,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   /v1/rates:
-    x-visibility: public
     summary: Rates
     description: Get the various rates for a set of carriers
     post:
@@ -2160,7 +2125,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   /v1/rates/bulk:
-    x-visibility: public
     summary: Bulk Rates
     description: Get specific rates for large groups of shipments
     post:
@@ -2187,7 +2151,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   /v1/rates/estimate:
-    x-visibility: public
     summary: Rate Estimates
     description: Show rate estimations between carriers with basic information.
     post:
@@ -2214,7 +2177,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/rates/{rate_id}':
-    x-visibility: public
     summary: Rate
     description: Get Individual rate information.
     get:
@@ -2244,7 +2206,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   /v1/registration/stamps_com:
-    x-visibility: public
     summary: Stamps Registration
     description: Register your stamps.com account.
     post:
@@ -2271,7 +2232,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/sellers/sandbox_sellers/{seller_id}':
-    x-visibility: public
     summary: Sandbox Sellers
     description: Sandbox Sellers
     get:
@@ -2296,7 +2256,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/get_sandbox_sellers_response_body'
   /v1/shipments:
-    x-visibility: public
     summary: Shipments
     description: >
       Shipments are the gatekeeper to more advanced functionality inside
@@ -2453,7 +2412,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/shipments/external_shipment_id/{external_shipment_id}':
-    x-visibility: public
     summary: External Shipment ID
     description: >
       When a shipment object is created with a custom shipment ID, you can query
@@ -2487,7 +2445,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   /v1/shipments/recognize:
-    x-visibility: public
     summary: Parse shipping info
     description: >
       Data often enters your system as unstructured text (for example: emails,
@@ -2978,7 +2935,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/shipments/{shipment_id}':
-    x-visibility: public
     summary: Get and Update Shipment
     description: Retrieve and Update and individual shipment based on its ID
     get:
@@ -3040,7 +2996,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/shipments/{shipment_id}/cancel':
-    x-visibility: public
     summary: Cancel Shipment
     description: Cancel a Shipment
     put:
@@ -3082,7 +3037,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/shipments/{shipment_id}/errors':
-    x-visibility: public
     summary: Shipment Errors
     description: Shipment Errors
     parameters:
@@ -3137,7 +3091,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/shipments/{shipment_id}/rates':
-    x-visibility: public
     summary: Shipment Rates
     description: >
       Once a shipment is complete with the desired shipping information, you can
@@ -3181,7 +3134,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/shipments/{shipment_id}/tags/{tag}':
-    x-visibility: public
     summary: Shipment Tags
     description: >
       Tags associated with the shipment object to be used to organize and query
@@ -3252,7 +3204,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   /v1/tags:
-    x-visibility: public
     summary: Tags
     description: >
       Tags are simple text-based flags or identifiers. Tags can be used as a
@@ -3280,7 +3231,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/tags/{tag_name}':
-    x-visibility: public
     summary: Tag
     description: Create and delete tags
     post:
@@ -3334,7 +3284,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/tags/{tag_name}/{new_name}':
-    x-visibility: public
     summary: Tag
     description: Update tag name
     put:
@@ -3373,7 +3322,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   /v1/tracking:
-    x-visibility: public
     summary: Tracking a Package
     description: >-
       If you generate your labels through ShipEngine, then you can subscribe to
@@ -3415,7 +3363,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   /v1/tracking/start:
-    x-visibility: public
     summary: Start Tracking a Package
     description: >
       Allows you to subscribe to tracking updates for a package. You specify the
@@ -3468,7 +3415,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   /v1/tracking/stop:
-    x-visibility: public
     summary: Stop Tracking a Package
     description: Unsubscribe from tracking updates for a package.
     post:
@@ -3511,7 +3457,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   /v1/warehouses:
-    x-visibility: public
     summary: Warehouses
     description: >
       You likely have one or more warehouse locations that you frequently ship
@@ -3570,7 +3515,6 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/warehouses/{warehouse_id}':
-    x-visibility: public
     summary: Warehouse
     description: >
       You likely have one or more warehouse locations that you frequently ship
