@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.0.201911052011
+  version: 1.1.201911081811
   termsOfService: 'https://www.shipengine.com/terms-of-service'
   contact:
     name: ShipEngine Sales & Support
@@ -82,7 +82,7 @@ paths:
       tags:
         - addresses
         - natural_language_processing
-      operationId: address_parse
+      operationId: parse_address
       requestBody:
         required: true
         description: >
@@ -94,7 +94,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/recognize_address_request_body'
+              $ref: '#/components/schemas/parse_address_request_body'
             examples:
               text_only:
                 summary: Text only
@@ -127,7 +127,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/recognize_address_response_body'
+                $ref: '#/components/schemas/parse_address_response_body'
               examples:
                 text_only:
                   description: >
@@ -310,13 +310,13 @@ paths:
         identify potential deliverability issues.
       tags:
         - addresses
-      operationId: validate_addresses
+      operationId: validate_address
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/address_validation_request_body'
+              $ref: '#/components/schemas/validate_address_request_body'
             examples:
               all_known_fields_request:
                 summary: All Known Fields
@@ -336,7 +336,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/address_validation_response_body'
+                $ref: '#/components/schemas/validate_address_response_body'
               examples:
                 all_known_fields:
                   summary: All Known Fields
@@ -463,7 +463,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/list_batch_response_body'
+                $ref: '#/components/schemas/list_batches_response_body'
         '404':
           $ref: '#/components/responses/404_error_response'
         '500':
@@ -513,7 +513,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/batch_response_body'
+                $ref: '#/components/schemas/get_batch_by_external_id_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -526,7 +526,7 @@ paths:
     delete:
       summary: Delete Batch By Id
       description: Delete Batch By Id
-      operationId: delete_operation_id
+      operationId: delete_batch
       tags:
         - batches
       parameters:
@@ -571,7 +571,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/batch_response_body'
+                $ref: '#/components/schemas/get_batch_by_id_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -581,7 +581,7 @@ paths:
     put:
       summary: Update Batch By Id
       description: Update Batch By Id
-      operationId: update_operation_id
+      operationId: update_batch
       tags:
         - batches
       parameters:
@@ -633,7 +633,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/modify_batch_request_body'
+              $ref: '#/components/schemas/add_to_batch_request_body'
       responses:
         '204':
           description: The request was successful.
@@ -679,7 +679,7 @@ paths:
         get detailed information about the errors.
       tags:
         - batches
-      operationId: list_errors
+      operationId: list_batch_errors
       parameters:
         - name: page
           in: query
@@ -707,7 +707,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/batch_errors_response_body'
+                $ref: '#/components/schemas/list_batch_errors_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -773,7 +773,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/modify_batch_request_body'
+              $ref: '#/components/schemas/remove_from_batch_request_body'
       responses:
         '204':
           description: The request was successful.
@@ -810,7 +810,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/carrier_list_response_body'
+                $ref: '#/components/schemas/list_carriers_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -842,7 +842,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/carrier_response_body'
+                $ref: '#/components/schemas/get_carrier_by_id_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -873,14 +873,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/money_request_body'
+              $ref: '#/components/schemas/add_funds_to_carrier_request_body'
       responses:
         '200':
           description: The request was a success.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/carrier_balance_response_body'
+                $ref: '#/components/schemas/add_funds_to_carrier_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -912,7 +912,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/carrier_list_options_response_body'
+                $ref: '#/components/schemas/get_carrier_options_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -927,11 +927,11 @@ paths:
 
       you can best determine what is right for your particular shipment.
     get:
-      summary: List Carrier Packages
-      description: List the packages associated with the carrier
+      summary: List Carrier Package Types
+      description: List the package types associated with the carrier
       tags:
         - carriers
-      operationId: list_packages_of_carrier
+      operationId: list_carrier_package_types
       parameters:
         - name: carrier_id
           in: path
@@ -946,7 +946,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/package_list_response_body'
+                $ref: '#/components/schemas/list_carrier_package_types_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -980,43 +980,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/carrier_list_services_response_body'
+                $ref: '#/components/schemas/list_carrier_services_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
-        '404':
-          $ref: '#/components/responses/404_error_response'
-        '500':
-          $ref: '#/components/responses/500_error_response'
-  '/v1/connections/carriers/stamps_com/{carrier_id}/request_account_url':
-    summary: Request Stamps Account URl
-    description: Request Stamps Account Url
-    parameters:
-      - name: carrier_id
-        in: path
-        required: true
-        schema:
-          $ref: '#/components/schemas/se_id'
-        example: se-28529731
-        description: Carrier ID
-    put:
-      summary: Get Stamps Account URL
-      description: Get Stamps Account url
-      tags:
-        - carrier_accounts
-      operationId: get_stamps_account_url
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/stamps_account_urls_request_body'
-      responses:
-        '200':
-          description: The request was a success.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/stamps_account_url_list_response_body'
         '404':
           $ref: '#/components/responses/404_error_response'
         '500':
@@ -1052,7 +1018,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/connect_account_response_body'
+                $ref: '#/components/schemas/connect_carrier_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -1168,7 +1134,7 @@ paths:
     delete:
       summary: Delete Shipsurance Connection
       description: Delete Shipsurance Connection
-      operationId: delete_shipsurance_connection
+      operationId: disconnect_insurer
       tags:
         - shipsurance_insurance
       responses:
@@ -1177,7 +1143,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/shipsurance_delete_response_bodys'
+                $ref: '#/components/schemas/disconnect_insurer_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '500':
@@ -1185,14 +1151,14 @@ paths:
     post:
       summary: Create Shipsurance Connection
       description: Create Shipsurance Connection
-      operationId: create_shipsurance_connection
+      operationId: connect_insurer
       tags:
         - shipsurance_insurance
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/create_shipsurance_connection_request_body'
+              $ref: '#/components/schemas/connect_insurer_request_body'
         required: true
       responses:
         '200':
@@ -1200,13 +1166,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: >-
-                  #/components/schemas/create_shipsurance_connection_response_body
+                $ref: '#/components/schemas/connect_insurer_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '500':
           $ref: '#/components/responses/500_error_response'
-  '/v1/downloads/{environment}/{key}/{filename}':
+  '/v1/downloads/{dir}/{subdir}/{filename}':
     summary: File Download
     description: >
       This endpoint is used to download forms that are generated in the various
@@ -1214,13 +1179,13 @@ paths:
 
       such as labels and batches
     get:
-      summary: Get Environment File Name
-      description: Get Environment File Name
-      operationId: get_environmnent_file_name
+      summary: Download File
+      description: Get File
+      operationId: download_file
       tags:
         - downloads
       parameters:
-        - name: key
+        - name: subdir
           in: path
           required: true
           schema:
@@ -1230,7 +1195,7 @@ paths:
           required: true
           schema:
             type: string
-        - name: environment
+        - name: dir
           in: path
           required: true
           schema:
@@ -1244,11 +1209,19 @@ paths:
         '200':
           description: The request was a success
           content:
-            application/json:
+            application/pdf:
               schema:
-                $ref: '#/components/schemas/get_environment_file_name_response_body'
+                $ref: '#/components/schemas/download_file_pdf_response_body'
+            image/png:
+              schema:
+                $ref: '#/components/schemas/download_file_png_response_body'
+            application/zpl:
+              schema:
+                $ref: '#/components/schemas/download_file_zpl_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
+        '404':
+          $ref: '#/components/responses/404_error_response'
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/environment/webhooks/{webhook_id}':
@@ -1273,7 +1246,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/webhook_response_body'
+                $ref: '#/components/schemas/get_webhook_by_id_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -1351,7 +1324,7 @@ paths:
       company offering coverage for shipments sent via the major shipping
       carriers worldwide.
     patch:
-      summary: Add Funds
+      summary: Add Funds To Insurance
       description: >
         You may need to auto fund your account from time to time. For example,
         if you don't normally ship items over $100,
@@ -1366,14 +1339,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/money_request_body'
+              $ref: '#/components/schemas/add_funds_to_insurance_request_body'
       responses:
         '200':
           description: The request was a success.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/insurance_balance_response_body'
+                $ref: '#/components/schemas/add_funds_to_insurance_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '500':
@@ -1389,14 +1362,14 @@ paths:
       description: Retrieve the balance of your Shipsurance account.
       tags:
         - insurance
-      operationId: get_insurance_funds_balance
+      operationId: get_insurance_balance
       responses:
         '200':
           description: The request was a success.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/insurance_balance_response_body'
+                $ref: '#/components/schemas/get_insurance_balance_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '500':
@@ -1548,7 +1521,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/list_label_response_body'
+                $ref: '#/components/schemas/list_labels_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '500':
@@ -1558,20 +1531,20 @@ paths:
       description: Purchase and print a label for shipment
       tags:
         - labels
-      operationId: purchase_label
+      operationId: create_label
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/purchase_label_request_body'
+              $ref: '#/components/schemas/create_label_request_body'
       responses:
         '200':
           description: The requested object creation was a success.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/label_response_body'
+                $ref: '#/components/schemas/create_label_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -1593,7 +1566,7 @@ paths:
         repeatedly.
       tags:
         - labels
-      operationId: purchase_label_with_rate
+      operationId: create_label_from_rate
       parameters:
         - name: rate_id
           in: path
@@ -1606,15 +1579,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: >-
-                #/components/schemas/purchase_label_without_shipment_request_body
+              $ref: '#/components/schemas/create_label_from_rate_request_body'
       responses:
         '200':
           description: The requested object creation was a success.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/label_response_body'
+                $ref: '#/components/schemas/create_label_from_rate_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -1637,7 +1609,7 @@ paths:
         package info.
       tags:
         - labels
-      operationId: purchase_label_with_shipment
+      operationId: create_label_from_shipment
       parameters:
         - name: shipment_id
           in: path
@@ -1650,15 +1622,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: >-
-                #/components/schemas/purchase_label_without_shipment_request_body
+              $ref: '#/components/schemas/create_label_from_shipment_request_body'
       responses:
         '200':
           description: The requested object creation was a success.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/label_response_body'
+                $ref: '#/components/schemas/create_label_from_shipment_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -1694,7 +1665,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/label_response_body'
+                $ref: '#/components/schemas/get_label_by_id_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -1711,7 +1682,7 @@ paths:
       description: Retrieve the label's tracking information
       tags:
         - labels
-      operationId: get_label_tracking
+      operationId: get_tracking_log_from_label
       parameters:
         - name: label_id
           in: path
@@ -1725,7 +1696,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/tracking_information_response_body'
+                $ref: '#/components/schemas/get_tracking_log_from_label_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -1866,6 +1837,23 @@ paths:
             default: 25
           example: 50
           description: The number of results to return per response.
+        - name: label_ids
+          in: query
+          explode: true
+          required: false
+          schema:
+            type: array
+            items:
+              title: se_id
+              type: string
+              minLength: 1
+              maxLength: 25
+              pattern: '^se(-[a-z0-9]+)+$'
+              example: se-28529731
+              description: >-
+                A string that uniquely identifies a ShipEngine resource, such as
+                a carrier, label, shipment, etc.
+            description: Array of label ids
       responses:
         '200':
           description: The request was a success.
@@ -1902,7 +1890,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/manifest_response_body'
+                $ref: '#/components/schemas/create_manifest_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '500':
@@ -1929,7 +1917,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/manifest_response_body'
+                $ref: '#/components/schemas/get_manifest_by_id_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -1945,11 +1933,11 @@ paths:
       the `/packages` endpoint becomes useful. Create, manage, and delete custom
       package types to suit your specific needs.
     get:
-      summary: List Custom Packages
-      description: List the custom packages associated with the account
+      summary: List Custom Package Types
+      description: List the custom package types associated with the account
       tags:
-        - packages
-      operationId: list_packages
+        - package_types
+      operationId: list_package_types
       parameters:
         - name: package_code
           in: query
@@ -1962,7 +1950,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/package_list_response_body'
+                $ref: '#/components/schemas/list_package_types_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -1970,26 +1958,26 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
     post:
-      summary: Create Custom Package
+      summary: Create Custom Package Type
       description: >-
         Create a custom package type to better assist in getting accurate rate
         estimates
       tags:
-        - packages
-      operationId: create_package
+        - package_types
+      operationId: create_package_type
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/package_request_body'
+              $ref: '#/components/schemas/create_package_type_request_body'
       responses:
         '200':
           description: The request was a success.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/package_response_body'
+                $ref: '#/components/schemas/create_package_type_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '500':
@@ -1998,11 +1986,11 @@ paths:
     summary: Package
     description: 'Create, edit, and delete individual custom packages.'
     get:
-      summary: Get Custom Package By ID
-      description: Get Custom Package object by ID
+      summary: Get Custom Package Type By ID
+      description: Get Custom Package Type by ID
       tags:
-        - packages
-      operationId: get_package_by_id
+        - package_types
+      operationId: get_package_type_by_id
       parameters:
         - name: package_id
           in: path
@@ -2021,7 +2009,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/package_response_body'
+                $ref: '#/components/schemas/get_package_type_by_id_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -2029,11 +2017,11 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
     put:
-      summary: Update Custom Package By ID
-      description: Update the custom package object by ID
+      summary: Update Custom Package Type By ID
+      description: Update the custom package type object by ID
       tags:
-        - packages
-      operationId: update_package_by_id
+        - package_types
+      operationId: update_package_type
       parameters:
         - name: package_id
           in: path
@@ -2046,7 +2034,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/package_request_body'
+              $ref: '#/components/schemas/update_package_type_request_body'
       responses:
         '204':
           description: The request was successful.
@@ -2067,8 +2055,8 @@ paths:
       summary: Delete A Custom Package By ID
       description: Delete a custom package using the ID
       tags:
-        - packages
-      operationId: delete_package_by_id
+        - package_types
+      operationId: delete_package_type
       parameters:
         - name: package_id
           in: path
@@ -2106,20 +2094,20 @@ paths:
         so we provide functionality to show you all your options!
       tags:
         - rates
-      operationId: rate_shipment
+      operationId: calculate_rates
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/rate_shipment_request_body'
+              $ref: '#/components/schemas/calculate_rates_request_body'
       responses:
         '200':
           description: The request was a success.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/rate_shipment_response_body'
+                $ref: '#/components/schemas/calculate_rates_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '500':
@@ -2132,20 +2120,20 @@ paths:
       description: Get Bulk Shipment Rates
       tags:
         - rates
-      operationId: bulk_rate_shipments
+      operationId: compare_bulk_rates
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/rate_shipments_request_body'
+              $ref: '#/components/schemas/compare_bulk_rates_request_body'
       responses:
         '200':
           description: The request was a success.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/bulk_rate_response_body'
+                $ref: '#/components/schemas/compare_bulk_rates_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '500':
@@ -2164,14 +2152,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/rate_estimate_request_body'
+              $ref: '#/components/schemas/estimate_rates_request_body'
       responses:
         '200':
           description: The request was a success.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/rate_estimate_response_body'
+                $ref: '#/components/schemas/estimate_rates_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '500':
@@ -2184,7 +2172,7 @@ paths:
       description: Retrieve a previously queried rate by its ID
       tags:
         - rates
-      operationId: get_rates_by_id
+      operationId: get_rate_by_id
       parameters:
         - name: rate_id
           in: path
@@ -2198,63 +2186,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/rate_response_body'
+                $ref: '#/components/schemas/get_rate_by_id_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
           $ref: '#/components/responses/404_error_response'
         '500':
           $ref: '#/components/responses/500_error_response'
-  /v1/registration/stamps_com:
-    summary: Stamps Registration
-    description: Register your stamps.com account.
-    post:
-      summary: Register Stamps.com Account
-      description: Add a Stamps.com Account to your Shipengine account
-      tags:
-        - registration
-      operationId: register_stamps_com_account
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/register_stamps_com_request_body'
-      responses:
-        '200':
-          description: The requested object creation was a success.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/create_shipments_response_body'
-        '400':
-          $ref: '#/components/responses/400_error_response'
-        '500':
-          $ref: '#/components/responses/500_error_response'
-  '/v1/sellers/sandbox_sellers/{seller_id}':
-    summary: Sandbox Sellers
-    description: Sandbox Sellers
-    get:
-      summary: Get Sandbox Sellers
-      description: Get Sandbox Sellers
-      operationId: get_sandbox_sellers
-      tags:
-        - sellers
-      parameters:
-        - name: seller_id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int32
-            minimum: 0
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/get_sandbox_sellers_response_body'
   /v1/shipments:
     summary: Shipments
     description: >
@@ -2381,7 +2319,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/list_shipment_response_body'
+                $ref: '#/components/schemas/list_shipments_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -2423,7 +2361,7 @@ paths:
         endpint
       tags:
         - shipments
-      operationId: get_shipments_by_external_id
+      operationId: get_shipment_by_external_id
       parameters:
         - name: external_shipment_id
           in: path
@@ -2437,7 +2375,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/shipment_response_body'
+                $ref: '#/components/schemas/get_shipment_by_external_id_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -2486,7 +2424,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/recognize_shipment_request_body'
+              $ref: '#/components/schemas/parse_shipment_request_body'
             examples:
               text_only:
                 summary: Text only
@@ -2532,7 +2470,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/recognize_shipment_response_body'
+                $ref: '#/components/schemas/parse_shipment_response_body'
               examples:
                 text_only:
                   description: >
@@ -2956,7 +2894,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/shipment_response_body'
+                $ref: '#/components/schemas/get_shipment_by_id_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -2988,7 +2926,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/create_shipment_response_body'
+                $ref: '#/components/schemas/update_shipment_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -3083,7 +3021,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/shipment_errors_response_body'
+                $ref: '#/components/schemas/list_shipment_errors_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -3102,7 +3040,7 @@ paths:
       description: Get Rates for the shipment information associated with the shipment ID
       tags:
         - shipments
-      operationId: get_shipment_rates
+      operationId: list_shipment_rates
       parameters:
         - name: shipment_id
           in: path
@@ -3126,7 +3064,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/rates_response_body'
+                $ref: '#/components/schemas/list_shipment_rates_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -3143,7 +3081,7 @@ paths:
       description: Add a tag to the shipment object
       tags:
         - shipments
-      operationId: add_shipment_tag
+      operationId: tag_shipment
       parameters:
         - name: shipment_id
           in: path
@@ -3162,7 +3100,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/shipment_add_tag_response_body'
+                $ref: '#/components/schemas/tag_shipment_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -3174,7 +3112,7 @@ paths:
       description: Remove an existing tag from the Shipment object
       tags:
         - shipments
-      operationId: remove_shipment_tags
+      operationId: untag_shipment
       parameters:
         - name: shipment_id
           in: path
@@ -3223,7 +3161,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/list_tag_response_body'
+                $ref: '#/components/schemas/list_tags_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -3238,7 +3176,7 @@ paths:
       description: Create a new Tag for customizing how you track your shipments
       tags:
         - tags
-      operationId: add_tag
+      operationId: create_tag
       parameters:
         - name: tag_name
           in: path
@@ -3251,7 +3189,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/tag_response_body'
+                $ref: '#/components/schemas/create_tag_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -3272,8 +3210,11 @@ paths:
             $ref: '#/components/schemas/tag_name'
       responses:
         '204':
-          description: The request was a success.
+          description: The request was successful.
           content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/empty_response_body'
             application/json:
               schema:
                 $ref: '#/components/schemas/empty_response_body'
@@ -3293,7 +3234,7 @@ paths:
         it
       tags:
         - tags
-      operationId: update_tag
+      operationId: rename_tag
       parameters:
         - name: tag_name
           in: path
@@ -3331,7 +3272,7 @@ paths:
       description: Retrieve package tracking information
       tags:
         - tracking
-      operationId: get_tracking_item
+      operationId: get_tracking_log
       parameters:
         - name: carrier_code
           in: query
@@ -3355,7 +3296,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/tracking_information_response_body'
+                $ref: '#/components/schemas/get_tracking_log_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -3477,7 +3418,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/warehouse_list_response_body'
+                $ref: '#/components/schemas/list_warehouses_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -3500,14 +3441,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/warehouse_request_body'
+              $ref: '#/components/schemas/create_warehouse_request_body'
       responses:
         '200':
           description: The request was a success.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/warehouse_response_body'
+                $ref: '#/components/schemas/create_warehouse_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -3528,7 +3469,7 @@ paths:
       description: Retrieve warehouse data based on the warehouse ID
       tags:
         - warehouses
-      operationId: get_warehouses_by_id
+      operationId: get_warehouse_by_id
       parameters:
         - name: warehouse_id
           in: path
@@ -3542,7 +3483,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/warehouse_response_body'
+                $ref: '#/components/schemas/get_warehouse_by_id_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -3554,7 +3495,7 @@ paths:
       description: Update Warehouse object information
       tags:
         - warehouses
-      operationId: update_warehouse_by_id
+      operationId: update_warehouse
       parameters:
         - name: warehouse_id
           in: path
@@ -3567,7 +3508,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/warehouse_request_body'
+              $ref: '#/components/schemas/update_warehouse_request_body'
       responses:
         '204':
           description: The request was successful.
@@ -3589,7 +3530,7 @@ paths:
       description: Delete a warehouse by ID
       tags:
         - warehouses
-      operationId: delete_warehouses
+      operationId: delete_warehouse
       parameters:
         - name: warehouse_id
           in: path
@@ -3615,8 +3556,8 @@ paths:
           $ref: '#/components/responses/500_error_response'
 components:
   schemas:
-    recognize_address_request_body:
-      title: recognize_address_request_body
+    parse_address_request_body:
+      title: parse_address_request_body
       type: object
       description: >
         The only required field is `text`, which is the text to be parsed. You
@@ -3746,8 +3687,8 @@ components:
         - 'yes'
         - 'no'
       description: Indicates whether an address is residential.
-    recognize_address_response_body:
-      title: recognize_address_response_body
+    parse_address_response_body:
+      title: parse_address_response_body
       type: object
       description: >
         The parsed address, as well as a confidence score and a list of all the
@@ -3979,8 +3920,8 @@ components:
         - verification_failure
         - webhook_event_type_conflict
       description: The error code specified for the failed API Call
-    address_validation_request_body:
-      title: address_validation_request_body
+    validate_address_request_body:
+      title: validate_address_request_body
       type: array
       description: An address validation request body
       items:
@@ -4000,8 +3941,8 @@ components:
       additionalProperties: false
       allOf:
         - $ref: '#/components/schemas/partial_address'
-    address_validation_response_body:
-      title: address_validation_response_body
+    validate_address_response_body:
+      title: validate_address_response_body
       type: array
       description: An address validation response body
       items:
@@ -4220,8 +4161,8 @@ components:
         - ship_date
         - processed_at
       description: The possible batches sort by values
-    list_batch_response_body:
-      title: list_batch_response_body
+    list_batches_response_body:
+      title: list_batches_response_body
       type: object
       description: A list batch response body
       required:
@@ -4585,10 +4526,10 @@ components:
       additionalProperties: false
       allOf:
         - $ref: '#/components/schemas/batch'
-    batch_response_body:
-      title: batch_response_body
+    get_batch_by_external_id_response_body:
+      title: get_batch_by_external_id_response_body
       type: object
-      description: A batch response body
+      description: A get batch by external id response body
       additionalProperties: false
       allOf:
         - $ref: '#/components/schemas/batch'
@@ -4596,10 +4537,24 @@ components:
       title: empty_response_body
       type: string
       maxLength: 0
-    modify_batch_request_body:
-      title: modify_batch_request_body
+    get_batch_by_id_response_body:
+      title: get_batch_by_id_response_body
       type: object
-      description: A modify batch request body
+      description: A get batch by id response body
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/batch'
+    add_to_batch_request_body:
+      title: add_to_batch_request_body
+      type: object
+      description: An add to batch request body
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/modify_batch'
+    modify_batch:
+      title: modify_batch
+      type: object
+      description: A modify batch object
       additionalProperties: false
       properties:
         shipment_ids:
@@ -4607,17 +4562,17 @@ components:
           items:
             allOf:
               - $ref: '#/components/schemas/se_id'
-            description: The Shipment ID to be added or removed
-          description: Array of shipment ids that need to be added or removed
+            description: The Shipment ID to be modified on the batch
+          description: The Shipment Ids to be modified on the batch
         rate_ids:
           type: array
           items:
             allOf:
               - $ref: '#/components/schemas/se_id'
-            description: The Rate ID to be added or removed
-          description: Array of Rate IDs to be added or removed
-    batch_errors_response_body:
-      title: batch_errors_response_body
+            description: The Rate ID to be modified on the batch
+          description: Array of Rate IDs to be modifed on the batch
+    list_batch_errors_response_body:
+      title: list_batch_errors_response_body
       type: object
       description: A batch errors response body
       required:
@@ -4672,8 +4627,15 @@ components:
           default: pdf
           allOf:
             - $ref: '#/components/schemas/label_format'
-    carrier_list_response_body:
-      title: carrier_list_response_body
+    remove_from_batch_request_body:
+      title: remove_from_batch_request_body
+      type: object
+      description: A modify batch request body
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/modify_batch'
+    list_carriers_response_body:
+      title: list_carriers_response_body
       type: object
       description: A carrier list response body
       additionalProperties: false
@@ -4910,17 +4872,17 @@ components:
           minLength: 0
           readOnly: true
           description: Description of option
-    carrier_response_body:
-      title: carrier_response_body
+    get_carrier_by_id_response_body:
+      title: get_carrier_by_id_response_body
       type: object
-      description: A carrier response body
+      description: A get carrier by id response body
       additionalProperties: false
       allOf:
         - $ref: '#/components/schemas/carrier'
-    money_request_body:
-      title: money_request_body
+    add_funds_to_carrier_request_body:
+      title: add_funds_to_carrier_request_body
       type: object
-      description: A money request body
+      description: An add funds to carrier request body
       additionalProperties: false
       allOf:
         - $ref: '#/components/schemas/monetary_value'
@@ -4964,8 +4926,8 @@ components:
         |`gbp`          | Great British Pound
         |`eur`          | Euro
         |`nzd`          | New Zealand Dollar
-    carrier_balance_response_body:
-      title: carrier_balance_response_body
+    add_funds_to_carrier_response_body:
+      title: add_funds_to_carrier_response_body
       type: object
       description: The current balance of the requested carrier account
       required:
@@ -4977,8 +4939,8 @@ components:
           allOf:
             - $ref: '#/components/schemas/monetary_value'
           description: The current balance of the account
-    carrier_list_options_response_body:
-      title: carrier_list_options_response_body
+    get_carrier_options_response_body:
+      title: get_carrier_options_response_body
       type: object
       description: A carrier list options response body
       additionalProperties: false
@@ -4992,10 +4954,10 @@ components:
               - $ref: '#/components/schemas/carrier_advanced_option'
             description: Carrer options
           description: AN array of carrier options
-    package_list_response_body:
-      title: package_list_response_body
+    list_carrier_package_types_response_body:
+      title: list_carrier_package_types_response_body
       type: object
-      description: A package list response body
+      description: A list carrier package types response body
       additionalProperties: false
       properties:
         packages:
@@ -5005,10 +4967,10 @@ components:
             readOnly: true
             allOf:
               - $ref: '#/components/schemas/package_type'
-            description: Custom Package items
-          description: An array of custom packages
-    carrier_list_services_response_body:
-      title: carrier_list_services_response_body
+            description: Custom Package Type items
+          description: An array of custom package types
+    list_carrier_services_response_body:
+      title: list_carrier_services_response_body
       type: object
       description: A carrier list services response body
       additionalProperties: false
@@ -5022,55 +4984,12 @@ components:
               - $ref: '#/components/schemas/service'
             description: A carrier service
           description: An array of services associated with the carrier
-    stamps_account_urls_request_body:
-      title: stamps_account_urls_request_body
-      type: object
-      description: A stamps account urls request body
-      additionalProperties: false
-      properties:
-        url_types:
-          type: array
-          items:
-            allOf:
-              - $ref: '#/components/schemas/url_type'
-    url_type:
-      title: url_type
-      type: string
-      enum:
-        - account_settings
-        - report_balances
-        - manifest_form
-        - payment_methods
-      description: The possible url type values
-    stamps_account_url_list_response_body:
-      title: stamps_account_url_list_response_body
-      type: object
-      description: A Stamps account url list response body
-      additionalProperties: false
-      properties:
-        urls:
-          type: array
-          items:
-            $ref: '#/components/schemas/stamps_account_url'
-    stamps_account_url:
-      title: stamps_account_url
-      type: object
-      additionalProperties: false
-      properties:
-        url_type:
-          allOf:
-            - $ref: '#/components/schemas/url_type'
-        url:
-          type: string
-          minLength: 1
-          description: url
     carrier_name:
       title: carrier_name
       type: string
       enum:
         - access_worldwide
         - amazon_buy_shipping
-        - amazon_shipping_us
         - apc
         - asendia
         - australia_post
@@ -5100,7 +5019,6 @@ components:
       oneOf:
         - $ref: '#/components/schemas/connect_access_worldwide_request_body'
         - $ref: '#/components/schemas/connect_amazon_buy_shipping_request_body'
-        - $ref: '#/components/schemas/connect_amazon_shipping_us_request_body'
         - $ref: '#/components/schemas/connect_apc_request_body'
         - $ref: '#/components/schemas/connect_asendia_request_body'
         - $ref: '#/components/schemas/connect_australia_post_request_body'
@@ -5179,35 +5097,6 @@ components:
       minLength: 1
       example: john.doe@example.com
       description: An email address.
-    connect_amazon_shipping_us_request_body:
-      title: connect_amazon_shipping_us_request_body
-      type: object
-      description: An Amazon Shipping US information request body
-      required:
-        - nickname
-        - auth_code
-      additionalProperties: false
-      properties:
-        nickname:
-          type: string
-          minLength: 1
-          description: Account nickname
-        auth_code:
-          type: string
-          minLength: 1
-          description: Account auth code
-        merchant_seller_id:
-          type: string
-          minLength: 1
-          description: Account merchant seller ID
-        mws_auth_token:
-          type: string
-          minLength: 1
-          description: Account MWS Auth Token
-        email:
-          type: string
-          minLength: 1
-          description: Account email
     connect_apc_request_body:
       title: connect_apc_request_body
       type: object
@@ -6060,8 +5949,8 @@ components:
           type: number
           format: double
           minimum: 0
-    connect_account_response_body:
-      title: connect_account_response_body
+    connect_carrier_response_body:
+      title: connect_carrier_response_body
       type: object
       description: A connect account response body
       required:
@@ -6076,7 +5965,6 @@ components:
       title: carrier_name_with_settings
       type: string
       enum:
-        - amazon_shipping_us
         - dhl_express
         - fedex
         - newgistics
@@ -6085,41 +5973,9 @@ components:
     get_carrier_settings_response_body:
       title: get_carrier_settings_response_body
       oneOf:
-        - $ref: '#/components/schemas/amazon_buy_shipping_settings_response_body'
-        - $ref: '#/components/schemas/amazon_buy_us_shipping_settings_response_body'
         - $ref: '#/components/schemas/dhl_express_settings_response_body'
         - $ref: '#/components/schemas/fedex_settings_response_body'
         - $ref: '#/components/schemas/ups_settings_response_body'
-    amazon_buy_shipping_settings_response_body:
-      title: amazon_buy_shipping_settings_response_body
-      type: object
-      description: Amazon Buy Shipping response body
-      additionalProperties: false
-      properties:
-        email:
-          type: string
-          minLength: 1
-          description: Email
-    amazon_buy_us_shipping_settings_response_body:
-      title: amazon_buy_us_shipping_settings_response_body
-      type: object
-      description: Amazon Buy Shipping response body
-      additionalProperties: false
-      properties:
-        nickname:
-          type: string
-          minLength: 1
-        is_primary_account:
-          type: boolean
-        email:
-          allOf:
-            - $ref: '#/components/schemas/email'
-        merchant_seller_id:
-          type: string
-          minLength: 1
-        mws_auth_token:
-          type: string
-          minLength: 1
     dhl_express_settings_response_body:
       title: dhl_express_settings_response_body
       type: object
@@ -6299,7 +6155,6 @@ components:
         - $ref: '#/components/schemas/update_newgistics_settings_request_body'
         - $ref: '#/components/schemas/update_ups_settings_request_body'
         - $ref: '#/components/schemas/update_amazon_buy_shipping_request_body'
-        - $ref: '#/components/schemas/update_amazon_shipping_us_request_body'
     update_dhl_express_settings_request_body:
       title: update_dhl_express_settings_request_body
       type: object
@@ -6341,35 +6196,11 @@ components:
           type: string
           minLength: 1
           description: Email
-    update_amazon_shipping_us_request_body:
-      title: update_amazon_shipping_us_request_body
+    disconnect_insurer_response_body:
+      title: disconnect_insurer_response_body
       type: object
-      description: An Amazon Shipping US account settings request body
-      additionalProperties: false
-      properties:
-        nickname:
-          type: string
-          minLength: 1
-          description: Nickname
-        is_primary_account:
-          type: boolean
-        email:
-          type: string
-          minLength: 1
-          description: Email
-        merchant_seller_id:
-          type: string
-          minLength: 1
-          description: Merchant Seller Id
-        mws_auth_token:
-          type: string
-          minLength: 1
-          description: MWS auth token
-    shipsurance_delete_response_bodys:
-      title: shipsurance_delete_response_bodys
-      type: object
-    create_shipsurance_connection_request_body:
-      title: create_shipsurance_connection_request_body
+    connect_insurer_request_body:
+      title: connect_insurer_request_body
       type: object
       description: A create shipsurance connection request body
       required:
@@ -6383,23 +6214,40 @@ components:
         policy_id:
           type: string
           minLength: 1
-    create_shipsurance_connection_response_body:
-      title: create_shipsurance_connection_response_body
+    connect_insurer_response_body:
+      title: connect_insurer_response_body
       type: object
-    get_environment_file_name_response_body:
-      title: get_environment_file_name_response_body
+    download_file_pdf_response_body:
+      title: download_file_pdf_response_body
+      type: string
+      format: binary
+    download_file_png_response_body:
+      title: download_file_png_response_body
+      type: string
+      format: binary
+    download_file_zpl_response_body:
+      title: download_file_zpl_response_body
+      type: string
+      format: binary
+    get_webhook_by_id_response_body:
+      title: get_webhook_by_id_response_body
       type: object
-    webhook_response_body:
-      title: webhook_response_body
-      type: object
-      description: A webhook response body
+      description: A get webhook id response body
+      additionalProperties: false
       required:
         - webhook_id
         - url
         - event
+      allOf:
+        - $ref: '#/components/schemas/webhook'
+    webhook:
+      title: webhook
+      type: object
+      description: A webhook
       additionalProperties: false
       properties:
         webhook_id:
+          readOnly: true
           allOf:
             - $ref: '#/components/schemas/se_id'
           description: A string that uniquely identifies the webhook
@@ -6410,9 +6258,9 @@ components:
           description: The url that the webhook sends the request to
         event:
           allOf:
-            - $ref: '#/components/schemas/event'
-    event:
-      title: event
+            - $ref: '#/components/schemas/webhook_event'
+    webhook_event:
+      title: webhook_event
       type: string
       enum:
         - batch
@@ -6422,7 +6270,7 @@ components:
         - report_complete
         - sales_orders_imported
         - track
-      description: The possible event values
+      description: The possible webook event values
     update_webhook_request_body:
       title: update_webhook_request_body
       type: object
@@ -6434,10 +6282,24 @@ components:
             - $ref: '#/components/schemas/url'
           example: 'https://[YOUR ENDPOINT ID].x.requestbin.com'
           description: The url that the wehbook sends the request
-    insurance_balance_response_body:
-      title: insurance_balance_response_body
+    add_funds_to_insurance_request_body:
+      title: add_funds_to_insurance_request_body
       type: object
-      description: An insurance balance response body
+      description: An add funds to insurance request body
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/monetary_value'
+    add_funds_to_insurance_response_body:
+      title: add_funds_to_insurance_response_body
+      type: object
+      description: Add funds to insurance response body
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/monetary_value'
+    get_insurance_balance_response_body:
+      title: get_insurance_balance_response_body
+      type: object
+      description: A get insurance balance response body
       additionalProperties: false
       allOf:
         - $ref: '#/components/schemas/monetary_value'
@@ -6480,8 +6342,8 @@ components:
         A [carrier
         service](https://docs.shipengine.com/docs/use-a-specific-service), such
         as `fedex_ground`, `usps_first_class_mail`, `flat_rate_envelope`, etc.
-    list_label_response_body:
-      title: list_label_response_body
+    list_labels_response_body:
+      title: list_labels_response_body
       type: object
       description: A list label response body
       required:
@@ -6784,8 +6646,8 @@ components:
         the returned items, these responses also include information about the
         total number of items, the number of pages of results, and URLs of other
         pages of results.
-    purchase_label_request_body:
-      title: purchase_label_request_body
+    create_label_request_body:
+      title: create_label_request_body
       type: object
       description: A purchase label request body
       required:
@@ -6971,7 +6833,7 @@ components:
         confirmation:
           default: none
           allOf:
-            - $ref: '#/components/schemas/confirmation'
+            - $ref: '#/components/schemas/delivery_confirmation'
           description: >-
             The type of delivery confirmation that is required for this
             shipment.
@@ -7115,8 +6977,8 @@ components:
         - label_purchased
         - cancelled
       description: The possible shipment status values
-    confirmation:
-      title: confirmation
+    delivery_confirmation:
+      title: delivery_confirmation
       type: string
       enum:
         - none
@@ -7124,7 +6986,7 @@ components:
         - signature
         - adult_signature
         - direct_signature
-      description: The possible confirmation values
+      description: The possible delivery confirmation values
     international_shipment_options:
       title: international_shipment_options
       type: object
@@ -7137,7 +6999,7 @@ components:
         contents:
           default: merchandise
           allOf:
-            - $ref: '#/components/schemas/contents'
+            - $ref: '#/components/schemas/package_contents'
           description: >-
             The type of contents in this shipment.  This may impact import
             duties or customs treatment.
@@ -7153,8 +7015,8 @@ components:
           description: Customs declarations for each item in the shipment.
           items:
             $ref: '#/components/schemas/customs_item'
-    contents:
-      title: contents
+    package_contents:
+      title: package_contents
       type: string
       enum:
         - merchandise
@@ -7162,7 +7024,7 @@ components:
         - gift
         - returned_goods
         - sample
-      description: The possible contents values
+      description: The possible package contents values
     non_delivery:
       title: non_delivery
       type: string
@@ -7569,10 +7431,10 @@ components:
       minLength: 4
       example: img_DtBXupDBxREpHnwEXhTfgK
       description: Used to identify an image resource.
-    label_response_body:
-      title: label_response_body
+    create_label_response_body:
+      title: create_label_response_body
       type: object
-      description: A label response body
+      description: A create label response body
       additionalProperties: false
       allOf:
         - $ref: '#/components/schemas/label'
@@ -7831,19 +7693,19 @@ components:
         - error
         - delivered
       description: The different statuses that can apply to a shipment.
-    purchase_label_without_shipment_request_body:
-      title: purchase_label_without_shipment_request_body
+    create_label_from_rate_request_body:
+      title: create_label_from_rate_request_body
       type: object
       description: A purchase label without shipment request body
       additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/purchase_label_without_shipment'
+    purchase_label_without_shipment:
+      title: purchase_label_without_shipment
+      type: object
+      description: A purchase label without shipment resource
+      additionalProperties: false
       properties:
-        test_label:
-          type: boolean
-          default: false
-          deprecated: true
-          description: >-
-            Indicate if this label is being used only for testing purposes. If
-            true, then no charge will be added to your account.
         validate_address:
           allOf:
             - $ref: '#/components/schemas/validate_address'
@@ -7858,16 +7720,64 @@ components:
         label_download_type:
           allOf:
             - $ref: '#/components/schemas/label_download_type'
-    tracking_information_response_body:
-      title: tracking_information_response_body
+    create_label_from_rate_response_body:
+      title: create_label_from_rate_response_body
       type: object
-      description: A tracking information response body
+      description: A create label from rate response body
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/label'
+    create_label_from_shipment_request_body:
+      title: create_label_from_shipment_request_body
+      type: object
+      description: A purchase label without shipment request body
+      additionalProperties: false
+      properties:
+        validate_address:
+          allOf:
+            - $ref: '#/components/schemas/validate_address'
+        label_layout:
+          default: 4x6
+          allOf:
+            - $ref: '#/components/schemas/label_layout'
+        label_format:
+          default: pdf
+          allOf:
+            - $ref: '#/components/schemas/label_format'
+        label_download_type:
+          allOf:
+            - $ref: '#/components/schemas/label_download_type'
+    create_label_from_shipment_response_body:
+      title: create_label_from_shipment_response_body
+      type: object
+      description: A create label from shipment response body
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/label'
+    get_label_by_id_response_body:
+      title: get_label_by_id_response_body
+      type: object
+      description: A get label by id response body
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/label'
+    get_tracking_log_from_label_response_body:
+      title: get_tracking_log_from_label_response_body
+      type: object
+      description: A get tracking log from label response body
       required:
         - tracking_number
         - status_code
         - carrier_status_code
         - estimated_delivery_date
         - events
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/tracking_information'
+    tracking_information:
+      title: tracking_information
+      type: object
+      description: A tracking information resource
       additionalProperties: false
       properties:
         tracking_number:
@@ -8012,7 +7922,7 @@ components:
           items:
             readOnly: true
             allOf:
-              - $ref: '#/components/schemas/manifest_response_body'
+              - $ref: '#/components/schemas/manifest'
             description: A single manifest
           description: The list of available manifests
         total:
@@ -8041,20 +7951,14 @@ components:
           allOf:
             - $ref: '#/components/schemas/pagination_link'
           description: Helpful links to other pages of results
-    manifest_response_body:
-      title: manifest_response_body
+    manifest:
+      title: manifest
       type: object
-      description: A manifest response body
-      required:
-        - manifest_id
-        - form_id
-        - created_at
-        - ship_date
-        - shipments
-        - warehouse_id
-        - submission_id
-        - carrier_id
-        - manifest_download
+      description: >
+        Used for combining packages into one scannable form that a carrier can
+        use when picking up a large 
+
+        number of shipments
       additionalProperties: false
       properties:
         manifest_id:
@@ -8105,17 +8009,19 @@ components:
             - $ref: '#/components/schemas/se_id'
           description: A string that uniquely identifies the carrier
         manifest_download:
-          $ref: '#/components/schemas/manifest_download'
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/manifest_download'
     manifest_download:
-      readOnly: true
       title: manifest_download
       type: object
+      description: Object containing the href link to download the manifest file
+      additionalProperties: false
       properties:
         href:
           allOf:
             - $ref: '#/components/schemas/url'
           description: 'The URL of the linked resource, if any'
-      description: Object containing the href link to download the manifest file
     create_manifest_request_body:
       title: create_manifest_request_body
       oneOf:
@@ -8174,22 +8080,154 @@ components:
               - $ref: '#/components/schemas/se_id'
             description: Label Id that will be included in the manifest
           description: The list of label ids to include in the manifest
-    package_request_body:
-      title: package_request_body
+    create_manifest_response_body:
+      title: create_manifest_response_body
       type: object
-      description: A package request body
+      description: A create manifest response body
+      required:
+        - manifest_id
+        - form_id
+        - created_at
+        - ship_date
+        - shipments
+        - warehouse_id
+        - submission_id
+        - carrier_id
+        - manifest_download
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/manifests'
+        - $ref: '#/components/schemas/deprecated_manifest'
+    manifests:
+      title: manifests
+      type: object
+      description: An array of manifest resources
+      additionalProperties: false
+      properties:
+        manifests:
+          type: array
+          items:
+            $ref: '#/components/schemas/manifest'
+    deprecated_manifest:
+      title: deprecated_manifest
+      type: object
+      description: Deprecated manifest resource
+      additionalProperties: false
+      properties:
+        manifest_id:
+          deprecated: true
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the manifest
+        form_id:
+          deprecated: true
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the form
+        created_at:
+          deprecated: true
+          type: string
+          format: date-time
+          minLength: 1
+          example: '2019-07-12T13:37:39.050Z'
+          description: The date-time that the manifest was created
+        ship_date:
+          deprecated: true
+          type: string
+          format: date-time
+          minLength: 1
+          example: '2019-07-12T13:37:39.050Z'
+          description: The date-time that the manifests shipments will be picked up
+        shipments:
+          deprecated: true
+          type: integer
+          format: int32
+          readOnly: true
+          minimum: 1
+          example: 100
+          description: The number of shipments that are included in this manifest
+        warehouse_id:
+          deprecated: true
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the warehouse
+        submission_id:
+          deprecated: true
+          type: string
+          minLength: 1
+          example: 9.475711899564878e+21
+          description: A string that uniquely identifies the submission
+        carrier_id:
+          deprecated: true
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the carrier
+        manifest_download:
+          deprecated: true
+          allOf:
+            - $ref: '#/components/schemas/manifest_download'
+    get_manifest_by_id_response_body:
+      title: get_manifest_by_id_response_body
+      type: object
+      description: A get manifest by id response body
+      required:
+        - manifest_id
+        - form_id
+        - created_at
+        - ship_date
+        - shipments
+        - warehouse_id
+        - submission_id
+        - carrier_id
+        - manifest_download
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/manifest'
+    list_package_types_response_body:
+      title: list_package_types_response_body
+      type: object
+      description: A list package types response body
+      additionalProperties: false
+      properties:
+        packages:
+          type: array
+          readOnly: true
+          items:
+            readOnly: true
+            allOf:
+              - $ref: '#/components/schemas/package_type'
+            description: Custom Package Types items
+          description: An array of custom package types
+    create_package_type_request_body:
+      title: create_package_type_request_body
+      type: object
+      description: A create package type request body
       additionalProperties: false
       allOf:
         - $ref: '#/components/schemas/package_type'
-    package_response_body:
-      title: package_response_body
+    create_package_type_response_body:
+      title: create_package_type_response_body
       type: object
-      description: A custom package response body
+      description: A create package type response body
       additionalProperties: false
       allOf:
         - $ref: '#/components/schemas/package_type'
-    rate_shipment_request_body:
-      title: rate_shipment_request_body
+    get_package_type_by_id_response_body:
+      title: get_package_type_by_id_response_body
+      type: object
+      description: A get package type by id response body
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/package_type'
+    update_package_type_request_body:
+      title: update_package_type_request_body
+      type: object
+      description: An update package type request body
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/package_type'
+    calculate_rates_request_body:
+      title: calculate_rates_request_body
       type: object
       description: A rate shipment request body
       required:
@@ -8274,8 +8312,8 @@ components:
             type: string
             minLength: 1
             description: Item Service Codes
-    rate_shipment_response_body:
-      title: rate_shipment_response_body
+    calculate_rates_response_body:
+      title: calculate_rates_response_body
       type: object
       description: A rate shipment response body
       required:
@@ -8304,20 +8342,12 @@ components:
       properties:
         rate_response:
           allOf:
-            - $ref: '#/components/schemas/rates_response_body'
+            - $ref: '#/components/schemas/rates_information'
           description: The rates response
-    rates_response_body:
-      title: rates_response_body
+    rates_information:
+      title: rates_information
       type: object
-      description: A rate response body
-      required:
-        - rates
-        - invalid_rates
-        - rate_request_id
-        - shipment_id
-        - created_at
-        - status
-        - errors
+      description: A rates information resource
       additionalProperties: false
       properties:
         rates:
@@ -8571,8 +8601,8 @@ components:
           type: string
           minLength: 1
           description: Provider error message
-    rate_shipments_request_body:
-      title: rate_shipments_request_body
+    compare_bulk_rates_request_body:
+      title: compare_bulk_rates_request_body
       type: object
       description: A rate shipments request body
       required:
@@ -8618,8 +8648,8 @@ components:
               - $ref: '#/components/schemas/address_validating_shipment'
             description: The shipment to get a bulk rate estimate for
           description: The array of shipments to get bulk rate estimates for
-    bulk_rate_response_body:
-      title: bulk_rate_response_body
+    compare_bulk_rates_response_body:
+      title: compare_bulk_rates_response_body
       type: array
       description: A bulk rate response body
       items:
@@ -8665,8 +8695,8 @@ components:
               - $ref: '#/components/schemas/provider_error'
             description: An error that occurred while retrieving the bulk rate
           description: An array of errors that were returned while retrieving the bulk rate
-    rate_estimate_request_body:
-      title: rate_estimate_request_body
+    estimate_rates_request_body:
+      title: estimate_rates_request_body
       type: object
       description: A rate estimate request body
       required:
@@ -8754,7 +8784,7 @@ components:
           description: The dimensions of the package
         confirmation:
           allOf:
-            - $ref: '#/components/schemas/confirmation'
+            - $ref: '#/components/schemas/delivery_confirmation'
         address_residential_indicator:
           allOf:
             - $ref: '#/components/schemas/address_residential_indicator'
@@ -8763,15 +8793,15 @@ components:
           allOf:
             - $ref: '#/components/schemas/date_time'
           description: ship date
-    rate_estimate_response_body:
-      title: rate_estimate_response_body
+    estimate_rates_response_body:
+      title: estimate_rates_response_body
       type: array
       description: A rate estimate response body
       items:
         allOf:
           - $ref: '#/components/schemas/rate'
-    rate_response_body:
-      title: rate_response_body
+    get_rate_by_id_response_body:
+      title: get_rate_by_id_response_body
       type: object
       description: A rate response body
       required:
@@ -8785,129 +8815,6 @@ components:
       additionalProperties: false
       allOf:
         - $ref: '#/components/schemas/rate'
-    register_stamps_com_request_body:
-      title: register_stamps_com_request_body
-      type: object
-      description: The http request body that is required to register a stamps.com account
-      additionalProperties: false
-      properties:
-        nickname:
-          type: string
-          minLength: 1
-          description: The nickname to be given to the account
-        email:
-          allOf:
-            - $ref: '#/components/schemas/email'
-        agree_to_carrier_terms:
-          type: boolean
-          description: Carrier Terms acknowledgement
-        address:
-          allOf:
-            - $ref: '#/components/schemas/partial_address'
-          description: Address information
-        credit_card:
-          $ref: '#/components/schemas/credit_card_info'
-    credit_card_info:
-      title: credit_card_info
-      type: object
-      properties:
-        type:
-          allOf:
-            - $ref: '#/components/schemas/credit_card_types'
-        number:
-          type: string
-          minLength: 1
-          description: Number
-        name:
-          type: string
-          minLength: 1
-          description: Name
-        expiration_year:
-          type: string
-          minLength: 1
-          description: Expiration Year
-        expiration_month:
-          type: string
-          minLength: 1
-          description: Expiration Month
-    credit_card_types:
-      title: credit_card_types
-      description: Accepted Credit Card Types
-      type: string
-      enum:
-        - visa
-        - master_card
-        - american_express
-        - discover
-    create_shipments_response_body:
-      title: create_shipments_response_body
-      type: object
-      description: A create shipments response body
-      required:
-        - has_errors
-        - shipments
-      additionalProperties: false
-      properties:
-        has_errors:
-          type: boolean
-          default: false
-          description: Indicates if errors occured while creating the shipments
-        shipments:
-          type: array
-          items:
-            allOf:
-              - $ref: '#/components/schemas/create_shipment_response_body'
-            description: The shipment that was created.
-          description: An array of shipments that were created.
-    create_shipment_response_body:
-      title: create_shipment_response_body
-      type: object
-      description: A create shipment response body
-      required:
-        - errors
-        - has_errors
-        - address_validation
-        - shipment_id
-        - carrier_id
-        - service_code
-        - ship_date
-        - created_at
-        - shipment_status
-        - ship_to
-        - ship_from
-        - return_to
-        - confirmation
-        - customs
-        - advanced_options
-        - insurance_provider
-        - tags
-        - packages
-        - total_weight
-      additionalProperties: false
-      allOf:
-        - $ref: '#/components/schemas/partial_shipment'
-        - $ref: '#/components/schemas/create_shipment_response_body_fields'
-    create_shipment_response_body_fields:
-      title: create_shipment_response_body_fields
-      type: object
-      properties:
-        errors:
-          type: array
-          deprecated: true
-          items:
-            type: string
-            minLength: 1
-            example: Parameter value '100000000.00' is out of range.
-            description: An error that occurred while creating a shipment.
-          description: An array of errors that occurred while creating shipment.
-          readOnly: true
-        address_validation:
-          allOf:
-            - $ref: '#/components/schemas/address_validation_result'
-          description: The address validation
-    get_sandbox_sellers_response_body:
-      title: get_sandbox_sellers_response_body
-      type: object
     shipments_sort_by:
       title: shipments_sort_by
       type: string
@@ -8915,8 +8822,8 @@ components:
         - modified_at
         - created_at
       description: The possible shipments sort by values
-    list_shipment_response_body:
-      title: list_shipment_response_body
+    list_shipments_response_body:
+      title: list_shipments_response_body
       type: object
       description: A list shipment response body
       required:
@@ -8973,15 +8880,61 @@ components:
             allOf:
               - $ref: '#/components/schemas/address_validating_shipment'
           description: An array of shipments to be created.
-    shipment_response_body:
-      title: shipment_response_body
+    create_shipments_response_body:
+      title: create_shipments_response_body
       type: object
-      description: A shipment response body
+      description: A create shipments response body
+      required:
+        - has_errors
+        - shipments
+      additionalProperties: false
+      properties:
+        has_errors:
+          type: boolean
+          default: false
+          description: Indicates if errors occured while creating the shipments
+        shipments:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/create_and_validate_shipment'
+            description: The shipment that was created.
+          description: An array of shipments that were created.
+    create_and_validate_shipment:
+      title: create_and_validate_shipment
+      type: object
+      description: A create and validate shipment resource
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/partial_shipment'
+        - $ref: '#/components/schemas/create_shipment_response_body_fields'
+    create_shipment_response_body_fields:
+      title: create_shipment_response_body_fields
+      type: object
+      properties:
+        errors:
+          type: array
+          deprecated: true
+          items:
+            type: string
+            minLength: 1
+            example: Parameter value '100000000.00' is out of range.
+            description: An error that occurred while creating a shipment.
+          description: An array of errors that occurred while creating shipment.
+          readOnly: true
+        address_validation:
+          allOf:
+            - $ref: '#/components/schemas/address_validation_result'
+          description: The address validation
+    get_shipment_by_external_id_response_body:
+      title: get_shipment_by_external_id_response_body
+      type: object
+      description: A get shipment by external id response body
       additionalProperties: false
       allOf:
         - $ref: '#/components/schemas/shipment'
-    recognize_shipment_request_body:
-      title: recognize_shipment_request_body
+    parse_shipment_request_body:
+      title: parse_shipment_request_body
       type: object
       description: >
         The only required field is `text`, which is the text to be parsed. You
@@ -9009,8 +8962,8 @@ components:
             already-known values. For example, you probably already know the
             `ship_from` address, and you may also already know what carrier and
             service you want to use.
-    recognize_shipment_response_body:
-      title: recognize_shipment_response_body
+    parse_shipment_response_body:
+      title: parse_shipment_response_body
       type: object
       description: >
         The parsed shipment, as well as a confidence score and a list of all the
@@ -9053,6 +9006,13 @@ components:
             a single piece of data, such as a city, a postal code, a carrier
             name, or a package weight.  Each entity includes the original text
             and the parsed value.
+    get_shipment_by_id_response_body:
+      title: get_shipment_by_id_response_body
+      type: object
+      description: A get shipment by id response body
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/shipment'
     update_shipment_request_body:
       title: update_shipment_request_body
       type: object
@@ -9072,8 +9032,35 @@ components:
           default: no_validation
           allOf:
             - $ref: '#/components/schemas/validate_address'
-    shipment_errors_response_body:
-      title: shipment_errors_response_body
+    update_shipment_response_body:
+      title: update_shipment_response_body
+      type: object
+      description: An update shipment response body
+      required:
+        - errors
+        - has_errors
+        - address_validation
+        - shipment_id
+        - carrier_id
+        - service_code
+        - ship_date
+        - created_at
+        - shipment_status
+        - ship_to
+        - ship_from
+        - return_to
+        - confirmation
+        - customs
+        - advanced_options
+        - insurance_provider
+        - tags
+        - packages
+        - total_weight
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/create_and_validate_shipment'
+    list_shipment_errors_response_body:
+      title: list_shipment_errors_response_body
       type: object
       description: A shipment errors response body
       required:
@@ -9115,6 +9102,21 @@ components:
           allOf:
             - $ref: '#/components/schemas/se_id'
           description: A string that uniquely identifies the external shipment.
+    list_shipment_rates_response_body:
+      title: list_shipment_rates_response_body
+      type: object
+      description: A list shipment rates response body
+      required:
+        - rates
+        - invalid_rates
+        - rate_request_id
+        - shipment_id
+        - created_at
+        - status
+        - errors
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/rates_information'
     tag_name:
       title: tag_name
       type: string
@@ -9126,8 +9128,8 @@ components:
         and international shipments, or between insured and uninsured
         shipments.  Or maybe you want to create a tag for each of your customers
         so you can easily retrieve every shipment for a customer.
-    shipment_add_tag_response_body:
-      title: shipment_add_tag_response_body
+    tag_shipment_response_body:
+      title: tag_shipment_response_body
       type: object
       description: A shipment add tag response body
       required:
@@ -9143,20 +9145,10 @@ components:
         tag:
           readOnly: true
           allOf:
-            - $ref: '#/components/schemas/tag_response_body'
-          description: The tag response body
-    tag_response_body:
-      title: tag_response_body
-      type: object
-      description: Response body for listing tags
-      additionalProperties: false
-      properties:
-        name:
-          allOf:
             - $ref: '#/components/schemas/tag'
-          example: Letters_to_Santa
-    list_tag_response_body:
-      title: list_tag_response_body
+          description: The tag that is now associated with this shipment
+    list_tags_response_body:
+      title: list_tags_response_body
       type: object
       description: Response body from a successful GET /tags API call
       additionalProperties: false
@@ -9165,10 +9157,30 @@ components:
           type: array
           items:
             allOf:
-              - $ref: '#/components/schemas/tag_response_body'
+              - $ref: '#/components/schemas/tag'
           description: The array of tags returned by the API call
-    warehouse_list_response_body:
-      title: warehouse_list_response_body
+    create_tag_response_body:
+      title: create_tag_response_body
+      type: object
+      description: Response body for creating tags
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/tag'
+    get_tracking_log_response_body:
+      title: get_tracking_log_response_body
+      type: object
+      description: A get tracking log response body
+      required:
+        - tracking_number
+        - status_code
+        - carrier_status_code
+        - estimated_delivery_date
+        - events
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/tracking_information'
+    list_warehouses_response_body:
+      title: list_warehouses_response_body
       type: object
       description: A warehouse list response body
       required:
@@ -9197,7 +9209,6 @@ components:
         name:
           type: string
           minLength: 1
-          readOnly: true
           example: Zero Cool HQ
           description: Name of the warehouse
         created_at:
@@ -9215,42 +9226,49 @@ components:
           allOf:
             - $ref: '#/components/schemas/address'
           description: The return address associated with the warehouse
-    warehouse_request_body:
-      title: warehouse_request_body
+    create_warehouse_request_body:
+      title: create_warehouse_request_body
       type: object
-      description: A warehouse request body
+      description: A create warehouse request body
       required:
         - name
         - origin_address
       additionalProperties: false
-      properties:
-        warehouse_id:
-          allOf:
-            - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the warehouse
-        name:
-          type: string
-          minLength: 1
-          example: Zero Cool HQ
-          description: Name of warehouse
-        origin_address:
-          allOf:
-            - $ref: '#/components/schemas/address'
-          description: The origin address of the warehouse
-        return_address:
-          allOf:
-            - $ref: '#/components/schemas/address'
-          description: The return address associated with this warehouse
-    warehouse_response_body:
-      title: warehouse_response_body
+      allOf:
+        - $ref: '#/components/schemas/warehouse'
+    create_warehouse_response_body:
+      title: create_warehouse_response_body
       type: object
-      description: A warehouse response body
+      description: A create warehouse response body
       required:
         - warehouse_id
         - name
         - created_at
         - origin_address
         - return_address
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/warehouse'
+    get_warehouse_by_id_response_body:
+      title: get_warehouse_by_id_response_body
+      type: object
+      description: A get warehouse by id response body
+      required:
+        - warehouse_id
+        - name
+        - created_at
+        - origin_address
+        - return_address
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/warehouse'
+    update_warehouse_request_body:
+      title: update_warehouse_request_body
+      type: object
+      description: An update warehouse request body
+      required:
+        - name
+        - origin_address
       additionalProperties: false
       allOf:
         - $ref: '#/components/schemas/warehouse'
@@ -9339,9 +9357,9 @@ tags:
         Find out how our Natural Language Processing APIs can help you extract
         useful and meaningful data from emails, documents, chat messages, or any
         other text source.
-  - name: packages
+  - name: package_types
     description: |
-      packages
+      custom package types
   - name: rates
     description: >
       Make sure you ship as cost-effectively as possible by [quickly comparing
@@ -9354,11 +9372,6 @@ tags:
         This quick start guide shows you how to get shipping rates for multiple
         carriers so you can choose the fastest, cheapest, or most reliable
         option.
-  - name: registration
-    description: registration
-  - name: sellers
-    description: |
-      sellers
   - name: shipments
     description: >
       Shipments are at the center of the ShipEngine API.  A shipment is the
