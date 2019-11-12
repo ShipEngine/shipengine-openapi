@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.201911081811
+  version: 1.1.201911112011
   termsOfService: 'https://www.shipengine.com/terms-of-service'
   contact:
     name: ShipEngine Sales & Support
@@ -1551,6 +1551,44 @@ paths:
           $ref: '#/components/responses/404_error_response'
         '500':
           $ref: '#/components/responses/500_error_response'
+  '/v1/labels/external_shipment_id/{external_shipment_id}':
+    summary: Get Label By External Shipment ID
+    description: Find a label using the external shipment id
+    get:
+      summary: Get Label By External Shipment ID
+      description: >
+        Find a label by using the external shipment id that was used during
+        label creation
+      tags:
+        - labels
+      operationId: get_label_by_external_shipment_id
+      parameters:
+        - name: external_shipment_id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: 0bcb569d-1727-4ff9-ab49-b2fec0cee5ae
+        - name: label_download_type
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/label_download_type'
+          example: url
+      responses:
+        '200':
+          description: The requested object creation was a success.
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/get_label_by_external_shipment_id_response_body
+        '400':
+          $ref: '#/components/responses/400_error_response'
+        '404':
+          $ref: '#/components/responses/404_error_response'
+        '500':
+          $ref: '#/components/responses/500_error_response'
   '/v1/labels/rates/{rate_id}':
     summary: Use a rate to purchase a label
     description: >-
@@ -1666,6 +1704,40 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/get_label_by_id_response_body'
+        '400':
+          $ref: '#/components/responses/400_error_response'
+        '404':
+          $ref: '#/components/responses/404_error_response'
+        '500':
+          $ref: '#/components/responses/500_error_response'
+  '/v1/labels/{label_id}/return':
+    summary: Return labels
+    post:
+      summary: Create a return label
+      description: Create a return label
+      tags:
+        - labels
+      operationId: create_return_label
+      parameters:
+        - name: label_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/se_id'
+          description: Label ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/create_return_label_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/create_return_label_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -2365,10 +2437,10 @@ paths:
       parameters:
         - name: external_shipment_id
           in: path
-          required: true
           schema:
-            $ref: '#/components/schemas/se_id'
-          description: External Shipment ID
+            type: string
+          required: true
+          example: 0bcb569d-1727-4ff9-ab49-b2fec0cee5ae
       responses:
         '200':
           description: The request was a success.
@@ -3908,6 +3980,7 @@ components:
         - manifest_warehouse_conflict
         - meter_failure
         - order_source_not_active
+        - rate_limit_exceeded
         - refresh_not_supported
         - request_body_required
         - settings_not_supported
@@ -4077,9 +4150,11 @@ components:
         - multiple_matches
         - suite_not_valid
         - suite_missing
+        - incompatible_paired_labels
         - invalid_house_number
         - missing_house_number
         - invalid_box_number
+        - invalid_charge_event
         - missing_box_number
         - missing_cmra_or_private_mail_box_number
         - suite_has_no_secondaries
@@ -5010,8 +5085,8 @@ components:
         - purolator_canada
         - royal_mail
         - rr_donnelley
-        - sendle
         - stamps_com
+        - sendle
         - ups
       description: The shipping carriers that are supported by ShipEngine
     connect_carrier_request_body:
@@ -6420,6 +6495,11 @@ components:
                   shipment](https://docs.shipengine.com/docs/create-a-shipment)
                   and then [use it to print a
                   label](https://docs.shipengine.com/docs/use-a-shipment-to-print-a-label)
+              shipment:
+                writeOnly: true
+                allOf:
+                  - $ref: '#/components/schemas/shipment'
+                description: The shipment information used to generate the label
               ship_date:
                 allOf:
                   - $ref: '#/components/schemas/date'
@@ -6490,6 +6570,20 @@ components:
                   The unique ID of the [carrier
                   account](https://docs.shipengine.com/docs/setup-a-carrier)
                   that was used to create this label
+              charge_event:
+                allOf:
+                  - $ref: '#/components/schemas/label_charge_event'
+                description: |
+                  The label charge event.
+              outbound_label_id:
+                allOf:
+                  - $ref: '#/components/schemas/se_id'
+                description: >
+                  The `label_id` of the original (outgoing) label that the
+                  return label is for. This associates the two labels together,
+                  which is 
+
+                  required by some carriers.
               service_code:
                 allOf:
                   - $ref: '#/components/schemas/service_code'
@@ -6498,6 +6592,15 @@ components:
                   service](https://docs.shipengine.com/docs/use-a-specific-service)
                   used to ship the package, such as `fedex_ground`,
                   `usps_first_class_mail`, `flat_rate_envelope`, etc.
+              test_label:
+                writeOnly: true
+                type: boolean
+                default: false
+                deprecated: true
+                description: >-
+                  Indicate if this label is being used only for testing
+                  purposes. If true, then no charge will be added to your
+                  account.
               package_code:
                 allOf:
                   - $ref: '#/components/schemas/package_code'
@@ -6507,6 +6610,11 @@ components:
                   such as `thick_envelope`, `small_flat_rate_box`,
                   `large_package`, etc.  The code `package` indicates a custom
                   or unknown package type.
+              validate_address:
+                writeOnly: true
+                default: validate_and_clean
+                allOf:
+                  - $ref: '#/components/schemas/validate_address'
               voided:
                 type: boolean
                 readOnly: true
@@ -6522,6 +6630,11 @@ components:
                   The date and time that the label was
                   [voided](https://docs.shipengine.com/docs/void-a-label), or
                   `null` if the label has not been voided
+              label_download_type:
+                writeOnly: true
+                default: url
+                allOf:
+                  - $ref: '#/components/schemas/label_download_type'
               label_format:
                 default: pdf
                 allOf:
@@ -6548,6 +6661,7 @@ components:
                   `tracking_status` field will reflect the current status and
                   each package will have a `tracking_number`.
               label_image_id:
+                nullable: true
                 allOf:
                   - $ref: '#/components/schemas/image_id'
                 description: >-
@@ -6653,48 +6767,283 @@ components:
       required:
         - shipment
       additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/label'
+    label:
+      title: label
+      type: object
+      description: >
+        A label represents the physical sticker that you affix to a package to
+        ship it.  ShipEngine makes it easy for you to [create
+        labels](https://docs.shipengine.com/docs/quickstart-create-a-label) and
+        then download them in PDF, PNG, or ZPL format so you can print them.
+      required:
+        - label_id
+        - status
+        - shipment_id
+        - ship_date
+        - created_at
+        - shipment_cost
+        - insurance_cost
+        - tracking_number
+        - is_return_label
+        - rma_number
+        - is_international
+        - batch_id
+        - carrier_id
+        - service_code
+        - package_code
+        - voided
+        - voided_at
+        - label_image_id
+        - label_format
+        - label_layout
+        - trackable
+        - carrier_code
+        - tracking_status
+        - label_download
+        - form_download
+        - insurance_claim
+        - packages
+      additionalProperties: false
       properties:
+        label_id:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: >
+            A string that uniquely identifies the label. This ID is generated by
+            ShipEngine when the label is created.
+        status:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/label_status'
+        shipment_id:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: >
+            The shipment that this label is for.  ShipEngine can create a
+            shipment for you automatically when you [create a
+            label](https://docs.shipengine.com/docs/quickstart-create-a-label),
+            or you can [create your own
+            shipment](https://docs.shipengine.com/docs/create-a-shipment) and
+            then [use it to print a
+            label](https://docs.shipengine.com/docs/use-a-shipment-to-print-a-label)
         shipment:
+          writeOnly: true
           allOf:
             - $ref: '#/components/schemas/shipment'
           description: The shipment information used to generate the label
-        is_return_label:
-          type: boolean
-          default: false
-          description: Indicate if this is a return label
-        rma_number:
+        ship_date:
+          allOf:
+            - $ref: '#/components/schemas/date'
+          description: >
+            The date that the package was (or will be) shippped.  ShipEngine
+            will take the day of week into consideration. For example, if the
+            carrier does not operate on Sundays, then a package that would have
+            shipped on Sunday will ship on Monday instead.
+        created_at:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/date_time'
+          description: The date and time that the label was created in ShipEngine.
+        shipment_cost:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/monetary_value'
+          description: >
+            The cost of shipping, delivery confirmation, and other carrier
+            charges.  This amount **does not** include insurance costs.
+        insurance_cost:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/monetary_value'
+          description: >
+            The insurance cost for this package.  Add this to the
+            `shipment_cost` field to get the total cost.
+        tracking_number:
           type: string
           minLength: 1
-          example: mVRUr79663
+          readOnly: true
+          example: '782758401696'
           description: >-
-            \"Return Merchandise Authorization\" value, used to externally
-            reference a return.
+            The tracking number for the package. Tracking number formats vary
+            across carriers.
+        is_return_label:
+          type: boolean
+          description: >
+            Indicates whether this is a return label.  You may also want to set
+            the `rma_number` so you know what is being returned.
+        rma_number:
+          type: string
+          nullable: true
+          description: >
+            An optional Return Merchandise Authorization number.  This field is
+            useful for return labels.  You can set it to any string value.
+        is_international:
+          type: boolean
+          readOnly: true
+          description: >
+            Indicates whether this is an international shipment.  That is, the
+            originating country and destination country are different.
+        batch_id:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: >
+            If this label was created as part of a
+            [batch](https://docs.shipengine.com/docs/using-batches), then this
+            is the unique ID of that batch.
+        carrier_id:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: >
+            The unique ID of the [carrier
+            account](https://docs.shipengine.com/docs/setup-a-carrier) that was
+            used to create this label
+        charge_event:
+          allOf:
+            - $ref: '#/components/schemas/label_charge_event'
+          description: |
+            The label charge event.
+        outbound_label_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: >
+            The `label_id` of the original (outgoing) label that the return
+            label is for. This associates the two labels together, which is 
+
+            required by some carriers.
+        service_code:
+          allOf:
+            - $ref: '#/components/schemas/service_code'
+          description: >
+            The [carrier
+            service](https://docs.shipengine.com/docs/use-a-specific-service)
+            used to ship the package, such as `fedex_ground`,
+            `usps_first_class_mail`, `flat_rate_envelope`, etc.
         test_label:
+          writeOnly: true
           type: boolean
           default: false
           deprecated: true
           description: >-
             Indicate if this label is being used only for testing purposes. If
             true, then no charge will be added to your account.
+        package_code:
+          allOf:
+            - $ref: '#/components/schemas/package_code'
+          description: >
+            The [package
+            type](https://docs.shipengine.com/docs/list-carrier-package-types),
+            such as `thick_envelope`, `small_flat_rate_box`, `large_package`,
+            etc.  The code `package` indicates a custom or unknown package type.
         validate_address:
+          writeOnly: true
           default: validate_and_clean
           allOf:
             - $ref: '#/components/schemas/validate_address'
-        label_layout:
-          default: 4x6
+        voided:
+          type: boolean
+          readOnly: true
+          description: >
+            Indicates whether the label has been
+            [voided](https://docs.shipengine.com/docs/void-a-label)
+        voided_at:
+          nullable: true
+          readOnly: true
           allOf:
-            - $ref: '#/components/schemas/label_layout'
+            - $ref: '#/components/schemas/date_time'
+          description: >
+            The date and time that the label was
+            [voided](https://docs.shipengine.com/docs/void-a-label), or `null`
+            if the label has not been voided
+        label_download_type:
+          writeOnly: true
+          default: url
+          allOf:
+            - $ref: '#/components/schemas/label_download_type'
         label_format:
           default: pdf
           allOf:
             - $ref: '#/components/schemas/label_format'
-        label_download_type:
-          default: url
+          description: >
+            The file format that you want the label to be in.  We recommend
+            `pdf` format because it is supported by all carriers, whereas some
+            carriers do not support the `png` or `zpl` formats.
+        label_layout:
+          default: 4x6
           allOf:
-            - $ref: '#/components/schemas/label_download_type'
+            - $ref: '#/components/schemas/label_layout'
+          description: >
+            The layout (size) that you want the label to be in.  The
+            `label_format` determines which sizes are allowed.  `4x6` is
+            supported for all label formats, whereas `letter` (8.5" x 11") is
+            only supported for `pdf` format.
+        trackable:
+          type: boolean
+          readOnly: true
+          description: >
+            Indicates whether the shipment is trackable, in which case the
+            `tracking_status` field will reflect the current status and each
+            package will have a `tracking_number`.
         label_image_id:
+          nullable: true
           allOf:
             - $ref: '#/components/schemas/image_id'
+          description: >-
+            The label image resource that was used to create a custom label
+            image.
+        carrier_code:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/carrier_code'
+          description: >
+            The [shipping
+            carrier](https://docs.shipengine.com/docs/setup-a-carrier) who will
+            ship the package, such as `fedex`, `dhl_express`, `stamps_com`, etc.
+        tracking_status:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/tracking_status'
+          description: >-
+            The current status of the package, such as `in_transit` or
+            `delivered`
+        label_download:
+          allOf:
+            - $ref: '#/components/schemas/label_download'
+        form_download:
+          readOnly: true
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/link'
+          description: >
+            The link to downlaod the customs form (a.k.a. commercial invoice)
+            for this shipment, if any.  Forms are in PDF format. This field is
+            null if the shipment does not require a customs form, or if the
+            carrier does not support it.
+        insurance_claim:
+          readOnly: true
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/link'
+          description: >
+            The link to submit an insurance claim for the shipment.  This field
+            is null if the shipment is not insured or if the insurance provider
+            does not support online claim submission.
+        packages:
+          type: array
+          description: >
+            The label's package(s).
+
+
+            > **Note:** Some carriers only allow one package per label.  If you
+            attempt to create a multi-package label for a carrier that doesn't
+            allow it, an error will be returned.
+          items:
+            $ref: '#/components/schemas/package'
     shipment:
       title: shipment
       type: object
@@ -7395,6 +7744,14 @@ components:
           description: >
             The third line of the custom label message.  Some carriers may
             prefix this line with something like "PO", "Reference 3", etc.
+    label_charge_event:
+      title: label_charge_event
+      type: string
+      enum:
+        - carrier_default
+        - on_creation
+        - on_carrier_acceptance
+      description: Determines when the user's account will be charged for the label.
     validate_address:
       title: validate_address
       type: string
@@ -7431,251 +7788,6 @@ components:
       minLength: 4
       example: img_DtBXupDBxREpHnwEXhTfgK
       description: Used to identify an image resource.
-    create_label_response_body:
-      title: create_label_response_body
-      type: object
-      description: A create label response body
-      additionalProperties: false
-      allOf:
-        - $ref: '#/components/schemas/label'
-    label:
-      title: label
-      type: object
-      description: >
-        A label represents the physical sticker that you affix to a package to
-        ship it.  ShipEngine makes it easy for you to [create
-        labels](https://docs.shipengine.com/docs/quickstart-create-a-label) and
-        then download them in PDF, PNG, or ZPL format so you can print them.
-      required:
-        - label_id
-        - status
-        - shipment_id
-        - ship_date
-        - created_at
-        - shipment_cost
-        - insurance_cost
-        - tracking_number
-        - is_return_label
-        - rma_number
-        - is_international
-        - batch_id
-        - carrier_id
-        - service_code
-        - package_code
-        - voided
-        - voided_at
-        - label_image_id
-        - label_format
-        - label_layout
-        - trackable
-        - carrier_code
-        - tracking_status
-        - label_download
-        - form_download
-        - insurance_claim
-        - packages
-      additionalProperties: false
-      properties:
-        label_id:
-          readOnly: true
-          allOf:
-            - $ref: '#/components/schemas/se_id'
-          description: >
-            A string that uniquely identifies the label. This ID is generated by
-            ShipEngine when the label is created.
-        status:
-          readOnly: true
-          allOf:
-            - $ref: '#/components/schemas/label_status'
-        shipment_id:
-          readOnly: true
-          allOf:
-            - $ref: '#/components/schemas/se_id'
-          description: >
-            The shipment that this label is for.  ShipEngine can create a
-            shipment for you automatically when you [create a
-            label](https://docs.shipengine.com/docs/quickstart-create-a-label),
-            or you can [create your own
-            shipment](https://docs.shipengine.com/docs/create-a-shipment) and
-            then [use it to print a
-            label](https://docs.shipengine.com/docs/use-a-shipment-to-print-a-label)
-        ship_date:
-          allOf:
-            - $ref: '#/components/schemas/date'
-          description: >
-            The date that the package was (or will be) shippped.  ShipEngine
-            will take the day of week into consideration. For example, if the
-            carrier does not operate on Sundays, then a package that would have
-            shipped on Sunday will ship on Monday instead.
-        created_at:
-          readOnly: true
-          allOf:
-            - $ref: '#/components/schemas/date_time'
-          description: The date and time that the label was created in ShipEngine.
-        shipment_cost:
-          readOnly: true
-          allOf:
-            - $ref: '#/components/schemas/monetary_value'
-          description: >
-            The cost of shipping, delivery confirmation, and other carrier
-            charges.  This amount **does not** include insurance costs.
-        insurance_cost:
-          readOnly: true
-          allOf:
-            - $ref: '#/components/schemas/monetary_value'
-          description: >
-            The insurance cost for this package.  Add this to the
-            `shipment_cost` field to get the total cost.
-        tracking_number:
-          type: string
-          minLength: 1
-          readOnly: true
-          example: '782758401696'
-          description: >-
-            The tracking number for the package. Tracking number formats vary
-            across carriers.
-        is_return_label:
-          type: boolean
-          description: >
-            Indicates whether this is a return label.  You may also want to set
-            the `rma_number` so you know what is being returned.
-        rma_number:
-          type: string
-          nullable: true
-          description: >
-            An optional Return Merchandise Authorization number.  This field is
-            useful for return labels.  You can set it to any string value.
-        is_international:
-          type: boolean
-          readOnly: true
-          description: >
-            Indicates whether this is an international shipment.  That is, the
-            originating country and destination country are different.
-        batch_id:
-          readOnly: true
-          allOf:
-            - $ref: '#/components/schemas/se_id'
-          description: >
-            If this label was created as part of a
-            [batch](https://docs.shipengine.com/docs/using-batches), then this
-            is the unique ID of that batch.
-        carrier_id:
-          readOnly: true
-          allOf:
-            - $ref: '#/components/schemas/se_id'
-          description: >
-            The unique ID of the [carrier
-            account](https://docs.shipengine.com/docs/setup-a-carrier) that was
-            used to create this label
-        service_code:
-          allOf:
-            - $ref: '#/components/schemas/service_code'
-          description: >
-            The [carrier
-            service](https://docs.shipengine.com/docs/use-a-specific-service)
-            used to ship the package, such as `fedex_ground`,
-            `usps_first_class_mail`, `flat_rate_envelope`, etc.
-        package_code:
-          allOf:
-            - $ref: '#/components/schemas/package_code'
-          description: >
-            The [package
-            type](https://docs.shipengine.com/docs/list-carrier-package-types),
-            such as `thick_envelope`, `small_flat_rate_box`, `large_package`,
-            etc.  The code `package` indicates a custom or unknown package type.
-        voided:
-          type: boolean
-          readOnly: true
-          description: >
-            Indicates whether the label has been
-            [voided](https://docs.shipengine.com/docs/void-a-label)
-        voided_at:
-          nullable: true
-          readOnly: true
-          allOf:
-            - $ref: '#/components/schemas/date_time'
-          description: >
-            The date and time that the label was
-            [voided](https://docs.shipengine.com/docs/void-a-label), or `null`
-            if the label has not been voided
-        label_format:
-          default: pdf
-          allOf:
-            - $ref: '#/components/schemas/label_format'
-          description: >
-            The file format that you want the label to be in.  We recommend
-            `pdf` format because it is supported by all carriers, whereas some
-            carriers do not support the `png` or `zpl` formats.
-        label_layout:
-          default: 4x6
-          allOf:
-            - $ref: '#/components/schemas/label_layout'
-          description: >
-            The layout (size) that you want the label to be in.  The
-            `label_format` determines which sizes are allowed.  `4x6` is
-            supported for all label formats, whereas `letter` (8.5" x 11") is
-            only supported for `pdf` format.
-        trackable:
-          type: boolean
-          readOnly: true
-          description: >
-            Indicates whether the shipment is trackable, in which case the
-            `tracking_status` field will reflect the current status and each
-            package will have a `tracking_number`.
-        label_image_id:
-          allOf:
-            - $ref: '#/components/schemas/image_id'
-          description: >-
-            The label image resource that was used to create a custom label
-            image.
-        carrier_code:
-          readOnly: true
-          allOf:
-            - $ref: '#/components/schemas/carrier_code'
-          description: >
-            The [shipping
-            carrier](https://docs.shipengine.com/docs/setup-a-carrier) who will
-            ship the package, such as `fedex`, `dhl_express`, `stamps_com`, etc.
-        tracking_status:
-          readOnly: true
-          allOf:
-            - $ref: '#/components/schemas/tracking_status'
-          description: >-
-            The current status of the package, such as `in_transit` or
-            `delivered`
-        label_download:
-          allOf:
-            - $ref: '#/components/schemas/label_download'
-        form_download:
-          readOnly: true
-          nullable: true
-          allOf:
-            - $ref: '#/components/schemas/link'
-          description: >
-            The link to downlaod the customs form (a.k.a. commercial invoice)
-            for this shipment, if any.  Forms are in PDF format. This field is
-            null if the shipment does not require a customs form, or if the
-            carrier does not support it.
-        insurance_claim:
-          readOnly: true
-          nullable: true
-          allOf:
-            - $ref: '#/components/schemas/link'
-          description: >
-            The link to submit an insurance claim for the shipment.  This field
-            is null if the shipment is not insured or if the insurance provider
-            does not support online claim submission.
-        packages:
-          type: array
-          description: >
-            The label's package(s).
-
-
-            > **Note:** Some carriers only allow one package per label.  If you
-            attempt to create a multi-package label for a carrier that doesn't
-            allow it, an error will be returned.
-          items:
-            $ref: '#/components/schemas/package'
     carrier_code:
       title: carrier_code
       type: string
@@ -7693,6 +7805,20 @@ components:
         - error
         - delivered
       description: The different statuses that can apply to a shipment.
+    create_label_response_body:
+      title: create_label_response_body
+      type: object
+      description: A create label response body
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/label'
+    get_label_by_external_shipment_id_response_body:
+      title: get_label_by_external_shipment_id_response_body
+      type: object
+      description: A get label by external shipment id response body
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/label'
     create_label_from_rate_request_body:
       title: create_label_from_rate_request_body
       type: object
@@ -7758,6 +7884,53 @@ components:
       title: get_label_by_id_response_body
       type: object
       description: A get label by id response body
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/label'
+    create_return_label_request_body:
+      title: create_return_label_request_body
+      type: object
+      description: A create return label request body
+      additionalProperties: false
+      properties:
+        charge_event:
+          allOf:
+            - $ref: '#/components/schemas/label_charge_event'
+          description: |
+            The label charge event.
+        label_layout:
+          default: 4x6
+          allOf:
+            - $ref: '#/components/schemas/label_layout'
+          description: >
+            The layout (size) that you want the label to be in.  The
+            `label_format` determines which sizes are allowed.  `4x6` is
+            supported for all label formats, whereas `letter` (8.5" x 11") is
+            only supported for `pdf` format.
+        label_format:
+          default: pdf
+          allOf:
+            - $ref: '#/components/schemas/label_format'
+          description: >
+            The file format that you want the label to be in.  We recommend
+            `pdf` format because it is supported by all carriers, whereas some
+            carriers do not support the `png` or `zpl` formats.
+        label_download_type:
+          writeOnly: true
+          default: url
+          allOf:
+            - $ref: '#/components/schemas/label_download_type'
+        label_image_id:
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/image_id'
+          description: >-
+            The label image resource that was used to create a custom label
+            image.
+    create_return_label_response_body:
+      title: create_return_label_response_body
+      type: object
+      description: A create return label response body
       additionalProperties: false
       allOf:
         - $ref: '#/components/schemas/label'
@@ -7843,6 +8016,13 @@ components:
         occurred_at:
           allOf:
             - $ref: '#/components/schemas/date_time'
+          description: Timestamp for carrier event
+        carrier_occurred_at:
+          allOf:
+            - $ref: '#/components/schemas/date_time'
+          description: >-
+            Carrier timestamp for the event, it is assumed to be the local time
+            of where the event occurred.
         description:
           type: string
           readOnly: true
