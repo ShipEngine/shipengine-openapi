@@ -1,8 +1,12 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.201911112011
+  version: 1.1.201911121711
   termsOfService: 'https://www.shipengine.com/terms-of-service'
+  x-logo:
+    url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
+    backgroundColor: '#FFFFFF'
+    altText: ShipEngine logo
   contact:
     name: ShipEngine Sales & Support
     email: sales@shipengine.com
@@ -81,7 +85,6 @@ paths:
         States, Canada, Australia, New Zealand, the United Kingdom, and Ireland.
       tags:
         - addresses
-        - natural_language_processing
       operationId: parse_address
       requestBody:
         required: true
@@ -1132,11 +1135,11 @@ paths:
     summary: Shipsurance Connection
     description: Shipsurance Connection
     delete:
-      summary: Delete Shipsurance Connection
-      description: Delete Shipsurance Connection
+      summary: Disconnect a Shipsurance Account
+      description: Disconnect a Shipsurance Account
       operationId: disconnect_insurer
       tags:
-        - shipsurance_insurance
+        - insurance
       responses:
         '200':
           description: The request was a success
@@ -1149,11 +1152,11 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
     post:
-      summary: Create Shipsurance Connection
-      description: Create Shipsurance Connection
+      summary: Connect a Shipsurance Account
+      description: Connect a Shipsurance Account
       operationId: connect_insurer
       tags:
-        - shipsurance_insurance
+        - insurance
       requestBody:
         content:
           application/json:
@@ -2483,7 +2486,6 @@ paths:
         States, Canada, Australia, New Zealand, the United Kingdom, and Ireland.
       tags:
         - shipments
-        - natural_language_processing
       operationId: parse_shipment
       requestBody:
         required: true
@@ -9495,21 +9497,27 @@ tags:
         shipping costs by preventing address correction surcharges. ShipEngine
         cross references multiple databases to validate addresses and identify
         potential deliverability issues.
+    x-displayName: Addresses
   - name: batches
     description: |
       batches
+    x-displayName: Batches
   - name: carrier_accounts
     description: |
       carrier accounts
+    x-displayName: Carrier Accounts
   - name: carriers
     description: |
       carriers
+    x-displayName: Carriers
   - name: downloads
     description: |
       downloads
+    x-displayName: Downloads
   - name: insurance
     description: |
       insurance
+    x-displayName: Insurance
   - name: labels
     description: >
       Print shipping labels for any of the top global carriers in
@@ -9522,24 +9530,15 @@ tags:
       description: >-
         Follow this quick start guide to create your first shipping label with
         ShipEngine
+    x-displayName: Labels
   - name: manifests
     description: |
       manifests
-  - name: natural_language_processing
-    description: >
-      ShipEngine's NLP (Natural Language Processing) APIs make it easy for you
-      to extract structured shipping data — such as addresses, names, package
-      weight and dimensions, insurance options, and more — from unstructured
-      text like emails, PDFs, and chat messages.
-    externalDocs:
-      url: 'https://docs.shipengine.com/docs/natural-language-processing-nlp'
-      description: >-
-        Find out how our Natural Language Processing APIs can help you extract
-        useful and meaningful data from emails, documents, chat messages, or any
-        other text source.
+    x-displayName: Manifests
   - name: package_types
     description: |
       custom package types
+    x-displayName: Package Types
   - name: rates
     description: >
       Make sure you ship as cost-effectively as possible by [quickly comparing
@@ -9552,6 +9551,7 @@ tags:
         This quick start guide shows you how to get shipping rates for multiple
         carriers so you can choose the fastest, cheapest, or most reliable
         option.
+    x-displayName: Rates
   - name: shipments
     description: >
       Shipments are at the center of the ShipEngine API.  A shipment is the
@@ -9566,12 +9566,11 @@ tags:
       description: >
         Learn about the shipment object model concept, and how to persist and
         re-use shipment data inside ShipEngine.
-  - name: shipsurance_insurance
-    description: |
-      Shipsurance Insurance
+    x-displayName: Shipments
   - name: tags
     description: |
       tags
+    x-displayName: Tags
   - name: tracking
     description: >
       [Track packages](https://docs.shipengine.com/docs/track-a-package) across
@@ -9583,9 +9582,11 @@ tags:
       description: >-
         Learn how to use ShipEngine to track any package with a carrier and a
         tracking number
+    x-displayName: Tracking
   - name: warehouses
     description: |
       warehouses
+    x-displayName: Warehouses
   - name: webhooks
     description: >
       [Webhooks](https://docs.shipengine.com/docs/setting-up-web-hooks) are a
@@ -9601,3 +9602,4 @@ tags:
     externalDocs:
       url: 'https://docs.shipengine.com/docs/setting-up-web-hooks'
       description: Learn how to setup webhooks and start listening to ShipEngine events.
+    x-displayName: Webhooks
