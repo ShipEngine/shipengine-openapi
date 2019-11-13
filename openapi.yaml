@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.201911121711
+  version: 1.1.201911131811
   termsOfService: 'https://www.shipengine.com/terms-of-service'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -13,49 +13,91 @@ info:
     url: 'https://www.shipengine.com/contact-us'
     x-phone: 1-512-856-5379
   description: >
-    ShipEngine is the world's best multi-carrier shipping API, with more than 20
-    supported shipping carriers.  You can easily get and compare shipping rates,
-    print labels, track your shipments, and validate addresses anywhere in the
-    world.
+    ShipEngine's easy-to-use REST API lets you manage all of your shipping needs
+    without worrying about the complexities of different carrier APIs and
+    protocols. We handle all the heavy lifting so you can focus on providing a
+    first-class shipping experience for your customers at the best possible
+    prices.
 
 
-    ### Worldwide Major Carrier Support
-
-    Access the top global carriers in minutes—instead of weeks. Simply [connect
-    your existing carrier
-    accounts](https://docs.shipengine.com/docs/setup-a-carrier) in the API
-    dashboard, and then [begin creating
-    labels](https://docs.shipengine.com/docs/use-a-specific-service).
+    Each of ShipEngine's features can be used by itself or in conjunction with
+    each other to build powerful shipping functionality into your application or
+    service.
 
 
-    ### Real-Time Tracking
+    Getting Started
 
-    [Track packages](https://docs.shipengine.com/docs/track-a-package) across
-    any of our 20+ supported carrier accounts and create tracking events to keep
-    your customers up-to-date. Easily integrate real-time tracking information
-    for shipments into your app, email, or SMS.
+    -----------------------
 
-
-    ### Get Rates Across Carriers
-
-    Make sure you ship as cost-effectively as possible by [quickly comparing
-    rates](https://docs.shipengine.com/docs/get-shipping-rates) using the
-    ShipEngine Rates API. As long as you have the carrier connected to your
-    account, you'll be able to see and compare different rates and services.
+    If you're new to REST APIs then be sure to read our [introduction to
+    REST](https://www.shipengine.com/docs/rest/) to understand the basics. 
+    Learn how to [authenticate yourself to
+    ShipEngine](https://www.shipengine.com/docs/auth/), and then use our
+    [sandbox environment](https://www.shipengine.com/docs/sandbox/) to kick the
+    tires and get familiar with our API. If you run into any problems, then be
+    sure to check the [error catalog](https://www.shipengine.com/docs/errors/)
+    for information.
 
 
-    ### Global Address Validation
+    Here are some step-by-step **tutorials** to get you started:
 
-    No matter your shipping volume, failed deliveries and address change
-    surcharges cut into your bottom line and damage perception with customers.
-    Our address validation services ensure your packages make it to the right
-    place the first time. [Learn how to leverage our address validation services
-    here.](https://docs.shipengine.com/docs/address-validation)
+      - [Learn how to create your first shipping label](https://www.shipengine.com/docs/labels/create-a-label/)
+      - [Calculate shipping costs and compare rates across carriers](https://www.shipengine.com/docs/rates/)
+      - [Track packages on-demand or in real time](https://www.shipengine.com/docs/tracking/)
+      - [Validate mailing addresses anywhere on Earth](https://www.shipengine.com/docs/addresses/validation/)
 
 
-    ShipEngine supports address validation for over 180 countries, including the
-    United States, Canada, Great Britain, Australia, Germany, France, Norway,
-    Spain, Sweden, Israel, Italy, and more.
+    Shipping Labels for Every Major Carrier
+
+    ---------------------------------------
+
+    ShipEngine makes it easy to [create shipping labels for any
+    carrier](https://www.shipengine.com/docs/labels/create-a-label/) and
+    [download them](https://www.shipengine.com/docs/labels/downloading/) in a
+    [variety of file formats](https://www.shipengine.com/docs/labels/formats/).
+    You can eve customize labels with your own
+    [messages](https://www.shipengine.com/docs/labels/messages/) and
+    [images](https://www.shipengine.com/docs/labels/branding/).
+
+
+
+    Real-Time Package Tracking
+
+    ---------------------------------------
+
+    With ShipEngine you can [get the current status of a
+    package](https://www.shipengine.com/docs/tracking/) or [subscribe to
+    real-time tracking
+    updates](https://www.shipengine.com/docs/tracking/webhooks/) via webhooks.
+    You can also create [custimized tracking
+    pages](https://www.shipengine.com/docs/tracking/branded-tracking-page/) with
+    your own branding so your customers will always know where their package is.
+
+
+
+    Compare Shipping Costs Across Carriers
+
+    ---------------------------------------
+
+    Make sure you ship as cost-effectively as possible by [comparing rates
+    across carriers](https://www.shipengine.com/docs/rates/get-shipment-rates/)
+    using the ShipEngine Rates API. Or if you don't know the full shipment
+    details yet, then you can [get rate
+    estimates](https://www.shipengine.com/docs/rates/estimate/) with limited
+    address info.
+
+
+
+    Worldwide Address Validation
+
+    ---------------------------------------
+
+    ShipEngine supports [address
+    validation](https://www.shipengine.com/docs/addresses/validation/) for
+    virtually [every country on
+    Earth](https://www.shipengine.com/docs/addresses/validation/countries/),
+    including the United States, Canada, Great Britain, Australia, Germany,
+    France, Norway, Spain, Sweden, Israel, Italy, and over 160 others.
 paths:
   /v1/addresses/recognize:
     summary: Parse an address
@@ -614,7 +656,8 @@ paths:
     summary: Add Funds to a Carrier
     description: >
       You can check your balance for a particular carrier by calling [List
-      Carriers](https://docs.shipengine.com/docs/list-your-carriers) endpoint.
+      Carriers](https://www.shipengine.com/docs/reference/list-carriers/)
+      endpoint.
 
       For any carrier account where requires_funded_amount is true, you can add
       funds.
@@ -660,9 +703,9 @@ paths:
       synchronous request.
 
       You must retrieve the status of your batch by [getting a
-      batch](https://docs.shipengine.com/docs/get-a-batch) and getting an
-      overview of the statuses or you can list errors directly here below to get
-      detailed information about the errors.
+      batch](https://www.shipengine.com/docs/reference/get-batch-by-id/) and
+      getting an overview of the statuses or you can list errors directly here
+      below to get detailed information about the errors.
     parameters:
       - name: batch_id
         in: path
@@ -677,9 +720,9 @@ paths:
         synchronous request.
 
         You must retrieve the status of your batch by [getting a
-        batch](https://docs.shipengine.com/docs/get-a-batch) and getting an
-        overview of the statuses or you can list errors directly here below to
-        get detailed information about the errors.
+        batch](https://www.shipengine.com/docs/reference/get-batch-by-id/) and
+        getting an overview of the statuses or you can list errors directly here
+        below to get detailed information about the errors.
       tags:
         - batches
       operationId: list_batch_errors
@@ -1382,17 +1425,17 @@ paths:
     description: >
       Print shipping labels for any of the top global carriers in
       minutes—instead of weeks. Simply [connect your existing carrier
-      accounts](https://docs.shipengine.com/docs/setup-a-carrier)
+      accounts](https://www.shipengine.com/docs/carriers/setup/)
 
       in the API dashboard, and then [begin creating
-      labels](https://docs.shipengine.com/docs/use-a-specific-service).
+      labels](https://www.shipengine.com/docs/shipping/use-a-carrier-service/).
     get:
       summary: List labels
       description: >
         This endpoint returns a list of labels that you've
-        [created](https://docs.shipengine.com/docs/quickstart-create-a-label).
-        You can optionally filter the results as well as control their sort
-        order and the number of results returned at a time.
+        [created](https://www.shipengine.com/docs/labels/create-a-label/). You
+        can optionally filter the results as well as control their sort order
+        and the number of results returned at a time.
 
 
         By default, all labels are returned, 25 at a time, starting with the
@@ -1418,10 +1461,10 @@ paths:
           example: usps_first_class_mail
           description: >-
             Only return labels for a specific [carrier
-            service](https://docs.shipengine.com/docs/use-a-specific-service)
+            service](https://www.shipengine.com/docs/shipping/use-a-carrier-service/)
         - description: >-
             Only return labels for a specific [carrier
-            account](https://docs.shipengine.com/docs/setup-a-carrier)
+            account](https://www.shipengine.com/docs/carriers/setup/)
           name: carrier_id
           in: query
           required: false
@@ -1437,7 +1480,7 @@ paths:
           example: 9.405511899223197e+21
         - description: >-
             Only return labels that were created in a specific
-            [batch](https://docs.shipengine.com/docs/using-batches)
+            [batch](https://www.shipengine.com/docs/labels/bulk/)
           name: batch_id
           in: query
           required: false
@@ -1445,7 +1488,7 @@ paths:
             $ref: '#/components/schemas/se_id'
         - description: >-
             Only return labels that originate from a specific
-            [warehouse](https://docs.shipengine.com/docs/ship-from-a-warehouse)
+            [warehouse](https://www.shipengine.com/docs/shipping/ship-from-a-warehouse/)
           name: warehouse_id
           in: query
           required: false
@@ -3222,7 +3265,8 @@ paths:
       simple label,
 
       such as Guaranteed_Overnight or Fragile so shipments can be easily
-      [queried later](https://docs.shipengine.com/docs/query-shipments).
+      [queried
+      later](https://www.shipengine.com/docs/reference/list-shipments/).
     get:
       summary: Get Tags
       description: Get a list of all tags associated with an account.
@@ -3478,7 +3522,8 @@ paths:
       from, in which case it would be annoying to have to specify the
 
       ship_from and return_to addresses on every shipment. The solution is to
-      [Create a Warehouse](https://docs.shipengine.com/docs/create-a-warehouse),
+      [Create a
+      Warehouse](https://www.shipengine.com/docs/reference/create-warehouse/),
       then you can simply pass the warehouse_id instead.
     get:
       summary: List Warehouses
@@ -3536,7 +3581,8 @@ paths:
       from, in which case it would be annoying to have to specify the
 
       ship_from and return_to addresses on every shipment. The solution is to
-      [Create a Warehouse](https://docs.shipengine.com/docs/create-a-warehouse),
+      [Create a
+      Warehouse](https://www.shipengine.com/docs/reference/create-warehouse/),
       then you can simply pass the warehouse_id instead.
     get:
       summary: Get Warehouse By Id
@@ -3793,8 +3839,8 @@ components:
             > **Note:** The address-recognition API does not currently perform
             any validation of the parsed address, so we recommend that you use
             the [address-validation
-            API](https://docs.shipengine.com/docs/address-validation) to ensure
-            that the address is correct.
+            API](https://www.shipengine.com/docs/addresses/validation/) to
+            ensure that the address is correct.
         entities:
           type: array
           minItems: 0
@@ -4883,9 +4929,9 @@ components:
       example: small_flat_rate_box
       description: >
         A [package
-        type](https://docs.shipengine.com/docs/list-carrier-package-types), such
-        as `thick_envelope`, `small_flat_rate_box`, `large_package`, etc.  Use
-        the code `package` for custom or unknown package types.
+        type](https://www.shipengine.com/docs/reference/list-carrier-packages/),
+        such as `thick_envelope`, `small_flat_rate_box`, `large_package`, etc. 
+        Use the code `package` for custom or unknown package types.
     dimensions:
       title: dimensions
       type: object
@@ -6390,8 +6436,8 @@ components:
         - voided
       description: >
         The possible statuses that a [shipping
-        label](https://docs.shipengine.com/docs/quickstart-create-a-label) can
-        be in.
+        label](https://www.shipengine.com/docs/labels/create-a-label/) can be
+        in.
 
 
         |Status       |Description
@@ -6399,9 +6445,9 @@ components:
         |:------------|:-----------------------------------------------------
 
         |`processing` |When labels are created in a
-        [batch](https://docs.shipengine.com/docs/using-batches), it may take a
-        few minutes for all of the labels in the batch to be created.  During
-        this period, they will be in `processing` status.
+        [batch](https://www.shipengine.com/docs/labels/bulk/), it may take a few
+        minutes for all of the labels in the batch to be created.  During this
+        period, they will be in `processing` status.
 
         |`completed`  |The label was successfully created
 
@@ -6409,7 +6455,7 @@ components:
         an invalid delivery address
 
         |`voided`     |The label has been
-        [voided](https://docs.shipengine.com/docs/void-a-label)
+        [voided](https://www.shipengine.com/docs/labels/voiding/)
     service_code:
       title: service_code
       type: string
@@ -6417,8 +6463,9 @@ components:
       example: usps_first_class_mail
       description: >
         A [carrier
-        service](https://docs.shipengine.com/docs/use-a-specific-service), such
-        as `fedex_ground`, `usps_first_class_mail`, `flat_rate_envelope`, etc.
+        service](https://www.shipengine.com/docs/shipping/use-a-carrier-service/),
+        such as `fedex_ground`, `usps_first_class_mail`, `flat_rate_envelope`,
+        etc.
     list_labels_response_body:
       title: list_labels_response_body
       type: object
@@ -6441,7 +6488,7 @@ components:
             description: >
               A label represents the physical sticker that you affix to a
               package to ship it.  ShipEngine makes it easy for you to [create
-              labels](https://docs.shipengine.com/docs/quickstart-create-a-label)
+              labels](https://www.shipengine.com/docs/labels/create-a-label/)
               and then download them in PDF, PNG, or ZPL format so you can print
               them.
             required:
@@ -6492,11 +6539,11 @@ components:
                 description: >
                   The shipment that this label is for.  ShipEngine can create a
                   shipment for you automatically when you [create a
-                  label](https://docs.shipengine.com/docs/quickstart-create-a-label),
+                  label](https://www.shipengine.com/docs/labels/create-a-label/),
                   or you can [create your own
-                  shipment](https://docs.shipengine.com/docs/create-a-shipment)
+                  shipment](https://www.shipengine.com/docs/shipping/create-a-shipment/)
                   and then [use it to print a
-                  label](https://docs.shipengine.com/docs/use-a-shipment-to-print-a-label)
+                  label](https://www.shipengine.com/docs/labels/create-from-shipment/)
               shipment:
                 writeOnly: true
                 allOf:
@@ -6562,7 +6609,7 @@ components:
                   - $ref: '#/components/schemas/se_id'
                 description: >
                   If this label was created as part of a
-                  [batch](https://docs.shipengine.com/docs/using-batches), then
+                  [batch](https://www.shipengine.com/docs/labels/bulk/), then
                   this is the unique ID of that batch.
               carrier_id:
                 readOnly: true
@@ -6570,8 +6617,8 @@ components:
                   - $ref: '#/components/schemas/se_id'
                 description: >
                   The unique ID of the [carrier
-                  account](https://docs.shipengine.com/docs/setup-a-carrier)
-                  that was used to create this label
+                  account](https://www.shipengine.com/docs/carriers/setup/) that
+                  was used to create this label
               charge_event:
                 allOf:
                   - $ref: '#/components/schemas/label_charge_event'
@@ -6583,7 +6630,7 @@ components:
                 description: >
                   The `label_id` of the original (outgoing) label that the
                   return label is for. This associates the two labels together,
-                  which is 
+                  which is
 
                   required by some carriers.
               service_code:
@@ -6591,7 +6638,7 @@ components:
                   - $ref: '#/components/schemas/service_code'
                 description: >
                   The [carrier
-                  service](https://docs.shipengine.com/docs/use-a-specific-service)
+                  service](https://www.shipengine.com/docs/shipping/use-a-carrier-service/)
                   used to ship the package, such as `fedex_ground`,
                   `usps_first_class_mail`, `flat_rate_envelope`, etc.
               test_label:
@@ -6608,7 +6655,7 @@ components:
                   - $ref: '#/components/schemas/package_code'
                 description: >
                   The [package
-                  type](https://docs.shipengine.com/docs/list-carrier-package-types),
+                  type](https://www.shipengine.com/docs/reference/list-carrier-packages/),
                   such as `thick_envelope`, `small_flat_rate_box`,
                   `large_package`, etc.  The code `package` indicates a custom
                   or unknown package type.
@@ -6622,7 +6669,7 @@ components:
                 readOnly: true
                 description: >
                   Indicates whether the label has been
-                  [voided](https://docs.shipengine.com/docs/void-a-label)
+                  [voided](https://www.shipengine.com/docs/labels/voiding/)
               voided_at:
                 nullable: true
                 readOnly: true
@@ -6630,7 +6677,7 @@ components:
                   - $ref: '#/components/schemas/date_time'
                 description: >
                   The date and time that the label was
-                  [voided](https://docs.shipengine.com/docs/void-a-label), or
+                  [voided](https://www.shipengine.com/docs/labels/voiding/), or
                   `null` if the label has not been voided
               label_download_type:
                 writeOnly: true
@@ -6675,7 +6722,7 @@ components:
                   - $ref: '#/components/schemas/carrier_code'
                 description: >
                   The [shipping
-                  carrier](https://docs.shipengine.com/docs/setup-a-carrier) who
+                  carrier](https://www.shipengine.com/docs/carriers/setup/) who
                   will ship the package, such as `fedex`, `dhl_express`,
                   `stamps_com`, etc.
               tracking_status:
@@ -6777,8 +6824,8 @@ components:
       description: >
         A label represents the physical sticker that you affix to a package to
         ship it.  ShipEngine makes it easy for you to [create
-        labels](https://docs.shipengine.com/docs/quickstart-create-a-label) and
-        then download them in PDF, PNG, or ZPL format so you can print them.
+        labels](https://www.shipengine.com/docs/labels/create-a-label/) and then
+        download them in PDF, PNG, or ZPL format so you can print them.
       required:
         - label_id
         - status
@@ -6827,11 +6874,11 @@ components:
           description: >
             The shipment that this label is for.  ShipEngine can create a
             shipment for you automatically when you [create a
-            label](https://docs.shipengine.com/docs/quickstart-create-a-label),
-            or you can [create your own
-            shipment](https://docs.shipengine.com/docs/create-a-shipment) and
-            then [use it to print a
-            label](https://docs.shipengine.com/docs/use-a-shipment-to-print-a-label)
+            label](https://www.shipengine.com/docs/labels/create-a-label/), or
+            you can [create your own
+            shipment](https://www.shipengine.com/docs/shipping/create-a-shipment/)
+            and then [use it to print a
+            label](https://www.shipengine.com/docs/labels/create-from-shipment/)
         shipment:
           writeOnly: true
           allOf:
@@ -6895,15 +6942,15 @@ components:
             - $ref: '#/components/schemas/se_id'
           description: >
             If this label was created as part of a
-            [batch](https://docs.shipengine.com/docs/using-batches), then this
-            is the unique ID of that batch.
+            [batch](https://www.shipengine.com/docs/labels/bulk/), then this is
+            the unique ID of that batch.
         carrier_id:
           readOnly: true
           allOf:
             - $ref: '#/components/schemas/se_id'
           description: >
             The unique ID of the [carrier
-            account](https://docs.shipengine.com/docs/setup-a-carrier) that was
+            account](https://www.shipengine.com/docs/carriers/setup/) that was
             used to create this label
         charge_event:
           allOf:
@@ -6915,7 +6962,7 @@ components:
             - $ref: '#/components/schemas/se_id'
           description: >
             The `label_id` of the original (outgoing) label that the return
-            label is for. This associates the two labels together, which is 
+            label is for. This associates the two labels together, which is
 
             required by some carriers.
         service_code:
@@ -6923,7 +6970,7 @@ components:
             - $ref: '#/components/schemas/service_code'
           description: >
             The [carrier
-            service](https://docs.shipengine.com/docs/use-a-specific-service)
+            service](https://www.shipengine.com/docs/shipping/use-a-carrier-service/)
             used to ship the package, such as `fedex_ground`,
             `usps_first_class_mail`, `flat_rate_envelope`, etc.
         test_label:
@@ -6939,7 +6986,7 @@ components:
             - $ref: '#/components/schemas/package_code'
           description: >
             The [package
-            type](https://docs.shipengine.com/docs/list-carrier-package-types),
+            type](https://www.shipengine.com/docs/reference/list-carrier-packages/),
             such as `thick_envelope`, `small_flat_rate_box`, `large_package`,
             etc.  The code `package` indicates a custom or unknown package type.
         validate_address:
@@ -6952,7 +6999,7 @@ components:
           readOnly: true
           description: >
             Indicates whether the label has been
-            [voided](https://docs.shipengine.com/docs/void-a-label)
+            [voided](https://www.shipengine.com/docs/labels/voiding/)
         voided_at:
           nullable: true
           readOnly: true
@@ -6960,7 +7007,7 @@ components:
             - $ref: '#/components/schemas/date_time'
           description: >
             The date and time that the label was
-            [voided](https://docs.shipengine.com/docs/void-a-label), or `null`
+            [voided](https://www.shipengine.com/docs/labels/voiding/), or `null`
             if the label has not been voided
         label_download_type:
           writeOnly: true
@@ -7004,7 +7051,7 @@ components:
             - $ref: '#/components/schemas/carrier_code'
           description: >
             The [shipping
-            carrier](https://docs.shipengine.com/docs/setup-a-carrier) who will
+            carrier](https://www.shipengine.com/docs/carriers/setup/) who will
             ship the package, such as `fedex`, `dhl_express`, `stamps_com`, etc.
         tracking_status:
           readOnly: true
@@ -7099,7 +7146,7 @@ components:
             - $ref: '#/components/schemas/service_code'
           description: >
             The [carrier
-            service](https://docs.shipengine.com/docs/use-a-specific-service)
+            service](https://www.shipengine.com/docs/shipping/use-a-carrier-service/)
             used to ship the package, such as `fedex_ground`,
             `usps_first_class_mail`, `flat_rate_envelope`, etc.
         external_order_id:
@@ -7162,7 +7209,7 @@ components:
           description: >
             The shipment's origin address. If you frequently ship from the same
             location, consider [creating a
-            warehouse](https://docs.shipengine.com/docs/create-a-warehouse). 
+            warehouse](https://www.shipengine.com/docs/reference/create-warehouse/). 
             Then you can simply specify the `warehouse_id` rather than the
             complete address each time.
         warehouse_id:
@@ -7172,7 +7219,7 @@ components:
             - $ref: '#/components/schemas/se_id'
           description: >
             The
-            [warehouse](https://docs.shipengine.com/docs/ship-from-a-warehouse)
+            [warehouse](https://www.shipengine.com/docs/shipping/ship-from-a-warehouse/)
             that the shipment is being shipped from.  Either `warehouse_id` or
             `ship_from` must be specified.
         return_to:
@@ -7443,9 +7490,10 @@ components:
           default: null
           description: >
             This field is used to [bill shipping costs to a third
-            party](https://docs.shipengine.com/docs/bill-a-third-party).  This
-            field must be used in conjunction with the `bill_to_country_code`,
-            `bill_to_party`, and `bill_to_postal_code` fields.
+            party](https://www.shipengine.com/docs/shipping/bill-to-third-party/). 
+            This field must be used in conjunction with the
+            `bill_to_country_code`, `bill_to_party`, and `bill_to_postal_code`
+            fields.
         bill_to_country_code:
           nullable: true
           default: null
@@ -7511,8 +7559,8 @@ components:
           default: null
           description: >
             Whether to use [UPS Ground Freight
-            pricing](https://docs.shipengine.com/docs/ups-ground-freight).  If
-            enabled, then a `freight_class` must also be specified.
+            pricing](https://www.shipengine.com/docs/shipping/ups-ground-freight/). 
+            If enabled, then a `freight_class` must also be specified.
         freight_class:
           type: string
           nullable: true
@@ -7644,7 +7692,7 @@ components:
       type: object
       description: >-
         A package associated with a [shipping
-        label](https://docs.shipengine.com/docs/quickstart-create-a-label)
+        label](https://www.shipengine.com/docs/labels/create-a-label/)
       required:
         - weight
       additionalProperties: false
@@ -7654,7 +7702,7 @@ components:
             - $ref: '#/components/schemas/package_code'
           description: >
             The [package
-            type](https://docs.shipengine.com/docs/list-carrier-package-types),
+            type](https://www.shipengine.com/docs/reference/list-carrier-packages/),
             such as `thick_envelope`, `small_flat_rate_box`, `large_package`,
             etc.  The code `package` indicates a custom or unknown package type.
         weight:
@@ -7770,7 +7818,7 @@ components:
         - inline
       description: >
         There are two different ways to [download a
-        label](https://docs.shipengine.com/docs/download-a-label):
+        label](https://www.shipengine.com/docs/labels/downloading/):
 
 
         |Label Download Type | Description
@@ -7796,7 +7844,7 @@ components:
       pattern: '^[a-z0-9]+(_[a-z0-9]+)*$'
       example: dhl_express
       description: >
-        A [shipping carrier](https://docs.shipengine.com/docs/setup-a-carrier),
+        A [shipping carrier](https://www.shipengine.com/docs/carriers/setup/),
         such as `fedex`, `dhl_express`, `stamps_com`, etc.
     tracking_status:
       title: tracking_status
@@ -9176,8 +9224,8 @@ components:
             > **Note:** The shipment-recognition API does not currently perform
             any validation of the parsed addresses, so we recommend that you use
             the [address-validation
-            API](https://docs.shipengine.com/docs/address-validation) to ensure
-            that the addresses are correct.
+            API](https://www.shipengine.com/docs/addresses/validation/) to
+            ensure that the addresses are correct.
         entities:
           type: array
           minItems: 0
@@ -9483,7 +9531,7 @@ tags:
       surcharges cut into your bottom line and damage perception with customers.
       Our address validation services ensure your packages make it to the right
       place the first time. [Learn how to leverage our address validation
-      services here.](https://docs.shipengine.com/docs/address-validation)
+      services here.](https://www.shipengine.com/docs/addresses/validation/)
 
 
       ShipEngine supports address validation for virtually every country on
@@ -9491,7 +9539,7 @@ tags:
       Germany, France, Norway, Spain, Sweden, Israel, Italy, and over 160
       others.
     externalDocs:
-      url: 'https://docs.shipengine.com/docs/address-validation'
+      url: 'https://www.shipengine.com/docs/addresses/validation/'
       description: >
         Address validation ensures accurate addresses and can lead to reduced
         shipping costs by preventing address correction surcharges. ShipEngine
@@ -9522,11 +9570,11 @@ tags:
     description: >
       Print shipping labels for any of the top global carriers in
       minutes—instead of weeks. Simply [connect your existing carrier
-      accounts](https://docs.shipengine.com/docs/setup-a-carrier) in the API
+      accounts](https://www.shipengine.com/docs/carriers/setup/) in the API
       dashboard, and then [begin creating
-      labels](https://docs.shipengine.com/docs/use-a-specific-service).
+      labels](https://www.shipengine.com/docs/shipping/use-a-carrier-service/).
     externalDocs:
-      url: 'https://docs.shipengine.com/docs/quickstart-create-a-label'
+      url: 'https://www.shipengine.com/docs/labels/create-a-label/'
       description: >-
         Follow this quick start guide to create your first shipping label with
         ShipEngine
@@ -9542,11 +9590,11 @@ tags:
   - name: rates
     description: >
       Make sure you ship as cost-effectively as possible by [quickly comparing
-      rates](https://docs.shipengine.com/docs/get-shipping-rates) using the
-      ShipEngine Rates API. As long as you have the carrier connected to your
-      account, you'll be able to see and compare different rates and services.
+      rates](https://www.shipengine.com/docs/rates/) using the ShipEngine Rates
+      API. As long as you have the carrier connected to your account, you'll be
+      able to see and compare different rates and services.
     externalDocs:
-      url: 'https://docs.shipengine.com/docs/get-shipping-rates'
+      url: 'https://www.shipengine.com/docs/rates/'
       description: >
         This quick start guide shows you how to get shipping rates for multiple
         carriers so you can choose the fastest, cheapest, or most reliable
@@ -9556,13 +9604,13 @@ tags:
     description: >
       Shipments are at the center of the ShipEngine API.  A shipment is the
       first step in [creating a shipping
-      label](https://docs.shipengine.com/docs/quickstart-create-a-label), or
+      label](https://www.shipengine.com/docs/labels/create-a-label/), or
       [creating a
-      manifest](https://docs.shipengine.com/docs/understand-and-create-manifests). 
-      It's also essential for [getting shipping
-      rates](https://docs.shipengine.com/docs/get-shipping-rates).
+      manifest](https://www.shipengine.com/docs/shipping/manifests/).  It's also
+      essential for [getting shipping
+      rates](https://www.shipengine.com/docs/rates/).
     externalDocs:
-      url: 'https://docs.shipengine.com/docs/create-a-shipment'
+      url: 'https://www.shipengine.com/docs/shipping/create-a-shipment/'
       description: >
         Learn about the shipment object model concept, and how to persist and
         re-use shipment data inside ShipEngine.
@@ -9573,12 +9621,12 @@ tags:
     x-displayName: Tags
   - name: tracking
     description: >
-      [Track packages](https://docs.shipengine.com/docs/track-a-package) across
-      any of our 20+ supported carrier accounts and create tracking events to
-      keep your customers up-to-date. Easily integrate real-time tracking
-      information for shipments into your app, email, or SMS.
+      [Track packages](https://www.shipengine.com/docs/tracking/) across any of
+      our 20+ supported carrier accounts and create tracking events to keep your
+      customers up-to-date. Easily integrate real-time tracking information for
+      shipments into your app, email, or SMS.
     externalDocs:
-      url: 'https://docs.shipengine.com/docs/track-a-package'
+      url: 'https://www.shipengine.com/docs/tracking/'
       description: >-
         Learn how to use ShipEngine to track any package with a carrier and a
         tracking number
@@ -9589,17 +9637,16 @@ tags:
     x-displayName: Warehouses
   - name: webhooks
     description: >
-      [Webhooks](https://docs.shipengine.com/docs/setting-up-web-hooks) are a
+      [Webhooks](https://www.shipengine.com/docs/tracking/webhooks/) are a
       powerful feature of ShipEngine that can save you from sending repeated
       polling requests to check on the state of something.  With webhooks,
       ShipEngine will automatically contact your servers when the stage
       changes.  This can include [parcel
-      tracking](https://docs.shipengine.com/docs/track-a-package) events,
-      notification of the completion of a [batch
-      operation](https://docs.shipengine.com/docs/using-batches),  or new
-      [salses
-      orders](https://docs.shipengine.com/docs/sales-orders-getting-started).
+      tracking](https://www.shipengine.com/docs/tracking/) events, notification
+      of the completion of a [batch
+      operation](https://www.shipengine.com/docs/labels/bulk/),  or new [salses
+      orders](https://www.shipengine.com/docs/orders/).
     externalDocs:
-      url: 'https://docs.shipengine.com/docs/setting-up-web-hooks'
+      url: 'https://www.shipengine.com/docs/tracking/webhooks/'
       description: Learn how to setup webhooks and start listening to ShipEngine events.
     x-displayName: Webhooks
