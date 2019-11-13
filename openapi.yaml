@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.201911131811
+  version: 1.1.201911131911
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -25,9 +25,7 @@ info:
     service.
 
 
-    Getting Started
-
-    -----------------------
+    ## Getting Started
 
     If you're new to REST APIs then be sure to read our [introduction to
     REST](https://www.shipengine.com/docs/rest/) to understand the basics. 
@@ -47,9 +45,7 @@ info:
       - [Validate mailing addresses anywhere on Earth](https://www.shipengine.com/docs/addresses/validation/)
 
 
-    Shipping Labels for Every Major Carrier
-
-    ---------------------------------------
+    ## Shipping Labels for Every Major Carrier
 
     ShipEngine makes it easy to [create shipping labels for any
     carrier](https://www.shipengine.com/docs/labels/create-a-label/) and
@@ -61,9 +57,7 @@ info:
 
 
 
-    Real-Time Package Tracking
-
-    ---------------------------------------
+    ## Real-Time Package Tracking
 
     With ShipEngine you can [get the current status of a
     package](https://www.shipengine.com/docs/tracking/) or [subscribe to
@@ -75,9 +69,7 @@ info:
 
 
 
-    Compare Shipping Costs Across Carriers
-
-    ---------------------------------------
+    ## Compare Shipping Costs Across Carriers
 
     Make sure you ship as cost-effectively as possible by [comparing rates
     across carriers](https://www.shipengine.com/docs/rates/get-shipment-rates/)
@@ -88,9 +80,7 @@ info:
 
 
 
-    Worldwide Address Validation
-
-    ---------------------------------------
+    ## Worldwide Address Validation
 
     ShipEngine supports [address
     validation](https://www.shipengine.com/docs/addresses/validation/) for
