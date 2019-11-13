@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: ShipEngine API
   version: 1.1.201911131811
-  termsOfService: 'https://www.shipengine.com/terms-of-service'
+  termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
     backgroundColor: '#FFFFFF'
@@ -10,7 +10,7 @@ info:
   contact:
     name: ShipEngine Sales & Support
     email: sales@shipengine.com
-    url: 'https://www.shipengine.com/contact-us'
+    url: 'https://www.shipengine.com/contact/'
     x-phone: 1-512-856-5379
   description: >
     ShipEngine's easy-to-use REST API lets you manage all of your shipping needs
@@ -35,8 +35,8 @@ info:
     ShipEngine](https://www.shipengine.com/docs/auth/), and then use our
     [sandbox environment](https://www.shipengine.com/docs/sandbox/) to kick the
     tires and get familiar with our API. If you run into any problems, then be
-    sure to check the [error catalog](https://www.shipengine.com/docs/errors/)
-    for information.
+    sure to check the [error handling
+    guide](https://www.shipengine.com/docs/errors/) for tips.
 
 
     Here are some step-by-step **tutorials** to get you started:
@@ -55,7 +55,7 @@ info:
     carrier](https://www.shipengine.com/docs/labels/create-a-label/) and
     [download them](https://www.shipengine.com/docs/labels/downloading/) in a
     [variety of file formats](https://www.shipengine.com/docs/labels/formats/).
-    You can eve customize labels with your own
+    You can even customize labels with your own
     [messages](https://www.shipengine.com/docs/labels/messages/) and
     [images](https://www.shipengine.com/docs/labels/branding/).
 
