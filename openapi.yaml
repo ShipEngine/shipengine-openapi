@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.201911131911
+  version: 1.1.201911141711
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -3998,6 +3998,7 @@ components:
       enum:
         - auto_fund_not_supported
         - batch_cannot_be_modified
+        - carrier_conflict
         - carrier_not_connected
         - carrier_not_supported
         - confirmation_not_supported
@@ -4011,16 +4012,16 @@ components:
         - invalid_billing_plan
         - invalid_field_value
         - invalid_identifier
+        - invalid_status
         - invalid_string_length
         - label_images_not_supported
         - label_cannot_be_manifested
-        - manifest_carrier_conflict
-        - manifest_warehouse_conflict
         - meter_failure
         - order_source_not_active
         - rate_limit_exceeded
         - refresh_not_supported
         - request_body_required
+        - return_label_not_supported
         - settings_not_supported
         - subscription_inactive
         - terms_not_accepted
@@ -4029,6 +4030,7 @@ components:
         - unauthorized
         - unspecified
         - verification_failure
+        - warehouse_conflict
         - webhook_event_type_conflict
       description: The error code specified for the failed API Call
     validate_address_request_body:
