@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.201911141711
+  version: 1.1.201911151811
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -3664,6 +3664,8 @@ paths:
           $ref: '#/components/responses/404_error_response'
         '500':
           $ref: '#/components/responses/500_error_response'
+servers:
+  - url: 'https://api.shipengine.com'
 components:
   schemas:
     parse_address_request_body:
@@ -9516,6 +9518,20 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/error_response_body'
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: API-Key
+      in: header
+      description: >
+        To authenticate yourself to ShipEngine, you need to include an `API-Key`
+        header in each API call. If you don't include a key when making an API
+        request, or if you use an incorrect or expired key, then ShipEngine will
+        respond with a `401 Unauthorized` error.
+
+
+        Learn more about API keys in our [authentication
+        guide](https://www.shipengine.com/docs/auth/).
 tags:
   - name: addresses
     description: >
@@ -9642,3 +9658,12 @@ tags:
       url: 'https://www.shipengine.com/docs/tracking/webhooks/'
       description: Learn how to setup webhooks and start listening to ShipEngine events.
     x-displayName: Webhooks
+security:
+  - api_key: []
+externalDocs:
+  url: 'https://www.shipengine.com/docs/'
+  description: >
+    ShipEngine's documentation is designed to help you start shipping as quickly
+    as possible. With easy-to-follow tutorials, detailed reference docs, and
+    ready-made recipes for common use cases, you'll see real results in no time
+    at all.
