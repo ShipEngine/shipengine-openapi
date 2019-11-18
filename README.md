@@ -20,8 +20,12 @@ Other API Definition Formats
 ### ![Redoc Logo](https://shipengine.github.io/img/redoc-logo-small.png)
 View the ShipEngine API definition [online in your browser](https://shipengine.github.io/shipengine-openapi/). This web page is generated from the [OpenAPI definition](https://github.com/ShipEngine/shipengine-openapi) using [ReDoc](https://github.com/Redocly/redoc).
 
-### ![JSON Schema Logo](https://shipengine.github.io/img/json-schema-logo-small.png) JSON Schema
-If you need to validate API requests and responses, then you may want to use [our JSON Schema definitions](https://github.com/ShipEngine/shipengine-json-schema).
 
 ### ![Postman Logo](https://shipengine.github.io/img/postman-logo-small.png) Postman
-The official [Postman collection](https://github.com/shipengine/shipengine-postman) for ShipEngine.  Just import it into [Postman](https://getpostman.com) and immediately begin interacting with the ShipEngine API.
+The official [Postman reference collection](https://documenter.getpostman.com/view/305204/SW7W5V6o) for ShipEngine.  Just import it into [Postman](https://getpostman.com) and immediately begin interacting with the ShipEngine API. 
+
+
+New to Shipengine? Download our [walkthrough collection instead](https://documenter.getpostman.com/view/305204/SW7XbA6V).
+
+### ![JSON Schema Logo](https://shipengine.github.io/img/json-schema-logo-small.png) JSON Schema
+If you need to validate API requests and responses, then you may want to use [our JSON Schema definitions](https://github.com/ShipEngine/shipengine-json-schema).
