@@ -25,7 +25,7 @@ View the ShipEngine API definition [online in your browser](https://shipengine.g
 The official [Postman reference collection](https://documenter.getpostman.com/view/305204/SW7W5V6o) for ShipEngine.  Just import it into [Postman](https://getpostman.com) and immediately begin interacting with the ShipEngine API. 
 
 
-New to Shipengine? Download our [walkthrough collection instead](https://documenter.getpostman.com/view/305204/SW7XbA6V).
+New to ShipEngine? Download our [walkthrough collection instead](https://documenter.getpostman.com/view/305204/SW7XbA6V).
 
 
 ### ![JSON Schema Logo](https://shipengine.github.io/img/json-schema-logo-small.png) JSON Schema
