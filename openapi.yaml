@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202003261203
+  version: 1.1.202003301403
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -7304,14 +7304,6 @@ components:
           allOf:
             - $ref: '#/components/schemas/non_delivery'
           description: Indicates what to do if a package is unable to be delivered.
-        calculate_tax_amount:
-          type: boolean
-          description: >-
-            Calculate the total cost of taxes and tariffs for the international
-            shipment.
-        preferred_currency:
-          allOf:
-            - $ref: '#/components/schemas/currency'
         customs_items:
           type: array
           default: []
@@ -8061,6 +8053,18 @@ components:
           type: string
           minLength: 0
           description: Event Code
+        latitude:
+          type: number
+          format: double
+          minimum: 0
+          maximum: 90
+          description: Latitude coordinate of tracking event.
+        longitude:
+          type: number
+          format: double
+          minimum: 0
+          maximum: 180
+          description: Longitude coordinate of tracking event.
     void_label_response_body:
       title: void_label_response_body
       type: object
@@ -8488,6 +8492,12 @@ components:
             type: string
             minLength: 1
             description: Item Service Codes
+        calculate_tax_amount:
+          type: boolean
+          description: Calculate the duties and tariffs for cross border shipments.
+        preferred_currency:
+          allOf:
+            - $ref: '#/components/schemas/currency'
     calculate_rates_response_body:
       title: calculate_rates_response_body
       type: object
