@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202003301403
+  version: 1.1.202004291304
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -832,7 +832,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/list_carriers_response_body'
+                $ref: '#/components/schemas/get_carriers_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -4676,11 +4676,18 @@ components:
       additionalProperties: false
       allOf:
         - $ref: '#/components/schemas/modify_batch'
+    get_carriers_response_body:
+      title: get_carriers_response_body
+      allOf:
+        - $ref: '#/components/schemas/list_carriers_response_body'
+        - $ref: '#/components/schemas/error_response_body'
     list_carriers_response_body:
       title: list_carriers_response_body
       type: object
       description: A carrier list response body
       additionalProperties: false
+      required:
+        - carriers
       properties:
         carriers:
           type: array
@@ -5035,6 +5042,7 @@ components:
         - apc
         - asendia
         - australia_post
+        - canada_post
         - dhl_ecommerce
         - dhl_express
         - dhl_express_au
@@ -5052,8 +5060,9 @@ components:
         - purolator_canada
         - royal_mail
         - rr_donnelley
-        - stamps_com
+        - seko
         - sendle
+        - stamps_com
         - ups
       description: The shipping carriers that are supported by ShipEngine
     connect_carrier_request_body:
@@ -5064,6 +5073,7 @@ components:
         - $ref: '#/components/schemas/connect_apc_request_body'
         - $ref: '#/components/schemas/connect_asendia_request_body'
         - $ref: '#/components/schemas/connect_australia_post_request_body'
+        - $ref: '#/components/schemas/connect_canada_post_request_body'
         - $ref: '#/components/schemas/connect_dhl_ecommerce_request_body'
         - $ref: '#/components/schemas/connect_dhl_express_request_body'
         - $ref: '#/components/schemas/connect_dhl_express_au_request_body'
@@ -5081,6 +5091,7 @@ components:
         - $ref: '#/components/schemas/connect_purolator_request_body'
         - $ref: '#/components/schemas/connect_royal_mail_request_body'
         - $ref: '#/components/schemas/connect_rr_donnelley_request_body'
+        - $ref: '#/components/schemas/connect_seko_request_body'
         - $ref: '#/components/schemas/connect_sendle_request_body'
         - $ref: '#/components/schemas/connect_stamps_request_body'
         - $ref: '#/components/schemas/connect_ups_request_body'
@@ -5219,6 +5230,38 @@ components:
           type: string
           minLength: 1
           description: Nickname
+    connect_canada_post_request_body:
+      title: connect_canada_post_request_body
+      type: object
+      description: A Canada Post account information request body
+      required:
+        - nickname
+        - api_key
+        - api_secret
+        - account_number
+        - contract_id
+      additionalProperties: false
+      properties:
+        nickname:
+          type: string
+          minLength: 1
+          description: Nickname
+        api_key:
+          type: string
+          minLength: 1
+          description: Canada Post Account API Key
+        api_secret:
+          type: string
+          minLength: 1
+          description: Canada Post Account API Secret
+        account_number:
+          type: string
+          minLength: 1
+          description: Canada Post Account Number
+        contract_id:
+          type: string
+          minLength: 1
+          description: Canada Post Account Contract ID
     connect_dhl_ecommerce_request_body:
       title: connect_dhl_ecommerce_request_body
       type: object
@@ -5829,6 +5872,23 @@ components:
           type: string
           minLength: 1
           description: Password
+    connect_seko_request_body:
+      title: connect_seko_request_body
+      type: object
+      description: A SEKO account information request body
+      required:
+        - nickname
+        - access_key
+      additionalProperties: false
+      properties:
+        nickname:
+          type: string
+          minLength: 1
+          description: Nickname
+        access_key:
+          type: string
+          minLength: 1
+          description: Seko Account Access Key
     connect_sendle_request_body:
       title: connect_sendle_request_body
       type: object
@@ -7354,11 +7414,9 @@ components:
           default: 0
           description: The quantity of this item in the shipment.
         value:
-          type: number
-          format: double
-          default: 0
-          minimum: 0
-          description: The monetary value of each of this item.
+          allOf:
+            - $ref: '#/components/schemas/monetary_value'
+          description: The total value of the cutoms item
         harmonized_tariff_code:
           type: string
           nullable: true
