@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202004291304
+  version: 1.1.202006021606
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -7416,7 +7416,7 @@ components:
         value:
           allOf:
             - $ref: '#/components/schemas/monetary_value'
-          description: The total value of the cutoms item
+          description: The total value of the customs item
         harmonized_tariff_code:
           type: string
           nullable: true
@@ -7569,6 +7569,7 @@ components:
       enum:
         - recipient
         - third_party
+        - collect
       description: The possible bill to party values
     weight:
       title: weight
