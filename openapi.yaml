@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202006021606
+  version: 1.1.202006031206
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -7569,7 +7569,6 @@ components:
       enum:
         - recipient
         - third_party
-        - collect
       description: The possible bill to party values
     weight:
       title: weight
