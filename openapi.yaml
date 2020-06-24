@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202006031206
+  version: 1.1.202006241706
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -1245,6 +1245,56 @@ paths:
           $ref: '#/components/responses/400_error_response'
         '404':
           $ref: '#/components/responses/404_error_response'
+        '500':
+          $ref: '#/components/responses/500_error_response'
+  /v1/environment/webhooks:
+    summary: Webhooks
+    description: >
+      ShipEngine exposes asynchronous operations for long running operations
+      such as batch labels and rates.
+
+      Webhooks allow the ShipEngine servers to contact your servers when an
+      operation changes state, such as a batch label creation completion.
+    get:
+      summary: List Webhooks
+      description: List all webhooks currently enabled for the account.
+      tags:
+        - webhooks
+      operationId: list_webhooks
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/list_webhooks_response_body'
+        '400':
+          $ref: '#/components/responses/400_error_response'
+        '500':
+          $ref: '#/components/responses/500_error_response'
+    post:
+      summary: Create a Webhook
+      description: Create a webook for specific events in the environment.
+      tags:
+        - webhooks
+      operationId: create_webhook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/create_webhook_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/create_webhook_response_body'
+        '400':
+          $ref: '#/components/responses/400_error_response'
+        '409':
+          $ref: '#/components/responses/409_error_response'
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/environment/webhooks/{webhook_id}':
@@ -6353,17 +6403,14 @@ components:
       title: download_file_zpl_response_body
       type: string
       format: binary
-    get_webhook_by_id_response_body:
-      title: get_webhook_by_id_response_body
-      type: object
-      description: A get webhook id response body
-      additionalProperties: false
-      required:
-        - webhook_id
-        - url
-        - event
-      allOf:
-        - $ref: '#/components/schemas/webhook'
+    list_webhooks_response_body:
+      title: list_webhooks_response_body
+      type: array
+      description: A webhook list response body
+      items:
+        allOf:
+          - $ref: '#/components/schemas/webhook'
+        description: The webhook list response body
     webhook:
       title: webhook
       type: object
@@ -6395,6 +6442,45 @@ components:
         - sales_orders_imported
         - track
       description: The possible webook event values
+    create_webhook_request_body:
+      title: create_webhook_request_body
+      type: object
+      description: A create webhook request body
+      required:
+        - event
+        - url
+      additionalProperties: false
+      properties:
+        event:
+          allOf:
+            - $ref: '#/components/schemas/webhook_event'
+        url:
+          allOf:
+            - $ref: '#/components/schemas/url'
+          example: 'https://[YOUR ENDPOINT ID].x.requestbin.com'
+          description: The url that the webhook sends the request to
+    create_webhook_response_body:
+      title: create_webhook_response_body
+      type: object
+      description: A webhook response body
+      additionalProperties: false
+      required:
+        - webhook_id
+        - url
+        - event
+      allOf:
+        - $ref: '#/components/schemas/webhook'
+    get_webhook_by_id_response_body:
+      title: get_webhook_by_id_response_body
+      type: object
+      description: A get webhook id response body
+      additionalProperties: false
+      required:
+        - webhook_id
+        - url
+        - event
+      allOf:
+        - $ref: '#/components/schemas/webhook'
     update_webhook_request_body:
       title: update_webhook_request_body
       type: object
@@ -9527,6 +9613,12 @@ components:
             $ref: '#/components/schemas/error_response_body'
     404_error_response:
       description: The specified resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error_response_body'
+    409_error_response:
+      description: The request conflicts with an existing resource.
       content:
         application/json:
           schema:
