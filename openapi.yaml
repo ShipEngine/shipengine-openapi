@@ -5780,6 +5780,7 @@ components:
       additionalProperties: false
       properties:
         package_id:
+          nullable: true
           allOf:
             - $ref: '#/components/schemas/se_id'
           description: A string that uniquely identifies the package.
