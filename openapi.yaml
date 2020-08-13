@@ -8159,10 +8159,12 @@ components:
             - $ref: '#/components/schemas/se_id'
           description: A string that uniquely identifies the shipment
         carrier_id:
+          nullable: true
           allOf:
             - $ref: '#/components/schemas/se_id'
           description: The carrier account that is billed for the shipping charges
         service_code:
+          nullable: true
           allOf:
             - $ref: '#/components/schemas/service_code'
           description: >
@@ -8223,11 +8225,13 @@ components:
             shipped on Sunday will ship on Monday instead.
         created_at:
           readOnly: true
+          nullable: true
           allOf:
             - $ref: '#/components/schemas/date_time'
           description: The date and time that the shipment was created in ShipEngine.
         modified_at:
           readOnly: true
+          nullable: true
           allOf:
             - $ref: '#/components/schemas/date_time'
           description: The date and time that the shipment was created or last modified.
@@ -8311,6 +8315,7 @@ components:
             Arbitrary tags associated with this shipment.  Tags can be used to
             categorize shipments, and shipments can be queried by their tags.
         order_source_code:
+          nullable: true
           allOf:
             - $ref: '#/components/schemas/order_source_name'
         packages:
@@ -9031,6 +9036,7 @@ components:
           nullable: true
           default: null
         collect_on_delivery:
+          nullable: true
           $ref: '#/components/schemas/collect_on_delivery'
         third_party_consignee:
           type: boolean
@@ -9186,6 +9192,7 @@ components:
             - $ref: '#/components/schemas/label_messages'
         external_package_id:
           type: string
+          nullable: true
           minLength: 1
           description: An external package id.
         label_download:
