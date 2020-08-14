@@ -10918,6 +10918,7 @@ components:
           type: integer
           format: int32
           readOnly: true
+          nullable: true
           minimum: 1
           example: 5
           description: >
@@ -10931,11 +10932,13 @@ components:
           description: Indicates if the rate is guaranteed.
         estimated_delivery_date:
           readOnly: true
+          nullable: true
           allOf:
             - $ref: '#/components/schemas/date'
         carrier_delivery_days:
           type: string
           readOnly: true
+          nullable: true
           minLength: 1
           description: The carrier delivery days
         ship_date:
