@@ -7608,10 +7608,10 @@ components:
                   The total shipping cost for the specified
                   comparison_rate_type.
               tracking_number:
-                type: string
-                minLength: 1
                 readOnly: true
-                example: '782758401696'
+                nullable: true
+                allOf:
+                  - $ref: '#/components/schemas/tracking_number'
                 description: >-
                   The tracking number for the package. Tracking number formats
                   vary across carriers.
@@ -7917,10 +7917,10 @@ components:
           description: |
             The total shipping cost for the specified comparison_rate_type.
         tracking_number:
-          type: string
-          minLength: 1
           readOnly: true
-          example: '782758401696'
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/tracking_number'
           description: >-
             The tracking number for the package. Tracking number formats vary
             across carriers.
@@ -9188,6 +9188,7 @@ components:
             field of the shipment to be set.
         tracking_number:
           readOnly: true
+          nullable: true
           allOf:
             - $ref: '#/components/schemas/tracking_number'
           description: >
@@ -9793,6 +9794,7 @@ components:
       additionalProperties: false
       properties:
         tracking_number:
+          nullable: true
           allOf:
             - $ref: '#/components/schemas/tracking_number'
         tracking_url:
