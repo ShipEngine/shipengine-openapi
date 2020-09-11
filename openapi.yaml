@@ -10128,6 +10128,7 @@ components:
               - $ref: '#/components/schemas/se_id'
           description: An array of the label ids used in this manifest.
         warehouse_id:
+          nullable: true
           readOnly: true
           allOf:
             - $ref: '#/components/schemas/se_id'
@@ -10166,10 +10167,6 @@ components:
       title: create_manifest_by_object_request_body
       type: object
       description: A create manifest request body
-      required:
-        - carrier_id
-        - warehouse_id
-        - ship_date
       additionalProperties: false
       properties:
         carrier_id:
@@ -10317,6 +10314,7 @@ components:
           example: 100
           description: The number of shipments that are included in this manifest
         warehouse_id:
+          nullable: true
           deprecated: true
           allOf:
             - $ref: '#/components/schemas/se_id'
