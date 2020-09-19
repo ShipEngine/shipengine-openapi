@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202009171509
+  version: 1.1.202009181709
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -829,6 +829,14 @@ paths:
       responses:
         '200':
           description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_carriers_response_body'
+        '207':
+          description: >-
+            The request was a partial success. It contains results, as well as
+            errors.
           content:
             application/json:
               schema:
