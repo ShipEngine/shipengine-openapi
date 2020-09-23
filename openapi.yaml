@@ -751,13 +751,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -792,13 +785,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -836,13 +822,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -938,13 +917,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -976,13 +948,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -1283,13 +1248,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '404':
           $ref: '#/components/responses/404_error_response'
         '500':
@@ -1344,13 +1302,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '404':
           $ref: '#/components/responses/404_error_response'
         '500':
@@ -1552,13 +1503,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -1574,13 +1518,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -2404,13 +2341,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -2426,13 +2356,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -3540,13 +3463,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -3700,13 +3616,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -3778,13 +3687,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -3816,13 +3718,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -3941,13 +3836,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -3986,13 +3874,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -4109,13 +3990,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -4131,13 +4005,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -4915,7 +4782,6 @@ components:
       required:
         - status
         - original_address
-        - matched_address
         - messages
       additionalProperties: false
       properties:
@@ -4929,6 +4795,7 @@ components:
         matched_address:
           nullable: true
           readOnly: true
+          nullable: true
           allOf:
             - $ref: '#/components/schemas/address'
           description: The matched address found by the Shipengine API
