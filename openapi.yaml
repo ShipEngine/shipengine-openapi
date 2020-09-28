@@ -10001,6 +10001,7 @@ components:
             - $ref: '#/components/schemas/se_id'
           description: A string that uniquely identifies the warehouse
         submission_id:
+          nullable: true
           readOnly: true
           type: string
           minLength: 1
