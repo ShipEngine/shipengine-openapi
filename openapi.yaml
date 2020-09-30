@@ -4591,6 +4591,7 @@ components:
         state_province:
           type: string
           minLength: 1
+          nullable: true
           example: Manitoba
           description: >
             The state or province.  For some countries (including the U.S.) only
