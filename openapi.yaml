@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202009181709
+  version: 1.1.202010261510
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -487,6 +487,12 @@ paths:
               - $ref: '#/components/schemas/sort_dir'
             default: desc
           description: Controls the sort order of the query.
+        - name: batch_number
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Batch Number
         - name: sort_by
           in: query
           required: false
@@ -1236,6 +1242,12 @@ paths:
           required: false
           schema:
             type: string
+        - name: rotation
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
       responses:
         '200':
           description: The request was a success
@@ -3992,6 +4004,7 @@ components:
         - forbidden
         - identifier_conflict
         - identifiers_must_match
+        - insufficient_funds
         - invalid_address
         - invalid_billing_plan
         - invalid_field_value
@@ -4260,6 +4273,7 @@ components:
       enum:
         - ship_date
         - processed_at
+        - created_at
       description: The possible batches sort by values
     list_batches_response_body:
       title: list_batches_response_body
@@ -4319,6 +4333,7 @@ components:
         - label_layout
         - label_format
         - batch_id
+        - batch_number
         - external_batch_id
         - batch_notes
         - created_at
@@ -4352,6 +4367,11 @@ components:
           allOf:
             - $ref: '#/components/schemas/se_id'
           description: A string that uniquely identifies the batch
+        batch_number:
+          readOnly: true
+          type: string
+          minLength: 0
+          description: The batch number.
         external_batch_id:
           type: string
           readOnly: true
@@ -4708,6 +4728,10 @@ components:
           allOf:
             - $ref: '#/components/schemas/se_id'
           description: A string that uniquely identifies the shipment
+        external_shipment_id:
+          readOnly: true
+          type: string
+          description: An external shipment id associated with the shipment
     process_batch_request_body:
       title: process_batch_request_body
       type: object
@@ -4727,6 +4751,18 @@ components:
           default: pdf
           allOf:
             - $ref: '#/components/schemas/label_format'
+        display_scheme:
+          default: label
+          allOf:
+            - $ref: '#/components/schemas/display_scheme'
+          description: The display format that the label should be shown in.
+    display_scheme:
+      title: display_scheme
+      type: string
+      enum:
+        - label
+        - qr_code
+      description: The display format that the label should be shown in.
     remove_from_batch_request_body:
       title: remove_from_batch_request_body
       type: object
@@ -5097,6 +5133,7 @@ components:
       enum:
         - access_worldwide
         - amazon_buy_shipping
+        - amazon_shipping_uk
         - apc
         - asendia
         - australia_post
@@ -5128,6 +5165,7 @@ components:
       oneOf:
         - $ref: '#/components/schemas/connect_access_worldwide_request_body'
         - $ref: '#/components/schemas/connect_amazon_buy_shipping_request_body'
+        - $ref: '#/components/schemas/connect_amazon_shipping_uk'
         - $ref: '#/components/schemas/connect_apc_request_body'
         - $ref: '#/components/schemas/connect_asendia_request_body'
         - $ref: '#/components/schemas/connect_australia_post_request_body'
@@ -5208,6 +5246,24 @@ components:
       minLength: 1
       example: john.doe@example.com
       description: An email address.
+    connect_amazon_shipping_uk:
+      title: connect_amazon_shipping_uk
+      type: object
+      description: An Amazon Shipping UK account information request body
+      required:
+        - nickname
+        - auth_code
+      additionalProperties: false
+      properties:
+        nickname:
+          type: string
+          minLength: 1
+          example: Stamps.com
+          description: The nickname associated with the carrier connection
+        auth_code:
+          type: string
+          minLength: 1
+          description: Amazon UK Shipping auth code.
     connect_apc_request_body:
       title: connect_apc_request_body
       type: object
@@ -6764,6 +6820,11 @@ components:
                   recommend `pdf` format because it is supported by all
                   carriers, whereas some carriers do not support the `png` or
                   `zpl` formats.
+              display_scheme:
+                default: label
+                allOf:
+                  - $ref: '#/components/schemas/display_scheme'
+                description: The display format that the label should be shown in.
               label_layout:
                 default: 4x6
                 allOf:
@@ -7071,6 +7132,11 @@ components:
             The file format that you want the label to be in.  We recommend
             `pdf` format because it is supported by all carriers, whereas some
             carriers do not support the `png` or `zpl` formats.
+        display_scheme:
+          default: label
+          allOf:
+            - $ref: '#/components/schemas/display_scheme'
+          description: The display format that the label should be shown in.
         label_layout:
           default: 4x6
           allOf:
@@ -7950,6 +8016,7 @@ components:
         - rma_number
         - charge_event
         - package_code
+        - display_scheme
       allOf:
         - $ref: '#/components/schemas/label'
     get_label_by_external_shipment_id_response_body:
@@ -7986,6 +8053,11 @@ components:
         label_download_type:
           allOf:
             - $ref: '#/components/schemas/label_download_type'
+        display_scheme:
+          default: label
+          allOf:
+            - $ref: '#/components/schemas/display_scheme'
+          description: The display format that the label should be shown in.
     create_label_from_rate_response_body:
       title: create_label_from_rate_response_body
       type: object
@@ -8013,6 +8085,11 @@ components:
         label_download_type:
           allOf:
             - $ref: '#/components/schemas/label_download_type'
+        display_scheme:
+          default: label
+          allOf:
+            - $ref: '#/components/schemas/display_scheme'
+          description: The display format that the label should be shown in.
     create_label_from_shipment_response_body:
       title: create_label_from_shipment_response_body
       type: object
@@ -8060,6 +8137,11 @@ components:
           default: url
           allOf:
             - $ref: '#/components/schemas/label_download_type'
+        display_scheme:
+          default: label
+          allOf:
+            - $ref: '#/components/schemas/display_scheme'
+          description: The display format that the label should be shown in.
         label_image_id:
           nullable: true
           allOf:
@@ -8324,6 +8406,13 @@ components:
           minimum: 1
           example: 100
           description: The number of shipments that are included in this manifest
+        label_ids:
+          type: array
+          readOnly: true
+          items:
+            allOf:
+              - $ref: '#/components/schemas/se_id'
+          description: An array of the label ids used in this manifest.
         warehouse_id:
           readOnly: true
           allOf:
@@ -8430,6 +8519,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/manifests'
         - $ref: '#/components/schemas/deprecated_manifest'
+        - $ref: '#/components/schemas/error_response_body'
     manifests:
       title: manifests
       type: object
@@ -8498,6 +8588,14 @@ components:
           deprecated: true
           allOf:
             - $ref: '#/components/schemas/manifest_download'
+        label_ids:
+          deprecated: true
+          type: array
+          readOnly: true
+          items:
+            allOf:
+              - $ref: '#/components/schemas/se_id'
+          description: An array of the label ids used in this manifest.
     get_manifest_by_id_response_body:
       title: get_manifest_by_id_response_body
       type: object
@@ -8512,6 +8610,7 @@ components:
         - submission_id
         - carrier_id
         - manifest_download
+        - label_ids
       additionalProperties: false
       allOf:
         - $ref: '#/components/schemas/manifest'
