@@ -9546,6 +9546,13 @@ components:
           allOf:
             - $ref: '#/components/schemas/display_scheme'
           description: The display format that the label should be shown in.
+        label_image_id:
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/image_id'
+          description: >-
+            The label image resource that was used to create a custom label
+            image.
         test_label:
           type: boolean
           default: false
