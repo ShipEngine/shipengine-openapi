@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202010261510
+  version: 1.1.202012041812
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -7364,6 +7364,13 @@ components:
           allOf:
             - $ref: '#/components/schemas/advanced_shipment_options'
           description: Advanced shipment options.  These are entirely optional.
+        origin_type:
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/origin_type'
+          description: >-
+            Indicates if the package will be picked up or dropped off by the
+            carrier
         insurance_provider:
           default: none
           allOf:
@@ -7576,7 +7583,7 @@ components:
         value:
           allOf:
             - $ref: '#/components/schemas/monetary_value'
-          description: The total value of the customs item
+          description: The declared customs value of each item
         harmonized_tariff_code:
           type: string
           nullable: true
@@ -7721,6 +7728,11 @@ components:
           description: >
             An arbitrary field that can be used to store information about the
             shipment.
+        origin_type:
+          nullable: true
+          default: null
+          allOf:
+            - $ref: '#/components/schemas/origin_type'
         collect_on_delivery:
           $ref: '#/components/schemas/collect_on_delivery'
     bill_to_party:
@@ -7757,6 +7769,13 @@ components:
         - gram
         - kilogram
       description: The possible weight unit values
+    origin_type:
+      title: origin_type
+      type: string
+      enum:
+        - pickup
+        - drop_off
+      description: Indicates if the package will be picked up or dropped off by the carrier
     collect_on_delivery:
       title: collect_on_delivery
       type: object
