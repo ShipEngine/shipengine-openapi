@@ -4128,6 +4128,11 @@ components:
       description: >-
         A response message that displays when additional info is needed for an
         address validation request.
+      required:
+        - code
+        - message
+        - type
+        - detail_code
       additionalProperties: false
       properties:
         code:
