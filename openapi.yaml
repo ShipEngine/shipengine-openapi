@@ -4079,6 +4079,7 @@ components:
             - $ref: '#/components/schemas/address'
           description: The original address that was sent for validation
         matched_address:
+          nullable: true
           readOnly: true
           allOf:
             - $ref: '#/components/schemas/address'
