@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202012161912
+  version: 1.1.202106042106
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -6880,7 +6880,7 @@ components:
                 allOf:
                   - $ref: '#/components/schemas/link'
                 description: >
-                  The link to downlaod the customs form (a.k.a. commercial
+                  The link to download the customs form (a.k.a. commercial
                   invoice) for this shipment, if any.  Forms are in PDF format.
                   This field is null if the shipment does not require a customs
                   form, or if the carrier does not support it.
@@ -7191,7 +7191,7 @@ components:
           allOf:
             - $ref: '#/components/schemas/link'
           description: >
-            The link to downlaod the customs form (a.k.a. commercial invoice)
+            The link to download the customs form (a.k.a. commercial invoice)
             for this shipment, if any.  Forms are in PDF format. This field is
             null if the shipment does not require a customs form, or if the
             carrier does not support it.
