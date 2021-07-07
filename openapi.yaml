@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202106042106
+  version: 1.1.202107062007
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -5449,6 +5449,9 @@ components:
           minLength: 1
           deprecated: true
           description: FTP password
+        sold_to:
+          type: string
+          description: Sold To field
     ancillary_service_endorsement:
       title: ancillary_service_endorsement
       type: string
@@ -6143,6 +6146,13 @@ components:
           allOf:
             - $ref: '#/components/schemas/ups_invoice'
           description: The UPS invoice
+        invoice_amount:
+          format: double
+          type: number
+          description: The invoice amount
+        invoice_currency_code:
+          type: string
+          description: The invoice currency code
         agree_to_technology_agreement:
           type: boolean
           description: >-
@@ -7287,6 +7297,12 @@ components:
             potential metadata that was imported from
 
             external order sources
+        tax_identifiers:
+          type: array
+          nullable: true
+          items:
+            allOf:
+              - $ref: '#/components/schemas/tax_identifier'
         external_shipment_id:
           type: string
           maxLength: 50
@@ -7486,6 +7502,90 @@ components:
         - woo_commerce
         - volusion
       description: The order sources that are supported by ShipEngine
+    tax_identifier:
+      title: tax_identifier
+      type: object
+      description: A tax identifier object
+      additionalProperties: false
+      required:
+        - taxable_entity_type
+        - identifier_type
+        - issuing_authority
+        - value
+      properties:
+        taxable_entity_type:
+          allOf:
+            - $ref: '#/components/schemas/taxable_entity_type'
+        identifier_type:
+          allOf:
+            - $ref: '#/components/schemas/identifier_type'
+        issuing_authority:
+          type: string
+          description: >-
+            The authority that issued this tax. This must be a valid 2 character
+            ISO 3166 Alpha 2 country code.
+        value:
+          type: string
+          description: The value of the identifier
+    taxable_entity_type:
+      title: taxable_entity_type
+      type: string
+      enum:
+        - shipper
+        - recipient
+      description: >
+        The taxable entity type for this tax item. Valid values include the
+        following
+
+
+        |Value       |Description
+
+        |:---------  |:-----------------------------------------------------
+
+        |`shipper`   | The shipper is responsible for this tax.
+
+        |`recipient` | The recipient of the shipment is responsible for this
+        tax.
+    identifier_type:
+      title: identifier_type
+      type: string
+      enum:
+        - vat
+        - eori
+        - ssn
+        - ein
+        - tin
+        - ioss
+        - pan
+        - voec
+      description: >
+        Determines how FedEx will pickup your packages
+
+
+        |Pickup Type    | Description
+
+        |---------------|-----------------------------------------
+
+        |`vat`          | The tax identifier is a Value Added Tax.
+
+        |`eori`         | The tax identifier is an Economic Operators
+        Registration and Identification Number (EORI).
+
+        |`ssn`          | The tax identifier is a Social Security Number.
+
+        |`ein`          | The tax identifier is an Employer Identification
+        Number (EIN).
+
+        |`tin`          | The tax identifier is a Tax Identification Number
+        (TIN).
+
+        |`ioss`         | The tax identifier is an Import One-Stop Shop (IOSS).
+
+        |`pan`          | The tax identifier is a Permanent Account Number
+        (PAN).
+
+        |`voec`         | The tax identifier is a Norwegian VAT On
+        E-Commerce(VOEC).
     date:
       title: date
       type: string
@@ -7739,6 +7839,10 @@ components:
           default: null
           allOf:
             - $ref: '#/components/schemas/origin_type'
+        shipper_release:
+          type: boolean
+          nullable: true
+          default: null
         collect_on_delivery:
           $ref: '#/components/schemas/collect_on_delivery'
     bill_to_party:
