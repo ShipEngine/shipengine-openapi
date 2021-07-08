@@ -4228,6 +4228,7 @@ components:
         - invalid_charge_event
         - invalid_object
         - no_rates_returned
+        - default_resource_cannot_be_deleted
       description: The error code specified for the failed API Call
     list_account_settings_images_response_body:
       title: list_account_settings_images_response_body
