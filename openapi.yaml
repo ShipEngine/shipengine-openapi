@@ -5759,6 +5759,7 @@ components:
           description: Name of advanced option
         default_value:
           type: string
+          nullable: true
           minLength: 1
           readOnly: true
           example: false
