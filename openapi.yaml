@@ -9726,20 +9726,24 @@ components:
           type: string
           minLength: 0
           readOnly: true
+          nullable: true
           example: 'Your item was delivered in or at the mailbox at 9:10 am on March'
           description: carrier status description
         ship_date:
           allOf:
             - $ref: '#/components/schemas/date_time'
         estimated_delivery_date:
+          nullable: true
           allOf:
             - $ref: '#/components/schemas/date_time'
         actual_delivery_date:
+          nullable: true
           allOf:
             - $ref: '#/components/schemas/date_time'
         exception_description:
           type: string
           readOnly: true
+          nullable: true
           minLength: 0
           description: Exception description
         events:
@@ -9780,14 +9784,6 @@ components:
       description: A track event
       required:
         - occurred_at
-        - city_locality
-        - state_province
-        - postal_code
-        - carrier_detail_code
-        - status_code
-        - status_description
-        - carrier_status_code
-        - carrier_status_description
       additionalProperties: false
       properties:
         occurred_at:
@@ -9809,32 +9805,38 @@ components:
         city_locality:
           type: string
           readOnly: true
+          nullable: true
           example: AUSTIN
           minLength: 0
           description: City locality
         state_province:
           type: string
           readOnly: true
+          nullable: true
           example: TX
           minLength: 2
           description: State province
         postal_code:
           type: string
           readOnly: true
+          nullable: true
           example: 78756
           minLength: 0
           description: Postal code
         country_code:
+          nullable: true
           allOf:
             - $ref: '#/components/schemas/country_code'
         company_name:
           type: string
           readOnly: true
+          nullable: true
           example: Stamps.com
           minLength: 0
           description: Company Name
         signer:
           type: string
+          nullable: true
           minLength: 0
           readOnly: true
           description: Signer information
@@ -9872,12 +9874,14 @@ components:
         latitude:
           type: number
           format: double
+          nullable: true
           minimum: -90
           maximum: 90
           description: Latitude coordinate of tracking event.
         longitude:
           type: number
           format: double
+          nullable: true
           minimum: -180
           maximum: 180
           description: Longitude coordinate of tracking event.
