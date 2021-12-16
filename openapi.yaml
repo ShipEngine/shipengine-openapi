@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202107062007
+  version: 1.1.202112152212
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -3105,60 +3105,6 @@ paths:
           $ref: '#/components/responses/404_error_response'
         '500':
           $ref: '#/components/responses/500_error_response'
-  '/v1/shipments/{shipment_id}/errors':
-    summary: Shipment Errors
-    description: Shipment Errors
-    parameters:
-      - name: shipment_id
-        in: path
-        required: true
-        schema:
-          $ref: '#/components/schemas/se_id'
-        description: Shipment ID
-    get:
-      summary: Get Shipment Errors
-      description: >
-        If there are no errors associated with this shipment then the API will
-        return a 404 Not Found response to indicate
-
-        that no errors are associated with the request
-      tags:
-        - shipments
-      operationId: list_shipment_errors
-      parameters:
-        - name: page
-          in: query
-          required: false
-          schema:
-            type: integer
-            format: int32
-            minimum: 1
-            default: 1
-          example: 2
-          description: >
-            Return a specific page of results. Defaults to the first page. If
-            set to a number that's greater than the number of pages of results,
-            an empty page is returned.
-        - name: pagesize
-          in: query
-          required: false
-          schema:
-            type: integer
-            format: int32
-            minimum: 1
-      responses:
-        '200':
-          description: The request was a success.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/list_shipment_errors_response_body'
-        '400':
-          $ref: '#/components/responses/400_error_response'
-        '404':
-          $ref: '#/components/responses/404_error_response'
-        '500':
-          $ref: '#/components/responses/500_error_response'
   '/v1/shipments/{shipment_id}/rates':
     summary: Shipment Rates
     description: >
@@ -5452,6 +5398,10 @@ components:
         sold_to:
           type: string
           description: Sold To field
+        registration_id:
+          type: string
+        software_name:
+          type: string
     ancillary_service_endorsement:
       title: ancillary_service_endorsement
       type: string
@@ -6181,6 +6131,8 @@ components:
           type: number
           format: double
           minimum: 0
+        invoice_currency_code:
+          type: string
     connect_carrier_response_body:
       title: connect_carrier_response_body
       type: object
@@ -6268,6 +6220,10 @@ components:
             - $ref: '#/components/schemas/ancillary_service_endorsement'
         is_primary_account:
           type: boolean
+        signature_image:
+          type: string
+        letterhead_image:
+          type: string
     fedex_pickup_type:
       title: fedex_pickup_type
       type: string
@@ -7615,6 +7571,7 @@ components:
         - adult_signature
         - direct_signature
         - delivery_mailed
+        - verbal_confirmation
       description: The possible delivery confirmation values
     international_shipment_options:
       title: international_shipment_options
@@ -7793,6 +7750,14 @@ components:
           type: boolean
           default: false
           description: 'Enables Saturday delivery, if supported by the carrier.'
+        fedex_freight:
+          type: object
+          description: Provide details for the Fedex freight service
+          properties:
+            shipper_load_and_count:
+              type: string
+            booking_confirmation:
+              type: string
         use_ups_ground_freight_pricing:
           type: boolean
           nullable: true
@@ -7953,6 +7918,12 @@ components:
         - weight
       additionalProperties: false
       properties:
+        package_id:
+          readOnly: true
+          type: integer
+          format: int32
+        description: |
+          The package ID
         package_code:
           allOf:
             - $ref: '#/components/schemas/package_code'
@@ -7992,6 +7963,21 @@ components:
           type: string
           minLength: 1
           description: An external package id.
+        label_download:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/label_download'
+          description: The label download for the package
+        form_download:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/optional_link'
+          description: The form download for any customs that are needed
+        sequence:
+          readOnly: true
+          format: int32
+          type: integer
+          description: Package sequence
     tracking_number:
       title: tracking_number
       type: string
@@ -8307,12 +8293,20 @@ components:
         tracking_number:
           allOf:
             - $ref: '#/components/schemas/tracking_number'
-        status_code:
+        tracking_url:
           type: string
           readOnly: true
-          minLength: 1
-          example: DE
-          description: Status code
+          example: 'https://www.fedex.com/fedextrack/?action=track&trackingnumber=1234'
+          description: 'Carrier Tracking Url, if available'
+        status_code:
+          allOf:
+            - $ref: '#/components/schemas/status_code'
+        carrier_code:
+          allOf:
+            - $ref: '#/components/schemas/carrier_code'
+        carrier_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
         status_description:
           type: string
           readOnly: true
@@ -8325,6 +8319,12 @@ components:
           minLength: 1
           example: 1
           description: Carrier status code
+        carrier_detail_code:
+          type: string
+          readOnly: true
+          minLength: 1
+          example: OT
+          description: Carrier detail code
         carrier_status_description:
           type: string
           minLength: 0
@@ -8353,6 +8353,30 @@ components:
           description: >-
             The events that have occured during the lifetime of this tracking
             number.
+    status_code:
+      readOnly: true
+      title: status_code
+      enum:
+        - u_n
+        - a_c
+        - i_t
+        - d_e
+        - e_x
+        - a_t
+        - n_y
+      type: string
+      description: |
+        The tracking status codes
+
+        |Value       |Description
+        |:---------  |:-----------------------------------------------------
+        |`u_n` | Unknown
+        |`a_c` | Accepted
+        |`i_t` | In Transit
+        |`d_e` | Delivered
+        |`e_x` | Exception
+        |`a_t` | Delivery Attempt
+        |`n_y` | Not Yet In System
     track_event:
       title: track_event
       type: object
@@ -8362,6 +8386,11 @@ components:
         - city_locality
         - state_province
         - postal_code
+        - carrier_detail_code
+        - status_code
+        - status_description
+        - carrier_status_code
+        - carrier_status_description
       additionalProperties: false
       properties:
         occurred_at:
@@ -8416,6 +8445,33 @@ components:
           type: string
           minLength: 0
           description: Event Code
+        carrier_detail_code:
+          type: string
+          readOnly: true
+          minLength: 1
+          example: OT
+          description: Carrier detail code
+        status_code:
+          allOf:
+            - $ref: '#/components/schemas/status_code'
+        status_description:
+          type: string
+          readOnly: true
+          minLength: 1
+          example: In Transit
+          description: Event Status Description
+        carrier_status_code:
+          type: string
+          readOnly: true
+          minLength: 1
+          example: 1
+          description: Carrier status code
+        carrier_status_description:
+          type: string
+          minLength: 0
+          readOnly: true
+          example: 'Your item was delivered in or at the mailbox at 9:10 am on March'
+          description: carrier status description
         latitude:
           type: number
           format: double
@@ -8878,6 +8934,9 @@ components:
         preferred_currency:
           allOf:
             - $ref: '#/components/schemas/currency'
+        is_return:
+          type: boolean
+          description: Indicate if it's a return shipment
     calculate_rates_response_body:
       title: calculate_rates_response_body
       type: object
@@ -9787,49 +9846,6 @@ components:
       additionalProperties: false
       allOf:
         - $ref: '#/components/schemas/create_and_validate_shipment'
-    list_shipment_errors_response_body:
-      title: list_shipment_errors_response_body
-      type: object
-      description: A shipment errors response body
-      required:
-        - errors
-        - links
-      additionalProperties: false
-      properties:
-        errors:
-          type: array
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/shipment_response_error'
-          description: The errors associated with the shipment.
-        links:
-          readOnly: true
-          allOf:
-            - $ref: '#/components/schemas/pagination_link'
-    shipment_response_error:
-      title: shipment_response_error
-      type: object
-      description: A shipment response error.
-      required:
-        - error
-        - shipment_id
-      additionalProperties: false
-      properties:
-        error:
-          type: string
-          minLength: 1
-          readOnly: true
-          description: Shipment error message
-        shipment_id:
-          readOnly: true
-          allOf:
-            - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the shipment.
-        external_shipment_id:
-          readOnly: true
-          allOf:
-            - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the external shipment.
     list_shipment_rates_response_body:
       title: list_shipment_rates_response_body
       type: object
@@ -9900,7 +9916,11 @@ components:
       description: A get tracking log response body
       required:
         - tracking_number
+        - tracking_url
         - status_code
+        - carrier_code
+        - carrier_id
+        - carrier_detail_code
         - carrier_status_code
         - estimated_delivery_date
         - events
