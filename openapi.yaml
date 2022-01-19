@@ -9711,6 +9711,7 @@ components:
           minLength: 0
           description: Status description
         carrier_status_code:
+          nullable: true
           type: string
           readOnly: true
           minLength: 1
@@ -9730,6 +9731,7 @@ components:
           example: 'Your item was delivered in or at the mailbox at 9:10 am on March'
           description: carrier status description
         ship_date:
+          nullable: true
           allOf:
             - $ref: '#/components/schemas/date_time'
         estimated_delivery_date:
