@@ -9692,6 +9692,7 @@ components:
             - $ref: '#/components/schemas/tracking_number'
         tracking_url:
           type: string
+          nullable: true
           readOnly: true
           example: 'https://www.fedex.com/fedextrack/?action=track&trackingnumber=1234'
           description: 'Carrier Tracking Url, if available'
@@ -9801,6 +9802,7 @@ components:
         description:
           type: string
           readOnly: true
+          nullable: true
           minLength: 0
           example: 'Delivered, In/At Mailbox'
           description: Event description
@@ -9844,6 +9846,7 @@ components:
           description: Signer information
         event_code:
           type: string
+          nullable: true
           minLength: 0
           description: Event Code
         carrier_detail_code:
