@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202112152212
+  version: 1.1.202204192004
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -2332,6 +2332,57 @@ paths:
           $ref: '#/components/responses/404_error_response'
         '500':
           $ref: '#/components/responses/500_error_response'
+  /v1/relay_points:
+    summary: Relay Points
+    get:
+      summary: List Relay Points
+      description: List carrier relay points by location
+      operationId: relay_points_list
+      tags:
+        - relay_points
+      parameters:
+        - name: carrier_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: service_code
+          in: query
+          required: true
+          minLength: 1
+          schema:
+            type: string
+        - name: city_locality
+          in: query
+          required: true
+          minLength: 1
+          schema:
+            type: string
+        - name: postal_code
+          in: query
+          required: true
+          minLength: 1
+          schema:
+            type: string
+        - name: country_code
+          in: query
+          required: true
+          minLength: 1
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/relay_points_list_response_body'
+        '400':
+          $ref: '#/components/responses/400_error_response'
+        '404':
+          $ref: '#/components/responses/404_error_response'
+        '500':
+          $ref: '#/components/responses/500_error_response'
   /v1/shipments:
     summary: Shipments
     description: >
@@ -3323,6 +3374,32 @@ paths:
           $ref: '#/components/responses/404_error_response'
         '500':
           $ref: '#/components/responses/500_error_response'
+  /v1/tokens/ephemeral:
+    post:
+      summary: Get Ephemeral Token
+      description: >-
+        This endpoint returns a token that can be passed to an application for
+        authorized access.  The lifetime of this token is 10 seconds.
+      operationId: tokens_get_ephemeral_token
+      parameters:
+        - name: redirect
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/redirect'
+          description: >-
+            Include a redirect url to the application formatted with the
+            ephemeral token.
+      tags:
+        - tokens
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/tokens_get_ephemeral_token_response_body.yaml
   /v1/tracking:
     summary: Tracking a Package
     description: >-
@@ -5461,6 +5538,17 @@ components:
           type: string
           minLength: 1
           description: Account number
+        site_id:
+          type: string
+          minLength: 1
+          description: Required if password is provided
+        password:
+          type: string
+          minLength: 1
+          description: Required if site id is provided
+        country_code:
+          allOf:
+            - $ref: '#/components/schemas/country_code'
     connect_dhl_express_au_request_body:
       title: connect_dhl_express_au_request_body
       type: object
@@ -6871,6 +6959,47 @@ components:
                   that doesn't allow it, an error will be returned.
                 items:
                   $ref: '#/components/schemas/package'
+              relay_points:
+                allOf:
+                  - type: object
+                    properties:
+                      ship_to:
+                        type: object
+                        properties:
+                          relay_point_id:
+                            type: string
+                          company_name:
+                            type: string
+                          address_line1:
+                            type: string
+                          city_locality:
+                            type: string
+                          state_province:
+                            type: string
+                          postal_code:
+                            type: string
+                          country_code:
+                            type: string
+                      ship_from:
+                        type: object
+                        properties:
+                          relay_point_id:
+                            type: string
+                          company_name:
+                            type: string
+                          address_line1:
+                            type: string
+                          city_locality:
+                            type: string
+                          state_province:
+                            type: string
+                          postal_code:
+                            type: string
+                          country_code:
+                            type: string
+                description: >
+                  The physical locations where packages can be delivered by the
+                  carrier or dropped off by the sender.
       allOf:
         - $ref: '#/components/schemas/paged_list_response_body'
     paged_list_response_body:
@@ -7182,6 +7311,47 @@ components:
             allow it, an error will be returned.
           items:
             $ref: '#/components/schemas/package'
+        relay_points:
+          allOf:
+            - type: object
+              properties:
+                ship_to:
+                  type: object
+                  properties:
+                    relay_point_id:
+                      type: string
+                    company_name:
+                      type: string
+                    address_line1:
+                      type: string
+                    city_locality:
+                      type: string
+                    state_province:
+                      type: string
+                    postal_code:
+                      type: string
+                    country_code:
+                      type: string
+                ship_from:
+                  type: object
+                  properties:
+                    relay_point_id:
+                      type: string
+                    company_name:
+                      type: string
+                    address_line1:
+                      type: string
+                    city_locality:
+                      type: string
+                    state_province:
+                      type: string
+                    postal_code:
+                      type: string
+                    country_code:
+                      type: string
+          description: >
+            The physical locations where packages can be delivered by the
+            carrier or dropped off by the sender.
     shipment:
       title: shipment
       type: object
@@ -9417,9 +9587,9 @@ components:
       description: A rate estimate response body
       items:
         allOf:
-          - $ref: '#/components/schemas/rate estimate'
-    rate estimate:
-      title: rate estimate
+          - $ref: '#/components/schemas/rate_estimate'
+    rate_estimate:
+      title: rate_estimate
       type: object
       description: A rate estimate
       required:
@@ -9602,6 +9772,55 @@ components:
       additionalProperties: false
       allOf:
         - $ref: '#/components/schemas/rate'
+    relay_points_list_response_body:
+      title: relay_points_list_response_body
+      type: object
+      description: Response body for a successful request to v1/relay_points
+      properties:
+        relay_points:
+          type: array
+          items:
+            type: object
+            properties:
+              phone:
+                type: string
+              long:
+                format: double
+                type: number
+              lat:
+                format: double
+                type: number
+              opening_times:
+                type: object
+                properties:
+                  monday:
+                    type: string
+                  tuesday:
+                    type: string
+                  wednesday:
+                    type: string
+                  thursday:
+                    type: string
+                  friday:
+                    type: string
+                  saturday:
+                    type: string
+                  sunday:
+                    type: string
+              relay_point_id:
+                type: string
+              company_name:
+                type: string
+              address_line1:
+                type: string
+              city_locality:
+                type: string
+              state_province:
+                type: string
+              postal_code:
+                type: string
+              country_code:
+                type: string
     shipments_sort_by:
       title: shipments_sort_by
       type: string
@@ -9910,6 +10129,22 @@ components:
       additionalProperties: false
       allOf:
         - $ref: '#/components/schemas/tag'
+    redirect:
+      title: redirect
+      type: string
+      enum:
+        - shipengine-dashboard
+      description: The resource to return a redirect URL to.
+    tokens_get_ephemeral_token_response_body.yaml:
+      title: tokens_get_ephemeral_token_response_body.yaml
+      type: object
+      properties:
+        token:
+          type: string
+          description: The requested token that expires in 10 seconds.
+        redirect_url:
+          type: string
+          description: The redirect url formatted with the requested token.
     get_tracking_log_response_body:
       title: get_tracking_log_response_body
       type: object
@@ -10138,6 +10373,8 @@ tags:
         carriers so you can choose the fastest, cheapest, or most reliable
         option.
     x-displayName: Rates
+  - name: relay_points
+    x-displayName: Relay Points
   - name: shipments
     description: >
       Shipments are at the center of the ShipEngine API.  A shipment is the
@@ -10157,6 +10394,8 @@ tags:
     description: |
       tags
     x-displayName: Tags
+  - name: tokens
+    x-displayName: Tokens
   - name: tracking
     description: >
       [Track packages](https://www.shipengine.com/docs/tracking/) across any of
