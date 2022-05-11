@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202204192004
+  version: 1.1.202205101305
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -2082,6 +2082,35 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/get_manifest_by_id_response_body'
+        '400':
+          $ref: '#/components/responses/400_error_response'
+        '404':
+          $ref: '#/components/responses/404_error_response'
+        '500':
+          $ref: '#/components/responses/500_error_response'
+  '/v1/manifests/requests/{manifest_request_id}':
+    summary: Manifest Request ID
+    description: Manifest Request ID
+    parameters:
+      - name: manifest_request_id
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/se_id'
+        description: The Manifest Request Id
+    get:
+      summary: Get Manifest Request By Id
+      description: Get Manifest Request By Id
+      tags:
+        - manifests
+      operationId: get_manifest_request_by_id
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/create_manifest_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -8527,26 +8556,26 @@ components:
       readOnly: true
       title: status_code
       enum:
-        - u_n
-        - a_c
-        - i_t
-        - d_e
-        - e_x
-        - a_t
-        - n_y
+        - un
+        - ac
+        - it
+        - de
+        - ex
+        - at
+        - ny
       type: string
       description: |
         The tracking status codes
 
         |Value       |Description
         |:---------  |:-----------------------------------------------------
-        |`u_n` | Unknown
-        |`a_c` | Accepted
-        |`i_t` | In Transit
-        |`d_e` | Delivered
-        |`e_x` | Exception
-        |`a_t` | Delivery Attempt
-        |`n_y` | Not Yet In System
+        |`un` | Unknown
+        |`ac` | Accepted
+        |`it` | In Transit
+        |`de` | Delivered
+        |`ex` | Exception
+        |`at` | Delivery Attempt
+        |`ny` | Not Yet In System
     track_event:
       title: track_event
       type: object
@@ -8873,8 +8902,9 @@ components:
       additionalProperties: false
       allOf:
         - $ref: '#/components/schemas/manifests'
+        - $ref: '#/components/schemas/manifests requests'
         - $ref: '#/components/schemas/deprecated_manifest'
-        - $ref: '#/components/schemas/error_response_body'
+        - $ref: '#/components/schemas/error_with_label_id_response_body'
     manifests:
       title: manifests
       type: object
@@ -8882,9 +8912,42 @@ components:
       additionalProperties: false
       properties:
         manifests:
+          description: Resulting Manifests
           type: array
           items:
             $ref: '#/components/schemas/manifest'
+    manifests requests:
+      title: manifests requests
+      type: object
+      description: An array of manifest requests
+      additionalProperties: false
+      properties:
+        manifest_requests:
+          description: Resulting manifest requests with statuses
+          type: array
+          items:
+            $ref: '#/components/schemas/manifest request'
+    manifest request:
+      title: manifest request
+      type: object
+      description: A reference to the manifest request
+      additionalProperties: false
+      properties:
+        manifest_request_id:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies a manifest request
+        status:
+          allOf:
+            - $ref: '#/components/schemas/manifest_request_status'
+    manifest_request_status:
+      title: manifest_request_status
+      type: string
+      enum:
+        - in_progress
+        - completed
+      description: The possible statuses of a manifest request
     deprecated_manifest:
       title: deprecated_manifest
       type: object
@@ -8951,6 +9014,30 @@ components:
             allOf:
               - $ref: '#/components/schemas/se_id'
           description: An array of the label ids used in this manifest.
+    error_with_label_id_response_body:
+      title: error_with_label_id_response_body
+      type: object
+      description: An error response body
+      required:
+        - request_id
+        - errors
+      additionalProperties: false
+      properties:
+        request_id:
+          allOf:
+            - $ref: '#/components/schemas/uuid'
+          description: >
+            A UUID that uniquely identifies the request id.
+
+            This can be given to the support team to help debug non-trivial
+            issues that may occur
+        errors:
+          type: array
+          readOnly: true
+          items:
+            allOf:
+              - $ref: '#/components/schemas/error'
+          description: The errors associated with the failed API call
     get_manifest_by_id_response_body:
       title: get_manifest_by_id_response_body
       type: object
