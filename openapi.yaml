@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202205101305
+  version: 1.1.202207252107
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -2406,6 +2406,80 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/relay_points_list_response_body'
+        '400':
+          $ref: '#/components/responses/400_error_response'
+        '404':
+          $ref: '#/components/responses/404_error_response'
+        '500':
+          $ref: '#/components/responses/500_error_response'
+  /v1/service_points/list:
+    summary: Service Points
+    post:
+      summary: List Service Points
+      description: List carrier service points by location
+      operationId: service_points_list
+      tags:
+        - service_points
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/get_service_points_request'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/list_service_points_response_body'
+        '400':
+          $ref: '#/components/responses/400_error_response'
+        '404':
+          $ref: '#/components/responses/404_error_response'
+        '500':
+          $ref: '#/components/responses/500_error_response'
+  '/v1/service_points/{carrier_code}/{country_code}/{service_code_id}':
+    summary: Service Points
+    parameters:
+      - name: carrier_code
+        in: path
+        required: true
+        schema:
+          type: string
+          minLength: 1
+        example: stamps_com
+        description: Carrier code
+      - name: country_code
+        in: path
+        required: true
+        schema:
+          type: string
+          minLength: 2
+          maxLength: 2
+        example: CA
+        description: >
+          A two-letter [ISO 3166-1 country
+          code](https://en.wikipedia.org/wiki/ISO_3166-1)
+      - name: service_point_id
+        in: path
+        schema:
+          type: string
+        required: true
+        example: 614940
+    get:
+      summary: Get Service Point By ID
+      description: Returns a carrier service point by using the service_point_id
+      operationId: service_points_get_by_id
+      tags:
+        - service_points
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_service_point_by_id_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -9908,6 +9982,309 @@ components:
                 type: string
               country_code:
                 type: string
+    get_service_points_request:
+      title: get_service_points_request
+      oneOf:
+        - $ref: '#/components/schemas/get_service_points_request_body'
+    get_service_points_request_body:
+      title: get_service_points_request_body
+      type: object
+      description: A get service points request body
+      required:
+        - providers
+        - lat
+        - long
+      properties:
+        providers:
+          type: array
+          items:
+            type: object
+            properties:
+              carrier_id:
+                type: string
+                example: se-123456
+              service_code:
+                type: array
+                items:
+                  type: string
+                  example: chronoclassic
+        lat:
+          format: double
+          type: number
+          example: 48.874518928233094
+        long:
+          format: double
+          type: number
+          example: 2.3591775711639404
+        radius:
+          format: int32
+          type: integer
+          example: 500
+        max_results:
+          format: int32
+          type: integer
+          example: 25
+    list_service_points_response_body:
+      title: list_service_points_response_body
+      type: object
+      description: A list service points response body
+      properties:
+        service_points:
+          type: array
+          items:
+            type: object
+            properties:
+              service_point_id:
+                type: string
+                example: 614940
+              address:
+                type: object
+                properties:
+                  phone_number:
+                    type: string
+                    example: 555-555-5555
+                  company_name:
+                    type: string
+                    example: My fancy company name
+                  description:
+                    type: string
+                    example: This is a description of the service point
+                  geo:
+                    type: object
+                    properties:
+                      lat:
+                        format: double
+                        type: number
+                        example: 48.842608
+                      long:
+                        format: double
+                        type: number
+                        example: 0.032875
+                  address_line1:
+                    type: string
+                    example: PLACE DU CANADA
+                  city_locality:
+                    type: string
+                    example: TRUN
+                  state_province:
+                    type: string
+                    example: TRUN
+                  postal_code:
+                    type: string
+                    example: 61160
+                  country_code:
+                    type: string
+                    example: FR
+              hours_of_operation:
+                type: object
+                properties:
+                  monday:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        open:
+                          type: string
+                          example: '09:15'
+                        close:
+                          type: string
+                          example: '12:00'
+                  tuesday:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        open:
+                          type: string
+                          example: '09:15'
+                        close:
+                          type: string
+                          example: '12:00'
+                  wednesday:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        open:
+                          type: string
+                          example: '09:15'
+                        close:
+                          type: string
+                          example: '12:00'
+                  thursday:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        open:
+                          type: string
+                          example: '09:15'
+                        close:
+                          type: string
+                          example: '12:00'
+                  friday:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        open:
+                          type: string
+                          example: '09:15'
+                        close:
+                          type: string
+                          example: '12:00'
+                  saturday:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        open:
+                          type: string
+                          example: '09:15'
+                        close:
+                          type: string
+                          example: '12:00'
+                  sunday:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        open:
+                          type: string
+                          example: '09:15'
+                        close:
+                          type: string
+                          example: '12:00'
+    get_service_point_by_id_response_body:
+      title: get_service_point_by_id_response_body
+      type: object
+      description: A get service point by ID response body
+      properties:
+        service_point:
+          items: null
+          type: object
+          properties:
+            service_point_id:
+              type: string
+              example: 614940
+            address:
+              type: object
+              properties:
+                phone_number:
+                  type: string
+                  example: 555-555-5555
+                company_name:
+                  type: string
+                  example: My fancy company name
+                description:
+                  type: string
+                  example: This is a description of the service point
+                geo:
+                  type: object
+                  properties:
+                    lat:
+                      format: double
+                      type: number
+                      example: 48.842608
+                    long:
+                      format: double
+                      type: number
+                      example: 0.032875
+                address_line1:
+                  type: string
+                  example: PLACE DU CANADA
+                city_locality:
+                  type: string
+                  example: TRUN
+                state_province:
+                  type: string
+                  example: TRUN
+                postal_code:
+                  type: string
+                  example: 61160
+                country_code:
+                  type: string
+                  example: FR
+            hours_of_operation:
+              type: object
+              properties:
+                monday:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      open:
+                        type: string
+                        example: '09:15'
+                      close:
+                        type: string
+                        example: '12:00'
+                tuesday:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      open:
+                        type: string
+                        example: '09:15'
+                      close:
+                        type: string
+                        example: '12:00'
+                wednesday:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      open:
+                        type: string
+                        example: '09:15'
+                      close:
+                        type: string
+                        example: '12:00'
+                thursday:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      open:
+                        type: string
+                        example: '09:15'
+                      close:
+                        type: string
+                        example: '12:00'
+                friday:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      open:
+                        type: string
+                        example: '09:15'
+                      close:
+                        type: string
+                        example: '12:00'
+                saturday:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      open:
+                        type: string
+                        example: '09:15'
+                      close:
+                        type: string
+                        example: '12:00'
+                sunday:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      open:
+                        type: string
+                        example: '09:15'
+                      close:
+                        type: string
+                        example: '12:00'
     shipments_sort_by:
       title: shipments_sort_by
       type: string
@@ -10462,6 +10839,8 @@ tags:
     x-displayName: Rates
   - name: relay_points
     x-displayName: Relay Points
+  - name: service_points
+    x-displayName: Service Points
   - name: shipments
     description: >
       Shipments are at the center of the ShipEngine API.  A shipment is the
