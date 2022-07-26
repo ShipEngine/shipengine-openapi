@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202207261407
+  version: 1.1.202207261707
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -9847,6 +9847,7 @@ components:
           format: int32
           type: integer
           example: 500
+          description: Search radius in meters
         max_results:
           format: int32
           type: integer
@@ -9862,6 +9863,9 @@ components:
           items:
             type: object
             properties:
+              carrier_code:
+                type: string
+                example: chronopost
               service_point_id:
                 type: string
                 example: '614940'
@@ -9983,6 +9987,16 @@ components:
                         close:
                           type: string
                           example: '12:00'
+              features:
+                type: array
+                items:
+                  type: string
+                  enum:
+                    - drop_off_point
+                    - pickup_point
+                    - print_services
+                    - after_hours_locker
+                    - after_hours_dropbox
     get_service_point_by_id_response_body:
       title: get_service_point_by_id_response_body
       type: object
@@ -9992,6 +10006,9 @@ components:
           items: null
           type: object
           properties:
+            carrier_code:
+              type: string
+              example: chronopost
             service_point_id:
               type: string
               example: '614940'
@@ -10113,6 +10130,16 @@ components:
                       close:
                         type: string
                         example: '12:00'
+            features:
+              type: array
+              items:
+                type: string
+                enum:
+                  - drop_off_point
+                  - pickup_point
+                  - print_services
+                  - after_hours_locker
+                  - after_hours_dropbox
     shipments_sort_by:
       title: shipments_sort_by
       type: string
