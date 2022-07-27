@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202207261707
+  version: 1.1.202207271607
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -9847,7 +9847,7 @@ components:
           format: int32
           type: integer
           example: 500
-          description: Search radius in meters
+          description: Search radius in kilometers
         max_results:
           format: int32
           type: integer
