@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202207271607
+  version: 1.1.202207292207
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -7064,6 +7064,15 @@ components:
       additionalProperties: false
       allOf:
         - $ref: '#/components/schemas/label'
+      properties:
+        ship_to_service_point_id:
+          nullable: true
+          type: string
+          description: >-
+            A unique identifier for a carrier service point where the shipment
+            will be delivered by the carrier. This will take precedence over a
+            shipment's ship to address.
+          example: '614940'
     label:
       title: label
       type: object
