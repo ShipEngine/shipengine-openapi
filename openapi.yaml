@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202207292207
+  version: 1.1.202208031508
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -2242,6 +2242,160 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/empty_response_body'
+        '400':
+          $ref: '#/components/responses/400_error_response'
+        '404':
+          $ref: '#/components/responses/404_error_response'
+        '500':
+          $ref: '#/components/responses/500_error_response'
+  /v1/pickups:
+    summary: Scheduled Pickups
+    description: |
+      Scheduled package pickups
+    get:
+      summary: List Scheduled Pickups
+      description: List all pickups that have been scheduled for this carrier
+      tags:
+        - package_pickups
+      operationId: list_scheduled_pickups
+      parameters:
+        - name: carrier_id
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/se_id'
+          description: Carrier ID
+        - name: warehouse_id
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/se_id'
+          description: Warehouse ID
+        - description: >-
+            Only return scheduled pickups that were created on or after a
+            specific date/time
+          name: created_at_start
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+          example: '2019-03-12T19:24:13.657Z'
+        - description: >-
+            Only return scheduled pickups that were created on or before a
+            specific date/time
+          name: created_at_end
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+          example: '2019-03-12T19:24:13.657Z'
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            default: 1
+          example: 2
+          description: >
+            Return a specific page of results. Defaults to the first page. If
+            set to a number that's greater than the number of pages of results,
+            an empty page is returned.
+        - name: page_size
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            default: 25
+          example: 50
+          description: The number of results to return per response.
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_pickups_response_body'
+        '400':
+          $ref: '#/components/responses/400_error_response'
+        '404':
+          $ref: '#/components/responses/404_error_response'
+        '500':
+          $ref: '#/components/responses/500_error_response'
+    post:
+      summary: Schedule a Pickup
+      description: Schedule a package pickup with a carrier
+      tags:
+        - package_pickups
+      operationId: schedule_pickup
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/schedule_pickup_request_body'
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/schedule_pickup_response_body'
+        '400':
+          $ref: '#/components/responses/400_error_response'
+        '404':
+          $ref: '#/components/responses/404_error_response'
+        '500':
+          $ref: '#/components/responses/500_error_response'
+  '/v1/pickups/{pickup_id}':
+    summary: Scheduled Pickup
+    description: |
+      A package pickup that has been scheduled with a carrier
+    parameters:
+      - name: pickup_id
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/pickup_resource_id'
+    get:
+      summary: Get Pickup By ID
+      description: Get Pickup By ID
+      tags:
+        - package_pickups
+      operationId: get_pickup_by_id
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_pickup_by_id_response_body'
+        '400':
+          $ref: '#/components/responses/400_error_response'
+        '404':
+          $ref: '#/components/responses/404_error_response'
+        '500':
+          $ref: '#/components/responses/500_error_response'
+    delete:
+      summary: Delete a Scheduled Pickup
+      description: Delete a previously-scheduled pickup by ID
+      tags:
+        - package_pickups
+      operationId: delete_scheduled_pickup
+      responses:
+        '200':
+          description: >
+            Return the `pickup_id` of the scheduled pickup that was successfully
+            deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/delete_pickup_by_id_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -9049,6 +9203,227 @@ components:
       additionalProperties: false
       allOf:
         - $ref: '#/components/schemas/package_type'
+    get_pickups_response_body:
+      title: get_pickups_response_body
+      allOf:
+        - $ref: '#/components/schemas/list_pickup_response_body'
+        - $ref: '#/components/schemas/error_response_body'
+    list_pickup_response_body:
+      title: list_pickup_response_body
+      type: object
+      description: A list pickup response body
+      required:
+        - pickups
+        - total
+        - page
+        - pages
+        - links
+      additionalProperties: false
+      properties:
+        pickups:
+          type: array
+          description: An array of pickups associated with the user's account.
+          items:
+            allOf:
+              - $ref: '#/components/schemas/pickup'
+        total:
+          type: integer
+          format: int64
+          readOnly: true
+          minimum: 0
+          example: 3
+          description: The total number of pickups returned
+        page:
+          type: integer
+          format: int32
+          readOnly: true
+          minimum: 1
+          example: 3
+          description: Current page of the list pickups results
+        pages:
+          type: integer
+          format: int32
+          readOnly: true
+          minimum: 1
+          example: 4
+          description: Total number of pages for list pickups results
+        links:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/pagination_link'
+          description: Helpful links to other pages of results
+    pickup:
+      title: pickup
+      type: object
+      description: |
+        The information necessary to schedule a package pickup
+      additionalProperties: false
+      properties:
+        pickup_id:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/pickup_resource_id'
+        label_ids:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/se_id'
+            description: Label ID that will be included in the pickup request
+          description: Label IDs that will be included in the pickup request
+        created_at:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/date_time'
+          description: The date and time that the pickup was created in ShipEngine.
+        cancelled_at:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/date_time'
+          description: The date and time that the pickup was cancelled in ShipEngine.
+        carrier_id:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: The carrier_id associated with the pickup
+        confirmation_number:
+          readOnly: true
+          type: string
+          nullable: true
+          description: The carrier confirmation number for the scheduled pickup.
+          example: 292513CL4A3
+        warehouse_id:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: The warehouse_id associated with the pickup
+        pickup_address:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/address'
+        contact_details:
+          $ref: '#/components/schemas/contact_details'
+        pickup_notes:
+          type: string
+          minLength: 0
+          description: >-
+            Used by some carriers to give special instructions for a package
+            pickup
+        pickup_window:
+          $ref: '#/components/schemas/pickup_window'
+        pickup_windows:
+          readOnly: true
+          type: array
+          description: >
+            An array of available pickup windows. Carriers can return multiple
+            times that they will pickup packages.
+          items:
+            allOf:
+              - $ref: '#/components/schemas/pickup_windows'
+    pickup_resource_id:
+      title: pickup_resource_id
+      type: string
+      minLength: 4
+      example: pik_3YcKU5zdtJuCqoeNwyqqbW
+      description: Pickup Resource ID
+    contact_details:
+      title: contact_details
+      type: object
+      required:
+        - name
+        - email
+        - phone
+      properties:
+        name:
+          type: string
+          minLength: 1
+        email:
+          allOf:
+            - $ref: '#/components/schemas/email'
+        phone:
+          type: string
+          minLength: 7
+          description: Phone number associated
+    pickup_window:
+      title: pickup_window
+      writeOnly: true
+      type: object
+      description: The desired time range for the package pickup.
+      required:
+        - start_at
+        - end_at
+      properties:
+        start_at:
+          allOf:
+            - $ref: '#/components/schemas/date_time'
+        end_at:
+          allOf:
+            - $ref: '#/components/schemas/date_time'
+    pickup_windows:
+      title: pickup_windows
+      type: object
+      properties:
+        start_at:
+          allOf:
+            - $ref: '#/components/schemas/date_time'
+        end_at:
+          allOf:
+            - $ref: '#/components/schemas/date_time'
+    schedule_pickup_request_body:
+      title: schedule_pickup_request_body
+      type: object
+      description: A schedule pickup request body
+      required:
+        - contact_details
+        - label_ids
+        - pickup_window
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/pickup'
+    schedule_pickup_response_body:
+      title: schedule_pickup_response_body
+      allOf:
+        - $ref: '#/components/schemas/pickup'
+        - $ref: '#/components/schemas/error_response_body'
+    get_pickup_by_id_response_body:
+      title: get_pickup_by_id_response_body
+      allOf:
+        - $ref: '#/components/schemas/pickup_response_body'
+        - $ref: '#/components/schemas/error_response_body'
+    pickup_response_body:
+      title: pickup_response_body
+      type: object
+      description: A pickup response body
+      required:
+        - pickup
+        - pickup_id
+        - label_ids
+        - created_at
+        - carrier_id
+        - warehouse_id
+        - pickup_address
+        - contact_details
+        - notes
+        - pickup_window
+        - confirmation_number
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/pickup'
+    delete_pickup_by_id_response_body:
+      title: delete_pickup_by_id_response_body
+      allOf:
+        - $ref: '#/components/schemas/error_response_body'
+        - $ref: '#/components/schemas/delete_scheduled_pickup_response_body'
+    delete_scheduled_pickup_response_body:
+      title: delete_scheduled_pickup_response_body
+      type: object
+      description: A delete scheduled pickup response body
+      additionalProperties: false
+      required:
+        - pickup_id
+      properties:
+        pickup_id:
+          allOf:
+            - $ref: '#/components/schemas/pickup_resource_id'
     calculate_rates_request_body:
       title: calculate_rates_request_body
       type: object
@@ -10006,6 +10381,8 @@ components:
                     - print_services
                     - after_hours_locker
                     - after_hours_dropbox
+        errors:
+          type: array
     get_service_point_by_id_response_body:
       title: get_service_point_by_id_response_body
       type: object
@@ -10684,6 +11061,9 @@ tags:
     description: |
       manifests
     x-displayName: Manifests
+  - name: package_pickups
+    description: Scheduled package pickups
+    x-displayName: Package Pickups
   - name: package_types
     description: |
       custom package types
