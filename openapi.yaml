@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202208171808
+  version: 1.1.202208292008
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -7575,12 +7575,23 @@ components:
           maxLength: 50
           nullable: true
           description: >
-            You can optionally use this field to store your own identifier for
-            this shipment.
+            A unique user-defined key to identify a shipment.  This can be used
+            to retrieve the shipment.
 
 
             > **Warning:** The `external_shipment_id` is limited to 50
             characters. Any additional characters will be truncated.
+        shipment_number:
+          type: string
+          maxLength: 50
+          nullable: true
+          description: >
+            A non-unique user-defined number used to identify a shipment.  If
+            undefined, this will match the external_shipment_id of the shipment.
+
+
+            > **Warning:** The `shipment_number` is limited to 50 characters.
+            Any additional characters will be truncated.
         ship_date:
           allOf:
             - $ref: '#/components/schemas/date'
