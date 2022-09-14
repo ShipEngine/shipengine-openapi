@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202208292008
+  version: 1.1.202209141909
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -1510,7 +1510,7 @@ paths:
           schema:
             type: string
             minLength: 1
-          example: 9.405511899223197e+21
+          example: '9405511899223197428490'
         - description: >-
             Only return labels that were created in a specific
             [batch](https://www.shipengine.com/docs/labels/bulk/)
@@ -2542,7 +2542,7 @@ paths:
           $ref: '#/components/responses/404_error_response'
         '500':
           $ref: '#/components/responses/500_error_response'
-  '/v1/service_points/{carrier_code}/{country_code}/{service_code_id}':
+  '/v1/service_points/{carrier_code}/{country_code}/{service_point_id}':
     summary: Service Points
     parameters:
       - name: carrier_code
@@ -3632,7 +3632,7 @@ paths:
           schema:
             type: string
             minLength: 1
-          example: 9.405511899223197e+21
+          example: '9405511899223197428490'
           description: The tracking number associated with a shipment
       responses:
         '200':
@@ -3681,7 +3681,7 @@ paths:
           schema:
             type: string
             minLength: 1
-          example: 9.405511899223197e+21
+          example: '9405511899223197428490'
           description: The tracking number associated with a shipment
       responses:
         '204':
@@ -3723,7 +3723,7 @@ paths:
           schema:
             type: string
             minLength: 1
-          example: 9.405511899223197e+21
+          example: '9405511899223197428490'
           description: The tracking number associated with a shipment
       responses:
         '204':
@@ -4997,6 +4997,7 @@ components:
       enum:
         - label
         - qr_code
+        - label_and_qr_code
       description: The display format that the label should be shown in.
     remove_from_batch_request_body:
       title: remove_from_batch_request_body
@@ -8233,7 +8234,7 @@ components:
     package:
       title: package
       type: object
-      description: >-
+      description: >
         A package associated with a [shipping
         label](https://www.shipengine.com/docs/labels/create-a-label/)
       required:
@@ -8244,8 +8245,7 @@ components:
           readOnly: true
           type: integer
           format: int32
-        description: |
-          The package ID
+          description: The package ID
         package_code:
           allOf:
             - $ref: '#/components/schemas/package_code'
@@ -8929,7 +8929,7 @@ components:
           readOnly: true
           type: string
           minLength: 1
-          example: 9.475711899564878e+21
+          example: '9475711899564878915476'
           description: A string that uniquely identifies the submission
         carrier_id:
           readOnly: true
@@ -9025,7 +9025,7 @@ components:
       additionalProperties: false
       allOf:
         - $ref: '#/components/schemas/manifests'
-        - $ref: '#/components/schemas/manifests requests'
+        - $ref: '#/components/schemas/manifests_requests'
         - $ref: '#/components/schemas/deprecated_manifest'
         - $ref: '#/components/schemas/error_with_label_id_response_body'
     manifests:
@@ -9039,8 +9039,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/manifest'
-    manifests requests:
-      title: manifests requests
+    manifests_requests:
+      title: manifests_requests
       type: object
       description: An array of manifest requests
       additionalProperties: false
@@ -9049,9 +9049,9 @@ components:
           description: Resulting manifest requests with statuses
           type: array
           items:
-            $ref: '#/components/schemas/manifest request'
-    manifest request:
-      title: manifest request
+            $ref: '#/components/schemas/manifest_request'
+    manifest_request:
+      title: manifest_request
       type: object
       description: A reference to the manifest request
       additionalProperties: false
@@ -9118,7 +9118,7 @@ components:
           deprecated: true
           type: string
           minLength: 1
-          example: 9.475711899564878e+21
+          example: '9475711899564878915476'
           description: A string that uniquely identifies the submission
         carrier_id:
           deprecated: true
@@ -9922,7 +9922,7 @@ components:
         - from_country_code
         - from_postal_code
         - from_city_locality
-        - from_state_provinced
+        - from_state_province
         - to_country_code
         - to_postal_code
         - to_city_locality
@@ -10269,6 +10269,11 @@ components:
               carrier_code:
                 type: string
                 example: chronopost
+              service_codes:
+                type: array
+                items:
+                  type: string
+                  example: chronoclassic
               service_point_id:
                 type: string
                 example: '614940'
@@ -10402,18 +10407,26 @@ components:
                     - after_hours_dropbox
         errors:
           type: array
+          readOnly: true
+          items:
+            allOf:
+              - $ref: '#/components/schemas/error'
+          description: The errors associated with the failed API call
     get_service_point_by_id_response_body:
       title: get_service_point_by_id_response_body
       type: object
       description: A get service point by ID response body
       properties:
         service_point:
-          items: null
           type: object
           properties:
             carrier_code:
               type: string
               example: chronopost
+            service_codes:
+              type: array
+              items:
+                type: string
             service_point_id:
               type: string
               example: '614940'
