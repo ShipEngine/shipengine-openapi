@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202209141909
+  version: 1.1.202209262209
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -10210,12 +10210,36 @@ components:
     get_service_points_request_body:
       title: get_service_points_request_body
       type: object
-      description: A get service points request body
+      description: >-
+        A get service points request body. Caller must provide exactly one of
+        address_query, address, or lat / long pair.
       required:
         - providers
-        - lat
-        - long
       properties:
+        address_query:
+          type: string
+          description: Unstructured text to search for service points by.
+          example: 177A Bleecker Street New York
+        address:
+          type: object
+          description: Structured address to search by.
+          required:
+            - country_code
+          properties:
+            address_line1:
+              type: string
+            address_line2:
+              type: string
+            address_line3:
+              type: string
+            city_locality:
+              type: string
+            state_province:
+              type: string
+            postal_code:
+              type: string
+            country_code:
+              type: string
         providers:
           type: array
           description: An array of shipping service providers and service codes
@@ -10237,15 +10261,15 @@ components:
           type: number
           example: 48.874518928233094
           description: >-
-            The latitude of the point. Represented as signed degrees.
-            http://www.geomidpoint.com/latlon.html
+            The latitude of the point. Represented as signed degrees. Required
+            if long is provided. http://www.geomidpoint.com/latlon.html
         long:
           format: double
           type: number
           example: 2.3591775711639404
           description: >-
-            The latitude of the point. Represented as signed degrees.
-            http://www.geomidpoint.com/latlon.html
+            The latitude of the point. Represented as signed degrees. Required
+            if lat is provided. http://www.geomidpoint.com/latlon.html
         radius:
           format: int32
           type: integer
