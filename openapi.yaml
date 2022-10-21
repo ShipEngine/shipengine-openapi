@@ -5384,6 +5384,7 @@ components:
         - fedex
         - fedex_uk
         - firstmile
+        - globegistics
         - imex
         - newgistics
         - ontrac
