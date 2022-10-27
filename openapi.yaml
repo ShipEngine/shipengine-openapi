@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202209262209
+  version: 1.1.202210271910
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -4729,8 +4729,8 @@ components:
         `dhl_global_mail` <br> `dhl_express` <br> `dhl_express_australia` <br>
         `dhl_express_canada` <br> `dhl_express_worldwide` <br> `dhl_express_uk`
         <br> `dpd` <br> `endicia` <br> `fedex` <br> `fedex_uk` <br> `firstmile`
-        <br> `globegistics` <br> `imex` <br> `newgistics` <br> `ontrac` <br>
-        `rr_donnelley` <br> `stamps_com` <br> `ups` <br> `usps`
+        <br> `imex` <br> `newgistics` <br> `ontrac` <br> `rr_donnelley` <br>
+        `stamps_com` <br> `ups` <br> `usps`
     se_id:
       title: se_id
       type: string
@@ -5287,24 +5287,9 @@ components:
     currency:
       title: currency
       type: string
-      enum:
-        - usd
-        - cad
-        - aud
-        - gbp
-        - eur
-        - nzd
-      description: |
-        The currencies that are supported by ShipEngine.
-
-        |Currency Code  | Description
-        |---------------|-----------------------
-        |`usd`          | United States Dollar
-        |`cad`          | Canadian Dollar
-        |`aud`          | Australian Dollar
-        |`gbp`          | Great British Pound
-        |`eur`          | Euro
-        |`nzd`          | New Zealand Dollar
+      description: >
+        The currencies that are supported by ShipEngine are the ones that
+        specified by ISO 4217: https://www.iso.org/iso-4217-currency-codes.html
     add_funds_to_carrier_response_body:
       title: add_funds_to_carrier_response_body
       type: object
@@ -5384,7 +5369,6 @@ components:
         - fedex
         - fedex_uk
         - firstmile
-        - globegistics
         - imex
         - newgistics
         - ontrac
@@ -5416,7 +5400,6 @@ components:
         - $ref: '#/components/schemas/connect_fedex_request_body'
         - $ref: '#/components/schemas/connect_fedex_uk_request_body'
         - $ref: '#/components/schemas/connect_firstmile_request_body'
-        - $ref: '#/components/schemas/connect_globegistics_request_body'
         - $ref: '#/components/schemas/connect_imex_request_body'
         - $ref: '#/components/schemas/connect_newgistics_request_body'
         - $ref: '#/components/schemas/connect_ontrac_request_body'
@@ -6039,28 +6022,6 @@ components:
           type: string
           minLength: 1
           description: Profile name
-        password:
-          type: string
-          minLength: 1
-          description: Password
-    connect_globegistics_request_body:
-      title: connect_globegistics_request_body
-      type: object
-      description: A Globegistics account information request body
-      required:
-        - nickname
-        - username
-        - password
-      additionalProperties: false
-      properties:
-        nickname:
-          type: string
-          minLength: 1
-          description: Nickname
-        username:
-          type: string
-          minLength: 1
-          description: Username
         password:
           type: string
           minLength: 1
