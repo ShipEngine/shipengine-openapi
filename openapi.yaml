@@ -10229,7 +10229,7 @@ components:
           type: number
           example: 2.3591775711639404
           description: >-
-            The latitude of the point. Represented as signed degrees. Required
+            The longitude of the point. Represented as signed degrees. Required
             if lat is provided. http://www.geomidpoint.com/latlon.html
         radius:
           format: int32
