@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202210271910
+  version: 1.1.202211170011
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -7580,7 +7580,7 @@ components:
           description: The current status of the shipment
         ship_to:
           allOf:
-            - $ref: '#/components/schemas/address'
+            - $ref: '#/components/schemas/shipping_address'
           description: The recipient's mailing address
         ship_from:
           allOf:
@@ -7845,6 +7845,26 @@ components:
         - label_purchased
         - cancelled
       description: The possible shipment status values
+    shipping_address:
+      title: shipping_address
+      type: object
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/address'
+        - $ref: '#/components/schemas/partial_shipping_address'
+    partial_shipping_address:
+      title: partial_shipping_address
+      type: object
+      description: A complete or partial mailing address.
+      required: null
+      additionalProperties: false
+      properties:
+        instructions:
+          type: string
+          minLength: 1
+          nullable: true
+          description: |
+            Additional text about how to handle the shipment at this address.
     delivery_confirmation:
       title: delivery_confirmation
       type: string
