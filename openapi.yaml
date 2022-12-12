@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202211170011
+  version: 1.1.202212081712
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -8223,10 +8223,11 @@ components:
       additionalProperties: false
       properties:
         package_id:
-          readOnly: true
-          type: integer
-          format: int32
-          description: The package ID
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: >-
+            A string that uniquely identifies this [package
+            type](https://www.shipengine.com/docs/reference/list-carrier-packages/)
         package_code:
           allOf:
             - $ref: '#/components/schemas/package_code'
