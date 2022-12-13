@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202212081712
+  version: 1.1.202212131612
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -1111,9 +1111,7 @@ paths:
         schema:
           $ref: '#/components/schemas/carrier_name_with_settings'
         example: dhl_express
-        description: >-
-          The carrier name, such as `stamps_com`, `ups`, `fedex`, or
-          `dhl_express`.
+        description: 'The carrier name, such as `ups`, `fedex`, or `dhl_express`.'
       - name: carrier_id
         in: path
         required: true
@@ -7584,7 +7582,7 @@ components:
           description: The recipient's mailing address
         ship_from:
           allOf:
-            - $ref: '#/components/schemas/address'
+            - $ref: '#/components/schemas/shipping_address'
           description: >
             The shipment's origin address. If you frequently ship from the same
             location, consider [creating a
@@ -7603,7 +7601,7 @@ components:
             `ship_from` must be specified.
         return_to:
           allOf:
-            - $ref: '#/components/schemas/address'
+            - $ref: '#/components/schemas/shipping_address'
           description: >
             The return address for this shipment.  Defaults to the `ship_from`
             address.
@@ -10250,7 +10248,7 @@ components:
           type: number
           example: 2.3591775711639404
           description: >-
-            The latitude of the point. Represented as signed degrees. Required
+            The longitude of the point. Represented as signed degrees. Required
             if lat is provided. http://www.geomidpoint.com/latlon.html
         radius:
           format: int32
@@ -10436,44 +10434,35 @@ components:
             service_point_id:
               type: string
               example: '614940'
-            address:
-              type: object
-              properties:
-                phone_number:
-                  type: string
-                  example: 555-555-5555
-                company_name:
-                  type: string
-                  example: My fancy company name
-                description:
-                  type: string
-                  example: This is a description of the service point
-                geo:
-                  type: object
-                  properties:
-                    lat:
-                      format: double
-                      type: number
-                      example: 48.842608
-                    long:
-                      format: double
-                      type: number
-                      example: 0.032875
-                address_line1:
-                  type: string
-                  example: PLACE DU CANADA
-                city_locality:
-                  type: string
-                  example: TRUN
-                state_province:
-                  type: string
-                  example: TRUN
-                postal_code:
-                  type: string
-                  example: '61160'
-                country_code:
-                  type: string
-                  example: FR
+            company_name:
+              type: string
+              example: My fancy company name
+            address_line1:
+              type: string
+              example: PLACE DU CANADA
+            city_locality:
+              type: string
+              example: TRUN
+            state_province:
+              type: string
+              example: TRUN
+            postal_code:
+              type: string
+              example: '61160'
+            country_code:
+              type: string
+              example: FR
+            phone_number:
+              type: string
+              example: 555-555-5555
+            lat:
+              format: double
+              type: number
+              example: 48.842608
+            long:
+              format: double
+              type: number
+              example: 0.032875
             hours_of_operation:
               type: object
               properties:
