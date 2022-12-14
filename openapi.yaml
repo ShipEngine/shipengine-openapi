@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202212131612
+  version: 1.1.202212141512
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -10281,44 +10281,35 @@ components:
               service_point_id:
                 type: string
                 example: '614940'
-              address:
-                type: object
-                properties:
-                  phone_number:
-                    type: string
-                    example: 555-555-5555
-                  company_name:
-                    type: string
-                    example: My fancy company name
-                  description:
-                    type: string
-                    example: This is a description of the service point
-                  geo:
-                    type: object
-                    properties:
-                      lat:
-                        format: double
-                        type: number
-                        example: 48.842608
-                      long:
-                        format: double
-                        type: number
-                        example: 0.032875
-                  address_line1:
-                    type: string
-                    example: PLACE DU CANADA
-                  city_locality:
-                    type: string
-                    example: TRUN
-                  state_province:
-                    type: string
-                    example: TRUN
-                  postal_code:
-                    type: string
-                    example: '61160'
-                  country_code:
-                    type: string
-                    example: FR
+              company_name:
+                type: string
+                example: My fancy company name
+              address_line1:
+                type: string
+                example: PLACE DU CANADA
+              city_locality:
+                type: string
+                example: TRUN
+              state_province:
+                type: string
+                example: TRUN
+              postal_code:
+                type: string
+                example: '61160'
+              country_code:
+                type: string
+                example: FR
+              phone_number:
+                type: string
+                example: 555-555-5555
+              lat:
+                format: double
+                type: number
+                example: 48.842608
+              long:
+                format: double
+                type: number
+                example: 0.032875
               hours_of_operation:
                 type: object
                 properties:
