@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202212152212
+  version: 1.1.202212161512
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -7126,13 +7126,14 @@ components:
                 items:
                   $ref: '#/components/schemas/package'
               alternative_identifiers:
+                type: array
                 readOnly: true
                 nullable: true
-                allOf:
-                  - $ref: '#/components/schemas/alternative_identifiers'
                 description: >
                   Additional information some carriers may provide by which to
                   identify a given label in their system. 
+                items:
+                  $ref: '#/components/schemas/alternative_identifier'
       allOf:
         - $ref: '#/components/schemas/paged_list_response_body'
     paged_list_response_body:
@@ -7462,13 +7463,14 @@ components:
           items:
             $ref: '#/components/schemas/package'
         alternative_identifiers:
+          type: array
           readOnly: true
           nullable: true
-          allOf:
-            - $ref: '#/components/schemas/alternative_identifiers'
           description: >
             Additional information some carriers may provide by which to
             identify a given label in their system. 
+          items:
+            $ref: '#/components/schemas/alternative_identifier'
     shipment:
       title: shipment
       type: object
@@ -8415,9 +8417,12 @@ components:
         - error
         - delivered
       description: The different statuses that can apply to a shipment.
-    alternative_identifiers:
-      title: alternative_identifiers
+    alternative_identifier:
+      title: alternative_identifier
       type: object
+      description: >
+        Additional information some carriers may provide by which to identify a
+        given label in their system. 
       additionalProperties: false
       properties:
         type:
