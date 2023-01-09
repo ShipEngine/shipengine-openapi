@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202212161512
+  version: 1.1.202301091601
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -3936,6 +3936,12 @@ components:
           description: >
             The phone number of a contact person at this address.  The format of
             this phone number varies depending on the country.
+        email:
+          type: string
+          nullable: true
+          example: example@example.com
+          description: |
+            Email for the address owner.
         company_name:
           type: string
           minLength: 1
