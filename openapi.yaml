@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202301091601
+  version: 1.1.202301170801
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -10354,6 +10354,10 @@ components:
                 format: double
                 type: number
                 example: 0.032875
+              distance_in_meters:
+                format: double
+                type: number
+                example: 728.9959308847579
               hours_of_operation:
                 type: object
                 properties:
