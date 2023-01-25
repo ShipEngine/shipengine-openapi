@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202301170801
+  version: 1.1.202301250901
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -7973,6 +7973,10 @@ components:
           allOf:
             - $ref: '#/components/schemas/monetary_value'
           description: The declared customs value of each item
+        weight:
+          allOf:
+            - $ref: '#/components/schemas/weight'
+          description: The item weight
         harmonized_tariff_code:
           type: string
           nullable: true
@@ -8001,6 +8005,33 @@ components:
           type: string
           description: Description of the Custom Item's SKU
           nullable: true
+    weight:
+      title: weight
+      type: object
+      description: The weight of a package
+      required:
+        - value
+        - unit
+      additionalProperties: false
+      properties:
+        value:
+          type: number
+          format: double
+          minimum: 0
+          exclusiveMinimum: true
+          description: 'The weight, in the specified unit'
+        unit:
+          allOf:
+            - $ref: '#/components/schemas/weight_unit'
+    weight_unit:
+      title: weight_unit
+      type: string
+      enum:
+        - pound
+        - ounce
+        - gram
+        - kilogram
+      description: The possible weight unit values
     advanced_shipment_options:
       title: advanced_shipment_options
       type: object
@@ -8143,33 +8174,6 @@ components:
         - recipient
         - third_party
       description: The possible bill to party values
-    weight:
-      title: weight
-      type: object
-      description: The weight of a package
-      required:
-        - value
-        - unit
-      additionalProperties: false
-      properties:
-        value:
-          type: number
-          format: double
-          minimum: 0
-          exclusiveMinimum: true
-          description: 'The weight, in the specified unit'
-        unit:
-          allOf:
-            - $ref: '#/components/schemas/weight_unit'
-    weight_unit:
-      title: weight_unit
-      type: string
-      enum:
-        - pound
-        - ounce
-        - gram
-        - kilogram
-      description: The possible weight unit values
     origin_type:
       title: origin_type
       type: string
