@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202301311101
+  version: 1.1.202302031802
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -7629,6 +7629,13 @@ components:
           description: >
             The return address for this shipment.  Defaults to the `ship_from`
             address.
+        is_return:
+          type: boolean
+          nullable: true
+          default: false
+          description: >
+            An optional indicator if the shipment is intended to be a return.
+            Defaults to false if not provided.
         confirmation:
           default: none
           allOf:
@@ -10313,14 +10320,6 @@ components:
       type: object
       description: A list service points response body
       properties:
-        lat:
-          format: double
-          type: number
-          example: 48.842608
-        long:
-          format: double
-          type: number
-          example: 0.032875
         service_points:
           type: array
           items:
