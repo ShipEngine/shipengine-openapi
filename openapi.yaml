@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202302031802
+  version: 1.1.202302102002
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -3835,7 +3835,7 @@ paths:
         '500':
           $ref: '#/components/responses/500_error_response'
     put:
-      summary: Update WareHouse By Id
+      summary: Update Warehouse By Id
       description: Update Warehouse object information
       tags:
         - warehouses
@@ -3868,6 +3868,44 @@ paths:
       tags:
         - warehouses
       operationId: delete_warehouse
+      responses:
+        '204':
+          description: The request was successful.
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/empty_response_body'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/empty_response_body'
+        '400':
+          $ref: '#/components/responses/400_error_response'
+        '404':
+          $ref: '#/components/responses/404_error_response'
+        '500':
+          $ref: '#/components/responses/500_error_response'
+  '/v1/warehouses/{warehouse_id}/settings':
+    summary: Warehouse settings
+    description: Warehouse settings
+    parameters:
+      - name: warehouse_id
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/se_id'
+        description: Warehouse ID
+    put:
+      summary: Update Warehouse Settings
+      description: Update Warehouse settings object information
+      tags:
+        - warehouses
+      operationId: update_warehouse_settings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/update_warehouse_settings_request_body'
       responses:
         '204':
           description: The request was successful.
@@ -7885,7 +7923,6 @@ components:
       title: partial_shipping_address
       type: object
       description: A complete or partial mailing address.
-      required: null
       additionalProperties: false
       properties:
         instructions:
@@ -10971,6 +11008,11 @@ components:
           allOf:
             - $ref: '#/components/schemas/se_id'
           description: A string that uniquely identifies the warehouse
+        is_default:
+          nullable: true
+          type: boolean
+          default: false
+          description: Designates which single warehouse is the default on the account
         name:
           type: string
           minLength: 1
@@ -11037,6 +11079,17 @@ components:
       additionalProperties: false
       allOf:
         - $ref: '#/components/schemas/warehouse'
+    update_warehouse_settings_request_body:
+      title: update_warehouse_settings_request_body
+      type: object
+      description: An update warehouse settings request body
+      properties:
+        is_default:
+          type: boolean
+          nullable: true
+          description: The default property on the warehouse.
+          example: true
+      additionalProperties: false
   responses:
     400_error_response:
       description: The request contained errors.
