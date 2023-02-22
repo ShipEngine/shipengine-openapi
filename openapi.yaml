@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202302211802
+  version: 1.1.202302221802
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -8204,6 +8204,13 @@ components:
           default: null
         collect_on_delivery:
           $ref: '#/components/schemas/collect_on_delivery'
+        third_party_consignee:
+          type: boolean
+          default: false
+          description: >-
+            Third Party Consignee option is a value-added service that allows
+            the shipper to supply goods without commercial invoices being
+            attached
     bill_to_party:
       title: bill_to_party
       type: string
