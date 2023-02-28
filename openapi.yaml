@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202302221802
+  version: 1.1.202302281402
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -10357,6 +10357,14 @@ components:
       type: object
       description: A list service points response body
       properties:
+        lat:
+          format: double
+          type: number
+          example: 48.842608
+        long:
+          format: double
+          type: number
+          example: 0.032875
         service_points:
           type: array
           items:
