@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202302281402
+  version: 1.1.202303022103
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -8306,6 +8306,15 @@ components:
             type](https://www.shipengine.com/docs/reference/list-carrier-packages/),
             such as `thick_envelope`, `small_flat_rate_box`, `large_package`,
             etc.  The code `package` indicates a custom or unknown package type.
+        content_description:
+          type: string
+          minLength: 1
+          maxLength: 35
+          description: >
+            A short description of the package content. Required for shipments
+            moving to, from, and through Mexico.
+          example: Hand knitted wool socks
+          nullable: true
         weight:
           allOf:
             - $ref: '#/components/schemas/weight'
