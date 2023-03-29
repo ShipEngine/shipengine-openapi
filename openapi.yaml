@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202303022103
+  version: 1.1.202303291603
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -7667,6 +7667,13 @@ components:
           description: >
             The return address for this shipment.  Defaults to the `ship_from`
             address.
+        is_return:
+          type: boolean
+          nullable: true
+          default: false
+          description: >
+            An optional indicator if the shipment is intended to be a return.
+            Defaults to false if not provided.
         confirmation:
           default: none
           allOf:
