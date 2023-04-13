@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202303291603
+  version: 1.1.202304121504
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -10520,6 +10520,12 @@ components:
                     - print_services
                     - after_hours_locker
                     - after_hours_dropbox
+              type:
+                type: string
+                default: pudo
+                enum:
+                  - pudo
+                  - locker
         errors:
           type: array
           readOnly: true
@@ -10664,6 +10670,12 @@ components:
                   - print_services
                   - after_hours_locker
                   - after_hours_dropbox
+            type:
+              type: string
+              default: pudo
+              enum:
+                - pudo
+                - locker
     shipments_sort_by:
       title: shipments_sort_by
       type: string
