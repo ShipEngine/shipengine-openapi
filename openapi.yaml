@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202304121504
+  version: 1.1.202304191404
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -89,6 +89,169 @@ info:
     including the United States, Canada, Great Britain, Australia, Germany,
     France, Norway, Spain, Sweden, Israel, Italy, and over 160 others.
 paths:
+  /v1/account/settings:
+    summary: Account settings
+    description: ShipEngine Account settings
+    get:
+      summary: List Account Settings
+      description: List all account settings for the ShipEngine account
+      tags:
+        - account
+      operationId: list_account_settings
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_account_settings_response_body'
+        '400':
+          $ref: '#/components/responses/400_error_response'
+        '404':
+          $ref: '#/components/responses/404_error_response'
+        '500':
+          $ref: '#/components/responses/500_error_response'
+  /v1/account/settings/images:
+    summary: Account settings images
+    description: ShipEngine Account images
+    get:
+      summary: List Account Images
+      description: List all account images for the ShipEngine account
+      tags:
+        - account
+      operationId: list_account_images
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/list_account_settings_images_response_body
+        '400':
+          $ref: '#/components/responses/400_error_response'
+        '404':
+          $ref: '#/components/responses/404_error_response'
+        '500':
+          $ref: '#/components/responses/500_error_response'
+    post:
+      summary: Create an Account Image
+      description: Create an Account Image
+      tags:
+        - account
+      operationId: create_account_image
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/create_account_settings_image_request_body'
+      responses:
+        '200':
+          description: The requested object creation was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_account_settings_images_response_body'
+        '400':
+          $ref: '#/components/responses/400_error_response'
+        '404':
+          $ref: '#/components/responses/404_error_response'
+        '500':
+          $ref: '#/components/responses/500_error_response'
+  '/v1/account/settings/images/{label_image_id}':
+    summary: Account settings images
+    description: ShipEngine Account images
+    get:
+      summary: Get Account Image By ID
+      description: Retrieve information for an account image.
+      tags:
+        - account
+      operationId: get_account_settings_images_by_id
+      parameters:
+        - name: label_image_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/image_id'
+          description: Label Image Id
+      responses:
+        '200':
+          description: The request was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_account_settings_images_response_body'
+        '400':
+          $ref: '#/components/responses/400_error_response'
+        '404':
+          $ref: '#/components/responses/404_error_response'
+        '500':
+          $ref: '#/components/responses/500_error_response'
+    put:
+      summary: Update Account Image By ID
+      description: Update information for an account image.
+      tags:
+        - account
+      operationId: update_account_settings_images_by_id
+      parameters:
+        - name: label_image_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/image_id'
+          description: Label Image Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/update_account_settings_image_request_body'
+      responses:
+        '204':
+          description: The request was successful.
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/empty_response_body'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/empty_response_body'
+        '400':
+          $ref: '#/components/responses/400_error_response'
+        '404':
+          $ref: '#/components/responses/404_error_response'
+        '500':
+          $ref: '#/components/responses/500_error_response'
+    delete:
+      summary: Delete Account Image By Id
+      description: Delete Account Image By Id
+      tags:
+        - account
+      operationId: delete_account_image_by_id
+      parameters:
+        - name: label_image_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/image_id'
+          description: Label Image Id
+      responses:
+        '204':
+          description: The request was successful.
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/empty_response_body'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/empty_response_body'
+        '400':
+          $ref: '#/components/responses/400_error_response'
+        '404':
+          $ref: '#/components/responses/404_error_response'
+        '500':
+          $ref: '#/components/responses/500_error_response'
   /v1/addresses/recognize:
     summary: Parse an address
     description: >
@@ -3926,6 +4089,446 @@ servers:
   - url: 'https://api.shipengine.com'
 components:
   schemas:
+    get_account_settings_response_body:
+      title: get_account_settings_response_body
+      allOf:
+        - $ref: '#/components/schemas/list_account_settings_body'
+    list_account_settings_body:
+      title: list_account_settings_body
+      type: object
+      description: An account settings list response body
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/account_settings'
+    account_settings:
+      title: account_settings
+      type: object
+      description: A ShipEngine account settings response body
+      additionalProperties: false
+      properties:
+        default_label_layout:
+          allOf:
+            - $ref: '#/components/schemas/default_label_layout'
+    default_label_layout:
+      title: default_label_layout
+      type: string
+      enum:
+        - 4x6
+        - Letter
+      description: The possible default label layout values
+    error_response_body:
+      title: error_response_body
+      type: object
+      description: An error response body
+      required:
+        - request_id
+        - errors
+      additionalProperties: false
+      properties:
+        request_id:
+          allOf:
+            - $ref: '#/components/schemas/uuid'
+          description: >
+            A UUID that uniquely identifies the request id.
+
+            This can be given to the support team to help debug non-trivial
+            issues that may occur
+        errors:
+          type: array
+          readOnly: true
+          items:
+            allOf:
+              - $ref: '#/components/schemas/error'
+          description: The errors associated with the failed API call
+    uuid:
+      title: uuid
+      type: string
+      format: uuid
+      minLength: 36
+      maxLength: 36
+      pattern: >-
+        ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$
+      example: aa3d8e8e-462b-4476-9618-72db7f7b7009
+      description: A UUID (a.k.a. GUID) that uniquely identifies a resource
+    error:
+      title: error
+      type: object
+      description: |
+        The error structure that gets returned with almost all failed API calls
+      required:
+        - error_source
+        - error_type
+        - error_code
+        - message
+      additionalProperties: false
+      properties:
+        error_source:
+          allOf:
+            - $ref: '#/components/schemas/error_source'
+        error_type:
+          allOf:
+            - $ref: '#/components/schemas/error_type'
+        error_code:
+          allOf:
+            - $ref: '#/components/schemas/error_code'
+        message:
+          type: string
+          readOnly: true
+          example: Body of request cannot be null.
+          minLength: 1
+          description: An error message associated with the failed API call
+    error_source:
+      title: error_source
+      type: string
+      enum:
+        - carrier
+        - order_source
+        - shipengine
+      description: >
+        The source of the error, as indicated by the name this informs us if the
+        API call failed because of the
+
+        carrier, the order source, or the ShipEngine API itself.
+    error_type:
+      title: error_type
+      type: string
+      enum:
+        - account_status
+        - business_rules
+        - validation
+        - security
+        - system
+        - integrations
+      description: |
+        The type of error
+    error_code:
+      title: error_code
+      type: string
+      enum:
+        - auto_fund_not_supported
+        - batch_cannot_be_modified
+        - carrier_conflict
+        - carrier_disconnected
+        - carrier_not_connected
+        - carrier_not_supported
+        - confirmation_not_supported
+        - default_warehouse_cannot_be_deleted
+        - field_conflict
+        - field_value_required
+        - forbidden
+        - identifier_conflict
+        - identifiers_must_match
+        - insufficient_funds
+        - invalid_address
+        - invalid_billing_plan
+        - invalid_field_value
+        - invalid_identifier
+        - invalid_status
+        - invalid_string_length
+        - label_images_not_supported
+        - meter_failure
+        - order_source_not_active
+        - rate_limit_exceeded
+        - refresh_not_supported
+        - request_body_required
+        - return_label_not_supported
+        - settings_not_supported
+        - subscription_inactive
+        - terms_not_accepted
+        - tracking_not_supported
+        - trial_expired
+        - unauthorized
+        - unknown
+        - unspecified
+        - verification_failure
+        - warehouse_conflict
+        - webhook_event_type_conflict
+      description: The error code specified for the failed API Call
+    list_account_settings_images_response_body:
+      title: list_account_settings_images_response_body
+      allOf:
+        - $ref: '#/components/schemas/list_account_images_response_body'
+    list_account_images_response_body:
+      title: list_account_images_response_body
+      type: object
+      description: A list account images response body
+      required:
+        - images
+      additionalProperties: false
+      properties:
+        images:
+          type: array
+          readOnly: true
+          minItems: 0
+          items:
+            allOf:
+              - title: account_settings_images
+                type: object
+                description: A ShipEngine account images body
+                additionalProperties: false
+                properties:
+                  label_image_id:
+                    readOnly: true
+                    allOf:
+                      - $ref: '#/components/schemas/image_id'
+                    description: >
+                      A string that uniquely identifies the image. This ID is
+                      generated by ShipEngine when the image is uploaded.
+                  name:
+                    type: string
+                    minLength: 1
+                    maxLength: 50
+                    example: My logo
+                    description: |
+                      A human readable name for the image.
+                  is_default:
+                    type: boolean
+                    example: false
+                    description: |
+                      Indicates whether this image is set as default.
+                  image_content_type:
+                    allOf:
+                      - type: string
+                        enum:
+                          - image/png
+                          - image/jpeg
+                        description: The image type
+                    description: |
+                      The file type of the image. 
+                  image_data:
+                    type: string
+                    example: >-
+                      iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAiVJREFUSEu91j3IeVEcB/CvSTIoBrFSikEZMdjsjExeUspgUEp5SUpeshrIgEFJJmWwMZHJQGHDhJSXTPfpnH/8ebzd56HnN93u7ZzP/f1+55x7Ob1ejxEKheByufh0HI9HrFYrcKbTKUMu5HI5BALBx5zNZoPxeAySAGc2mzF8Pp/e+BR0Ash8u93uHyKVSnH54J2Mvs8zn8//I6RO70L3xt8g70CPXvAu8hvoWQUeIj+BXpX4KcIGegWQOV4izyA2AGvkHsQW+BFyCUkkEiwWC9Ybl1W5Ls8ZMoAABCIbmE3cINFoFMFgEEajEeVyGSKRCJ1OB3q9ns5nMpmQTCaxXq9/l8loNEKj0YDX66UACYvFQq9brRYcDgdUKhU9RD/SEwLm83lEIhGUSiX0+33E4/GrU5otRMs1mUyYbDYLu90OhUJBMzhlZbPZ4Pf7odFo4HQ6b1rABqJIvV5nttstLc0pSIn2+z0tTy6XQ6FQoI/a7TZ0Ot0V9gqiiMFgYKrVKm0yieVyCZ/PB6vVSpF0Ok2zJHEqIY/HYw1RxOfzMYlE4jwoEAhAJpPBbDZf9eBwOCCVSsHtdp9f6FJ6egorlUqmVqvRfjSbTXS7XXg8nptP8Svk0RF01ROtVguSUTgchlgsPpeOZBaLxTAcDlEsFpHJZPC9XM8yoshgMGBCoRBdQWTCU7hcLjohWb5kM6rValQqlfMKfLbbb77xf/K38hf/XV9ilOpnLqvnogAAAABJRU5ErkJggg==
+                    description: |
+                      A base64 encoded string representation of the image.
+                  created_at:
+                    readOnly: true
+                    allOf:
+                      - $ref: '#/components/schemas/date_time'
+                    description: >-
+                      The date and time that the image was created in
+                      ShipEngine.
+                  modified_at:
+                    readOnly: true
+                    allOf:
+                      - $ref: '#/components/schemas/date_time'
+                    description: >-
+                      The date and time that the image was modified in
+                      ShipEngine.
+            description: Image
+          description: Image List
+      allOf:
+        - $ref: '#/components/schemas/paged_list_response_body'
+    paged_list_response_body:
+      title: paged_list_response_body
+      type: object
+      required:
+        - total
+        - page
+        - pages
+        - links
+      additionalProperties: true
+      properties:
+        total:
+          type: integer
+          minimum: 0
+          example: 2750
+          description: The total number of items across all pages of results
+        page:
+          type: integer
+          minimum: 1
+          example: 1
+          description: >-
+            The current page number of results.  For example, if there are 80
+            results, and the page size is 25, then `page` could be 1, 2, 3, or
+            4.  The first three pages would contain 25 items each, and the
+            fourth page would contain the five remaining items.
+        pages:
+          type: integer
+          minimum: 0
+          example: 4
+          description: >-
+            The total number of pages of results.  For example, if there are 80
+            results, and the page size is 25, then `pages` would be 4.  The
+            first three pages would contain 25 items each, and the fourth page
+            would contain the five remaining items.  If there are no results,
+            then `pages` will be zero.
+        links:
+          allOf:
+            - $ref: '#/components/schemas/pagination_link'
+      description: >
+        Many ShipEngine endpoints return a paged list of items.  In addition to
+        the returned items, these responses also include information about the
+        total number of items, the number of pages of results, and URLs of other
+        pages of results.
+    pagination_link:
+      title: pagination_link
+      type: object
+      description: Helpful links to other pages of results
+      required:
+        - first
+        - last
+        - prev
+        - next
+      additionalProperties: false
+      properties:
+        first:
+          allOf:
+            - $ref: '#/components/schemas/link'
+          description: >
+            The link to the first page of results.  This object will _always_
+            have an `href` field. If there are no results, then the first page
+            will contain an empty array of items.
+        last:
+          allOf:
+            - $ref: '#/components/schemas/link'
+          description: >
+            The link to the final page of results.  This object will _always_
+            have an `href` field. If there are no results, then the final page
+            will contain an empty array of items.
+        prev:
+          allOf:
+            - $ref: '#/components/schemas/optional_link'
+          description: >
+            The link to the previous page of results.  The `href` field will
+            only be set when the `page` is 2 or greater.
+        next:
+          allOf:
+            - $ref: '#/components/schemas/optional_link'
+          description: >
+            The link to the next page of results.  The `href` field will only be
+            set when the `page` is less than `pages`.
+    link:
+      title: link
+      type: object
+      description: A link to a related resource
+      additionalProperties: false
+      required:
+        - href
+      allOf:
+        - $ref: '#/components/schemas/optional_link'
+    optional_link:
+      title: optional_link
+      type: object
+      description: >-
+        A link to a related resource, or an empty object if there is no resource
+        to link to
+      additionalProperties: false
+      properties:
+        href:
+          allOf:
+            - $ref: '#/components/schemas/url'
+          description: 'The URL of the linked resource, if any'
+        type:
+          type: string
+          minLength: 1
+          description: >-
+            The type of resource, or the type of relationship to the parent
+            resource
+    url:
+      title: url
+      type: string
+      format: url
+      minLength: 1
+      example: 'http://api.shipengine.com/v1/labels/se-28529731'
+      description: A URL
+    create_account_settings_image_request_body:
+      title: create_account_settings_image_request_body
+      type: object
+      description: A ShipEngine account settings images request body
+      required:
+        - name
+        - image_content_type
+        - image_data
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/account_settings_images'
+    account_settings_images:
+      title: account_settings_images
+      type: object
+      description: A ShipEngine account images body
+      additionalProperties: false
+      properties:
+        label_image_id:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/image_id'
+          description: >
+            A string that uniquely identifies the image. This ID is generated by
+            ShipEngine when the image is uploaded.
+        name:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: My logo
+          description: |
+            A human readable name for the image.
+        is_default:
+          type: boolean
+          example: false
+          description: |
+            Indicates whether this image is set as default.
+        image_content_type:
+          allOf:
+            - type: string
+              enum:
+                - image/png
+                - image/jpeg
+              description: The image type
+          description: |
+            The file type of the image. 
+        image_data:
+          type: string
+          example: >-
+            iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAiVJREFUSEu91j3IeVEcB/CvSTIoBrFSikEZMdjsjExeUspgUEp5SUpeshrIgEFJJmWwMZHJQGHDhJSXTPfpnH/8ebzd56HnN93u7ZzP/f1+55x7Ob1ejxEKheByufh0HI9HrFYrcKbTKUMu5HI5BALBx5zNZoPxeAySAGc2mzF8Pp/e+BR0Ash8u93uHyKVSnH54J2Mvs8zn8//I6RO70L3xt8g70CPXvAu8hvoWQUeIj+BXpX4KcIGegWQOV4izyA2AGvkHsQW+BFyCUkkEiwWC9Ybl1W5Ls8ZMoAABCIbmE3cINFoFMFgEEajEeVyGSKRCJ1OB3q9ns5nMpmQTCaxXq9/l8loNEKj0YDX66UACYvFQq9brRYcDgdUKhU9RD/SEwLm83lEIhGUSiX0+33E4/GrU5otRMs1mUyYbDYLu90OhUJBMzhlZbPZ4Pf7odFo4HQ6b1rABqJIvV5nttstLc0pSIn2+z0tTy6XQ6FQoI/a7TZ0Ot0V9gqiiMFgYKrVKm0yieVyCZ/PB6vVSpF0Ok2zJHEqIY/HYw1RxOfzMYlE4jwoEAhAJpPBbDZf9eBwOCCVSsHtdp9f6FJ6egorlUqmVqvRfjSbTXS7XXg8nptP8Svk0RF01ROtVguSUTgchlgsPpeOZBaLxTAcDlEsFpHJZPC9XM8yoshgMGBCoRBdQWTCU7hcLjohWb5kM6rValQqlfMKfLbbb77xf/K38hf/XV9ilOpnLqvnogAAAABJRU5ErkJggg==
+          description: |
+            A base64 encoded string representation of the image.
+        created_at:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/date_time'
+          description: The date and time that the image was created in ShipEngine.
+        modified_at:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/date_time'
+          description: The date and time that the image was modified in ShipEngine.
+    image_id:
+      title: image_id
+      type: string
+      minLength: 4
+      example: img_DtBXupDBxREpHnwEXhTfgK
+      description: Used to identify an image resource.
+    date_time:
+      title: date_time
+      type: string
+      format: date-time
+      pattern: '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[-+]\d{2}:\d{2})$'
+      example: '2018-09-23T15:00:00.000Z'
+      description: >
+        An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string that
+        represents a date and time.
+    get_account_settings_images_response_body:
+      title: get_account_settings_images_response_body
+      type: object
+      description: A get account images by id response body
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/account_settings_images'
+    empty_response_body:
+      title: empty_response_body
+      type: string
+      minLength: 0
+      maxLength: 0
+    update_account_settings_image_request_body:
+      title: update_account_settings_image_request_body
+      type: object
+      description: A ShipEngine account settings images request body
+      required:
+        - is_default
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/account_settings_images'
     parse_address_request_body:
       title: parse_address_request_body
       type: object
@@ -4173,134 +4776,6 @@ components:
         Some entities have other information in addition to, or instead of a
         `value`.  For example, a "dimensions" entity will have separate fields
         for `length`, `width`, `height`, and `unit`.
-    error_response_body:
-      title: error_response_body
-      type: object
-      description: An error response body
-      required:
-        - request_id
-        - errors
-      additionalProperties: false
-      properties:
-        request_id:
-          allOf:
-            - $ref: '#/components/schemas/uuid'
-          description: >
-            A UUID that uniquely identifies the request id.
-
-            This can be given to the support team to help debug non-trivial
-            issues that may occur
-        errors:
-          type: array
-          readOnly: true
-          items:
-            allOf:
-              - $ref: '#/components/schemas/error'
-          description: The errors associated with the failed API call
-    uuid:
-      title: uuid
-      type: string
-      format: uuid
-      minLength: 36
-      maxLength: 36
-      pattern: >-
-        ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$
-      example: aa3d8e8e-462b-4476-9618-72db7f7b7009
-      description: A UUID (a.k.a. GUID) that uniquely identifies a resource
-    error:
-      title: error
-      type: object
-      description: |
-        The error structure that gets returned with almost all failed API calls
-      required:
-        - error_source
-        - error_type
-        - error_code
-        - message
-      additionalProperties: false
-      properties:
-        error_source:
-          allOf:
-            - $ref: '#/components/schemas/error_source'
-        error_type:
-          allOf:
-            - $ref: '#/components/schemas/error_type'
-        error_code:
-          allOf:
-            - $ref: '#/components/schemas/error_code'
-        message:
-          type: string
-          readOnly: true
-          example: Body of request cannot be null.
-          minLength: 1
-          description: An error message associated with the failed API call
-    error_source:
-      title: error_source
-      type: string
-      enum:
-        - carrier
-        - order_source
-        - shipengine
-      description: >
-        The source of the error, as indicated by the name this informs us if the
-        API call failed because of the
-
-        carrier, the order source, or the ShipEngine API itself.
-    error_type:
-      title: error_type
-      type: string
-      enum:
-        - account_status
-        - business_rules
-        - validation
-        - security
-        - system
-        - integrations
-      description: |
-        The type of error
-    error_code:
-      title: error_code
-      type: string
-      enum:
-        - auto_fund_not_supported
-        - batch_cannot_be_modified
-        - carrier_conflict
-        - carrier_disconnected
-        - carrier_not_connected
-        - carrier_not_supported
-        - confirmation_not_supported
-        - default_warehouse_cannot_be_deleted
-        - field_conflict
-        - field_value_required
-        - forbidden
-        - identifier_conflict
-        - identifiers_must_match
-        - insufficient_funds
-        - invalid_address
-        - invalid_billing_plan
-        - invalid_field_value
-        - invalid_identifier
-        - invalid_status
-        - invalid_string_length
-        - label_images_not_supported
-        - meter_failure
-        - order_source_not_active
-        - rate_limit_exceeded
-        - refresh_not_supported
-        - request_body_required
-        - return_label_not_supported
-        - settings_not_supported
-        - subscription_inactive
-        - terms_not_accepted
-        - tracking_not_supported
-        - trial_expired
-        - unauthorized
-        - unknown
-        - unspecified
-        - verification_failure
-        - warehouse_conflict
-        - webhook_event_type_conflict
-      description: The error code specified for the failed API Call
     validate_address_request_body:
       title: validate_address_request_body
       type: array
@@ -4783,40 +5258,6 @@ components:
       description: >-
         A string that uniquely identifies a ShipEngine resource, such as a
         carrier, label, shipment, etc.
-    date_time:
-      title: date_time
-      type: string
-      format: date-time
-      pattern: '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[-+]\d{2}:\d{2})$'
-      example: '2018-09-23T15:00:00.000Z'
-      description: >
-        An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string that
-        represents a date and time.
-    optional_link:
-      title: optional_link
-      type: object
-      description: >-
-        A link to a related resource, or an empty object if there is no resource
-        to link to
-      additionalProperties: false
-      properties:
-        href:
-          allOf:
-            - $ref: '#/components/schemas/url'
-          description: 'The URL of the linked resource, if any'
-        type:
-          type: string
-          minLength: 1
-          description: >-
-            The type of resource, or the type of relationship to the parent
-            resource
-    url:
-      title: url
-      type: string
-      format: url
-      minLength: 1
-      example: 'http://api.shipengine.com/v1/labels/se-28529731'
-      description: A URL
     label_download:
       title: label_download
       type: object
@@ -4841,52 +5282,6 @@ components:
           allOf:
             - $ref: '#/components/schemas/url'
           description: The URL for the zpl generated label
-    pagination_link:
-      title: pagination_link
-      type: object
-      description: Helpful links to other pages of results
-      required:
-        - first
-        - last
-        - prev
-        - next
-      additionalProperties: false
-      properties:
-        first:
-          allOf:
-            - $ref: '#/components/schemas/link'
-          description: >
-            The link to the first page of results.  This object will _always_
-            have an `href` field. If there are no results, then the first page
-            will contain an empty array of items.
-        last:
-          allOf:
-            - $ref: '#/components/schemas/link'
-          description: >
-            The link to the final page of results.  This object will _always_
-            have an `href` field. If there are no results, then the final page
-            will contain an empty array of items.
-        prev:
-          allOf:
-            - $ref: '#/components/schemas/optional_link'
-          description: >
-            The link to the previous page of results.  The `href` field will
-            only be set when the `page` is 2 or greater.
-        next:
-          allOf:
-            - $ref: '#/components/schemas/optional_link'
-          description: >
-            The link to the next page of results.  The `href` field will only be
-            set when the `page` is less than `pages`.
-    link:
-      title: link
-      type: object
-      description: A link to a related resource
-      additionalProperties: false
-      required:
-        - href
-      allOf:
-        - $ref: '#/components/schemas/optional_link'
     create_batch_request_body:
       title: create_batch_request_body
       type: object
@@ -4930,10 +5325,6 @@ components:
       additionalProperties: false
       allOf:
         - $ref: '#/components/schemas/batch'
-    empty_response_body:
-      title: empty_response_body
-      type: string
-      maxLength: 0
     get_batch_by_id_response_body:
       title: get_batch_by_id_response_body
       type: object
@@ -7180,48 +7571,6 @@ components:
                   $ref: '#/components/schemas/alternative_identifier'
       allOf:
         - $ref: '#/components/schemas/paged_list_response_body'
-    paged_list_response_body:
-      title: paged_list_response_body
-      type: object
-      required:
-        - total
-        - page
-        - pages
-        - links
-      additionalProperties: true
-      properties:
-        total:
-          type: integer
-          minimum: 0
-          example: 2750
-          description: The total number of items across all pages of results
-        page:
-          type: integer
-          minimum: 1
-          example: 1
-          description: >-
-            The current page number of results.  For example, if there are 80
-            results, and the page size is 25, then `page` could be 1, 2, 3, or
-            4.  The first three pages would contain 25 items each, and the
-            fourth page would contain the five remaining items.
-        pages:
-          type: integer
-          minimum: 0
-          example: 4
-          description: >-
-            The total number of pages of results.  For example, if there are 80
-            results, and the page size is 25, then `pages` would be 4.  The
-            first three pages would contain 25 items each, and the fourth page
-            would contain the five remaining items.  If there are no results,
-            then `pages` will be zero.
-        links:
-          allOf:
-            - $ref: '#/components/schemas/pagination_link'
-      description: >
-        Many ShipEngine endpoints return a paged list of items.  In addition to
-        the returned items, these responses also include information about the
-        total number of items, the number of pages of results, and URLs of other
-        pages of results.
     create_label_request_body:
       title: create_label_request_body
       type: object
@@ -8464,12 +8813,6 @@ components:
 
         |`inline`            |You will receive the Base64-encoded label as part
         of the response. No need for a second request to download the label.
-    image_id:
-      title: image_id
-      type: string
-      minLength: 4
-      example: img_DtBXupDBxREpHnwEXhTfgK
-      description: Used to identify an image resource.
     carrier_code:
       title: carrier_code
       type: string
@@ -11133,17 +11476,17 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/error_response_body'
+    404_error_response:
+      description: The specified resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error_response_body'
     500_error_response:
       description: |
         An error occurred on ShipEngine's side.
 
         > This error will automatically be reported to our engineers.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/error_response_body'
-    404_error_response:
-      description: The specified resource does not exist.
       content:
         application/json:
           schema:
@@ -11169,6 +11512,10 @@ components:
         Learn more about API keys in our [authentication
         guide](https://www.shipengine.com/docs/auth/).
 tags:
+  - name: account
+    description: |
+      For additional information about the ShipEngine account. 
+    x-displayName: Account
   - name: addresses
     description: >
       No matter your shipping volume, failed deliveries and address change
