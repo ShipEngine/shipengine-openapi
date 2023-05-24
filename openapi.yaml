@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202304191404
+  version: 1.1.202305242005
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -8042,13 +8042,6 @@ components:
           allOf:
             - $ref: '#/components/schemas/advanced_shipment_options'
           description: Advanced shipment options.  These are entirely optional.
-        origin_type:
-          nullable: true
-          allOf:
-            - $ref: '#/components/schemas/origin_type'
-          description: >-
-            Indicates if the package will be picked up or dropped off by the
-            carrier
         insurance_provider:
           default: none
           allOf:
