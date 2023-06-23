@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202305242005
+  version: 1.1.202306231506
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -9242,12 +9242,39 @@ components:
         approved:
           type: boolean
           readOnly: true
+          example: false
           description: Indicates whether the attempt to void the label was successful
         message:
           type: string
           minLength: 0
           readOnly: true
-          example: Request for refund submitted.  This label has been voided.
+          example: >-
+            Unable to delete FedEx shipment. Unable to retrieve record from
+            database.
+        reason_code:
+          readOnly: true
+          type: string
+          allOf:
+            - $ref: '#/components/schemas/reason_code'
+          description: >-
+            Indicates a normalized reason for the conditions if the void attempt
+            was not approved. Will not populate if approved is true. “unknown”
+            codes may be specified later.
+          example: label_not_found_within_void_period
+    reason_code:
+      title: reason_code
+      type: string
+      enum:
+        - unknown
+        - unspecified
+        - validation_failed
+        - label_not_found_within_void_period
+        - label_already_used
+        - label_already_voided
+        - contact_carrier
+      description: >-
+        The possible normalized reasons a label void request may not have been
+        approved
     list_manifests_response_body:
       title: list_manifests_response_body
       type: object
