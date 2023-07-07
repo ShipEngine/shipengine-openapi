@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202307032007
+  version: 1.1.202307071007
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -8194,6 +8194,7 @@ components:
       enum:
         - shipper
         - recipient
+        - ior
       description: >
         The taxable entity type for this tax item. Valid values include the
         following
@@ -8207,6 +8208,8 @@ components:
 
         |`recipient` | The recipient of the shipment is responsible for this
         tax.
+
+        |`ior`       | The importer of records is responsible for tax.
     identifier_type:
       title: identifier_type
       type: string
@@ -8219,6 +8222,10 @@ components:
         - ioss
         - pan
         - voec
+        - pccc
+        - oss
+        - passport
+        - abn
       description: >
         Determines how FedEx will pickup your packages
 
@@ -8247,6 +8254,15 @@ components:
 
         |`voec`         | The tax identifier is a Norwegian VAT On
         E-Commerce(VOEC).
+
+        |`pccc`         | The tax identifier is a Personal Customs Clearance
+        Code (PCCC).
+
+        |`oss`          | The tax identifier is an One-Stop Shop (OSS).
+
+        |`passport`     | The tax identifier is a Passport Number.
+
+        |`abn`          | The tax identifier is an Australian Business Number.
     date:
       title: date
       type: string
@@ -8313,16 +8329,40 @@ components:
           description: >-
             The type of contents in this shipment.  This may impact import
             duties or customs treatment.
+        contents_explanation:
+          type: string
+          description: >-
+            Explanation for contents (required if the `contents` is provided as
+            `other`)
         non_delivery:
           default: return_to_sender
           allOf:
             - $ref: '#/components/schemas/non_delivery'
           description: Indicates what to do if a package is unable to be delivered.
+        terms_of_trade_code:
+          type: string
+          description: Specifies the supported terms of trade code (incoterms)
+          allOf:
+            - $ref: '#/components/schemas/Allowed incoterms'
+        declaration:
+          type: string
+          description: Declaration statement to be placed on the commercial invoice
+        invoice_additional_details:
+          type: object
+          allOf:
+            - $ref: '#/components/schemas/invoice_additional_details'
+        importer_of_record:
+          type: object
+          allOf:
+            - $ref: '#/components/schemas/importer_of_records'
         customs_items:
+          deprecated: true
           type: array
           default: []
           minItems: 0
-          description: Customs declarations for each item in the shipment.
+          description: >-
+            Customs declarations for each item in the shipment. (Please provide
+            this information under `products` inside `packages`)
           items:
             $ref: '#/components/schemas/customs_item'
     package_contents:
@@ -8334,6 +8374,7 @@ components:
         - gift
         - returned_goods
         - sample
+        - other
       description: The possible package contents values
     non_delivery:
       title: non_delivery
@@ -8342,6 +8383,136 @@ components:
         - return_to_sender
         - treat_as_abandoned
       description: The possible non delivery values
+    Allowed incoterms:
+      title: Allowed incoterms
+      type: string
+      enum:
+        - exw
+        - fca
+        - cpt
+        - cip
+        - dpu
+        - dap
+        - ddp
+        - fas
+        - fob
+        - cfr
+        - cif
+        - ddu
+        - daf
+        - deq
+        - des
+    invoice_additional_details:
+      title: invoice_additional_details
+      type: object
+      description: |
+        The additional information to put on commercial invoice 
+      properties:
+        freight_charge:
+          allOf:
+            - $ref: '#/components/schemas/monetary_value'
+          description: Freight Charge for shipment.
+        insurance_charge:
+          allOf:
+            - $ref: '#/components/schemas/monetary_value'
+          description: Insurance Charge for shipment.
+        discount:
+          allOf:
+            - $ref: '#/components/schemas/monetary_value'
+          description: Discount for shipment.
+        other_charge:
+          allOf:
+            - $ref: '#/components/schemas/monetary_value'
+          description: Other charge for shipment.
+        other_charge_description:
+          type: string
+          description: Description for the other charge (if provided).
+    importer_of_records:
+      title: importer_of_records
+      type: object
+      description: |
+        importer of records address, anywhere in the world.
+      required:
+        - name
+        - address_line1
+        - city_locality
+        - postal_code
+        - country_code
+      properties:
+        name:
+          type: string
+          minLength: 1
+          example: John Doe
+          description: >
+            The name of a contact person at this address. Either `name` or the
+            `company_name` field should always be set.
+        phone:
+          type: string
+          minLength: 1
+          example: +1 204-253-9411 ext. 123
+          description: >
+            The phone number of a contact person at this address.  The format of
+            this phone number varies depending on the country.
+        email:
+          type: string
+          nullable: true
+          example: example@example.com
+          description: |
+            Email for the address owner.
+        company_name:
+          type: string
+          minLength: 1
+          nullable: true
+          example: The Home Depot
+          description: >
+            If this is a business address, then the company name should be
+            specified here. Either `name` or the `company_name` field should
+            always be set.
+        address_line1:
+          type: string
+          minLength: 1
+          example: 1999 Bishop Grandin Blvd.
+          description: >
+            The first line of the street address.  For some addresses, this may
+            be the only line.  Other addresses may require 2 or 3 lines.
+        address_line2:
+          type: string
+          minLength: 1
+          nullable: true
+          example: Unit 408
+          description: >
+            The second line of the street address.  For some addresses, this
+            line may not be needed.
+        address_line3:
+          type: string
+          minLength: 1
+          nullable: true
+          example: 'Building #7'
+          description: >
+            The third line of the street address.  For some addresses, this line
+            may not be needed.
+        city_locality:
+          type: string
+          minLength: 1
+          example: Winnipeg
+          description: The name of the city or locality
+        state_province:
+          type: string
+          minLength: 1
+          example: Manitoba
+          description: >
+            The state or province.  For some countries (including the U.S.) only
+            abbreviations are allowed.  Other countries allow the full name or
+            abbreviation.
+        postal_code:
+          allOf:
+            - $ref: '#/components/schemas/postal_code'
+        country_code:
+          allOf:
+            - $ref: '#/components/schemas/country_code'
+          description: >
+            The two-letter [ISO 3166-1 country
+            code](https://en.wikipedia.org/wiki/ISO_3166-1)
     customs_item:
       title: customs_item
       type: object
@@ -8722,6 +8893,15 @@ components:
           format: int32
           type: integer
           description: Package sequence
+        products:
+          type: array
+          default: []
+          minItems: 0
+          description: >-
+            Details about products inside packages (Information provided would
+            be used on custom documentation)
+          items:
+            $ref: '#/components/schemas/products'
     tracking_number:
       title: tracking_number
       type: string
@@ -8780,6 +8960,74 @@ components:
           description: >
             The third line of the custom label message.  Some carriers may
             prefix this line with something like "PO", "Reference 3", etc.
+    products:
+      title: products
+      type: object
+      description: The customs declaration for a single item in the shipment.
+      additionalProperties: false
+      properties:
+        description:
+          type: string
+          nullable: true
+          maxLength: 100
+          default: null
+          description: A description of the item
+        quantity:
+          type: integer
+          format: int32
+          minimum: 0
+          default: 0
+          description: The quantity of this item in the shipment.
+        value:
+          allOf:
+            - $ref: '#/components/schemas/monetary_value'
+          description: The declared value of each item
+        weight:
+          allOf:
+            - $ref: '#/components/schemas/weight'
+          description: The item weight
+        harmonized_tariff_code:
+          type: string
+          nullable: true
+          default: null
+          example: 3926.1
+          description: >-
+            The [Harmonized Tariff
+            Code](https://en.wikipedia.org/wiki/Harmonized_System) of this item.
+        country_of_origin:
+          nullable: true
+          default: null
+          allOf:
+            - $ref: '#/components/schemas/country_code'
+          description: >
+            The two-letter [ISO 3166-1 country
+            code](https://en.wikipedia.org/wiki/ISO_3166-1) where this item
+            originated
+        unit_of_measure:
+          type: string
+          nullable: true
+        sku:
+          type: string
+          description: The SKU (Stock Keeping Unit) of the item
+          nullable: true
+        sku_description:
+          type: string
+          description: Description of the Custom Item's SKU
+          nullable: true
+        mid_code:
+          type: string
+          description: Manufacturers Identification code
+          nullable: true
+        product_url:
+          type: string
+          description: link to the item on the seller website
+          nullable: true
+        vat_rate:
+          type: number
+          format: double
+          description: VAT rate applicable to the item
+          nullable: true
+          example: 0.2
     label_charge_event:
       title: label_charge_event
       type: string
