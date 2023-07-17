@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202307071007
+  version: 1.1.202307171907
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -3786,7 +3786,10 @@ paths:
             type: string
             minLength: 1
           example: stamps_com
-          description: Carrier code used to retrieve tracking information
+          description: >
+            A [shipping
+            carrier](https://www.shipengine.com/docs/carriers/setup/), such as
+            `fedex`, `dhl_express`, `stamps_com`, etc.
         - name: tracking_number
           in: query
           required: false
@@ -3835,7 +3838,10 @@ paths:
             type: string
             minLength: 1
           example: stamps_com
-          description: Carrier code used to retrieve tracking information
+          description: >
+            A [shipping
+            carrier](https://www.shipengine.com/docs/carriers/setup/), such as
+            `fedex`, `dhl_express`, `stamps_com`, etc.
         - name: tracking_number
           in: query
           required: false
@@ -3877,7 +3883,10 @@ paths:
             type: string
             minLength: 1
           example: stamps_com
-          description: Carrier code used to retrieve tracking information
+          description: >
+            A [shipping
+            carrier](https://www.shipengine.com/docs/carriers/setup/), such as
+            `fedex`, `dhl_express`, `stamps_com`, etc.
         - name: tracking_number
           in: query
           required: false
@@ -5524,6 +5533,12 @@ components:
           type: boolean
           readOnly: true
           description: The carrier supports adding custom label messages to an order.
+        disabled_by_billing_plan:
+          type: boolean
+          readOnly: true
+          description: >-
+            The carrier is disabled by the current ShipEngine account's billing
+            plan.
         services:
           type: array
           readOnly: true
