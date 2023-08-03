@@ -1031,7 +1031,7 @@ paths:
         description: Carrier ID
     get:
       summary: Get Carrier By ID
-      description: Retrive carrier info by ID
+      description: Retrieve carrier info by ID
       tags:
         - carriers
       operationId: get_carrier_by_id
