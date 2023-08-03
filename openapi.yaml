@@ -1037,11 +1037,30 @@ paths:
       operationId: get_carrier_by_id
       responses:
         '200':
-          description: The request was a success.
+          description: The request was successful.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/get_carrier_by_id_response_body'
+        '400':
+          $ref: '#/components/responses/400_error_response'
+        '404':
+          $ref: '#/components/responses/404_error_response'
+        '500':
+          $ref: '#/components/responses/500_error_response'
+    delete:
+      summary: Disconnect Carrier By ID
+      description: Disconnect a carrier of specified ID from the account
+      tags:
+        - carriers
+      operationId: disconnect_carrier_by_id
+      responses:
+        '204':
+          description: The request was successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
