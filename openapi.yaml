@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202307171907
+  version: 1.1.202308221108
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -1042,6 +1042,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/get_carrier_by_id_response_body'
+        '400':
+          $ref: '#/components/responses/400_error_response'
+        '404':
+          $ref: '#/components/responses/404_error_response'
+        '500':
+          $ref: '#/components/responses/500_error_response'
+    delete:
+      summary: Disconnect Carrier by ID
+      description: Disconnect a Carrier of the given ID from the account
+      tags:
+        - carriers
+      operationId: disconnect_carrier_by_id
+      responses:
+        '204':
+          description: The request was successful.
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/empty_response_body'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
