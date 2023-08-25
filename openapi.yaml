@@ -8380,7 +8380,7 @@ components:
           type: string
           description: Specifies the supported terms of trade code (incoterms)
           allOf:
-            - $ref: '#/components/schemas/Allowed incoterms'
+            - $ref: '#/components/schemas/allowed_incoterms'
         declaration:
           type: string
           description: Declaration statement to be placed on the commercial invoice
@@ -8420,8 +8420,8 @@ components:
         - return_to_sender
         - treat_as_abandoned
       description: The possible non delivery values
-    Allowed incoterms:
-      title: Allowed incoterms
+    allowed_incoterms:
+      title: allowed_incoterms
       type: string
       enum:
         - exw
