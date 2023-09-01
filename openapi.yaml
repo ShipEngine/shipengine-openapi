@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202308221108
+  version: 1.1.202309011909
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -8767,6 +8767,13 @@ components:
           default: null
           allOf:
             - $ref: '#/components/schemas/origin_type'
+        additional_handling:
+          type: boolean
+          nullable: true
+          default: null
+          description: >
+            Indicate to the carrier that this shipment requires additional
+            handling.
         shipper_release:
           type: boolean
           nullable: true
