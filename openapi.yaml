@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202309011909
+  version: 1.1.202309111509
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -9072,6 +9072,162 @@ components:
           description: VAT rate applicable to the item
           nullable: true
           example: 0.2
+        dangerous_goods:
+          type: array
+          default: []
+          minItems: 0
+          description: Details about dangerous goods inside products
+          items:
+            $ref: '#/components/schemas/dangerous_goods'
+    dangerous_goods:
+      title: dangerous_goods
+      type: object
+      description: |
+        Dangerous goods attribute associated with the product
+      additionalProperties: false
+      properties:
+        id_number:
+          type: string
+          nullable: true
+          default: null
+          description: UN number to identify the dangerous goods.
+        shipping_name:
+          type: string
+          nullable: true
+          default: null
+          description: Trade description of the dangerous goods.
+        technical_name:
+          type: string
+          nullable: true
+          default: null
+          description: Recognized Technical or chemical name of dangerous goods.
+        product_class:
+          type: string
+          nullable: true
+          default: null
+          description: Dangerous goods product class based on regulation.
+        product_class_subsidiary:
+          type: string
+          nullable: true
+          default: null
+          description: >-
+            A secondary of product class for substances presenting more than one
+            particular hazard
+        packaging_group:
+          $ref: '#/components/schemas/packaging_group'
+        dangerous_amount:
+          allOf:
+            - $ref: '#/components/schemas/dangerous_amount'
+          description: This model represents the amount of the dangerous goods.
+        quantity:
+          type: integer
+          format: int32
+          minimum: 0
+          default: 0
+          description: Quantity of dangerous goods.
+        packaging_instruction:
+          type: string
+          nullable: true
+          default: null
+          description: >-
+            The specific standardized packaging instructions from the relevant
+            regulatory agency that have been applied to the parcel/container.
+        packaging_instruction_section:
+          $ref: '#/components/schemas/packaging_instruction_section'
+        packaging_type:
+          type: string
+          nullable: true
+          default: null
+          description: The type of exterior packaging used to contain the dangerous good.
+        transport_mean:
+          $ref: '#/components/schemas/transport_mean'
+        transport_category:
+          type: string
+          nullable: true
+          default: null
+          description: >-
+            Transport category assign to dangerous goods for the transport
+            purpose.
+        regulation_authority:
+          type: string
+          nullable: true
+          default: null
+          description: Name of the regulatory authority.
+        regulation_level:
+          $ref: '#/components/schemas/regulation_level'
+        radioactive:
+          type: boolean
+          nullable: true
+          example: false
+          description: Indication if the substance is radioactive.
+        reportable_quantity:
+          type: boolean
+          nullable: true
+          example: false
+          description: >-
+            Indication if the substance needs to be reported to regulatory
+            authority based on the quantity.
+        tunnel_code:
+          type: string
+          nullable: true
+          default: null
+          description: Defines which types of tunnels the shipment is allowed to go through
+        additional_description:
+          type: string
+          nullable: true
+          default: null
+          description: >-
+            Provider additonal description regarding the dangerous goods. This
+            is used as a placed holder to provider additional context and varies
+            by carrier
+    packaging_group:
+      title: packaging_group
+      type: string
+      enum:
+        - i
+        - ii
+        - iii
+    dangerous_amount:
+      title: dangerous_amount
+      type: object
+      description: This model represents the amount of the dangerous goods..
+      additionalProperties: false
+      properties:
+        amount:
+          type: integer
+          format: int32
+          minimum: 0
+          default: 0
+          description: The amount of dangerous goods.
+        unit:
+          type: string
+          nullable: true
+          default: null
+          description: The unit of dangerous goods.
+    packaging_instruction_section:
+      title: packaging_instruction_section
+      type: string
+      enum:
+        - section_1
+        - section_2
+        - section_1a
+        - section_1b
+    transport_mean:
+      title: transport_mean
+      type: string
+      enum:
+        - ground
+        - water
+        - cargo_aircraft_only
+        - passenger_aircraft
+    regulation_level:
+      title: regulation_level
+      type: string
+      enum:
+        - lightly_regulated
+        - fully_regulated
+        - limited_quantities
+        - excepted_quantity
     label_charge_event:
       title: label_charge_event
       type: string
