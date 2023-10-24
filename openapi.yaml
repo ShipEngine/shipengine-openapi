@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202309182109
+  version: 1.1.202310231110
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -7204,6 +7204,12 @@ components:
         event:
           allOf:
             - $ref: '#/components/schemas/webhook_event'
+        headers:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/webhook_header'
+          description: Array of custom webhook headers
     webhook_event:
       title: webhook_event
       type: string
@@ -7216,6 +7222,29 @@ components:
         - sales_orders_imported
         - track
       description: The possible webook event values
+    webhook_header:
+      title: webhook_header
+      type: object
+      description: Optional header to be specified in webhook
+      properties:
+        key:
+          $ref: '#/components/schemas/key'
+        value:
+          $ref: '#/components/schemas/value'
+      required:
+        - key
+        - value
+    key:
+      title: key
+      type: string
+      min_length: 1
+      description: Key/name of a header
+      example: custom-key
+    value:
+      title: value
+      type: string
+      description: Value of a header
+      example: custom-value
     create_webhook_request_body:
       title: create_webhook_request_body
       type: object
@@ -7233,6 +7262,12 @@ components:
             - $ref: '#/components/schemas/url'
           example: 'https://[YOUR ENDPOINT ID].x.requestbin.com'
           description: The url that the webhook sends the request to
+        headers:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/webhook_header'
+          description: Array of custom webhook headers
     create_webhook_response_body:
       title: create_webhook_response_body
       type: object
@@ -7266,6 +7301,12 @@ components:
             - $ref: '#/components/schemas/url'
           example: 'https://[YOUR ENDPOINT ID].x.requestbin.com'
           description: The url that the wehbook sends the request
+        headers:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/webhook_header'
+          description: Array of custom webhook headers
     add_funds_to_insurance_request_body:
       title: add_funds_to_insurance_request_body
       type: object
