@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202310231110
+  version: 1.1.202311081511
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -7452,6 +7452,13 @@ components:
                 description: >
                   The insurance cost for this package.  Add this to the
                   `shipment_cost` field to get the total cost.
+              requested_comparison_amount:
+                readOnly: true
+                allOf:
+                  - $ref: '#/components/schemas/monetary_value'
+                description: >
+                  The total shipping cost for the specified
+                  comparison_rate_type.
               tracking_number:
                 type: string
                 minLength: 1
@@ -7753,6 +7760,12 @@ components:
           description: >
             The insurance cost for this package.  Add this to the
             `shipment_cost` field to get the total cost.
+        requested_comparison_amount:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/monetary_value'
+          description: |
+            The total shipping cost for the specified comparison_rate_type.
         tracking_number:
           type: string
           minLength: 1
@@ -8171,6 +8184,14 @@ components:
           allOf:
             - $ref: '#/components/schemas/weight'
           description: The combined weight of all packages in the shipment
+        comparison_rate_type:
+          nullable: true
+          type: string
+          description: >-
+            Calculate a rate for this shipment with the requested carrier using
+            a ratecard that differs from the default.  Only supported for UPS
+            and USPS.
+          example: retail
     shipment_item:
       title: shipment_item
       type: object
@@ -10623,22 +10644,39 @@ components:
           readOnly: true
           allOf:
             - $ref: '#/components/schemas/monetary_value'
-          description: The shipping amount
+          description: >-
+            The shipping amount. Should be added with confirmation_amount,
+            insurance_amount and other_amount to calculate the total purchase
+            price.
         insurance_amount:
           readOnly: true
           allOf:
             - $ref: '#/components/schemas/monetary_value'
-          description: The insurance amount
+          description: >-
+            The insurance amount.  Should be added with shipping_amount,
+            confirmation_amount and other_amount to calculate the total purchase
+            price.
         confirmation_amount:
           readOnly: true
           allOf:
             - $ref: '#/components/schemas/monetary_value'
-          description: The confirmation amount
+          description: >-
+            The confirmation amount.  Should be added with shipping_amount,
+            insurance_amount and other_amount to calculate the total purchase
+            price.
         other_amount:
           readOnly: true
           allOf:
             - $ref: '#/components/schemas/monetary_value'
-          description: Any other charges associated with this rate
+          description: >-
+            Any other charges associated with this rate.  Should be added with
+            shipping_amount, insurance_amount and confirmation_amount to
+            calculate the total purchase price.
+        requested_comparison_amount:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/monetary_value'
+          description: The total shipping cost for the specified comparison_rate_type.
         tax_amount:
           readOnly: true
           allOf:
