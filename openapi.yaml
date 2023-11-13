@@ -5508,10 +5508,6 @@ components:
           readOnly: true
           allOf:
             - $ref: '#/components/schemas/carrier_code'
-          description: >
-            The [shipping
-            carrier](https://www.shipengine.com/docs/carriers/setup/) who will
-            ship the package, such as `fedex`, `dhl_express`, `stamps_com`, etc.
         account_number:
           type: string
           readOnly: true
@@ -5593,6 +5589,20 @@ components:
       description: >
         A [shipping carrier](https://www.shipengine.com/docs/carriers/setup/),
         such as `fedex`, `dhl_express`, `stamps_com`, etc.
+    lat:
+      format: double
+      type: number
+      example: 48.842608
+      description: >-
+        The latitude of the point. Represented as signed degrees. Required
+        if long is provided. http://www.geomidpoint.com/latlon.html
+    long:
+      format: double
+      type: number
+      example: 0.032875
+      description: >-
+        The longitude of the point. Represented as signed degrees. Required
+        if lat is provided. http://www.geomidpoint.com/latlon.html
     service:
       title: service
       type: object
@@ -6973,10 +6983,10 @@ components:
         - business_service_center
         - station
       description: >
-        Determines how FedEx will pickup your packages
+        Tax identifier type for customs declaration
 
 
-        |Pickup Type               |Description
+        |Type                      |Description
 
         |--------------------------|-----------------------------------------
 
@@ -7610,11 +7620,6 @@ components:
                 readOnly: true
                 allOf:
                   - $ref: '#/components/schemas/carrier_code'
-                description: >
-                  The [shipping
-                  carrier](https://www.shipengine.com/docs/carriers/setup/) who
-                  will ship the package, such as `fedex`, `dhl_express`,
-                  `stamps_com`, etc.
               tracking_status:
                 readOnly: true
                 allOf:
@@ -11224,18 +11229,31 @@ components:
           properties:
             address_line1:
               type: string
+              example: 1999 Bishop Grandin Blvd.
+              description: >
+                The first line of the street address.  For some addresses, this may
+                be the only line.  Other addresses may require 2 or 3 lines.
             address_line2:
               type: string
             address_line3:
               type: string
             city_locality:
               type: string
+              example: Winnipeg
+              description: The name of the city or locality
             state_province:
               type: string
+              example: Manitoba
+              description: >
+                The state or province.  For some countries (including the U.S.) only
+                abbreviations are allowed.  Other countries allow the full name or
+                abbreviation.
             postal_code:
-              type: string
+              allOf:
+                - $ref: '#/components/schemas/postal_code'
             country_code:
-              type: string
+              allOf:
+                - $ref: '#/components/schemas/country_code'
         providers:
           type: array
           description: An array of shipping service providers and service codes
@@ -11253,19 +11271,11 @@ components:
                   example: chronoclassic
                   description: Uniquely identifies a shipping service
         lat:
-          format: double
-          type: number
-          example: 48.874518928233094
-          description: >-
-            The latitude of the point. Represented as signed degrees. Required
-            if long is provided. http://www.geomidpoint.com/latlon.html
+          allOf:
+          - $ref: '#/components/schemas/lat'
         long:
-          format: double
-          type: number
-          example: 2.3591775711639404
-          description: >-
-            The longitude of the point. Represented as signed degrees. Required
-            if lat is provided. http://www.geomidpoint.com/latlon.html
+          allOf:
+          - $ref: '#/components/schemas/long'
         radius:
           format: int32
           type: integer
@@ -11282,21 +11292,19 @@ components:
       description: A list service points response body
       properties:
         lat:
-          format: double
-          type: number
-          example: 48.842608
+          allOf:
+          - $ref: '#/components/schemas/lat'
         long:
-          format: double
-          type: number
-          example: 0.032875
+          allOf:
+          - $ref: '#/components/schemas/long'
         service_points:
           type: array
           items:
             type: object
             properties:
               carrier_code:
-                type: string
-                example: chronopost
+                allOf:
+                  - $ref: '#/components/schemas/carrier_code'
               service_codes:
                 type: array
                 items:
@@ -11305,41 +11313,54 @@ components:
               service_point_id:
                 type: string
                 example: '614940'
+                description: A unique identifier for a carrier drop off point.
               company_name:
                 type: string
                 example: My fancy company name
+                description: >
+                  If this is a business address, then the company name should be
+                  specified here. Either `name` or the `company_name` field should
+                  always be set.
               address_line1:
                 type: string
                 example: PLACE DU CANADA
+                description: >
+                  The first line of the street address.
               city_locality:
                 type: string
                 example: TRUN
+                description: The name of the city or locality
               state_province:
                 type: string
                 example: TRUN
+                description: >
+                  The state or province.  For some countries (including the U.S.) only
+                  abbreviations are allowed.  Other countries allow the full name or
+                  abbreviation.
               postal_code:
-                type: string
-                example: '61160'
+                allOf:
+                  - $ref: '#/components/schemas/postal_code'
               country_code:
-                type: string
-                example: FR
+                allOf:
+                  - $ref: '#/components/schemas/country_code'
               phone_number:
                 type: string
                 example: 555-555-5555
+                description: Phone number associated
               lat:
-                format: double
-                type: number
-                example: 48.842608
+                allOf:
+                - $ref: '#/components/schemas/lat'
               long:
-                format: double
-                type: number
-                example: 0.032875
+                allOf:
+                - $ref: '#/components/schemas/long'
               distance_in_meters:
                 format: double
                 type: number
                 example: 728.9959308847579
+                description: Distance in meters
               hours_of_operation:
                 type: object
+                description: Hours of operation
                 properties:
                   monday:
                     type: array
@@ -11349,9 +11370,11 @@ components:
                         open:
                           type: string
                           example: '09:15'
+                          description: Hours of opening
                         close:
                           type: string
                           example: '12:00'
+                          description: Hours of closing
                   tuesday:
                     type: array
                     items:
@@ -11360,9 +11383,11 @@ components:
                         open:
                           type: string
                           example: '09:15'
+                          description: Hours of opening
                         close:
                           type: string
                           example: '12:00'
+                          description: Hours of closing
                   wednesday:
                     type: array
                     items:
@@ -11374,6 +11399,7 @@ components:
                         close:
                           type: string
                           example: '12:00'
+                          description: Hours of closing
                   thursday:
                     type: array
                     items:
@@ -11382,9 +11408,11 @@ components:
                         open:
                           type: string
                           example: '09:15'
+                          description: Hours of opening
                         close:
                           type: string
                           example: '12:00'
+                          description: Hours of closing
                   friday:
                     type: array
                     items:
@@ -11393,9 +11421,11 @@ components:
                         open:
                           type: string
                           example: '09:15'
+                          description: Hours of opening
                         close:
                           type: string
                           example: '12:00'
+                          description: Hours of closing
                   saturday:
                     type: array
                     items:
@@ -11404,9 +11434,11 @@ components:
                         open:
                           type: string
                           example: '09:15'
+                          description: Hours of opening
                         close:
                           type: string
                           example: '12:00'
+                          description: Hours of closing
                   sunday:
                     type: array
                     items:
@@ -11415,11 +11447,14 @@ components:
                         open:
                           type: string
                           example: '09:15'
+                          description: Hours of opening
                         close:
                           type: string
                           example: '12:00'
+                          description: Hours of closing
               features:
                 type: array
+                description: Service features
                 items:
                   type: string
                   enum:
@@ -11430,6 +11465,7 @@ components:
                     - after_hours_dropbox
               type:
                 type: string
+                description: Service point type
                 default: pudo
                 enum:
                   - pudo
@@ -11450,46 +11486,60 @@ components:
           type: object
           properties:
             carrier_code:
-              type: string
-              example: chronopost
+              allOf:
+                - $ref: '#/components/schemas/carrier_code'
             service_codes:
               type: array
+              example: [standard_delivery, return_return]
+              description: A [shipping carrier](https://www.shipengine.com/docs/carriers/setup/) service code.
               items:
                 type: string
             service_point_id:
               type: string
               example: '614940'
+              description: A unique identifier for a carrier drop off point.
             company_name:
               type: string
               example: My fancy company name
+              description: >
+                If this is a business address, then the company name should be
+                specified here. Either `name` or the `company_name` field should
+                always be set.
             address_line1:
               type: string
               example: PLACE DU CANADA
+              description: >
+                The first line of the street address.
             city_locality:
               type: string
               example: TRUN
+              description: The name of the city or locality
             state_province:
               type: string
               example: TRUN
+              description: >
+                The state or province.  For some countries (including the U.S.) only
+                abbreviations are allowed.  Other countries allow the full name or
+                abbreviation.
             postal_code:
-              type: string
-              example: '61160'
+              allOf:
+                - $ref: '#/components/schemas/postal_code'
             country_code:
-              type: string
-              example: FR
+              allOf:
+                - $ref: '#/components/schemas/country_code'
             phone_number:
               type: string
               example: 555-555-5555
+              description: Phone number associated
             lat:
-              format: double
-              type: number
-              example: 48.842608
+              allOf:
+              - $ref: '#/components/schemas/lat'
             long:
-              format: double
-              type: number
-              example: 0.032875
+              allOf:
+              - $ref: '#/components/schemas/long'
             hours_of_operation:
               type: object
+              description: Hours of operation
               properties:
                 monday:
                   type: array
@@ -11499,9 +11549,11 @@ components:
                       open:
                         type: string
                         example: '09:15'
+                        description: Hours of opening
                       close:
                         type: string
                         example: '12:00'
+                        description: Hours of closing
                 tuesday:
                   type: array
                   items:
@@ -11510,9 +11562,11 @@ components:
                       open:
                         type: string
                         example: '09:15'
+                        description: Hours of opening
                       close:
                         type: string
                         example: '12:00'
+                        description: Hours of closing
                 wednesday:
                   type: array
                   items:
@@ -11521,9 +11575,11 @@ components:
                       open:
                         type: string
                         example: '09:15'
+                        description: Hours of opening
                       close:
                         type: string
                         example: '12:00'
+                        description: Hours of closing
                 thursday:
                   type: array
                   items:
@@ -11532,9 +11588,11 @@ components:
                       open:
                         type: string
                         example: '09:15'
+                        description: Hours of opening
                       close:
                         type: string
                         example: '12:00'
+                        description: Hours of closing
                 friday:
                   type: array
                   items:
@@ -11543,9 +11601,11 @@ components:
                       open:
                         type: string
                         example: '09:15'
+                        description: Hours of opening
                       close:
                         type: string
                         example: '12:00'
+                        description: Hours of closing
                 saturday:
                   type: array
                   items:
@@ -11554,9 +11614,11 @@ components:
                       open:
                         type: string
                         example: '09:15'
+                        description: Hours of opening
                       close:
                         type: string
                         example: '12:00'
+                        description: Hours of closing
                 sunday:
                   type: array
                   items:
@@ -11565,11 +11627,14 @@ components:
                       open:
                         type: string
                         example: '09:15'
+                        description: Hours of opening
                       close:
                         type: string
                         example: '12:00'
+                        description: Hours of closing
             features:
               type: array
+              description: Service point features
               items:
                 type: string
                 enum:
@@ -11580,6 +11645,7 @@ components:
                   - after_hours_dropbox
             type:
               type: string
+              description: Service point type
               default: pudo
               enum:
                 - pudo
@@ -11625,11 +11691,13 @@ components:
           readOnly: true
           minimum: 1
           example: '????'
+          description: Page number
         pages:
           type: integer
           format: int32
           readOnly: true
           minimum: 1
+          description: Total number of pages
         links:
           readOnly: true
           allOf:
