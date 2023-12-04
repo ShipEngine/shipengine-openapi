@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202311081511
+  version: 1.1.202312042112
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -5650,6 +5650,7 @@ components:
         name:
           type: string
           minLength: 1
+          maxLength: 50
           example: laptop_box
         dimensions:
           allOf:
@@ -5657,12 +5658,15 @@ components:
           description: The custom dimensions for the package.
         description:
           type: string
+          maxLength: 500
           example: Packaging for laptops
           nullable: true
           description: Provides a helpful description for the custom package.
     package_code:
       title: package_code
       type: string
+      minLength: 1
+      maxLength: 50
       pattern: '^[a-z0-9]+(_[a-z0-9]+)*$'
       example: small_flat_rate_box
       description: >
