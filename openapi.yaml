@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202312042112
+  version: 1.1.202312131012
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -7660,7 +7660,9 @@ components:
                   If you attempt to create a multi-package label for a carrier
                   that doesn't allow it, an error will be returned.
                 items:
-                  $ref: '#/components/schemas/package'
+                  allOf:
+                    - $ref: '#/components/schemas/package'
+                    - $ref: '#/components/schemas/alternative_identifiers'
               alternative_identifiers:
                 type: array
                 readOnly: true
@@ -7961,7 +7963,9 @@ components:
             attempt to create a multi-package label for a carrier that doesn't
             allow it, an error will be returned.
           items:
-            $ref: '#/components/schemas/package'
+            allOf:
+              - $ref: '#/components/schemas/package'
+              - $ref: '#/components/schemas/alternative_identifiers'
         alternative_identifiers:
           type: array
           readOnly: true
@@ -9355,6 +9359,19 @@ components:
         - error
         - delivered
       description: The different statuses that can apply to a shipment.
+    alternative_identifiers:
+      title: alternative_identifiers
+      type: object
+      additionalProperties: false
+      properties:
+        alternative_identifiers:
+          type: array
+          readOnly: true
+          nullable: true
+          description: |
+            Alternative identifiers associated with this package.
+          items:
+            $ref: '#/components/schemas/alternative_identifier'
     alternative_identifier:
       title: alternative_identifier
       type: object
