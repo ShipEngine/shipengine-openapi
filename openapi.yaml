@@ -11370,11 +11370,11 @@ components:
                         open:
                           type: string
                           example: '09:15'
-                          description: Hours of opening
+                          description: Opening time
                         close:
                           type: string
                           example: '12:00'
-                          description: Hours of closing
+                          description: Closing time
                   tuesday:
                     type: array
                     items:
@@ -11383,11 +11383,11 @@ components:
                         open:
                           type: string
                           example: '09:15'
-                          description: Hours of opening
+                          description: Opening time
                         close:
                           type: string
                           example: '12:00'
-                          description: Hours of closing
+                          description: Closing time
                   wednesday:
                     type: array
                     items:
@@ -11399,7 +11399,7 @@ components:
                         close:
                           type: string
                           example: '12:00'
-                          description: Hours of closing
+                          description: Closing time
                   thursday:
                     type: array
                     items:
@@ -11408,11 +11408,11 @@ components:
                         open:
                           type: string
                           example: '09:15'
-                          description: Hours of opening
+                          description: Opening time
                         close:
                           type: string
                           example: '12:00'
-                          description: Hours of closing
+                          description: Closing time
                   friday:
                     type: array
                     items:
@@ -11421,11 +11421,11 @@ components:
                         open:
                           type: string
                           example: '09:15'
-                          description: Hours of opening
+                          description: Opening time
                         close:
                           type: string
                           example: '12:00'
-                          description: Hours of closing
+                          description: Closing time
                   saturday:
                     type: array
                     items:
@@ -11434,11 +11434,11 @@ components:
                         open:
                           type: string
                           example: '09:15'
-                          description: Hours of opening
+                          description: Opening time
                         close:
                           type: string
                           example: '12:00'
-                          description: Hours of closing
+                          description: Closing time
                   sunday:
                     type: array
                     items:
@@ -11447,11 +11447,11 @@ components:
                         open:
                           type: string
                           example: '09:15'
-                          description: Hours of opening
+                          description: Opening time
                         close:
                           type: string
                           example: '12:00'
-                          description: Hours of closing
+                          description: Closing time
               features:
                 type: array
                 description: Service features
@@ -11549,11 +11549,11 @@ components:
                       open:
                         type: string
                         example: '09:15'
-                        description: Hours of opening
+                        description: Opening time
                       close:
                         type: string
                         example: '12:00'
-                        description: Hours of closing
+                        description: Closing time
                 tuesday:
                   type: array
                   items:
@@ -11562,11 +11562,11 @@ components:
                       open:
                         type: string
                         example: '09:15'
-                        description: Hours of opening
+                        description: Opening time
                       close:
                         type: string
                         example: '12:00'
-                        description: Hours of closing
+                        description: Closing time
                 wednesday:
                   type: array
                   items:
@@ -11575,11 +11575,11 @@ components:
                       open:
                         type: string
                         example: '09:15'
-                        description: Hours of opening
+                        description: Opening time
                       close:
                         type: string
                         example: '12:00'
-                        description: Hours of closing
+                        description: Closing time
                 thursday:
                   type: array
                   items:
@@ -11588,11 +11588,11 @@ components:
                       open:
                         type: string
                         example: '09:15'
-                        description: Hours of opening
+                        description: Opening time
                       close:
                         type: string
                         example: '12:00'
-                        description: Hours of closing
+                        description: Closing time
                 friday:
                   type: array
                   items:
@@ -11601,11 +11601,11 @@ components:
                       open:
                         type: string
                         example: '09:15'
-                        description: Hours of opening
+                        description: Opening time
                       close:
                         type: string
                         example: '12:00'
-                        description: Hours of closing
+                        description: Closing time
                 saturday:
                   type: array
                   items:
@@ -11614,11 +11614,11 @@ components:
                       open:
                         type: string
                         example: '09:15'
-                        description: Hours of opening
+                        description: Opening time
                       close:
                         type: string
                         example: '12:00'
-                        description: Hours of closing
+                        description: Closing time
                 sunday:
                   type: array
                   items:
@@ -11627,11 +11627,11 @@ components:
                       open:
                         type: string
                         example: '09:15'
-                        description: Hours of opening
+                        description: Opening time
                       close:
                         type: string
                         example: '12:00'
-                        description: Hours of closing
+                        description: Closing time
             features:
               type: array
               description: Service point features
