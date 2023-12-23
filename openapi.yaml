@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202312131012
+  version: 1.1.202312221612
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -5508,6 +5508,10 @@ components:
           readOnly: true
           allOf:
             - $ref: '#/components/schemas/carrier_code'
+          description: >
+            The [shipping
+            carrier](https://www.shipengine.com/docs/carriers/setup/) who will
+            ship the package, such as `fedex`, `dhl_express`, `stamps_com`, etc.
         account_number:
           type: string
           readOnly: true
@@ -5589,20 +5593,6 @@ components:
       description: >
         A [shipping carrier](https://www.shipengine.com/docs/carriers/setup/),
         such as `fedex`, `dhl_express`, `stamps_com`, etc.
-    lat:
-      format: double
-      type: number
-      example: 48.842608
-      description: >-
-        The latitude of the point. Represented as signed degrees. Required
-        if long is provided. http://www.geomidpoint.com/latlon.html
-    long:
-      format: double
-      type: number
-      example: 0.032875
-      description: >-
-        The longitude of the point. Represented as signed degrees. Required
-        if lat is provided. http://www.geomidpoint.com/latlon.html
     service:
       title: service
       type: object
@@ -6990,7 +6980,7 @@ components:
         Tax identifier type for customs declaration
 
 
-        |Type                      |Description
+        |Pickup Type               |Description
 
         |--------------------------|-----------------------------------------
 
@@ -7624,6 +7614,11 @@ components:
                 readOnly: true
                 allOf:
                   - $ref: '#/components/schemas/carrier_code'
+                description: >
+                  The [shipping
+                  carrier](https://www.shipengine.com/docs/carriers/setup/) who
+                  will ship the package, such as `fedex`, `dhl_express`,
+                  `stamps_com`, etc.
               tracking_status:
                 readOnly: true
                 allOf:
@@ -8105,7 +8100,7 @@ components:
           description: The current status of the shipment
         ship_to:
           allOf:
-            - $ref: '#/components/schemas/shipping_address'
+            - $ref: '#/components/schemas/shipping_address_to'
           description: The recipient's mailing address
         ship_from:
           allOf:
@@ -8339,7 +8334,7 @@ components:
         - passport
         - abn
       description: >
-        Determines how FedEx will pickup your packages
+        Tax identifier type for customs declaration
 
 
         |Pickup Type    | Description
@@ -8394,6 +8389,33 @@ components:
         - label_purchased
         - cancelled
       description: The possible shipment status values
+    shipping_address_to:
+      title: shipping_address_to
+      type: object
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/address'
+        - $ref: '#/components/schemas/partial_shipping_address_to'
+    partial_shipping_address_to:
+      title: partial_shipping_address_to
+      type: object
+      description: A complete or partial mailing address.
+      additionalProperties: false
+      properties:
+        instructions:
+          type: string
+          minLength: 1
+          nullable: true
+          description: |
+            Additional text about how to handle the shipment at this address.
+        what3words:
+          type: string
+          nullable: true
+          example: word1.word2.word3
+          description: >
+            What3words functionality allows to specify a location by providing 3
+            words that have been assign to the specific location see
+            [link](https://what3words.com/business) for more details.
     shipping_address:
       title: shipping_address
       type: object
@@ -11175,7 +11197,10 @@ components:
           type: string
           readOnly: true
           minLength: 1
-          description: carrier code
+          description: >-
+            A [shipping
+            carrier](https://www.shipengine.com/docs/carriers/setup/), such as
+            `fedex`, `dhl_express`, `stamps_com`, etc.
         carrier_nickname:
           type: string
           readOnly: true
@@ -11251,28 +11276,28 @@ components:
             address_line1:
               type: string
               example: 1999 Bishop Grandin Blvd.
-              description: >
-                The first line of the street address.  For some addresses, this may
-                be the only line.  Other addresses may require 2 or 3 lines.
+              description: >-
+                The first line of the street address. For some addresses, this
+                may be the only line. Other addresses may require 2 or 3 lines.
             address_line2:
               type: string
             address_line3:
               type: string
             city_locality:
               type: string
-              example: Winnipeg
               description: The name of the city or locality
             state_province:
               type: string
-              example: Manitoba
-              description: >
-                The state or province.  For some countries (including the U.S.) only
-                abbreviations are allowed.  Other countries allow the full name or
-                abbreviation.
+              description: >-
+                The state or province. For some countries (including the U.S.)
+                only abbreviations are allowed. Other countries allow the full
+                name or abbreviation.
             postal_code:
+              type: string
               allOf:
                 - $ref: '#/components/schemas/postal_code'
             country_code:
+              type: string
               allOf:
                 - $ref: '#/components/schemas/country_code'
         providers:
@@ -11292,11 +11317,19 @@ components:
                   example: chronoclassic
                   description: Uniquely identifies a shipping service
         lat:
-          allOf:
-          - $ref: '#/components/schemas/lat'
+          format: double
+          type: number
+          example: 48.874518928233094
+          description: >-
+            The latitude of the point. Represented as signed degrees. Required
+            if long is provided. http://www.geomidpoint.com/latlon.html
         long:
-          allOf:
-          - $ref: '#/components/schemas/long'
+          format: double
+          type: number
+          example: 2.3591775711639404
+          description: >-
+            The longitude of the point. Represented as signed degrees. Required
+            if lat is provided. http://www.geomidpoint.com/latlon.html
         radius:
           format: int32
           type: integer
@@ -11313,11 +11346,19 @@ components:
       description: A list service points response body
       properties:
         lat:
-          allOf:
-          - $ref: '#/components/schemas/lat'
+          format: double
+          type: number
+          example: 48.842608
+          description: >-
+            The latitude of the point. Represented as signed degrees. Required
+            if long is provided. http://www.geomidpoint.com/latlon.html
         long:
-          allOf:
-          - $ref: '#/components/schemas/long'
+          format: double
+          type: number
+          example: 0.032875
+          description: >-
+            The longitude of the point. Represented as signed degrees. Required
+            if lat is provided. http://www.geomidpoint.com/latlon.html
         service_points:
           type: array
           items:
@@ -11331,6 +11372,10 @@ components:
                 items:
                   type: string
                   example: chronoclassic
+                  description: >-
+                    A [shipping
+                    carrier](https://www.shipengine.com/docs/carriers/setup/)
+                    service code.
               service_point_id:
                 type: string
                 example: '614940'
@@ -11338,15 +11383,16 @@ components:
               company_name:
                 type: string
                 example: My fancy company name
-                description: >
+                description: >-
                   If this is a business address, then the company name should be
-                  specified here. Either `name` or the `company_name` field should
-                  always be set.
+                  specified here.
               address_line1:
                 type: string
                 example: PLACE DU CANADA
-                description: >
-                  The first line of the street address.
+                description: >-
+                  The first line of the street address.  For some addresses,
+                  this may be the only line.  Other addresses may require 2 or 3
+                  lines.
               city_locality:
                 type: string
                 example: TRUN
@@ -11354,10 +11400,10 @@ components:
               state_province:
                 type: string
                 example: TRUN
-                description: >
-                  The state or province.  For some countries (including the U.S.) only
-                  abbreviations are allowed.  Other countries allow the full name or
-                  abbreviation.
+                description: >-
+                  The state or province. For some countries (including the U.S.)
+                  only abbreviations are allowed. Other countries allow the full
+                  name or abbreviation.
               postal_code:
                 allOf:
                   - $ref: '#/components/schemas/postal_code'
@@ -11369,11 +11415,21 @@ components:
                 example: 555-555-5555
                 description: Phone number associated
               lat:
-                allOf:
-                - $ref: '#/components/schemas/lat'
+                format: double
+                type: number
+                example: 48.842608
+                description: >-
+                  The latitude of the point. Represented as signed degrees.
+                  Required if long is provided.
+                  http://www.geomidpoint.com/latlon.html
               long:
-                allOf:
-                - $ref: '#/components/schemas/long'
+                format: double
+                type: number
+                example: 0.032875
+                description: >-
+                  The longitude of the point. Represented as signed degrees.
+                  Required if lat is provided.
+                  http://www.geomidpoint.com/latlon.html
               distance_in_meters:
                 format: double
                 type: number
@@ -11417,6 +11473,7 @@ components:
                         open:
                           type: string
                           example: '09:15'
+                          description: Opening time
                         close:
                           type: string
                           example: '12:00'
@@ -11511,10 +11568,12 @@ components:
                 - $ref: '#/components/schemas/carrier_code'
             service_codes:
               type: array
-              example: [standard_delivery, return_return]
-              description: A [shipping carrier](https://www.shipengine.com/docs/carriers/setup/) service code.
               items:
                 type: string
+                description: >-
+                  A [shipping
+                  carrier](https://www.shipengine.com/docs/carriers/setup/)
+                  service code.
             service_point_id:
               type: string
               example: '614940'
@@ -11522,15 +11581,15 @@ components:
             company_name:
               type: string
               example: My fancy company name
-              description: >
+              description: >-
                 If this is a business address, then the company name should be
-                specified here. Either `name` or the `company_name` field should
-                always be set.
+                specified here.
             address_line1:
               type: string
               example: PLACE DU CANADA
-              description: >
-                The first line of the street address.
+              description: >-
+                The first line of the street address.  For some addresses, this
+                may be the only line.  Other addresses may require 2 or 3 lines.
             city_locality:
               type: string
               example: TRUN
@@ -11538,10 +11597,10 @@ components:
             state_province:
               type: string
               example: TRUN
-              description: >
-                The state or province.  For some countries (including the U.S.) only
-                abbreviations are allowed.  Other countries allow the full name or
-                abbreviation.
+              description: >-
+                The state or province. For some countries (including the U.S.)
+                only abbreviations are allowed. Other countries allow the full
+                name or abbreviation.
             postal_code:
               allOf:
                 - $ref: '#/components/schemas/postal_code'
@@ -11553,11 +11612,21 @@ components:
               example: 555-555-5555
               description: Phone number associated
             lat:
-              allOf:
-              - $ref: '#/components/schemas/lat'
+              format: double
+              type: number
+              example: 48.842608
+              description: >-
+                The latitude of the point. Represented as signed degrees.
+                Required if long is provided.
+                http://www.geomidpoint.com/latlon.html
             long:
-              allOf:
-              - $ref: '#/components/schemas/long'
+              format: double
+              type: number
+              example: 0.032875
+              description: >-
+                The longitude of the point. Represented as signed degrees.
+                Required if lat is provided.
+                http://www.geomidpoint.com/latlon.html
             hours_of_operation:
               type: object
               description: Hours of operation
@@ -11655,7 +11724,7 @@ components:
                         description: Closing time
             features:
               type: array
-              description: Service point features
+              description: Service features
               items:
                 type: string
                 enum:
@@ -11712,13 +11781,11 @@ components:
           readOnly: true
           minimum: 1
           example: '????'
-          description: Page number
         pages:
           type: integer
           format: int32
           readOnly: true
           minimum: 1
-          description: Total number of pages
         links:
           readOnly: true
           allOf:
