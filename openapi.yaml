@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202402011202
+  version: 1.1.202402142302
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -683,10 +683,18 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/create_batch_request_body'
+              $ref: '#/components/schemas/create_batch_request'
       responses:
         '200':
           description: The requested object creation was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/create_batch_response_body'
+        '207':
+          description: >-
+            The request was a partial success. It contains results, as well as
+            processing errors.
           content:
             application/json:
               schema:
@@ -3589,64 +3597,6 @@ paths:
           $ref: '#/components/responses/404_error_response'
         '500':
           $ref: '#/components/responses/500_error_response'
-  /v1/shipments/tags:
-    summary: Shipment Tags
-    description: >
-      Tags associated with the shipment object to be used to organize and query
-      shipment items.
-    put:
-      summary: Update Shipments Tags
-      description: Update Shipments Tags
-      tags:
-        - shipments
-      operationId: shipments_update_tags
-      parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/update_shipments_tags_request_body'
-        required: true
-      responses:
-        '204':
-          description: NoContent
-        '400':
-          $ref: '#/components/responses/400_error_response'
-        '404':
-          $ref: '#/components/responses/404_error_response'
-        '500':
-          $ref: '#/components/responses/500_error_response'
-  '/v1/shipments/{shipment_id}/tags':
-    summary: Shipment Tags
-    description: >
-      Tags associated with the shipment object to be used to organize and query
-      shipment items.
-    parameters:
-      - name: shipment_id
-        in: path
-        required: true
-        schema:
-          $ref: '#/components/schemas/se_id'
-        description: Shipment ID
-    get:
-      summary: Get Shipment Tags
-      description: Get Shipment tags based on its ID
-      tags:
-        - shipments
-      operationId: shipments_list_tags
-      responses:
-        '200':
-          description: The request was a success.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/tag_shipment_response_body'
-        '400':
-          $ref: '#/components/responses/400_error_response'
-        '404':
-          $ref: '#/components/responses/404_error_response'
-        '500':
-          $ref: '#/components/responses/500_error_response'
   '/v1/shipments/{shipment_id}/tags/{tag_name}':
     summary: Shipment Tags
     description: >
@@ -5180,6 +5130,7 @@ components:
         - created_at
         - processed_at
         - errors
+        - process_errors
         - warnings
         - completed
         - forms
@@ -5244,6 +5195,14 @@ components:
           minimum: 0
           example: 2
           description: The number of errors that occurred while generating the batch
+        process_errors:
+          errors: null
+          type: array
+          readOnly: true
+          items:
+            allOf:
+              - $ref: '#/components/schemas/error'
+          description: The errors associated with the failed API call
         warnings:
           type: integer
           format: int32
@@ -5371,6 +5330,11 @@ components:
           allOf:
             - $ref: '#/components/schemas/url'
           description: The URL for the zpl generated label
+    create_batch_request:
+      title: create_batch_request
+      oneOf:
+        - $ref: '#/components/schemas/create_batch_request_body'
+        - $ref: '#/components/schemas/create_and_process_batch_request_body'
     create_batch_request_body:
       title: create_batch_request_body
       type: object
@@ -5400,6 +5364,68 @@ components:
             allOf:
               - $ref: '#/components/schemas/se_id'
           description: Array of rate IDs used in the batch
+    create_and_process_batch_request_body:
+      title: create_and_process_batch_request_body
+      type: object
+      description: A create and process batch request body
+      additionalProperties: false
+      properties:
+        external_batch_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the external batch
+        batch_notes:
+          type: string
+          minLength: 1
+          example: This is my batch
+          description: Add custom messages for a particular batch
+        shipment_ids:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/se_id'
+          description: Array of shipment IDs used in the batch
+        rate_ids:
+          type: array
+          items:
+            type: string
+            minLength: 1
+            allOf:
+              - $ref: '#/components/schemas/se_id'
+          description: Array of rate IDs used in the batch
+        process_labels:
+          type: object
+          description: The information used to process the batch
+          properties:
+            create_batch_and_process_labels:
+              type: boolean
+              description: 'When ''true'', the batch will be enqueued for processing'
+            ship_date:
+              allOf:
+                - $ref: '#/components/schemas/date_time'
+              description: The Ship date the batch is being processed for
+            label_layout:
+              type: string
+              default: 4x6
+              allOf:
+                - $ref: '#/components/schemas/label_layout'
+            label_format:
+              default: pdf
+              allOf:
+                - $ref: '#/components/schemas/label_format'
+            display_scheme:
+              default: label
+              allOf:
+                - $ref: '#/components/schemas/display_scheme'
+              description: The display format that the label should be shown in.
+    display_scheme:
+      title: display_scheme
+      type: string
+      enum:
+        - label
+        - qr_code
+        - label_and_qr_code
+      description: The display format that the label should be shown in.
     create_batch_response_body:
       title: create_batch_response_body
       type: object
@@ -5513,14 +5539,6 @@ components:
           allOf:
             - $ref: '#/components/schemas/display_scheme'
           description: The display format that the label should be shown in.
-    display_scheme:
-      title: display_scheme
-      type: string
-      enum:
-        - label
-        - qr_code
-        - label_and_qr_code
-      description: The display format that the label should be shown in.
     remove_from_batch_request_body:
       title: remove_from_batch_request_body
       type: object
@@ -12057,49 +12075,6 @@ components:
       additionalProperties: false
       allOf:
         - $ref: '#/components/schemas/rates_information'
-    update_shipments_tags_request_body:
-      title: update_shipments_tags_request_body
-      type: object
-      description: A request body with shipments and tags
-      allOf:
-        - $ref: '#/components/schemas/update_shipments_tags'
-    update_shipments_tags:
-      title: update_shipments_tags
-      type: object
-      properties:
-        shipments_tags:
-          type: array
-          items:
-            type: object
-            properties:
-              shipment_id:
-                type: string
-              tags:
-                type: array
-                items:
-                  type: string
-      example:
-        shipments_tags:
-          - shipment_id: se-1014296
-            tags:
-              - Fragile
-              - International
-          - shipment_id: se-1014297
-            tags:
-              - Fragile
-              - International
-    tag_shipment_response_body:
-      title: tag_shipment_response_body
-      type: object
-      description: Get shipment tags response body
-      required:
-        - tags
-      additionalProperties: false
-      properties:
-        tags:
-          type: array
-          items:
-            type: string
     tag_name:
       title: tag_name
       type: string
@@ -12111,6 +12086,25 @@ components:
         and international shipments, or between insured and uninsured
         shipments.  Or maybe you want to create a tag for each of your customers
         so you can easily retrieve every shipment for a customer.
+    tag_shipment_response_body:
+      title: tag_shipment_response_body
+      type: object
+      description: A shipment add tag response body
+      required:
+        - shipment_id
+        - tag
+      additionalProperties: false
+      properties:
+        shipment_id:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the shipment
+        tag:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/tag'
+          description: The tag that is now associated with this shipment
     list_tags_response_body:
       title: list_tags_response_body
       type: object
