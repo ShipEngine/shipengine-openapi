@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202403141503
+  version: 1.1.202403202303
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -4309,21 +4309,26 @@ components:
         - carrier_not_connected
         - carrier_not_supported
         - confirmation_not_supported
+        - customs_items_required
         - default_warehouse_cannot_be_deleted
         - field_conflict
         - field_value_required
         - forbidden
         - identifier_conflict
         - identifiers_must_match
+        - incompatible_paired_labels
         - insufficient_funds
         - invalid_address
         - invalid_billing_plan
+        - invalid_charge_event
         - invalid_field_value
         - invalid_identifier
+        - invalid_object
         - invalid_status
         - invalid_string_length
         - label_images_not_supported
         - meter_failure
+        - no_rates_returned
         - order_source_not_active
         - rate_limit_exceeded
         - refresh_not_supported
@@ -8816,9 +8821,16 @@ components:
           default: 0
           description: The quantity of this item in the shipment.
         value:
-          allOf:
-            - $ref: '#/components/schemas/monetary_value'
-          description: The declared customs value of each item
+          type: number
+          format: double
+          minimum: 0
+          description: 'The monetary amount, in the specified currency.'
+        value_currency:
+          type: string
+          description: >
+            The currencies that are supported by ShipEngine are the ones that
+            specified by ISO 4217:
+            https://www.iso.org/iso-4217-currency-codes.html
         weight:
           allOf:
             - $ref: '#/components/schemas/weight'
