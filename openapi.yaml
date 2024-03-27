@@ -5744,8 +5744,13 @@ components:
             - $ref: '#/components/schemas/se_id'
           description: A string that uniquely identifies the carrier
         carrier_code:
+          readOnly: true
           allOf:
-            - $ref: '#/components/schemas/se_id'
+            - $ref: '#/components/schemas/carrier_code'
+          description: >
+            The [shipping
+            carrier](https://www.shipengine.com/docs/carriers/setup/) who will
+            ship the package, such as `fedex`, `dhl_express`, `stamps_com`, etc.		
         service_code:
           type: string
           minLength: 1
@@ -10967,10 +10972,14 @@ components:
           readOnly: true
           description: Indicates if rate is trackable
         carrier_code:
-          type: string
           readOnly: true
-          minLength: 1
-          description: carrier code
+          allOf:
+            - $ref: '#/components/schemas/carrier_code'
+          description: >
+            The [shipping
+            carrier](https://www.shipengine.com/docs/carriers/setup/) who
+            will ship the package, such as `fedex`, `dhl_express`,
+            `stamps_com`, etc.
         carrier_nickname:
           type: string
           readOnly: true
