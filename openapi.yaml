@@ -6414,8 +6414,8 @@ components:
           minLength: 1
           description: Account number
         site_id:
-          allOf:
-            - $ref: '#/components/schemas/se_id'
+          type: string
+          minLength: 1
           description: A string that uniquely identifies the site
         password:
           type: string
@@ -6509,8 +6509,8 @@ components:
           minLength: 1
           description: The company
         country_code:
-          type: string
-          minLength: 1
+          allOf:
+            - $ref: '#/components/schemas/country_code'
           description: Country code
         email:
           allOf:
@@ -6587,8 +6587,8 @@ components:
           minLength: 1
           description: The company
         country_code:
-          type: string
-          minLength: 1
+          allOf:
+            - $ref: '#/components/schemas/country_code'
           description: Country code
         email:
           allOf:
@@ -6640,8 +6640,8 @@ components:
           minLength: 1
           description: Nickname
         mailer_id:
-          allOf:
-            - $ref: '#/components/schemas/se_id'
+          type: string
+          minLength: 1
           description: A string that uniquely identifies the mailer
         profile_name:
           type: string
@@ -6688,9 +6688,8 @@ components:
           minimum: 0
           description: Merchant id
         mailer_id:
-          type: integer
-          format: int32
-          minimum: 0
+          type: string
+          minLength: 1
           description: Mailer id
         induction_site:
           type: string
@@ -6962,8 +6961,8 @@ components:
           minLength: 1
           description: Postal code
         country_code:
-          type: string
-          minLength: 1
+          allOf:
+            - $ref: '#/components/schemas/country_code'
           description: Country code
         email:
           allOf:
@@ -11452,7 +11451,6 @@ components:
               allOf:
                 - $ref: '#/components/schemas/postal_code'
             country_code:
-              type: string
               allOf:
                 - $ref: '#/components/schemas/country_code'
         providers:
