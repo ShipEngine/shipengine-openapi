@@ -8810,6 +8810,7 @@ components:
       properties:
         customs_item_id:
           readOnly: true
+          nullable: true
           allOf:
             - $ref: '#/components/schemas/se_id'
           description: A string that uniquely identifies the customs item
