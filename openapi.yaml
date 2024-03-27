@@ -4273,14 +4273,11 @@ components:
                     description: |
                       Indicates whether this image is set as default.
                   image_content_type:
-                    allOf:
-                      - type: string
-                        enum:
-                          - image/png
-                          - image/jpeg
-                        description: The image type
-                    description: |
-                      The file type of the image. 
+                    type: string
+                    enum:
+                      - image/png
+                      - image/jpeg
+                    description: The file type of the image.
                   image_data:
                     type: string
                     example: >-
@@ -4455,14 +4452,11 @@ components:
           description: |
             Indicates whether this image is set as default.
         image_content_type:
-          allOf:
-            - type: string
-              enum:
-                - image/png
-                - image/jpeg
-              description: The image type
-          description: |
-            The file type of the image. 
+          type: string
+          enum:
+            - image/png
+            - image/jpeg
+          description: The file type of the image.
         image_data:
           type: string
           example: >-
@@ -8134,11 +8128,11 @@ components:
           description: The current status of the shipment
         ship_to:
           allOf:
-            - $ref: '#/components/schemas/shipping_address_to'
+            - $ref: '#/components/schemas/address'
           description: The recipient's mailing address
         ship_from:
           allOf:
-            - $ref: '#/components/schemas/shipping_address'
+            - $ref: '#/components/schemas/address'
           description: >
             The shipment's origin address. If you frequently ship from the same
             location, consider [creating a
@@ -8157,7 +8151,7 @@ components:
             `ship_from` must be specified.
         return_to:
           allOf:
-            - $ref: '#/components/schemas/shipping_address'
+            - $ref: '#/components/schemas/address'
           description: >
             The return address for this shipment.  Defaults to the `ship_from`
             address.
