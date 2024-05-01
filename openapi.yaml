@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202403211903
+  version: 1.1.202404301504
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -5203,6 +5203,7 @@ components:
         - batch_errors_url
         - label_download
         - form_download
+        - paperless_download
         - status
       additionalProperties: false
       properties:
@@ -5317,6 +5318,13 @@ components:
           allOf:
             - $ref: '#/components/schemas/optional_link'
           description: The form download for any customs that are needed
+        paperless_download:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/paperless_download'
+          description: >-
+            The paperless details which may contain elements like image download
+            link, instructions and handoff code.
         status:
           readOnly: true
           allOf:
@@ -5393,6 +5401,30 @@ components:
           allOf:
             - $ref: '#/components/schemas/url'
           description: The URL for the zpl generated label
+    paperless_download:
+      title: paperless_download
+      type: object
+      description: >
+        The paperless details which may contain elements like
+        image_download_link, instructions and handoff_code.
+      additionalProperties: false
+      properties:
+        href:
+          allOf:
+            - $ref: '#/components/schemas/url'
+          description: 'The URL of the linked resource, if any'
+        instructions:
+          type: string
+          nullable: true
+          default: null
+          description: |
+            The instructions for the paperless download.
+        handoff_code:
+          type: string
+          nullable: true
+          default: null
+          description: |
+            The handoff code for the paperless download.
     create_batch_request:
       title: create_batch_request
       oneOf:
@@ -5488,6 +5520,8 @@ components:
         - label
         - qr_code
         - label_and_qr_code
+        - paperless
+        - label_and_paperless
       description: The display format that the label should be shown in.
     create_batch_response_body:
       title: create_batch_response_body
@@ -7779,6 +7813,14 @@ components:
                   invoice) for this shipment, if any.  Forms are in PDF format.
                   This field is null if the shipment does not require a customs
                   form, or if the carrier does not support it.
+              paperless_download:
+                readOnly: true
+                nullable: true
+                allOf:
+                  - $ref: '#/components/schemas/paperless_download'
+                description: >
+                  The paperless details which may contain elements like
+                  image_download_link, instructions and handoff_code.
               insurance_claim:
                 readOnly: true
                 nullable: true
@@ -8082,6 +8124,14 @@ components:
             for this shipment, if any.  Forms are in PDF format. This field is
             null if the shipment does not require a customs form, or if the
             carrier does not support it.
+        paperless_download:
+          readOnly: true
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/paperless_download'
+          description: >
+            The paperless details which may contain elements like
+            image_download_link, instructions and handoff_code.
         insurance_claim:
           readOnly: true
           nullable: true
@@ -9198,6 +9248,13 @@ components:
           allOf:
             - $ref: '#/components/schemas/optional_link'
           description: The form download for any customs that are needed
+        paperless_download:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/paperless_download'
+          description: >-
+            The paperless details which may contain elements like
+            image_download_link, instructions and handoff_code.
         sequence:
           readOnly: true
           format: int32
@@ -9602,6 +9659,7 @@ components:
         - tracking_status
         - label_download
         - form_download
+        - paperless_download
         - insurance_claim
         - packages
         - is_return_label
