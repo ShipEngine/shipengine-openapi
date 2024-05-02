@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202404301504
+  version: 1.1.202405011605
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -5323,8 +5323,8 @@ components:
           allOf:
             - $ref: '#/components/schemas/paperless_download'
           description: >-
-            The paperless details which may contain elements like image download
-            link, instructions and handoff code.
+            The paperless details which may contain elements like `href`,
+            `instructions` and `handoff_code`.
         status:
           readOnly: true
           allOf:
@@ -5405,8 +5405,8 @@ components:
       title: paperless_download
       type: object
       description: >
-        The paperless details which may contain elements like
-        image_download_link, instructions and handoff_code.
+        The paperless details which may contain elements like `href`,
+        `instructions` and `handoff_code`.
       additionalProperties: false
       properties:
         href:
@@ -7819,8 +7819,8 @@ components:
                 allOf:
                   - $ref: '#/components/schemas/paperless_download'
                 description: >
-                  The paperless details which may contain elements like
-                  image_download_link, instructions and handoff_code.
+                  The paperless details which may contain elements like `href`,
+                  `instructions` and `handoff_code`.
               insurance_claim:
                 readOnly: true
                 nullable: true
@@ -8130,8 +8130,8 @@ components:
           allOf:
             - $ref: '#/components/schemas/paperless_download'
           description: >
-            The paperless details which may contain elements like
-            image_download_link, instructions and handoff_code.
+            The paperless details which may contain elements like `href`,
+            `instructions` and `handoff_code`.
         insurance_claim:
           readOnly: true
           nullable: true
@@ -9253,8 +9253,8 @@ components:
           allOf:
             - $ref: '#/components/schemas/paperless_download'
           description: >-
-            The paperless details which may contain elements like
-            image_download_link, instructions and handoff_code.
+            The paperless details which may contain elements like `href`,
+            `instructions` and `handoff_code`.
         sequence:
           readOnly: true
           format: int32
