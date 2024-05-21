@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202405011605
+  version: 1.1.202405211305
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -5879,7 +5879,7 @@ components:
           format: double
           minimum: 0
           default: 0
-          description: 'The length of the package, in the specified unit'
+          description: 'The height of the package, in the specified unit'
     dimension_unit:
       title: dimension_unit
       type: string
@@ -8220,6 +8220,12 @@ components:
             service](https://www.shipengine.com/docs/shipping/use-a-carrier-service/)
             used to ship the package, such as `fedex_ground`,
             `usps_first_class_mail`, `flat_rate_envelope`, etc.
+        shipping_rule_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: >
+            ID of the shipping rule, which you want to use to automate
+            carrier/carrier service selection for the shipment
         external_order_id:
           type: string
           nullable: true
