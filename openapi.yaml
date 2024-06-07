@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202405211305
+  version: 1.1.202406071006
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -9523,8 +9523,8 @@ components:
       additionalProperties: false
       properties:
         amount:
-          type: integer
-          format: int32
+          type: number
+          format: double
           minimum: 0
           default: 0
           description: The amount of dangerous goods.
@@ -11559,6 +11559,14 @@ components:
           type: integer
           example: 25
           description: The maximum number of service points to return
+        shipment:
+          type: object
+          description: Shipment information to be used for service point selection
+          properties:
+            total_weight:
+              allOf:
+                - $ref: '#/components/schemas/weight'
+              description: Shipment total weight
     list_service_points_response_body:
       title: list_service_points_response_body
       type: object
