@@ -751,13 +751,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -792,13 +785,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -836,13 +822,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -938,13 +917,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -976,13 +948,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -1283,13 +1248,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '404':
           $ref: '#/components/responses/404_error_response'
         '500':
@@ -1344,13 +1302,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '404':
           $ref: '#/components/responses/404_error_response'
         '500':
@@ -1552,13 +1503,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -1574,13 +1518,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -2404,13 +2341,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -2426,13 +2356,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -3540,13 +3463,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -3700,13 +3616,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -3778,13 +3687,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -3816,13 +3718,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -3941,13 +3836,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -3986,13 +3874,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -4109,13 +3990,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -4131,13 +4005,6 @@ paths:
       responses:
         '204':
           description: The request was successful.
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/empty_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -4274,6 +4141,22 @@ components:
           example: Body of request cannot be null.
           minLength: 1
           description: An error message associated with the failed API call
+        carrier_id:
+          readOnly: true
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the carrier.
+        carrier_code:
+          type: string
+          readOnly: true
+          nullable: true
+          description: A string that uniquely identifies the carrier by code.
+        carrier_name:
+          type: string
+          readOnly: true
+          nullable: true
+          description: A string that uniquely identifies the carrier by name.
     error_source:
       title: error_source
       type: string
@@ -4345,6 +4228,7 @@ components:
         - invalid_charge_event
         - invalid_object
         - no_rates_returned
+        - default_resource_cannot_be_deleted
       description: The error code specified for the failed API Call
     list_account_settings_images_response_body:
       title: list_account_settings_images_response_body
@@ -4389,14 +4273,11 @@ components:
                     description: |
                       Indicates whether this image is set as default.
                   image_content_type:
-                    allOf:
-                      - type: string
-                        enum:
-                          - image/png
-                          - image/jpeg
-                        description: The image type
-                    description: |
-                      The file type of the image. 
+                    type: string
+                    enum:
+                      - image/png
+                      - image/jpeg
+                    description: The file type of the image.
                   image_data:
                     type: string
                     example: >-
@@ -4571,14 +4452,11 @@ components:
           description: |
             Indicates whether this image is set as default.
         image_content_type:
-          allOf:
-            - type: string
-              enum:
-                - image/png
-                - image/jpeg
-              description: The image type
-          description: |
-            The file type of the image. 
+          type: string
+          enum:
+            - image/png
+            - image/jpeg
+          description: The file type of the image.
         image_data:
           type: string
           example: >-
@@ -4668,6 +4546,7 @@ components:
         name:
           type: string
           minLength: 1
+          nullable: true
           example: John Doe
           description: >
             The name of a contact person at this address.  This field may be set
@@ -4675,6 +4554,7 @@ components:
         phone:
           type: string
           minLength: 1
+          nullable: true
           example: +1 204-253-9411 ext. 123
           description: >
             The phone number of a contact person at this address.  The format of
@@ -4724,6 +4604,7 @@ components:
         state_province:
           type: string
           minLength: 1
+          nullable: true
           example: Manitoba
           description: >
             The state or province.  For some countries (including the U.S.) only
@@ -4915,7 +4796,6 @@ components:
       required:
         - status
         - original_address
-        - matched_address
         - messages
       additionalProperties: false
       properties:
@@ -4929,6 +4809,7 @@ components:
         matched_address:
           nullable: true
           readOnly: true
+          nullable: true
           allOf:
             - $ref: '#/components/schemas/address'
           description: The matched address found by the Shipengine API
@@ -5778,8 +5659,13 @@ components:
             - $ref: '#/components/schemas/se_id'
           description: A string that uniquely identifies the carrier
         carrier_code:
+          readOnly: true
           allOf:
-            - $ref: '#/components/schemas/se_id'
+            - $ref: '#/components/schemas/carrier_code'
+          description: >
+            The [shipping
+            carrier](https://www.shipengine.com/docs/carriers/setup/) who will
+            ship the package, such as `fedex`, `dhl_express`, `stamps_com`, etc.		
         service_code:
           type: string
           minLength: 1
@@ -5814,6 +5700,7 @@ components:
       additionalProperties: false
       properties:
         package_id:
+          nullable: true
           allOf:
             - $ref: '#/components/schemas/se_id'
           description: A string that uniquely identifies the package.
@@ -5901,6 +5788,7 @@ components:
           description: Name of advanced option
         default_value:
           type: string
+          nullable: true
           minLength: 1
           readOnly: true
           example: false
@@ -6448,8 +6336,8 @@ components:
           minLength: 1
           description: Account number
         site_id:
-          allOf:
-            - $ref: '#/components/schemas/se_id'
+          type: string
+          minLength: 1
           description: A string that uniquely identifies the site
         password:
           type: string
@@ -6543,8 +6431,8 @@ components:
           minLength: 1
           description: The company
         country_code:
-          type: string
-          minLength: 1
+          allOf:
+            - $ref: '#/components/schemas/country_code'
           description: Country code
         email:
           allOf:
@@ -6621,8 +6509,8 @@ components:
           minLength: 1
           description: The company
         country_code:
-          type: string
-          minLength: 1
+          allOf:
+            - $ref: '#/components/schemas/country_code'
           description: Country code
         email:
           allOf:
@@ -6674,8 +6562,8 @@ components:
           minLength: 1
           description: Nickname
         mailer_id:
-          allOf:
-            - $ref: '#/components/schemas/se_id'
+          type: string
+          minLength: 1
           description: A string that uniquely identifies the mailer
         profile_name:
           type: string
@@ -6722,9 +6610,8 @@ components:
           minimum: 0
           description: Merchant id
         mailer_id:
-          type: integer
-          format: int32
-          minimum: 0
+          type: string
+          minLength: 1
           description: Mailer id
         induction_site:
           type: string
@@ -6996,8 +6883,8 @@ components:
           minLength: 1
           description: Postal code
         country_code:
-          type: string
-          minLength: 1
+          allOf:
+            - $ref: '#/components/schemas/country_code'
           description: Country code
         email:
           allOf:
@@ -7637,10 +7524,10 @@ components:
                   The total shipping cost for the specified
                   comparison_rate_type.
               tracking_number:
-                type: string
-                minLength: 1
                 readOnly: true
-                example: '782758401696'
+                nullable: true
+                allOf:
+                  - $ref: '#/components/schemas/tracking_number'
                 description: >-
                   The tracking number for the package. Tracking number formats
                   vary across carriers.
@@ -7706,7 +7593,6 @@ components:
                 writeOnly: true
                 type: boolean
                 default: false
-                deprecated: true
                 description: >-
                   Indicate if this label is being used only for testing
                   purposes. If true, then no charge will be added to your
@@ -7954,10 +7840,10 @@ components:
           description: |
             The total shipping cost for the specified comparison_rate_type.
         tracking_number:
-          type: string
-          minLength: 1
           readOnly: true
-          example: '782758401696'
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/tracking_number'
           description: >-
             The tracking number for the package. Tracking number formats vary
             across carriers.
@@ -8021,7 +7907,6 @@ components:
           writeOnly: true
           type: boolean
           default: false
-          deprecated: true
           description: >-
             Indicate if this label is being used only for testing purposes. If
             true, then no charge will be added to your account.
@@ -8209,10 +8094,12 @@ components:
             - $ref: '#/components/schemas/se_id'
           description: A string that uniquely identifies the shipment
         carrier_id:
+          nullable: true
           allOf:
             - $ref: '#/components/schemas/se_id'
           description: The carrier account that is billed for the shipping charges
         service_code:
+          nullable: true
           allOf:
             - $ref: '#/components/schemas/service_code'
           description: >
@@ -8279,11 +8166,13 @@ components:
             shipped on Sunday will ship on Monday instead.
         created_at:
           readOnly: true
+          nullable: true
           allOf:
             - $ref: '#/components/schemas/date_time'
           description: The date and time that the shipment was created in ShipEngine.
         modified_at:
           readOnly: true
+          nullable: true
           allOf:
             - $ref: '#/components/schemas/date_time'
           description: The date and time that the shipment was created or last modified.
@@ -8295,11 +8184,11 @@ components:
           description: The current status of the shipment
         ship_to:
           allOf:
-            - $ref: '#/components/schemas/shipping_address_to'
+            - $ref: '#/components/schemas/address'
           description: The recipient's mailing address
         ship_from:
           allOf:
-            - $ref: '#/components/schemas/shipping_address'
+            - $ref: '#/components/schemas/address'
           description: >
             The shipment's origin address. If you frequently ship from the same
             location, consider [creating a
@@ -8318,7 +8207,7 @@ components:
             `ship_from` must be specified.
         return_to:
           allOf:
-            - $ref: '#/components/schemas/shipping_address'
+            - $ref: '#/components/schemas/address'
           description: >
             The return address for this shipment.  Defaults to the `ship_from`
             address.
@@ -8367,6 +8256,7 @@ components:
             Arbitrary tags associated with this shipment.  Tags can be used to
             categorize shipments, and shipments can be queried by their tags.
         order_source_code:
+          nullable: true
           allOf:
             - $ref: '#/components/schemas/order_source_name'
         packages:
@@ -8861,6 +8751,7 @@ components:
       properties:
         customs_item_id:
           readOnly: true
+          nullable: true
           allOf:
             - $ref: '#/components/schemas/se_id'
           description: A string that uniquely identifies the customs item
@@ -9087,6 +8978,7 @@ components:
           nullable: true
           default: null
         collect_on_delivery:
+          nullable: true
           $ref: '#/components/schemas/collect_on_delivery'
         third_party_consignee:
           type: boolean
@@ -9232,6 +9124,7 @@ components:
             field of the shipment to be set.
         tracking_number:
           readOnly: true
+          nullable: true
           allOf:
             - $ref: '#/components/schemas/tracking_number'
           description: >
@@ -9242,6 +9135,7 @@ components:
             - $ref: '#/components/schemas/label_messages'
         external_package_id:
           type: string
+          nullable: true
           minLength: 1
           description: An external package id.
         label_download:
@@ -9714,6 +9608,19 @@ components:
           allOf:
             - $ref: '#/components/schemas/display_scheme'
           description: The display format that the label should be shown in.
+        label_image_id:
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/image_id'
+          description: >-
+            The label image resource that was used to create a custom label
+            image.
+        test_label:
+          type: boolean
+          default: false
+          description: >-
+            Indicate if this label is being used only for testing purposes. If
+            true, then no charge will be added to your account. This only works with Stamps.com and Endicia for USPS
     create_label_from_rate_response_body:
       title: create_label_from_rate_response_body
       type: object
@@ -9746,6 +9653,12 @@ components:
           allOf:
             - $ref: '#/components/schemas/display_scheme'
           description: The display format that the label should be shown in.
+        test_label:
+          type: boolean
+          default: false
+          description: >-
+            Indicate if this label is being used only for testing purposes. If
+            true, then no charge will be added to your account. This only works with Stamps.com and Endicia for USPS
     create_label_from_shipment_response_body:
       title: create_label_from_shipment_response_body
       type: object
@@ -9832,10 +9745,12 @@ components:
       additionalProperties: false
       properties:
         tracking_number:
+          nullable: true
           allOf:
             - $ref: '#/components/schemas/tracking_number'
         tracking_url:
           type: string
+          nullable: true
           readOnly: true
           example: 'https://www.fedex.com/fedextrack/?action=track&trackingnumber=1234'
           description: 'Carrier Tracking Url, if available'
@@ -9855,6 +9770,7 @@ components:
           minLength: 0
           description: Status description
         carrier_status_code:
+          nullable: true
           type: string
           readOnly: true
           minLength: 1
@@ -9870,20 +9786,25 @@ components:
           type: string
           minLength: 0
           readOnly: true
+          nullable: true
           example: 'Your item was delivered in or at the mailbox at 9:10 am on March'
           description: carrier status description
         ship_date:
+          nullable: true
           allOf:
             - $ref: '#/components/schemas/date_time'
         estimated_delivery_date:
+          nullable: true
           allOf:
             - $ref: '#/components/schemas/date_time'
         actual_delivery_date:
+          nullable: true
           allOf:
             - $ref: '#/components/schemas/date_time'
         exception_description:
           type: string
           readOnly: true
+          nullable: true
           minLength: 0
           description: Exception description
         events:
@@ -9924,14 +9845,6 @@ components:
       description: A track event
       required:
         - occurred_at
-        - city_locality
-        - state_province
-        - postal_code
-        - carrier_detail_code
-        - status_code
-        - status_description
-        - carrier_status_code
-        - carrier_status_description
       additionalProperties: false
       properties:
         occurred_at:
@@ -9947,43 +9860,51 @@ components:
         description:
           type: string
           readOnly: true
+          nullable: true
           minLength: 0
           example: 'Delivered, In/At Mailbox'
           description: Event description
         city_locality:
           type: string
           readOnly: true
+          nullable: true
           example: AUSTIN
           minLength: 0
           description: City locality
         state_province:
           type: string
           readOnly: true
+          nullable: true
           example: TX
           minLength: 2
           description: State province
         postal_code:
           type: string
           readOnly: true
+          nullable: true
           example: 78756
           minLength: 0
           description: Postal code
         country_code:
+          nullable: true
           allOf:
             - $ref: '#/components/schemas/country_code'
         company_name:
           type: string
           readOnly: true
+          nullable: true
           example: Stamps.com
           minLength: 0
           description: Company Name
         signer:
           type: string
+          nullable: true
           minLength: 0
           readOnly: true
           description: Signer information
         event_code:
           type: string
+          nullable: true
           minLength: 0
           description: Event Code
         carrier_detail_code:
@@ -10016,12 +9937,14 @@ components:
         latitude:
           type: number
           format: double
+          nullable: true
           minimum: -90
           maximum: 90
           description: Latitude coordinate of tracking event.
         longitude:
           type: number
           format: double
+          nullable: true
           minimum: -180
           maximum: 180
           description: Longitude coordinate of tracking event.
@@ -10167,11 +10090,13 @@ components:
               - $ref: '#/components/schemas/se_id'
           description: An array of the label ids used in this manifest.
         warehouse_id:
+          nullable: true
           readOnly: true
           allOf:
             - $ref: '#/components/schemas/se_id'
           description: A string that uniquely identifies the warehouse
         submission_id:
+          nullable: true
           readOnly: true
           type: string
           minLength: 1
@@ -10205,10 +10130,6 @@ components:
       title: create_manifest_by_object_request_body
       type: object
       description: A create manifest request body
-      required:
-        - carrier_id
-        - warehouse_id
-        - ship_date
       additionalProperties: false
       properties:
         carrier_id:
@@ -10356,12 +10277,14 @@ components:
           example: 100
           description: The number of shipments that are included in this manifest
         warehouse_id:
+          nullable: true
           deprecated: true
           allOf:
             - $ref: '#/components/schemas/se_id'
           description: A string that uniquely identifies the warehouse
         submission_id:
           deprecated: true
+          nullable: true
           type: string
           minLength: 1
           example: '9475711899564878915476'
@@ -10975,6 +10898,7 @@ components:
           type: integer
           format: int32
           readOnly: true
+          nullable: true
           minimum: 1
           example: 5
           description: >
@@ -10988,11 +10912,13 @@ components:
           description: Indicates if the rate is guaranteed.
         estimated_delivery_date:
           readOnly: true
+          nullable: true
           allOf:
             - $ref: '#/components/schemas/date'
         carrier_delivery_days:
           type: string
           readOnly: true
+          nullable: true
           minLength: 1
           description: The carrier delivery days
         ship_date:
@@ -11020,10 +10946,14 @@ components:
           readOnly: true
           description: Indicates if rate is trackable
         carrier_code:
-          type: string
           readOnly: true
-          minLength: 1
-          description: carrier code
+          allOf:
+            - $ref: '#/components/schemas/carrier_code'
+          description: >
+            The [shipping
+            carrier](https://www.shipengine.com/docs/carriers/setup/) who
+            will ship the package, such as `fedex`, `dhl_express`,
+            `stamps_com`, etc.
         carrier_nickname:
           type: string
           readOnly: true
@@ -11516,7 +11446,6 @@ components:
               allOf:
                 - $ref: '#/components/schemas/postal_code'
             country_code:
-              type: string
               allOf:
                 - $ref: '#/components/schemas/country_code'
         providers:
