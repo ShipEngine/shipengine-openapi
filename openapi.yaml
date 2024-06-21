@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202406071006
+  version: 1.1.202406202106
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -6038,6 +6038,7 @@ components:
         - sendle
         - stamps_com
         - ups
+        - lasership
       description: The shipping carriers that are supported by ShipEngine
     connect_carrier_request_body:
       title: connect_carrier_request_body
@@ -6060,6 +6061,7 @@ components:
         - $ref: '#/components/schemas/connect_fedex_uk_request_body'
         - $ref: '#/components/schemas/connect_firstmile_request_body'
         - $ref: '#/components/schemas/connect_imex_request_body'
+        - $ref: '#/components/schemas/connect_lasership_request_body'
         - $ref: '#/components/schemas/connect_newgistics_request_body'
         - $ref: '#/components/schemas/connect_ontrac_request_body'
         - $ref: '#/components/schemas/connect_purolator_request_body'
@@ -6707,6 +6709,112 @@ components:
           type: string
           minLength: 1
           description: Password
+    connect_lasership_request_body:
+      title: connect_lasership_request_body
+      type: object
+      description: A Lasership account information request body
+      required:
+        - nickname
+        - web_services_id
+        - web_services_key
+        - customer_branch
+        - Address
+        - PostalCode
+        - City
+        - State
+        - lasership_critical_pull_time
+        - lasership_critical_entry_time
+      additionalProperties: false
+      properties:
+        nickname:
+          type: string
+          minLength: 1
+          description: Nickname
+        web_services_id:
+          type: string
+          minLength: 1
+          description: Web Service ID (WSID)
+        web_services_key:
+          type: string
+          minLength: 1
+          description: Web Service Key (WSKey)
+        customer_branch:
+          type: string
+          minLength: 1
+          description: Customer Branch
+        Address:
+          type: 'string,'
+          description: Address
+        Address2:
+          type: 'string,'
+          description: Address2
+        PostalCode:
+          type: 'string,'
+          description: PostalCode
+        City:
+          type: 'string,'
+          description: City
+        State:
+          type: 'string,'
+          description: State
+        country:
+          type: 'string,'
+          description: Country
+        Phone:
+          type: 'string,'
+          description: Phone
+        Email:
+          type: 'string,'
+          description: Email
+        instructions:
+          type: 'string,'
+          description: Instructions
+        facility_code:
+          type: 'string,'
+          description: Facility Code
+        lasership_critical_pull_time:
+          type: 'string,'
+          description: Critical Pull Time (local time)
+        lasership_critical_entry_time:
+          type: 'string,'
+          description: Critical Entry Time (local time)
+        declare_piece_attributes_separately_for_every_shipment:
+          type: 'boolean,'
+          description: >-
+            Declare piece attributes separately for every shipment, overrides
+            individual attribute below.
+          default: false
+        AttrAlcohol:
+          type: 'boolean,'
+          description: Set this to true if your shipments will always contain Alcohol
+        AttrDryIce:
+          type: 'boolean,'
+          description: Set this to true if your shipments will always contain DryIce
+        AttrHazmat:
+          type: 'boolean,'
+          description: Set this to true if your shipments will always contain Hazmat
+        AttrTwoPersons:
+          type: 'boolean,'
+          description: Set this to true if your shipments will always require Two Persons
+        AttrExplosive:
+          type: 'boolean,'
+          description: Set this to true if your shipments will always contain Explosives
+        AttrControlledSubstance:
+          type: 'boolean,'
+          description: >-
+            Set this to true if your shipments will always contain Controlled
+            Substances
+        AttrRefrigerated:
+          type: 'boolean,'
+          description: Set this to true if your shipments will always require Refrigeration
+        AttrPerishable:
+          type: 'boolean,'
+          description: Set this to true if your shipments will always be Perishable
+        AttrNoRTS:
+          type: 'boolean,'
+          description: >-
+            Set this to true if your shipments will always use "No Return To
+            Sender"
     connect_newgistics_request_body:
       title: connect_newgistics_request_body
       type: object
@@ -6924,23 +7032,12 @@ components:
     connect_ups_request_body:
       title: connect_ups_request_body
       type: object
-      description: A UPS account information request body
+      description: >-
+        A UPS account information request body.  The location header from this
+        call should be used to redirect to UPS for sign in.
       required:
         - nickname
         - account_number
-        - account_country_code
-        - account_postal_code
-        - first_name
-        - last_name
-        - company
-        - address1
-        - city
-        - state
-        - postal_code
-        - country_code
-        - email
-        - phone
-        - agree_to_technology_agreement
       additionalProperties: false
       properties:
         nickname:
@@ -6951,103 +7048,6 @@ components:
           type: string
           minLength: 1
           description: Account number
-        account_country_code:
-          type: string
-          minLength: 1
-          description: Account country code
-        account_postal_code:
-          type: string
-          minLength: 1
-          description: Account postal code
-        title:
-          type: string
-          minLength: 1
-          description: Title
-        first_name:
-          type: string
-          minLength: 1
-          description: First name
-        last_name:
-          type: string
-          minLength: 1
-          description: Last name
-        company:
-          type: string
-          minLength: 1
-          description: Company
-        address1:
-          type: string
-          minLength: 1
-          description: Address Line 1
-        address2:
-          type: string
-          minLength: 1
-          description: Address Line 2
-        city:
-          type: string
-          minLength: 1
-          description: City
-        state:
-          type: string
-          minLength: 1
-          description: State
-        postal_code:
-          type: string
-          minLength: 1
-          description: Postal code
-        country_code:
-          type: string
-          minLength: 1
-          description: Country code
-        email:
-          allOf:
-            - $ref: '#/components/schemas/email'
-          description: The email address
-        phone:
-          type: string
-          minLength: 1
-          description: Phone
-        invoice:
-          allOf:
-            - $ref: '#/components/schemas/ups_invoice'
-          description: The UPS invoice
-        invoice_amount:
-          format: double
-          type: number
-          description: The invoice amount
-        invoice_currency_code:
-          type: string
-          description: The invoice currency code
-        agree_to_technology_agreement:
-          type: boolean
-          description: >-
-            The Agreement to the [UPS Technology
-            Agreement](https://www.ups.com/assets/resources/media/UTA_with_EUR.pdf)
-    ups_invoice:
-      title: ups_invoice
-      type: object
-      description: UPS invoice
-      additionalProperties: false
-      properties:
-        invoice_date:
-          type: string
-          format: date-time
-          minLength: 1
-          description: invoice date
-        invoice_number:
-          type: string
-          minLength: 1
-          description: invoice number
-        control_id:
-          allOf:
-            - $ref: '#/components/schemas/se_id'
-          description: A string that uniquely identifies the control
-        invoice_amount:
-          type: number
-          format: double
-          minimum: 0
-        invoice_currency_code:
-          type: string
     connect_carrier_response_body:
       title: connect_carrier_response_body
       type: object
@@ -7272,6 +7272,31 @@ components:
         - occasional_pickup
         - customer_counter
       description: The possible ups pickup type values
+    ups_invoice:
+      title: ups_invoice
+      type: object
+      description: UPS invoice
+      additionalProperties: false
+      properties:
+        invoice_date:
+          type: string
+          format: date-time
+          minLength: 1
+          description: invoice date
+        invoice_number:
+          type: string
+          minLength: 1
+          description: invoice number
+        control_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the control
+        invoice_amount:
+          type: number
+          format: double
+          minimum: 0
+        invoice_currency_code:
+          type: string
     update_carrier_settings_request_body:
       title: update_carrier_settings_request_body
       oneOf:
@@ -7853,6 +7878,14 @@ components:
                   identify a given label in their system. 
                 items:
                   $ref: '#/components/schemas/alternative_identifier'
+              tracking_url:
+                readOnly: true
+                nullable: true
+                type: string
+                description: >
+                  The URL to track the package. This URL is provided by the
+                  carrier and is unique to the tracking number. Example:
+                  `https://www.fedex.com/fedextrack/?action=track&trackingnumber=1234`
       allOf:
         - $ref: '#/components/schemas/paged_list_response_body'
     create_label_request_body:
@@ -8164,6 +8197,14 @@ components:
             identify a given label in their system. 
           items:
             $ref: '#/components/schemas/alternative_identifier'
+        tracking_url:
+          readOnly: true
+          nullable: true
+          type: string
+          description: >
+            The URL to track the package. This URL is provided by the carrier
+            and is unique to the tracking number. Example:
+            `https://www.fedex.com/fedextrack/?action=track&trackingnumber=1234`
     shipment:
       title: shipment
       type: object
