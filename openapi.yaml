@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202406202106
+  version: 1.1.202406212006
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -7882,10 +7882,11 @@ components:
                 readOnly: true
                 nullable: true
                 type: string
+                example: >-
+                  https://www.fedex.com/fedextrack/?action=track&trackingnumber=1234
                 description: >
                   The URL to track the package. This URL is provided by the
-                  carrier and is unique to the tracking number. Example:
-                  `https://www.fedex.com/fedextrack/?action=track&trackingnumber=1234`
+                  carrier and is unique to the tracking number.
       allOf:
         - $ref: '#/components/schemas/paged_list_response_body'
     create_label_request_body:
@@ -8201,10 +8202,10 @@ components:
           readOnly: true
           nullable: true
           type: string
+          example: 'https://www.fedex.com/fedextrack/?action=track&trackingnumber=1234'
           description: >
             The URL to track the package. This URL is provided by the carrier
-            and is unique to the tracking number. Example:
-            `https://www.fedex.com/fedextrack/?action=track&trackingnumber=1234`
+            and is unique to the tracking number.
     shipment:
       title: shipment
       type: object
