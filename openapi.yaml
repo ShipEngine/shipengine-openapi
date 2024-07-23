@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202407151307
+  version: 1.1.202407231507
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -7873,7 +7873,7 @@ components:
                   that doesn't allow it, an error will be returned.
                 items:
                   allOf:
-                    - $ref: '#/components/schemas/package'
+                    - $ref: '#/components/schemas/label_package'
                     - $ref: '#/components/schemas/alternative_identifiers'
               alternative_identifiers:
                 type: array
@@ -8193,7 +8193,7 @@ components:
             allow it, an error will be returned.
           items:
             allOf:
-              - $ref: '#/components/schemas/package'
+              - $ref: '#/components/schemas/label_package'
               - $ref: '#/components/schemas/alternative_identifiers'
         alternative_identifiers:
           type: array
@@ -9231,13 +9231,17 @@ components:
     package:
       title: package
       type: object
-      description: >
-        A package associated with a [shipping
-        label](https://www.shipengine.com/docs/labels/create-a-label/)
+      description: |
+        A package associated with a shipment
       required:
         - weight
       additionalProperties: false
       properties:
+        shipment_package_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          readOnly: true
+          description: A string that uniquely identifies this shipment package
         package_id:
           allOf:
             - $ref: '#/components/schemas/se_id'
@@ -9252,15 +9256,11 @@ components:
             type](https://www.shipengine.com/docs/reference/list-carrier-packages/),
             such as `thick_envelope`, `small_flat_rate_box`, `large_package`,
             etc.  The code `package` indicates a custom or unknown package type.
-        content_description:
+        package_name:
           type: string
-          minLength: 1
-          maxLength: 35
-          description: >
-            A short description of the package content. Required for shipments
-            moving to, from, and through Mexico.
-          example: Hand knitted wool socks
-          nullable: true
+          description: >-
+            The name of the of the [package
+            type](https://www.shipengine.com/docs/reference/list-carrier-packages/)
         weight:
           allOf:
             - $ref: '#/components/schemas/weight'
@@ -9278,13 +9278,6 @@ components:
           description: >
             The insured value of the package.  Requires the `insurance_provider`
             field of the shipment to be set.
-        tracking_number:
-          readOnly: true
-          allOf:
-            - $ref: '#/components/schemas/tracking_number'
-          description: >
-            The tracking number for the package.  The format depends on the
-            carrier.
         label_messages:
           allOf:
             - $ref: '#/components/schemas/label_messages'
@@ -9292,28 +9285,22 @@ components:
           type: string
           minLength: 1
           description: An external package id.
-        label_download:
+        tracking_number:
           readOnly: true
           allOf:
-            - $ref: '#/components/schemas/label_download'
-          description: The label download for the package
-        form_download:
-          readOnly: true
-          allOf:
-            - $ref: '#/components/schemas/optional_link'
-          description: The form download for any customs that are needed
-        paperless_download:
-          readOnly: true
-          allOf:
-            - $ref: '#/components/schemas/paperless_download'
-          description: >-
-            The paperless details which may contain elements like `href`,
-            `instructions` and `handoff_code`.
-        sequence:
-          readOnly: true
-          format: int32
-          type: integer
-          description: Package sequence
+            - $ref: '#/components/schemas/tracking_number'
+          description: >
+            The tracking number for the package.  The format depends on the
+            carrier.
+        content_description:
+          type: string
+          minLength: 1
+          maxLength: 35
+          description: >
+            A short description of the package content. Required for shipments
+            moving to, from, and through Mexico.
+          example: Hand knitted wool socks
+          nullable: true
         products:
           type: array
           default: []
@@ -9323,12 +9310,6 @@ components:
             be used on custom documentation)
           items:
             $ref: '#/components/schemas/products'
-    tracking_number:
-      title: tracking_number
-      type: string
-      minLength: 1
-      example: 1Z932R800392060079
-      description: A tracking number for a package. The format depends on the carrier.
     label_messages:
       title: label_messages
       type: object
@@ -9381,6 +9362,12 @@ components:
           description: >
             The third line of the custom label message.  Some carriers may
             prefix this line with something like "PO", "Reference 3", etc.
+    tracking_number:
+      title: tracking_number
+      type: string
+      minLength: 1
+      example: 1Z932R800392060079
+      description: A tracking number for a package. The format depends on the carrier.
     products:
       title: products
       type: object
@@ -9652,6 +9639,108 @@ components:
         - error
         - delivered
       description: The different statuses that can apply to a shipment.
+    label_package:
+      title: label_package
+      type: object
+      description: >
+        A package returned in the response from creating a [shipping
+        label](https://www.shipengine.com/docs/labels/create-a-label/)
+      required:
+        - weight
+      additionalProperties: false
+      properties:
+        package_id:
+          readOnly: true
+          type: integer
+          format: int32
+          description: The shipment package id
+        package_code:
+          allOf:
+            - $ref: '#/components/schemas/package_code'
+          description: >
+            The [package
+            type](https://www.shipengine.com/docs/reference/list-carrier-packages/),
+            such as `thick_envelope`, `small_flat_rate_box`, `large_package`,
+            etc.  The code `package` indicates a custom or unknown package type.
+        weight:
+          allOf:
+            - $ref: '#/components/schemas/weight'
+          description: The package weight
+        dimensions:
+          allOf:
+            - $ref: '#/components/schemas/dimensions'
+          description: The package dimensions
+        insured_value:
+          allOf:
+            - $ref: '#/components/schemas/monetary_value'
+          default:
+            - currency: usd
+              amount: 0
+          description: >
+            The insured value of the package.  Requires the `insurance_provider`
+            field of the shipment to be set.
+        tracking_number:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/tracking_number'
+          description: >
+            The tracking number for the package.  The format depends on the
+            carrier.
+        label_download:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/label_download'
+          description: The label download for the package
+        form_download:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/optional_link'
+          description: The form download for any customs that are needed
+        qr_code_download:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/optional_link'
+          description: The QR code download for the package
+        paperless_download:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/paperless_download'
+          description: >-
+            The paperless details which may contain elements like `href`,
+            `instructions` and `handoff_code`.
+        label_messages:
+          allOf:
+            - $ref: '#/components/schemas/label_messages'
+        external_package_id:
+          type: string
+          minLength: 1
+          description: An external package id.
+        content_description:
+          type: string
+          minLength: 1
+          maxLength: 35
+          description: >
+            A short description of the package content. Required for shipments
+            moving to, from, and through Mexico.
+          example: Hand knitted wool socks
+          nullable: true
+        sequence:
+          readOnly: true
+          format: int32
+          type: integer
+          description: Package sequence
+        has_label_documents:
+          type: boolean
+          description: Whether the package has label documents available for download
+        has_form_documents:
+          type: boolean
+          description: Whether the package has form documents available for download
+        has_qr_code_documents:
+          type: boolean
+          description: Whether the package has QR code documents available for download
+        has_paperless_label_documents:
+          type: boolean
+          description: Whether the package has paperless documents available for download
     alternative_identifiers:
       title: alternative_identifiers
       type: object
