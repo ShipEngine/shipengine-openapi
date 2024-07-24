@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202407231507
+  version: 1.1.202407241607
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -9983,8 +9983,13 @@ components:
           allOf:
             - $ref: '#/components/schemas/carrier_code'
         carrier_id:
-          allOf:
-            - $ref: '#/components/schemas/se_id'
+          readOnly: true
+          type: integer
+          format: int32
+          description: >
+            The unique ID of the [carrier
+            account](https://www.shipengine.com/docs/carriers/setup/) that was
+            used to create this label
         status_description:
           type: string
           readOnly: true
