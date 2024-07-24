@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202407241607
+  version: 1.1.202407242007
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -10040,26 +10040,26 @@ components:
       readOnly: true
       title: status_code
       enum:
-        - un
-        - ac
-        - it
-        - de
-        - ex
-        - at
-        - ny
+        - UN
+        - AC
+        - IT
+        - DE
+        - EX
+        - AT
+        - NY
       type: string
       description: |
         The tracking status codes
 
         |Value       |Description
         |:---------  |:-----------------------------------------------------
-        |`un` | Unknown
-        |`ac` | Accepted
-        |`it` | In Transit
-        |`de` | Delivered
-        |`ex` | Exception
-        |`at` | Delivery Attempt
-        |`ny` | Not Yet In System
+        |`UN` | Unknown
+        |`AC` | Accepted
+        |`IT` | In Transit
+        |`DE` | Delivered
+        |`EX` | Exception
+        |`AT` | Delivery Attempt
+        |`NY` | Not Yet In System
     track_event:
       title: track_event
       type: object
