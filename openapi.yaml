@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202407281907
+  version: 1.1.202408090808
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -6177,8 +6177,10 @@ components:
       required:
         - nickname
         - account_number
-        - ftp_username
-        - ftp_password
+        - username
+        - password
+        - api_key
+        - processing_location
       additionalProperties: false
       properties:
         nickname:
@@ -6190,14 +6192,28 @@ components:
           type: string
           minLength: 1
           description: Asendia account number
-        ftp_username:
+        username:
           type: string
           minLength: 1
-          description: FTP username
-        ftp_password:
+          description: Asendia username
+        password:
           type: string
           minLength: 1
-          description: FTP password
+          description: Asendia password
+        api_key:
+          type: string
+          minLength: 1
+          description: Asendia api_key
+        processing_location:
+          type: string
+          minLength: 1
+          description: >-
+            Asendia processing location, one of: 'MIA', 'JFK', 'ORD', 'PHL',
+            'SFO', 'LAX', 'SLC', 'TOR', 'BUF', 'CAL'
+        sub_account_number:
+          type: string
+          minLength: 1
+          description: Asendia sub account number
     connect_australia_post_request_body:
       title: connect_australia_post_request_body
       type: object
@@ -7039,6 +7055,8 @@ components:
       required:
         - nickname
         - account_number
+        - account_postal_code
+        - account_country_code
       additionalProperties: false
       properties:
         nickname:
@@ -7049,6 +7067,14 @@ components:
           type: string
           minLength: 1
           description: Account number
+        account_postal_code:
+          type: string
+          minLength: 1
+          description: Account Postal Code
+        account_country_code:
+          type: string
+          minLength: 1
+          description: Account Country Code
     connect_carrier_response_body:
       title: connect_carrier_response_body
       type: object
@@ -12645,8 +12671,12 @@ tags:
       batches
     x-displayName: Batches
   - name: carrier_accounts
-    description: |
-      carrier accounts
+    description: >
+      A carrier account is a connection to a shipping carrier that allows you to
+      create labels, track packages, and more.  You can connect your own carrier
+      accounts to ShipEngine, or use one of our built-in carrier accounts. 
+      [Learn more about carrier accounts
+      here.](https://www.shipengine.com/docs/carriers/setup/)
     x-displayName: Carrier Accounts
   - name: carriers
     description: |
