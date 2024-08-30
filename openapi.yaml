@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202408251008
+  version: 1.1.202408290608
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -12061,6 +12061,28 @@ components:
               allOf:
                 - $ref: '#/components/schemas/weight'
               description: Shipment total weight
+            packages:
+              type: array
+              description: An array of package dimensions
+              items:
+                type: object
+                properties:
+                  unit:
+                    type: string
+                    example: centimeter
+                    description: Unit of the dimensions of the packages
+                  length:
+                    type: double
+                    example: 60
+                    description: Package length
+                  width:
+                    type: double
+                    example: 60
+                    description: Package width
+                  height:
+                    type: double
+                    example: 60
+                    description: Package height
     list_service_points_response_body:
       title: list_service_points_response_body
       type: object
