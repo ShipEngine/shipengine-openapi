@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202409030909
+  version: 1.1.202409060709
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -7687,6 +7687,17 @@ components:
                 description: >
                   The total shipping cost for the specified
                   comparison_rate_type.
+              rate_details:
+                readOnly: true
+                description: >
+                  A list of rate details that are associated with shipping cost.
+                  This is useful for
+
+                  displaying a breakdown of the rate to the user.
+                type: array
+                items:
+                  allOf:
+                    - $ref: '#/components/schemas/rate_detail'
               tracking_number:
                 type: string
                 minLength: 1
@@ -8013,6 +8024,17 @@ components:
             - $ref: '#/components/schemas/monetary_value'
           description: |
             The total shipping cost for the specified comparison_rate_type.
+        rate_details:
+          readOnly: true
+          description: >
+            A list of rate details that are associated with shipping cost. This
+            is useful for
+
+            displaying a breakdown of the rate to the user.
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/rate_detail'
         tracking_number:
           type: string
           minLength: 1
@@ -9633,6 +9655,89 @@ components:
         - fully_regulated
         - limited_quantities
         - excepted_quantity
+    rate_detail:
+      title: rate_detail
+      type: object
+      description: |
+        Represents detailed information about a shipping cost
+      additionalProperties: false
+      properties:
+        rate_detail_type:
+          allOf:
+            - $ref: '#/components/schemas/rate_detail_type'
+        carrier_description:
+          type: string
+          description: A rate detail description defined by a carrier
+        carrier_billing_code:
+          type: string
+          description: A rate detail code defined by a carrier
+        carrier_memo:
+          type: string
+          description: Contains any additional information
+        amount:
+          allOf:
+            - $ref: '#/components/schemas/monetary_value'
+        rate_detail_attributes:
+          allOf:
+            - $ref: '#/components/schemas/rate_detail_attributes'
+          description: >-
+            If applicable, contains additional data about a rate detail of a
+            specific type, e.g. VAT
+        billing_source:
+          type: string
+          description: >-
+            The source of the billing information. This is typically the
+            carrier, but could be a third party, e.g insurance
+    rate_detail_type:
+      title: rate_detail_type
+      type: string
+      enum:
+        - uncategorized
+        - shipping
+        - insurance
+        - confirmation
+        - discount
+        - fuel_charge
+        - additional_fees
+        - tariff
+        - tax
+        - delivery
+        - handling
+        - special_goods
+        - pickup
+        - location_fee
+        - oversize
+        - returns
+        - notifications
+        - tip
+        - duties_and_taxes
+        - brokerage_fee
+        - admin_fee
+        - adjustment
+      description: The possible rate detail type values
+    rate_detail_attributes:
+      title: rate_detail_attributes
+      type: object
+      description: >
+        Represents detailed information about a tax (e.g. VAT) contained in a
+        shipping cost.
+      additionalProperties: false
+      properties:
+        tax_type:
+          allOf:
+            - $ref: '#/components/schemas/tax_type'
+        tax_code:
+          type: string
+          description: Code for a specific tax type
+        tax_percentage:
+          type: number
+          description: 'Tax percentage, e.g. 20 for 20%, added to the shipping cost'
+    tax_type:
+      title: tax_type
+      type: string
+      enum:
+        - vat
+      description: Type of a tax added to shipping cost
     label_charge_event:
       title: label_charge_event
       type: string
@@ -11445,6 +11550,17 @@ components:
           description: >-
             Tariff and additional taxes associated with an international
             shipment.
+        rate_details:
+          readOnly: true
+          description: >
+            A list of rate details that are associated with this rate. This is
+            useful for
+
+            displaying a breakdown of the rate to the user.
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/rate_detail'
         zone:
           type: integer
           format: int32
