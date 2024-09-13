@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202409060709
+  version: 1.1.202409121409
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -4345,6 +4345,14 @@ components:
         - invalid_charge_event
         - invalid_object
         - no_rates_returned
+        - file_not_found
+        - shipping_rule_not_found
+        - service_not_determined
+        - no_rates_returned
+        - funding_source_registration_in_progress
+        - insurance_failure
+        - funding_source_missing_configuration
+        - funding_source_error
       description: The error code specified for the failed API Call
     list_account_settings_images_response_body:
       title: list_account_settings_images_response_body
