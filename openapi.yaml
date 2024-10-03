@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202409181909
+  version: 1.1.202410032110
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -10129,7 +10129,6 @@ components:
         - tracking_number
         - status_code
         - carrier_status_code
-        - estimated_delivery_date
         - events
       additionalProperties: false
       allOf:
@@ -10230,6 +10229,7 @@ components:
         - EX
         - AT
         - NY
+        - SP
       type: string
       description: |
         The tracking status codes
@@ -10243,6 +10243,7 @@ components:
         |`EX` | Exception
         |`AT` | Delivery Attempt
         |`NY` | Not Yet In System
+        |`SP` | Delivered To Collection Location
     status_detail_code:
       readOnly: true
       title: status_detail_code
@@ -12973,7 +12974,6 @@ components:
         - carrier_id
         - carrier_detail_code
         - carrier_status_code
-        - estimated_delivery_date
         - events
       additionalProperties: false
       allOf:
