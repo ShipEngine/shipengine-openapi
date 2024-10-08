@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202410032110
+  version: 1.1.202410081510
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -4274,6 +4274,27 @@ components:
           example: Body of request cannot be null.
           minLength: 1
           description: An error message associated with the failed API call
+        carrier_id:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: >-
+            A string that uniquely identifies the carrier that generated the
+            error.
+        carrier_code:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/carrier_code'
+          description: >
+            The name of the [shipping
+            carrier](https://www.shipengine.com/docs/carriers/setup/) that
+            generated the error, such as `fedex`, `dhl_express`, `stamps_com`,
+            etc.
+        field_name:
+          type: string
+          readOnly: true
+          example: shipment.ship_to.phone_number
+          description: The name of the field that caused the error
     error_source:
       title: error_source
       type: string
@@ -4354,6 +4375,24 @@ components:
         - funding_source_missing_configuration
         - funding_source_error
       description: The error code specified for the failed API Call
+    se_id:
+      title: se_id
+      type: string
+      minLength: 1
+      maxLength: 25
+      pattern: '^se(-[a-z0-9]+)+$'
+      example: se-28529731
+      description: >-
+        A string that uniquely identifies a ShipEngine resource, such as a
+        carrier, label, shipment, etc.
+    carrier_code:
+      title: carrier_code
+      type: string
+      pattern: '^[a-z0-9]+(_[a-z0-9]+)*$'
+      example: dhl_express
+      description: >
+        A [shipping carrier](https://www.shipengine.com/docs/carriers/setup/),
+        such as `fedex`, `dhl_express`, `stamps_com`, etc.
     list_account_settings_images_response_body:
       title: list_account_settings_images_response_body
       allOf:
@@ -5375,16 +5414,6 @@ components:
         <br> `dpd` <br> `endicia` <br> `fedex` <br> `fedex_uk` <br> `firstmile`
         <br> `imex` <br> `newgistics` <br> `ontrac` <br> `rr_donnelley` <br>
         `stamps_com` <br> `ups` <br> `usps`
-    se_id:
-      title: se_id
-      type: string
-      minLength: 1
-      maxLength: 25
-      pattern: '^se(-[a-z0-9]+)+$'
-      example: se-28529731
-      description: >-
-        A string that uniquely identifies a ShipEngine resource, such as a
-        carrier, label, shipment, etc.
     label_download:
       title: label_download
       type: object
@@ -5771,14 +5800,6 @@ components:
             allOf:
               - $ref: '#/components/schemas/carrier_advanced_option'
           description: A list of options that are available to that carrier
-    carrier_code:
-      title: carrier_code
-      type: string
-      pattern: '^[a-z0-9]+(_[a-z0-9]+)*$'
-      example: dhl_express
-      description: >
-        A [shipping carrier](https://www.shipengine.com/docs/carriers/setup/),
-        such as `fedex`, `dhl_express`, `stamps_com`, etc.
     service:
       title: service
       type: object
