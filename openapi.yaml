@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202410092110
+  version: 1.1.202410092210
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -11610,7 +11610,7 @@ components:
       additionalProperties: false
       oneOf:
         - $ref: '#/components/schemas/shipment_id_request'
-        - $ref: '#/components/schemas/shipment_request'
+        - $ref: '#/components/schemas/rate_shipment_request'
       allOf:
         - $ref: '#/components/schemas/rate_request_options'
     shipment_id_request:
@@ -11621,6 +11621,36 @@ components:
           allOf:
             - $ref: '#/components/schemas/se_id'
           description: A string that uniquely identifies the shipment
+    rate_shipment_request:
+      title: rate_shipment_request
+      type: object
+      properties:
+        shipment:
+          allOf:
+            - $ref: '#/components/schemas/address_validating_shipment'
+          description: The shipment object
+    address_validating_shipment:
+      title: address_validating_shipment
+      type: object
+      description: An address validating shipment
+      required:
+        - shipment_id
+        - carrier_id
+        - service_code
+        - ship_to
+        - ship_from
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/validate_shipment_fields'
+        - $ref: '#/components/schemas/partial_shipment'
+    validate_shipment_fields:
+      title: validate_shipment_fields
+      type: object
+      properties:
+        validate_address:
+          default: no_validation
+          allOf:
+            - $ref: '#/components/schemas/validate_address'
     rate_request_options:
       title: rate_request_options
       type: object
@@ -12022,28 +12052,6 @@ components:
               - $ref: '#/components/schemas/address_validating_shipment'
             description: The shipment to get a bulk rate estimate for
           description: The array of shipments to get bulk rate estimates for
-    address_validating_shipment:
-      title: address_validating_shipment
-      type: object
-      description: An address validating shipment
-      required:
-        - shipment_id
-        - carrier_id
-        - service_code
-        - ship_to
-        - ship_from
-      additionalProperties: false
-      allOf:
-        - $ref: '#/components/schemas/validate_shipment_fields'
-        - $ref: '#/components/schemas/partial_shipment'
-    validate_shipment_fields:
-      title: validate_shipment_fields
-      type: object
-      properties:
-        validate_address:
-          default: no_validation
-          allOf:
-            - $ref: '#/components/schemas/validate_address'
     compare_bulk_rates_response_body:
       title: compare_bulk_rates_response_body
       type: array
