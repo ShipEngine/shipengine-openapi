@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202410092210
+  version: 1.1.202410142110
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -7682,7 +7682,7 @@ components:
                   - $ref: '#/components/schemas/date'
                 readOnly: true
                 description: >
-                  The date that the package was (or will be) shippped. 
+                  The date that the package was (or will be) shipped. 
                   ShipEngine will take the day of week into consideration. For
                   example, if the carrier does not operate on Sundays, then a
                   package that would have shipped on Sunday will ship on Monday
@@ -8145,7 +8145,7 @@ components:
           allOf:
             - $ref: '#/components/schemas/date'
           description: >
-            The date that the shipment was (or will be) shippped.  ShipEngine
+            The date that the shipment was (or will be) shipped.  ShipEngine
             will take the day of week into consideration. For example, if the
             carrier does not operate on Sundays, then a package that would have
             shipped on Sunday will ship on Monday instead.
@@ -9463,7 +9463,6 @@ components:
         - carrier_id
         - service_code
         - voided
-        - voided_at
         - label_image_id
         - label_format
         - label_layout
@@ -9525,10 +9524,10 @@ components:
             - $ref: '#/components/schemas/date'
           readOnly: true
           description: >
-            The date that the package was (or will be) shippped.  ShipEngine
-            will take the day of week into consideration. For example, if the
-            carrier does not operate on Sundays, then a package that would have
-            shipped on Sunday will ship on Monday instead.
+            The date that the package was (or will be) shipped.  ShipEngine will
+            take the day of week into consideration. For example, if the carrier
+            does not operate on Sundays, then a package that would have shipped
+            on Sunday will ship on Monday instead.
         created_at:
           readOnly: true
           allOf:
@@ -9893,7 +9892,7 @@ components:
           allOf:
             - $ref: '#/components/schemas/date'
           description: >
-            The date that the shipment was (or will be) shippped.  ShipEngine
+            The date that the shipment was (or will be) shipped.  ShipEngine
             will take the day of week into consideration. For example, if the
             carrier does not operate on Sundays, then a package that would have
             shipped on Sunday will ship on Monday instead.
