@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202410142110
+  version: 1.1.202410161910
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -5379,6 +5379,8 @@ components:
       enum:
         - 4x6
         - letter
+        - A4
+        - A6
       description: >
         The available layouts (sizes) in which shipping labels can be
         downloaded.  The label format determines which sizes are supported. 
