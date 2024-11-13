@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202411081111
+  version: 1.1.202411131511
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -10291,17 +10291,17 @@ components:
       allOf:
         - $ref: '#/components/schemas/purchase_label_without_shipment'
       properties:
-        custom_field_1:
+        custom_field1:
           type: string
           description: >-
             Optional - Value will be saved in the shipment's advanced_options >
             custom_field1
-        custom_field_2:
+        custom_field2:
           type: string
           description: >-
             Optional - Value will be saved in the shipment's advanced_options >
             custom_field2
-        custom_field_3:
+        custom_field3:
           type: string
           description: >-
             Optional - Value will be saved in the shipment's advanced_options >
