@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202411131511
+  version: 1.1.202412061012
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -10483,7 +10483,7 @@ components:
         status_detail_description:
           type: string
           readOnly: true
-          example: Your shipment has been delivered.
+          example: Your parcel has been successfully delivered.
           minLength: 0
           description: Status detail description
         carrier_status_code:
@@ -10556,23 +10556,38 @@ components:
       readOnly: true
       title: status_detail_code
       enum:
-        - COLLECTION_FAILED
-        - AWAITING_DESPATCH
-        - COLLECTION_REQUESTED
-        - DESPATCHED
+        - CARRIER_STATUS_NOT_MAPPED
+        - SHIPMENT_CREATED
+        - AWAITING_PICKUP_DROP_OFF
+        - DROPPED_OFF
         - ELEC_ADVICE_RECD_BY_CARRIER
-        - NOT_YET_RECEIVED_BY_CARRIER
-        - COLLECTION_MADE
+        - PICKED_UP
+        - CUSTOMS_CLEARED
+        - CUSTOMS_PROCESSING
+        - DELIVERY_ARRANGED_WITH_RECIPIENT
+        - HUB_SCAN_OUT
+        - HUB_SCAN_IN
+        - IN_TRANSIT
+        - INFORMATION
+        - PARCEL_OVER_LABELLED
+        - PARCEL_UPDATE_NOTIFICATION
+        - RECEIVED_BY_CARRIER
+        - RECEIVED_LOCAL_DELIVERY_DEPOT
+        - SUB_CONTRACTOR_EVENT
+        - SUB_CONTRACTOR_RECEIVED
+        - PARCEL_REDIRECTED
+        - DELIVERY_SCHEDULED
+        - HUB_PROCESSING
+        - DELIVERY_RESCHEDULED
         - ATTEMPTED_DELIVERY
-        - ATTEMPTED_DELIVERY_2ND
-        - ATTEMPTED_DELIVERY_3RD
-        - COD_AMOUNT_NOT_PAID
+        - ATTEMPTED_DELIVERY_FINAL
         - COD_AMOUNT_PAID
         - CUSTOMER_CARDED
-        - CUSTOMER_IDENTIFICATION_FAILED
-        - INVALID_METHOD_OF_PAYMENT
-        - NO_ACCESS_TO_RECIPIENTS_ADDRESS
         - OUT_FOR_DELIVERY
+        - AWAITING_COLLECTION_FROM_PICKUP_POINT
+        - COLLECT_AT_LOCAL_PO
+        - CUSTOMER_TO_COLLECT_FROM_CARRIER
+        - DELIVERED_TO_RECEPTION
         - DELIVERED
         - DELIVERED_DAMAGED
         - DELIVERED_IN_PART
@@ -10583,51 +10598,36 @@ components:
         - PARCEL_COLLECTED_FROM_PICKUP_POINT
         - POST_TRANSIT_STATUS
         - PROOF_OF_DELIVERY
-        - CANCELLED
-        - CANCELLED_BEFORE_DESPATCH
-        - CUSTOMER_MOVED
-        - HAZARDOUS_PROHIBITED
-        - NOT_COLLECTED_FROM_PICKUP_POINT
-        - NOT_DELIVERED
-        - NOT_DELIVERED_ADDRESSEE_DECEASED
+        - PICKUP_FAILED
+        - NOT_YET_RECEIVED_BY_CARRIER
         - PARCEL_DAMAGED
-        - PARCEL_DISPOSED
-        - PARCEL_LOST
-        - PARCEL_OUTSIDE_OF_SERVICE_CAPABILITY
-        - REFUSED_BY_CUSTOMER
-        - RETURN_TO_SENDER
         - ADDRESS_QUERY
         - CARRIER_DELAYS
-        - CUSTOMS_CLEARED
-        - CUSTOMS_PROCESSING
         - DELAYED_NOT_CARRIER
-        - DELIVERY_ARRANGED_WITH_RECIPIENT
         - HELD_BY_CARRIER
         - HELD_BY_CARRIER_FOR_CLEARANCE_PRE_PROCESSING
         - HELD_BY_CUSTOMS
         - HELD_BY_EXPORT_CUSTOMS
         - HELD_BY_IMPORT_CUSTOMS
-        - HUB_SCAN_OUT
-        - IN_TRANSIT
         - INCORRECT_DECLARATION
-        - INFORMATION
-        - MISSORTED
-        - PARCEL_OVER_LABELLED
+        - MISROUTED
         - PARCEL_REPACKED
-        - PARCEL_UPDATE_NOTIFICATION_VIA_EMAIL
-        - PARCEL_UPDATE_NOTIFICATION_VIA_SMS
-        - RECEIVED_BY_CARRIER
-        - RECEIVED_LOCAL_DELIVERY_DEPOT
-        - ROUTING_ERROR
-        - SUB_CONTRACTOR_EVENT
-        - SUB_CONTRACTOR_RECEIVED
         - RECD_BY_CARRIER_NO_ELEC_ADVICE
-        - AWAITING_ELECTRONIC_ADVICE
-        - AWAITING_COLLECTION_FROM_PICKUP_POINT
-        - COLLECT_AT_LOCAL_PO
-        - CUSTOMER_TO_COLLECT_FROM_CARRIER
-        - DELIVERED_TO_LOCKER_COLLECTION_POINT
-        - CARRIER_STATUS_NOT_MAPPED
+        - COD_AMOUNT_NOT_PAID
+        - CUSTOMER_IDENTIFICATION_FAILED
+        - NO_ACCESS_TO_RECIPIENTS_ADDRESS
+        - CANCELLED
+        - CUSTOMER_MOVED
+        - HAZARDOUS_PROHIBITED
+        - NOT_COLLECTED_FROM_PICKUP_POINT
+        - NOT_DELIVERED
+        - NOT_DELIVERED_ADDRESSEE_DECEASED
+        - PARCEL_DISPOSED
+        - PARCEL_LOST
+        - PARCEL_OUTSIDE_OF_SERVICE_CAPABILITY
+        - REFUSED_BY_CUSTOMER
+        - RETURN_TO_SENDER
+        - UNSPECIFIED_EXCEPTION
       type: string
       description: >
         The tracking status detail codes
@@ -10637,210 +10637,218 @@ components:
 
         |:---------  |:-----------------------------------------------------
 
-        | `COLLECTION_FAILED` | Shipment pickup failed. The delivery company
-        will try again soon.
+        | `CARRIER_STATUS_NOT_MAPPED` | Status not mapped. Please check the
+        carrier's website for updates.
 
-        | `AWAITING_DESPATCH` | Your shipment is ready to go and is waiting for
-        pickup.
+        | `SHIPMENT_CREATED` | Your tracking number is ready. Your parcel is
+        waiting to be registered in the carrier system and scheduled for pickup.
 
-        | `COLLECTION_REQUESTED` | Your shipment pickup has been scheduled.
+        | `AWAITING_PICKUP_DROP_OFF` | Your parcel is waiting to be handed over
+        to the carrier.
 
-        | `DESPATCHED` | Your shipment has been handed over to the carrier or
-        dropped off at collection point. It will soon start its journey.
+        | `DROPPED_OFF` | Your parcel has been dropped off and is ready for
+        carrier processing.
 
         | `ELEC_ADVICE_RECD_BY_CARRIER` | Your shipment is now in the carrier's
         system.
 
-        | `NOT_YET_RECEIVED_BY_CARRIER` | The sender couldn't hand over your
-        shipment. The delivery company will try to collect it again.
+        | `PICKED_UP` | Your parcel has been picked up by the carrier.
 
-        | `COLLECTION_MADE` | Your shipment has been picked up by the carrier.
+        | `CUSTOMS_CLEARED` | Your parcel has cleared customs and is continuing
+        its journey.
 
-        | `ATTEMPTED_DELIVERY` | Delivery attempt failed. Please check the
-        carrier's instructions for next steps.
+        | `CUSTOMS_PROCESSING` | Your parcel is currently being processed by
+        customs.
 
-        | `ATTEMPTED_DELIVERY_2ND` | Second delivery attempt failed. Please
-        check the carrier's instructions for next steps.
+        | `DELIVERY_ARRANGED_WITH_RECIPIENT` | Your parcel's delivery has been
+        arranged with the carrier.
 
-        | `ATTEMPTED_DELIVERY_3RD` | Third delivery attempt failed. Please check
+        | `HUB_SCAN_OUT` | Your parcel has left the carrier's hub.
+
+        | `HUB_SCAN_IN` | Your parcel has arrived at the carrier's hub for
+        processing.
+
+        | `IN_TRANSIT` | Your shipment is on its way between the carrier hubs.
+
+        | `INFORMATION` | The carrier has shared additional information about
+        your parcel.
+
+        | `PARCEL_OVER_LABELLED` | Your parcel's label has been updated by the
+        carrier, which may affect tracking visibility.
+
+        | `PARCEL_UPDATE_NOTIFICATION` | The carrier has sent you an update on
+        your parcel status via SMS or email.
+
+        | `RECEIVED_BY_CARRIER` | Your parcel has been received by the carrier
+        and is beginning its journey.
+
+        | `RECEIVED_LOCAL_DELIVERY_DEPOT` | Your parcel has arrived at the local
+        delivery depot and is almost ready for delivery.
+
+        | `SUB_CONTRACTOR_EVENT` | The carrier has shared additional information
+        about your parcel's handling by a delivery partner.
+
+        | `SUB_CONTRACTOR_RECEIVED` | Your parcel has been received by the
+        carrier's local delivery partner.
+
+        | `PARCEL_REDIRECTED` | Your parcel has been redirected to a new
+        delivery address per your request.
+
+        | `DELIVERY_SCHEDULED` | Your parcel's delivery has been scheduled and
+        will soon be out for delivery.
+
+        | `HUB_PROCESSING` | Your parcel is being processed at a carrier hub.
+
+        | `DELIVERY_RESCHEDULED` | Your parcel's delivery has been rescheduled
+        due to operational issues.
+
+        | `ATTEMPTED_DELIVERY` | The carrier attempted to deliver your parcel
+        but was unable to complete delivery.
+
+        | `ATTEMPTED_DELIVERY_FINAL` | The carrier made a final attempt to
+        deliver your parcel but was unable to complete delivery. Please check
         the carrier's instructions for next steps.
-
-        | `COD_AMOUNT_NOT_PAID` | Delivery failed due to unpaid cash on
-        delivery. Please check carrier instructions.
 
         | `COD_AMOUNT_PAID` | Cash on delivery payment received.
 
-        | `CUSTOMER_CARDED` | Delivery attempt failed. Please check for delivery
+        | `CUSTOMER_CARDED` | Delivery attempt failed. Please follow delivery
         instructions left by the carrier.
 
-        | `CUSTOMER_IDENTIFICATION_FAILED` | There was a recipient
-        identification issue. Please check carrier instructions.
+        | `OUT_FOR_DELIVERY` | Your parcel is on its way and will be delivered
+        today.
 
-        | `INVALID_METHOD_OF_PAYMENT` | Delivery failed due to incorrect
-        payment. Please check carrier instructions.
+        | `AWAITING_COLLECTION_FROM_PICKUP_POINT` | Your parcel is ready for
+        collection at the selected pickup point.
 
-        | `NO_ACCESS_TO_RECIPIENTS_ADDRESS` | Delivery couldn't be completed due
-        to issues with accessing address. Please follow carrier instructions.
+        | `COLLECT_AT_LOCAL_PO` | Your parcel is ready for collection at your
+        local post office.
 
-        | `OUT_FOR_DELIVERY` | Your shipment is out for delivery.
+        | `CUSTOMER_TO_COLLECT_FROM_CARRIER` | Your parcel is available for
+        collection from the carrier's local delivery unit.
 
-        | `DELIVERED` | Your shipment has been delivered.
+        | `DELIVERED_TO_RECEPTION` | Your parcel has been delivered to your
+        building's reception or designated mail area.
 
-        | `DELIVERED_DAMAGED` | Your shipment was delivered but arrived damaged.
+        | `DELIVERED` | Your parcel has been successfully delivered.
+
+        | `DELIVERED_DAMAGED` | Your parcel was delivered but arrived with
+        visible damage.
 
         | `DELIVERED_IN_PART` | Part of your shipment has been delivered. Check
         for updates on the rest.
 
-        | `DELIVERED_SPECIFIED_SAFE_PLACE` | Your shipment has been left in your
-        designated safe place.
+        | `DELIVERED_SPECIFIED_SAFE_PLACE` | Your parcel has been delivered to
+        your specified safe place.
 
-        | `DELIVERED_TO_ALTERNATIVE_DELIVERY_LOCATION` | Your shipment was
+        | `DELIVERED_TO_ALTERNATIVE_DELIVERY_LOCATION` | Your parcel was
         delivered to an alternative location due to the delivery company being
         unable to deliver it to the specified address. Check carrier
         instructions for pickup details.
 
-        | `DELIVERED_TO_NEIGHBOUR` | Your shipment was delivered to your
-        neighbor.
+        | `DELIVERED_TO_NEIGHBOUR` | Your parcel was delivered to your neighbor.
 
-        | `DELIVERED_TO_PO_BOX` | Your shipment was delivered to your PO Box.
+        | `DELIVERED_TO_PO_BOX` | Your parcel has been delivered to your
+        specified PO Box.
 
         | `PARCEL_COLLECTED_FROM_PICKUP_POINT` | Your package has been picked up
-        from the collection point.
+        from the pick up point.
 
         | `POST_TRANSIT_STATUS` | The carrier has added more information about
         your delivery.
 
-        | `PROOF_OF_DELIVERY` | Delivery confirmed.
+        | `PROOF_OF_DELIVERY` | The carrier has confirmed delivery with proof,
+        such as a signature or photo.
 
-        | `CANCELLED` | Your shipment has been cancelled.
+        | `PICKUP_FAILED` | Parcel pickup failed. The delivery company will try
+        again soon.
 
-        | `CANCELLED_BEFORE_DESPATCH` | Your shipment was cancelled before
-        pickup. Contact the sender if unexpected.
+        | `NOT_YET_RECEIVED_BY_CARRIER` | The carrier has not yet received your
+        parcel, which may cause a delay.
 
-        | `CUSTOMER_MOVED` | Recipient not at address. Your shipment is being
-        returned.
+        | `PARCEL_DAMAGED` | Your parcel was damaged in transit but will still
+        be delivered.
 
-        | `HAZARDOUS_PROHIBITED` | Your parcel contained a prohibited item and
-        is being returned. Contact the sender.
+        | `ADDRESS_QUERY` | There is an issue with the delivery address, which
+        may delay your parcel.
 
-        | `NOT_COLLECTED_FROM_PICKUP_POINT` | Shipment not collected from the
-        pickup point. Your parcel is being returned to the sender.
+        | `CARRIER_DELAYS` | Your parcel is delayed due to issues within the
+        carrier network.
 
-        | `NOT_DELIVERED` | Delivery attempts failed. Your parcel is being
+        | `DELAYED_NOT_CARRIER` | Your parcel is delayed due to circumstances
+        beyond the carrier's control.
+
+        | `HELD_BY_CARRIER` | Your parcel is being held due to an operational
+        issue. Contact with the carrier for more information.
+
+        | `HELD_BY_CARRIER_FOR_CLEARANCE_PRE_PROCESSING` | Your parcel is being
+        held by the carrier for customs documentation checks. This may occur
+        when the carrier must confirm documentation before the parcel can
+        continue its journey.
+
+        | `HELD_BY_CUSTOMS` | Your parcel is being held at customs, which may
+        delay delivery.
+
+        | `HELD_BY_EXPORT_CUSTOMS` | Your parcel is held at export customs,
+        which may delay delivery.
+
+        | `HELD_BY_IMPORT_CUSTOMS` | Your parcel is held at import customs and
+        may require action to proceed.
+
+        | `INCORRECT_DECLARATION` | Your parcel has been incorrectly declared
+        but is still moving forward for delivery.
+
+        | `MISROUTED` | Your parcel was sent to the wrong place due to a routing
+        error but is being redirected.
+
+        | `PARCEL_REPACKED` | Your parcel was repackaged by the carrier due to
+        damage and will still be delivered.
+
+        | `RECD_BY_CARRIER_NO_ELEC_ADVICE` | Your parcel has been received by
+        the carrier but may experience delays due to missing pre-advice.
+
+        | `COD_AMOUNT_NOT_PAID` | Delivery failed due to unpaid cash on
+        delivery. Please follow carrier instructions.
+
+        | `CUSTOMER_IDENTIFICATION_FAILED` | Delivery couldn't be completed as
+        identification requirements were not met.
+
+        | `NO_ACCESS_TO_RECIPIENTS_ADDRESS` | The carrier couldn't access the
+        delivery location due to restricted entry.
+
+        | `CANCELLED` | Your parcel has been cancelled.
+
+        | `CUSTOMER_MOVED` | Delivery failed as the recipient is no longer at
+        the specified address. Your parcel is being returned.
+
+        | `HAZARDOUS_PROHIBITED` | Your parcel contains restricted items and
+        will not be delivered.
+
+        | `NOT_COLLECTED_FROM_PICKUP_POINT` | Your parcel was not collected from
+        the pickup point within the designated time and will be returned.
+
+        | `NOT_DELIVERED` | All delivery attempts failed. Your parcel is being
         returned to the sender.
 
-        | `NOT_DELIVERED_ADDRESSEE_DECEASED` | Delivery not possible due to
-        recipient's passing.
+        | `NOT_DELIVERED_ADDRESSEE_DECEASED` | The parcel could not be delivered
+        as the addressee is reported deceased.
 
-        | `PARCEL_DAMAGED` | Your parcel was damaged and can't be delivered.
-        It's being returned. Contact the sender.
+        | `PARCEL_DISPOSED` | Your parcel has been disposed of due to its
+        contents or condition and will not be delivered.
 
-        | `PARCEL_DISPOSED` | Shipment was disposed of. Contact the sender for
-        details.
+        | `PARCEL_LOST` | The carrier has reported that your parcel is lost and
+        will not be delivered.
 
-        | `PARCEL_LOST` | Your parcel is lost. Contact the sender for next
-        steps.
+        | `PARCEL_OUTSIDE_OF_SERVICE_CAPABILITY` | The parcel cannot be
+        delivered as it exceeds the carrier's service limits.
 
-        | `PARCEL_OUTSIDE_OF_SERVICE_CAPABILITY` | Shipment is too large/heavy
-        for delivery. Being returned. Contact sender.
+        | `REFUSED_BY_CUSTOMER` | You have refused the parcel, and it will be
+        returned to the sender.
 
-        | `REFUSED_BY_CUSTOMER` | Delivery refused. Shipment being returned.
-        Contact the sender.
+        | `RETURN_TO_SENDER` | Your parcel is being returned to the sender due
+        to delivery issues.
 
-        | `RETURN_TO_SENDER` | Your shipment is being returned to the sender.
-        Contact them for details.
-
-        | `ADDRESS_QUERY` | There's an issue with your delivery address. This
-        may cause a delay or return. Contact sender or carrier.
-
-        | `CARRIER_DELAYS` | There's a delivery delay. We'll update you when
-        there's more info.
-
-        | `CUSTOMS_CLEARED` | Your shipment has passed customs clearance.
-
-        | `CUSTOMS_PROCESSING` | Your shipment is going through customs.
-
-        | `DELAYED_NOT_CARRIER` | Unexpected delivery delay. We'll update you
-        soon.
-
-        | `DELIVERY_ARRANGED_WITH_RECIPIENT` | Delivery arranged by recipient.
-
-        | `HELD_BY_CARRIER` | Your shipment is on hold due to a carrier issue.
-        We'll update you soon.
-
-        | `HELD_BY_CARRIER_FOR_CLEARANCE_PRE_PROCESSING` | Your shipment is held
-        by carrier due to customs issues. We'll update you.
-
-        | `HELD_BY_CUSTOMS` | Your shipment is held in customs. We'll update
-        you.
-
-        | `HELD_BY_EXPORT_CUSTOMS` | Your shipment is held in export customs.
-        We'll update you.
-
-        | `HELD_BY_IMPORT_CUSTOMS` | Your shipment is held in import customs.
-        We'll update you.
-
-        | `HUB_SCAN_OUT` | Your shipment is at the main delivery depot.
-
-        | `IN_TRANSIT` | Your shipment is on its way between depots.
-
-        | `INCORRECT_DECLARATION` | Incorrect shipment dimensions. Delivery may
-        be delayed or returned. We'll update you.
-
-        | `INFORMATION` | The carrier has shared additional shipment
-        information.
-
-        | `MISSORTED` | Your shipment was missorted. There might be a delivery
-        delay. We'll update you.
-
-        | `PARCEL_OVER_LABELLED` | Your shipment was over labelled by the
-        delivery company to improve processing.
-
-        | `PARCEL_REPACKED` | Your shipment packaging was damaged. It's being
-        repacked. This might delay delivery.
-
-        | `PARCEL_UPDATE_NOTIFICATION_VIA_EMAIL` | You've received an email with
-        a shipment update.
-
-        | `PARCEL_UPDATE_NOTIFICATION_VIA_SMS` | You've received a text message
-        with a shipment update.
-
-        | `RECEIVED_BY_CARRIER` | Your shipment has been received by the
-        carrier.
-
-        | `RECEIVED_LOCAL_DELIVERY_DEPOT` | Your shipment is at the local
-        delivery depot, ready for delivery.
-
-        | `ROUTING_ERROR` | Your shipment was sent to the wrong place. There
-        might be a delay.
-
-        | `SUB_CONTRACTOR_EVENT` | Your shipment is with the local delivery
-        partner.
-
-        | `SUB_CONTRACTOR_RECEIVED` | Your shipment has been received by the
-        local delivery partner.
-
-        | `RECD_BY_CARRIER_NO_ELEC_ADVICE` | There's a system issue with your
-        shipment. Tracking updates might be delayed.
-
-        | `AWAITING_ELECTRONIC_ADVICE` | Your tracking number is ready. Your
-        shipment is waiting to be registered in the carrier system and scheduled
-        for pickup.
-
-        | `AWAITING_COLLECTION_FROM_PICKUP_POINT` | Your shipment is ready for
-        pickup at the specified location.
-
-        | `COLLECT_AT_LOCAL_PO` | Your shipment has been redirected to the local
-        post office for pickup. Check carrier instructions.
-
-        | `CUSTOMER_TO_COLLECT_FROM_CARRIER` | Your shipment is being held for
-        pickup. Check carrier instructions.
-
-        | `DELIVERED_TO_LOCKER_COLLECTION_POINT` | Your shipment has been
-        delivered to your locker.
-
-        | `CARRIER_STATUS_NOT_MAPPED` | Status not mapped. Please check the
-        carrier's website for updates.
+        | `UNSPECIFIED_EXCEPTION` | The carrier has reported an issue with your
+        parcel, but details are unavailable.
     track_event:
       title: track_event
       type: object
@@ -10933,7 +10941,7 @@ components:
           type: string
           readOnly: true
           minLength: 0
-          example: Your shipment is on its way between depots.
+          example: Your shipment is on its way between the carrier hubs.
           description: Event Status Detail Description
         carrier_status_code:
           type: string
