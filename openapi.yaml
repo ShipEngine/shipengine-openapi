@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202501091801
+  version: 1.1.202502242302
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -1396,6 +1396,35 @@ paths:
                 $ref: '#/components/schemas/connect_insurer_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
+        '500':
+          $ref: '#/components/responses/500_error_response'
+  /v1/documents/combined_labels:
+    summary: Created Combined Label Document
+    description: Download a combined label file
+    post:
+      summary: Created Combined Label Document
+      description: Download a combined label file
+      tags:
+        - labels
+      operationId: create_combined_label_document
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/create_combined_label_document_request_body'
+      responses:
+        '200':
+          description: The requested object creation was a success.
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/create_combined_label_document_response_body.yaml
+        '400':
+          $ref: '#/components/responses/400_error_response'
+        '404':
+          $ref: '#/components/responses/404_error_response'
         '500':
           $ref: '#/components/responses/500_error_response'
   '/v1/downloads/{dir}/{subdir}/{filename}':
@@ -7423,6 +7452,49 @@ components:
     connect_insurer_response_body:
       title: connect_insurer_response_body
       type: object
+    create_combined_label_document_request_body:
+      title: create_combined_label_document_request_body
+      type: object
+      description: A create combined label document request body
+      additionalProperties: false
+      properties:
+        label_ids:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/se_id'
+          description: >
+            The list of up to 30 label ids to include in the combined label
+            document.
+
+            Note that to avoid response size limits, you should only expect to
+            be able to combine 30 single page labels similar in size to that of
+            USPS labels.
+        label_format:
+          enum:
+            - pdf
+          type: string
+          description: >-
+            The file format for the combined label document; note that currently
+            only `"pdf"` is supported.
+        label_download_type:
+          enum:
+            - inline
+          type: string
+          description: >-
+            The download type for the combined label document; note that
+            currently only `"inline"` is supported.
+    create_combined_label_document_response_body.yaml:
+      title: create_combined_label_document_response_body.yaml
+      type: object
+      description: A create combined label document response body
+      additionalProperties: false
+      properties:
+        label_download:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/label_download'
+          description: The download for the combined label document
     download_file_pdf_response_body:
       title: download_file_pdf_response_body
       type: string
@@ -11726,6 +11798,13 @@ components:
         is_return:
           type: boolean
           description: Indicate if it's a return shipment
+        rate_type:
+          type: string
+          enum:
+            - check
+            - shipment
+            - quick
+          description: Indicates what type of rating to perform
     calculate_rates_response_body:
       title: calculate_rates_response_body
       type: object
