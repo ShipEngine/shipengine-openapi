@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202502242302
+  version: 1.1.202502281702
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -7963,6 +7963,13 @@ components:
                 description: >-
                   The current status of the package, such as `in_transit` or
                   `delivered`
+              confirmation:
+                readOnly: true
+                allOf:
+                  - $ref: '#/components/schemas/delivery_confirmation'
+                description: >-
+                  The type of delivery confirmation that is required for this
+                  shipment.
               label_download:
                 allOf:
                   - $ref: '#/components/schemas/label_download'
@@ -9801,6 +9808,13 @@ components:
           description: >-
             The current status of the package, such as `in_transit` or
             `delivered`
+        confirmation:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/delivery_confirmation'
+          description: >-
+            The type of delivery confirmation that is required for this
+            shipment.
         label_download:
           allOf:
             - $ref: '#/components/schemas/label_download'
