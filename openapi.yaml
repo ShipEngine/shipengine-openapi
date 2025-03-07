@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202502281702
+  version: 1.1.202503062003
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -3770,6 +3770,31 @@ paths:
           $ref: '#/components/responses/404_error_response'
         '500':
           $ref: '#/components/responses/500_error_response'
+    post:
+      summary: Create a New Tag
+      description: Create a new tag for customizing how you track your shipments.
+      tags:
+        - tags
+      operationId: create_tag
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/create_tag_request_body'
+      responses:
+        '200':
+          description: The requested object creation was a success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/create_tag_response_body'
+        '400':
+          $ref: '#/components/responses/400_error_response'
+        '404':
+          $ref: '#/components/responses/404_error_response'
+        '500':
+          $ref: '#/components/responses/500_error_response'
   '/v1/tags/{tag_name}':
     summary: Tag
     description: Create and delete tags
@@ -3781,7 +3806,9 @@ paths:
           $ref: '#/components/schemas/tag_name'
     post:
       summary: Create a New Tag
-      description: Create a new Tag for customizing how you track your shipments
+      description: >-
+        Create a new tag for customizing how you track your shipments
+        (deprecated - use POST /v1/tags instead)
       tags:
         - tags
       operationId: create_tag
@@ -10130,11 +10157,21 @@ components:
         - name
       additionalProperties: false
       properties:
+        tag_id:
+          type: int
+          minLength: 1
+          example: 8712
+          description: An integer uniquely identifying a tag.
         name:
           type: string
           minLength: 1
           example: Fragile
           description: The tag name.
+        color:
+          type: string
+          minLength: 1
+          example: '#FF0000'
+          description: A hex-coded string identifying the color of the tag.
     rate_detail:
       title: rate_detail
       type: object
@@ -13348,6 +13385,24 @@ components:
             allOf:
               - $ref: '#/components/schemas/tag'
           description: The array of tags returned by the API call
+    create_tag_request_body:
+      title: create_tag_request_body
+      type: object
+      description: A create tag request body
+      required:
+        - name
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+          minLength: 1
+          example: Fragile
+          description: The tag name.
+        color:
+          type: string
+          minLength: 1
+          example: '#FF0000'
+          description: A hex-coded string identifying the color of the tag.
     create_tag_response_body:
       title: create_tag_response_body
       type: object
