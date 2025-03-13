@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202503062003
+  version: 1.1.202503131403
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -8713,6 +8713,12 @@ components:
           allOf:
             - $ref: '#/components/schemas/monetary_value'
           description: Discount for shipment.
+        estimated_import_charges:
+          allOf:
+            - $ref: '#/components/schemas/estimated_import_charges'
+          description: >-
+            Estimated import charges for commercial invoices for international
+            shipments.
         other_charge:
           allOf:
             - $ref: '#/components/schemas/monetary_value'
@@ -8720,6 +8726,22 @@ components:
         other_charge_description:
           type: string
           description: Description for the other charge (if provided).
+    estimated_import_charges:
+      title: estimated_import_charges
+      type: object
+      description: >
+        Estimated import charges for commercial invoices for international
+        shipments.
+      additionalProperties: false
+      properties:
+        taxes:
+          allOf:
+            - $ref: '#/components/schemas/monetary_value'
+          description: Estimated import taxes.
+        duties:
+          allOf:
+            - $ref: '#/components/schemas/monetary_value'
+          description: Estimated import duties.
     importer_of_records:
       title: importer_of_records
       type: object
