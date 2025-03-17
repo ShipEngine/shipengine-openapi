@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202503131403
+  version: 1.1.202503171403
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -8137,7 +8137,7 @@ components:
             true, then no charge will be added to your account.
         validate_address:
           writeOnly: true
-          default: validate_and_clean
+          default: no_validation
           allOf:
             - $ref: '#/components/schemas/validate_address'
         label_download_type:
