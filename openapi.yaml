@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202503171503
+  version: 1.1.202503181503
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -656,6 +656,46 @@ paths:
           schema:
             type: string
           description: Batch Number
+        - description: >-
+            Only return batches that were created on or after a specific
+            date/time
+          name: created_at_start
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+          example: '2019-03-12T19:24:13.657Z'
+        - description: >-
+            Only return batches that were created on or before a specific
+            date/time
+          name: created_at_end
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+          example: '2019-03-12T19:24:13.657Z'
+        - description: >-
+            Only return batches that were processed on or after a specific
+            date/time
+          name: processed_at_start
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+          example: '2019-03-12T19:24:13.657Z'
+        - description: >-
+            Only return batches that were processed on or before a specific
+            date/time
+          name: processed_at_end
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+          example: '2019-03-12T19:24:13.657Z'
         - name: sort_by
           in: query
           required: false
