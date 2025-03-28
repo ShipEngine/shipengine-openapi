@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202503181503
+  version: 1.1.202503282303
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -10197,6 +10197,19 @@ components:
             a ratecard that differs from the default.  Only supported for UPS
             and USPS.
           example: retail
+        zone:
+          type: integer
+          format: int32
+          nullable: true
+          readOnly: true
+          minimum: 0
+          example: 6
+          description: >
+            Certain carriers base [their
+            rates](https://blog.stamps.com/2017/09/08/usps-postal-zones/) off of
+
+            custom zones that vary depending upon the ship_to and ship_from
+            location
     shipment_status:
       title: shipment_status
       type: string
