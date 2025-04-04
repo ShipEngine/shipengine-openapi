@@ -1,6 +1,6 @@
 {
   "name": "shipengine-openapi",
-  "version": "1.19.7",
+  "version": "1.19.8",
   "description": "The official OpenAPI 3.0 definitions for ShipEngine™",
   "main": "openapi.json",
   "repository": {

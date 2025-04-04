@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202503282303
+  version: 1.1.202504031304
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -10807,8 +10807,6 @@ components:
         - HELD_BY_CARRIER
         - HELD_BY_CARRIER_FOR_CLEARANCE_PRE_PROCESSING
         - HELD_BY_CUSTOMS
-        - HELD_BY_EXPORT_CUSTOMS
-        - HELD_BY_IMPORT_CUSTOMS
         - INCORRECT_DECLARATION
         - MISROUTED
         - PARCEL_REPACKED
@@ -10828,6 +10826,11 @@ components:
         - REFUSED_BY_CUSTOMER
         - RETURN_TO_SENDER
         - UNSPECIFIED_EXCEPTION
+        - TRACKING_EXPIRED
+        - DUTY_NOT_PAID
+        - PARCEL_REDIRECTED_BY_CARRIER
+        - DELIVERED_TO_PICKUP_POINT
+        - UNDELIVERABLE_RETURNED_TO_SENDER
       type: string
       description: >
         The tracking status detail codes
@@ -10988,12 +10991,6 @@ components:
         | `HELD_BY_CUSTOMS` | Your parcel is being held at customs, which may
         delay delivery.
 
-        | `HELD_BY_EXPORT_CUSTOMS` | Your parcel is held at export customs,
-        which may delay delivery.
-
-        | `HELD_BY_IMPORT_CUSTOMS` | Your parcel is held at import customs and
-        may require action to proceed.
-
         | `INCORRECT_DECLARATION` | Your parcel has been incorrectly declared
         but is still moving forward for delivery.
 
@@ -11049,6 +11046,25 @@ components:
 
         | `UNSPECIFIED_EXCEPTION` | The carrier has reported an issue with your
         parcel, but details are unavailable.
+
+        | `TRACKING_EXPIRED` | Tracking for this parcel has expired. If you are
+        still expecting this delivery, please contact the carrier for
+        assistance.
+
+        | `DUTY_NOT_PAID` | The import taxes or duties for this package havent
+        been paid and it may be subject to disposal by customs authorities if
+        payment is not made.
+
+        | `PARCEL_REDIRECTED_BY_CARRIER` | The carrier has redirected your
+        parcel due to an operational issue. The package is likely being rerouted
+        to a nearby pickup point. You may contact the carrier for more details
+        about the new delivery location.
+
+        | `DELIVERED_TO_PICKUP_POINT` | Your package has been delivered to the
+        pickup point. You will be notified when its ready for collection.
+
+        | `UNDELIVERABLE_RETURNED_TO_SENDER` | The shipment has been returned to
+        the sender. Please contact the sender for further information.
     track_event:
       title: track_event
       type: object
