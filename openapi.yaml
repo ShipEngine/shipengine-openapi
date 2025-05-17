@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202504031304
+  version: 1.1.202505161405
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -7545,12 +7545,30 @@ components:
             The file format for the combined label document; note that currently
             only `"pdf"` is supported.
         label_download_type:
-          enum:
-            - inline
-          type: string
-          description: >-
-            The download type for the combined label document; note that
-            currently only `"inline"` is supported.
+          default: inline
+          allOf:
+            - $ref: '#/components/schemas/label_download_type'
+    label_download_type:
+      title: label_download_type
+      type: string
+      enum:
+        - url
+        - inline
+      description: >
+        There are two different ways to [download a
+        label](https://www.shipengine.com/docs/labels/downloading/):
+
+
+        |Label Download Type | Description
+
+        |--------------------|------------------------------
+
+        |`url`               |You will receive a URL, which you can use to
+        download the label in a separate request. The URL will remain valid for
+        90 days.
+
+        |`inline`            |You will receive the Base64-encoded label as part
+        of the response. No need for a second request to download the label.
     create_combined_label_document_response_body.yaml:
       title: create_combined_label_document_response_body.yaml
       type: object
@@ -8688,6 +8706,12 @@ components:
           type: object
           allOf:
             - $ref: '#/components/schemas/importer_of_records'
+        license_number:
+          type: string
+          description: The license number to be used in the customs.
+        certificate_number:
+          type: string
+          description: The certificate number to be used in the customs.
         customs_items:
           deprecated: true
           type: array
@@ -8766,6 +8790,9 @@ components:
         other_charge_description:
           type: string
           description: Description for the other charge (if provided).
+        invoice_number:
+          type: string
+          description: The invoice number to be used in the customs.
     estimated_import_charges:
       title: estimated_import_charges
       type: object
@@ -9151,19 +9178,29 @@ components:
           nullable: true
           default: null
           example: 514785
-          description: license number.
+          description: >-
+            license_number - This field was part of a historical implementation
+            for passing customs-related data. For new integrations, please use
+            the corresponding parameters within the shipment.customs object.
         invoice_number:
           type: string
           nullable: true
           default: null
           example: IOC56888
-          description: invoice number.
+          description: >-
+            invoice_number - This field was part of a historical implementation
+            for passing customs-related data. For new integrations, please use
+            the corresponding parameters within the shipment.customs object.
         certificate_number:
           type: string
           nullable: true
           default: null
           example: 784515
-          description: certificate number.
+          description: >-
+            certificate_number - This field was part of a historical
+            implementation for passing customs-related data. For new
+            integrations, please use the corresponding parameters within the
+            shipment.customs object.
     bill_to_party:
       title: bill_to_party
       type: string
@@ -9598,28 +9635,6 @@ components:
         - validate_only
         - validate_and_clean
       description: The possible validate address values
-    label_download_type:
-      title: label_download_type
-      type: string
-      enum:
-        - url
-        - inline
-      description: >
-        There are two different ways to [download a
-        label](https://www.shipengine.com/docs/labels/downloading/):
-
-
-        |Label Download Type | Description
-
-        |--------------------|------------------------------
-
-        |`url`               |You will receive a URL, which you can use to
-        download the label in a separate request. The URL will remain valid for
-        90 days.<br><br>This is the default if `label_download_type` is
-        unspecified.
-
-        |`inline`            |You will receive the Base64-encoded label as part
-        of the response. No need for a second request to download the label.
     create_label_response_body:
       title: create_label_response_body
       type: object
@@ -10524,6 +10539,7 @@ components:
           allOf:
             - $ref: '#/components/schemas/label_format'
         label_download_type:
+          default: url
           allOf:
             - $ref: '#/components/schemas/label_download_type'
         display_scheme:
@@ -10556,6 +10572,7 @@ components:
           allOf:
             - $ref: '#/components/schemas/label_format'
         label_download_type:
+          default: url
           allOf:
             - $ref: '#/components/schemas/label_download_type'
         display_scheme:
