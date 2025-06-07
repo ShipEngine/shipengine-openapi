@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202505161405
+  version: 1.1.202506060606
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -11200,6 +11200,17 @@ components:
           minimum: -180
           maximum: 180
           description: Longitude coordinate of tracking event.
+        proof_of_delivery_url:
+          type: string
+          readOnly: true
+          example: >-
+            https://tracking-service-prod.s3.amazonaws.com/proof-of-delivery/dummy_module/0000000001/bc6dd17969bd97f24262ca73ac6ff36062aafecba25ef16d4178264bf7c0e72c.png
+          description: >-
+            A URL to an image captured at the time of delivery, serving as
+            evidence that the shipment was successfully delivered to the
+            recipient. It can be used to capture things like recipient's
+            signature, location of delivery, condition of the package upon
+            delivery, etc.
     void_label_response_body:
       title: void_label_response_body
       type: object
