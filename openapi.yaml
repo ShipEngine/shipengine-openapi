@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202506060606
+  version: 1.1.202507012007
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -2073,7 +2073,10 @@ paths:
         description: Label ID
     post:
       summary: Create a return label
-      description: Create a return label
+      description: >
+        Create a return label for an existing outbound label. You can optionally
+        specify a custom RMA (Return Merchandise Authorization) number. If no
+        RMA number is provided, the system will auto-generate one.
       tags:
         - labels
       operationId: create_return_label
@@ -2083,6 +2086,22 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/create_return_label_request_body'
+            examples:
+              with_custom_rma:
+                summary: Return label with custom RMA number
+                description: Create a return label with a specific RMA number
+                value:
+                  label_format: pdf
+                  label_layout: 4x6
+                  charge_event: carrier_default
+                  rma_number: RMA-2024-001234
+              without_rma:
+                summary: Return label with auto-generated RMA
+                description: Create a return label using default RMA generation
+                value:
+                  label_format: pdf
+                  label_layout: 4x6
+                  charge_event: carrier_default
       responses:
         '200':
           description: The request was a success.
@@ -10639,6 +10658,14 @@ components:
           description: >-
             The label image resource that was used to create a custom label
             image.
+        rma_number:
+          type: string
+          nullable: true
+          description: >
+            An optional Return Merchandise Authorization number. If provided,
+            this value will be used as the return label's RMA number. If
+            omitted, the system will auto-generate an RMA number (current
+            default behavior). You can set it to any string value.
     create_return_label_response_body:
       title: create_return_label_response_body
       type: object
