@@ -8449,6 +8449,11 @@ components:
           type: string
           nullable: true
           description: Item Stock Keeping Unit
+        bundle_sku:
+          type: string
+          nullable: true
+          readOnly: true
+          description: Item Stock Keeping Unit of the product bundle
         external_order_id:
           type: string
           nullable: true
