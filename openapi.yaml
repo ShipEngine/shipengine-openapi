@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202507012007
+  version: 1.1.202509041509
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -7852,6 +7852,19 @@ components:
                   shipment](https://www.shipengine.com/docs/shipping/create-a-shipment/)
                   and then [use it to print a
                   label](https://www.shipengine.com/docs/labels/create-from-shipment/)
+              external_shipment_id:
+                readOnly: true
+                type: string
+                maxLength: 50
+                nullable: true
+                description: >
+                  A unique user-defined key to identify a shipment.  This can be
+                  used to retrieve the shipment.
+              external_order_id:
+                readOnly: true
+                type: string
+                nullable: true
+                description: ID that the Order Source assigne
               shipment:
                 writeOnly: true
                 allOf:
@@ -8088,6 +8101,12 @@ components:
                   invoice) for this shipment, if any.  Forms are in PDF format.
                   This field is null if the shipment does not require a customs
                   form, or if the carrier does not support it.
+              qr_code_download:
+                readOnly: true
+                nullable: true
+                allOf:
+                  - $ref: '#/components/schemas/optional_link'
+                description: The QR code download for the package
               paperless_download:
                 readOnly: true
                 nullable: true
@@ -8137,6 +8156,11 @@ components:
                 description: >
                   The URL to track the package. This URL is provided by the
                   carrier and is unique to the tracking number.
+              ship_to:
+                readOnly: true
+                allOf:
+                  - $ref: '#/components/schemas/shipping_address_to'
+                description: The recipient's mailing address
       allOf:
         - $ref: '#/components/schemas/paged_list_response_body'
     create_label_request_body:
@@ -9668,6 +9692,8 @@ components:
         - label_id
         - status
         - shipment_id
+        - external_shipment_id
+        - external_order_id
         - ship_date
         - created_at
         - shipment_cost
@@ -9686,6 +9712,7 @@ components:
         - tracking_status
         - label_download
         - form_download
+        - qr_code_download
         - paperless_download
         - insurance_claim
         - packages
@@ -9694,6 +9721,7 @@ components:
         - charge_event
         - package_code
         - display_scheme
+        - ship_to
       allOf:
         - $ref: '#/components/schemas/label'
     label:
@@ -9729,6 +9757,19 @@ components:
             shipment](https://www.shipengine.com/docs/shipping/create-a-shipment/)
             and then [use it to print a
             label](https://www.shipengine.com/docs/labels/create-from-shipment/)
+        external_shipment_id:
+          readOnly: true
+          type: string
+          maxLength: 50
+          nullable: true
+          description: >
+            A unique user-defined key to identify a shipment.  This can be used
+            to retrieve the shipment.
+        external_order_id:
+          readOnly: true
+          type: string
+          nullable: true
+          description: ID that the Order Source assigne
         shipment:
           writeOnly: true
           allOf:
@@ -9957,6 +9998,12 @@ components:
             for this shipment, if any.  Forms are in PDF format. This field is
             null if the shipment does not require a customs form, or if the
             carrier does not support it.
+        qr_code_download:
+          readOnly: true
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/optional_link'
+          description: The QR code download for the package
         paperless_download:
           readOnly: true
           nullable: true
@@ -10005,6 +10052,11 @@ components:
           description: >
             The URL to track the package. This URL is provided by the carrier
             and is unique to the tracking number.
+        ship_to:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/shipping_address_to'
+          description: The recipient's mailing address
     shipment:
       title: shipment
       type: object
@@ -11920,6 +11972,23 @@ components:
         - $ref: '#/components/schemas/rate_shipment_request'
       allOf:
         - $ref: '#/components/schemas/rate_request_options'
+      properties:
+        ship_to_service_point_id:
+          nullable: true
+          type: string
+          description: >-
+            A unique identifier for a carrier service point where the shipment
+            will be delivered by the carrier. This will take precedence over a
+            shipment's ship to address.
+          example: '614940'
+        ship_from_service_point_id:
+          nullable: true
+          type: string
+          description: >-
+            A unique identifier for a carrier drop off point where a merchant
+            plans to deliver packages. This will take precedence over a
+            shipment's ship from address.
+          example: '614940'
     shipment_id_request:
       title: shipment_id_request
       type: object
@@ -12331,6 +12400,23 @@ components:
       oneOf:
         - $ref: '#/components/schemas/rate_request_by_shipment_ids'
         - $ref: '#/components/schemas/rate_request_by_shipments'
+      properties:
+        ship_to_service_point_id:
+          nullable: true
+          type: string
+          description: >-
+            A unique identifier for a carrier service point where the shipment
+            will be delivered by the carrier. This will take precedence over a
+            shipment's ship to address.
+          example: '614940'
+        ship_from_service_point_id:
+          nullable: true
+          type: string
+          description: >-
+            A unique identifier for a carrier drop off point where a merchant
+            plans to deliver packages. This will take precedence over a
+            shipment's ship from address.
+          example: '614940'
     rate_request_rate_options:
       title: rate_request_rate_options
       type: object
