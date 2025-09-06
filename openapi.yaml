@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202509041509
+  version: 1.1.202509051409
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -5880,6 +5880,10 @@ components:
           type: boolean
           readOnly: true
           description: Carrier supports multiple packages per shipment
+        allows_returns:
+          type: boolean
+          readOnly: true
+          description: The carrier has services that support return shipments.
         supports_label_messages:
           type: boolean
           readOnly: true
@@ -5952,6 +5956,10 @@ components:
           type: boolean
           readOnly: true
           description: Carrier supports multiple packages per shipment
+        is_return_supported:
+          type: boolean
+          readOnly: true
+          description: This service supports return shipments.
     package_type:
       title: package_type
       type: object
