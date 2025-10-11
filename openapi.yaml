@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202509051409
+  version: 1.1.202510100810
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -12131,6 +12131,19 @@ components:
             readOnly: true
             allOf:
               - $ref: '#/components/schemas/rate'
+              - type: object
+                properties:
+                  rate_attributes:
+                    type: array
+                    items:
+                      enum:
+                        - best_value
+                        - cheapest
+                        - fastest
+                      type: string
+                    description: >-
+                      Optional attributes that indicate the most profitable
+                      rates
             description: Shipment Rates
           description: An array of shipment rates
         invalid_rates:
@@ -12784,6 +12797,15 @@ components:
             minLength: 0
             description: error message
           description: The error messages
+        rate_attributes:
+          type: array
+          items:
+            enum:
+              - best_value
+              - cheapest
+              - fastest
+            type: string
+          description: Optional attributes that indicate the most profitable rates
     get_rate_by_id_response_body:
       title: get_rate_by_id_response_body
       type: object
