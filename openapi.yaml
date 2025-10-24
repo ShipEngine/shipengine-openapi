@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202510100810
+  version: 1.1.202510231110
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -5918,6 +5918,14 @@ components:
             allOf:
               - $ref: '#/components/schemas/carrier_advanced_option'
           description: A list of options that are available to that carrier
+        send_rates:
+          type: boolean
+          readOnly: true
+          description: The carrier provides rates for the shipment.
+        supports_user_managed_rates:
+          type: boolean
+          readOnly: true
+          description: The carrier supports user-managed rates for shipments.
     service:
       title: service
       type: object
@@ -12136,11 +12144,8 @@ components:
                   rate_attributes:
                     type: array
                     items:
-                      enum:
-                        - best_value
-                        - cheapest
-                        - fastest
-                      type: string
+                      allOf:
+                        - $ref: '#/components/schemas/rate_attributes'
                     description: >-
                       Optional attributes that indicate the most profitable
                       rates
@@ -12400,6 +12405,14 @@ components:
         - has_warnings
         - unknown
       description: The possible validation status values
+    rate_attributes:
+      title: rate_attributes
+      type: string
+      enum:
+        - best_value
+        - cheapest
+        - fastest
+      description: Optional attributes that indicate the most profitable rates
     rate_response_status:
       title: rate_response_status
       type: string
@@ -12800,11 +12813,8 @@ components:
         rate_attributes:
           type: array
           items:
-            enum:
-              - best_value
-              - cheapest
-              - fastest
-            type: string
+            allOf:
+              - $ref: '#/components/schemas/rate_attributes'
           description: Optional attributes that indicate the most profitable rates
     get_rate_by_id_response_body:
       title: get_rate_by_id_response_body
