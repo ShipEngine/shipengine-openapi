@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202510231110
+  version: 1.1.202511061111
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -1554,7 +1554,7 @@ paths:
           $ref: '#/components/responses/500_error_response'
     post:
       summary: Create a Webhook
-      description: Create a webook for specific events in the environment.
+      description: Create a webhook for specific events in the environment.
       tags:
         - webhooks
       operationId: create_webhook
@@ -7660,6 +7660,15 @@ components:
             allOf:
               - $ref: '#/components/schemas/webhook_header'
           description: Array of custom webhook headers
+        name:
+          type: string
+          example: My Webhook
+          description: The name of the webhook
+        store_id:
+          type: integer
+          format: int32
+          example: 123456
+          description: Store ID
     webhook_event:
       title: webhook_event
       type: string
@@ -7671,7 +7680,7 @@ components:
         - report_complete
         - sales_orders_imported
         - track
-      description: The possible webook event values
+      description: The possible webhook event values
     webhook_header:
       title: webhook_header
       type: object
@@ -7718,6 +7727,15 @@ components:
             allOf:
               - $ref: '#/components/schemas/webhook_header'
           description: Array of custom webhook headers
+        name:
+          type: string
+          example: My New Webhook
+          description: The name of the webhook
+        store_id:
+          type: integer
+          format: int32
+          example: 123456
+          description: Store ID
     create_webhook_response_body:
       title: create_webhook_response_body
       type: object
@@ -7757,6 +7775,15 @@ components:
             allOf:
               - $ref: '#/components/schemas/webhook_header'
           description: Array of custom webhook headers
+        name:
+          type: string
+          example: My Updated Webhook
+          description: The name of the webhook
+        store_id:
+          type: integer
+          format: int32
+          example: 123456
+          description: Store ID
     add_funds_to_insurance_request_body:
       title: add_funds_to_insurance_request_body
       type: object
