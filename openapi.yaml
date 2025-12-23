@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202511061111
+  version: 1.1.202512200012
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -10454,9 +10454,6 @@ components:
         tax_type:
           allOf:
             - $ref: '#/components/schemas/tax_type'
-        tax_code:
-          type: string
-          description: Code for a specific tax type
         tax_percentage:
           type: number
           description: 'Tax percentage, e.g. 20 for 20%, added to the shipping cost'
