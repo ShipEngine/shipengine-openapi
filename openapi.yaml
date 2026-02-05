@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202512200012
+  version: 1.1.202602041002
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -1858,6 +1858,7 @@ paths:
             enum:
               - modified_at
               - created_at
+              - voided_at
             default: created_at
           description: Controls which field the query is sorted by.
       responses:
@@ -4053,6 +4054,12 @@ paths:
             minLength: 1
           example: '9405511899223197428490'
           description: The tracking number associated with a shipment
+        - name: carrier_id
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/se_id'
+          description: Carrier ID
       responses:
         '204':
           description: The request was successful.

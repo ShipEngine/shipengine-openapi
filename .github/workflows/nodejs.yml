@@ -5,19 +5,19 @@ on:
     branches: 
       - master
 
-permissions:
-  id-token: write # supports npmjs.com Trusted Publishers
-  contents: read  # to access the current repo
-
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
     steps:
     - uses: actions/checkout@v1
-    - name: Use Node.js
-      uses: actions/setup-node@v4
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
       with:
-        node-version: '24'
-        registry-url: 'https://registry.npmjs.org'
+        node-version: ${{ matrix.node-version }}
+    - name: npm login
+      run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_AUTH_TOKEN}}" > ~/.npmrc
     - name: npm publish
       run: npm publish
