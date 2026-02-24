@@ -5843,6 +5843,11 @@ components:
             The [shipping
             carrier](https://www.shipengine.com/docs/carriers/setup/) who will
             ship the package, such as `fedex`, `dhl_express`, `stamps_com`, etc.
+        connection_status:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/carrier_connection_status'
+          description: The current connection status of the carrier account
         account_number:
           type: string
           readOnly: true
@@ -5933,6 +5938,13 @@ components:
           type: boolean
           readOnly: true
           description: The carrier supports user-managed rates for shipments.
+    carrier_connection_status:
+      title: carrier_connection_status
+      type: string
+      enum:
+        - PendingApproval
+        - Approved
+      description: The possible carrier connection status values
     service:
       title: service
       type: object
