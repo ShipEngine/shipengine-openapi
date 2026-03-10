@@ -5,6 +5,12 @@ on:
     branches: 
       - master
 
+permissions:
+  id-token: write # Required for Trusted Publishing
+  contents: write # Required to create releases and push tags
+  actions: read # used by nx-set-shas
+  pull-requests: write # Required to comment on PRs
+
 jobs:
   build:
     runs-on: ubuntu-latest
