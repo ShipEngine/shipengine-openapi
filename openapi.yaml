@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202602041002
+  version: 1.1.202603101503
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -1978,6 +1978,158 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/create_label_from_rate_response_body'
+        '400':
+          $ref: '#/components/responses/400_error_response'
+        '404':
+          $ref: '#/components/responses/404_error_response'
+        '500':
+          $ref: '#/components/responses/500_error_response'
+  '/v1/labels/rate_shopper_id/{rate_shopper_id}':
+    summary: Purchase Label from Rate Shopper
+    description: >-
+      Purchase and print a label using Rate Shopper to automatically select
+      carrier and service
+    parameters:
+      - name: rate_shopper_id
+        in: path
+        required: true
+        description: >
+          The rate selection strategy for the Rate Shopper. This determines
+          which carrier
+
+          and service will be automatically selected from your wallet carriers
+          based on
+
+          the rates returned for the shipment.
+        schema:
+          $ref: '#/components/schemas/rate_attributes'
+    post:
+      summary: Purchase Label from Rate Shopper
+      description: >
+        Purchase and print a shipping label using the Rate Shopper. The Rate
+        Shopper
+
+        automatically selects the optimal carrier and service from your wallet
+        carriers
+
+        based on your specified rate selection strategy (cheapest, fastest, or
+        best_value).
+
+        For more information about this in the [rates
+        documentation](https://www.shipengine.com/docs/rates/#about-the-response).
+      tags:
+        - labels
+      operationId: create_label_from_rate_shopper
+      parameters:
+        - name: rate_shopper_id
+          in: path
+          required: true
+          description: >
+            The rate selection strategy for the Rate Shopper. This determines
+            which carrier
+
+            and service will be automatically selected from your wallet carriers
+            based on
+
+            the rates returned for the shipment.
+          schema:
+            $ref: '#/components/schemas/rate_attributes'
+      requestBody:
+        description: Label creation details with inline shipment
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/create_label_rate_shopper_request_body'
+            examples:
+              domestic_shipment:
+                summary: Domestic shipment with Rate Shopper
+                value:
+                  shipment:
+                    ship_to:
+                      name: John Doe
+                      company_name: Example Corp
+                      address_line1: 123 Main St
+                      city_locality: Austin
+                      state_province: TX
+                      postal_code: '78701'
+                      country_code: US
+                      phone: 512-555-1234
+                    ship_from:
+                      name: Warehouse A
+                      address_line1: 456 Warehouse Blvd
+                      city_locality: Dallas
+                      state_province: TX
+                      postal_code: '75001'
+                      country_code: US
+                    packages:
+                      - weight:
+                          value: 5
+                          unit: pound
+                        dimensions:
+                          length: 12
+                          width: 8
+                          height: 6
+                          unit: inch
+                  label_format: pdf
+                  label_layout: 4x6
+      responses:
+        '200':
+          description: >
+            Label created successfully using Rate Shopper. The response includes
+            the
+
+            selected carrier_id, service_code, and rate_shopper_id that was
+            used.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/create_label_rate_shopper_response_body'
+              examples:
+                successful_label:
+                  summary: Successfully created label
+                  value:
+                    label_id: se-123456
+                    status: completed
+                    shipment_id: se-789012
+                    ship_date: '2026-02-25T00:00:00Z'
+                    created_at: '2026-02-25T10:30:00Z'
+                    shipment_cost:
+                      currency: usd
+                      amount: 7.33
+                    insurance_cost:
+                      currency: usd
+                      amount: 0
+                    tracking_number: 1Z999AA10123456784
+                    is_return_label: false
+                    rma_number: null
+                    is_international: false
+                    batch_id: ''
+                    carrier_id: se-456789
+                    service_code: usps_priority_mail
+                    package_code: package
+                    voided: false
+                    voided_at: null
+                    label_format: pdf
+                    label_layout: 4x6
+                    trackable: true
+                    label_image_id: null
+                    carrier_code: stamps_com
+                    tracking_status: in_transit
+                    label_download:
+                      pdf: >-
+                        https://api.shipengine.com/v1/downloads/10/label-123456.pdf
+                      png: >-
+                        https://api.shipengine.com/v1/downloads/10/label-123456.png
+                      zpl: >-
+                        https://api.shipengine.com/v1/downloads/10/label-123456.zpl
+                      href: >-
+                        https://api.shipengine.com/v1/downloads/10/label-123456.pdf
+                    form_download: null
+                    insurance_claim: null
+                    packages: []
+                    charge_event: carrier_default
+                    rate_shopper_id: cheapest
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -5933,6 +6085,15 @@ components:
           type: boolean
           readOnly: true
           description: The carrier supports user-managed rates for shipments.
+        connection_status:
+          type: string
+          readOnly: true
+          enum:
+            - pending_approval
+            - approved
+          description: >-
+            The current connection status of the carrier. Indicates whether the
+            carrier connection is pending approval or has been approved for use.
     service:
       title: service
       type: object
@@ -8761,6 +8922,8 @@ components:
         - direct_signature
         - delivery_mailed
         - verbal_confirmation
+        - delivery_code
+        - age_verification_16_plus
       description: The possible delivery confirmation values
     international_shipment_options:
       title: international_shipment_options
@@ -9299,6 +9462,18 @@ components:
             implementation for passing customs-related data. For new
             integrations, please use the corresponding parameters within the
             shipment.customs object.
+        delivery-as-addressed:
+          type: boolean
+          default: false
+          description: >-
+            Instructs the carrier to deliver the package only to the exact
+            address provided.
+        return-after-first-attempt:
+          type: boolean
+          default: false
+          description: >-
+            Ensures the shipment is immediately flagged for return to the sender
+            if the initial delivery attempt fails.
     bill_to_party:
       title: bill_to_party
       type: string
@@ -10677,6 +10852,353 @@ components:
       additionalProperties: false
       allOf:
         - $ref: '#/components/schemas/label'
+    rate_attributes:
+      title: rate_attributes
+      type: string
+      enum:
+        - best_value
+        - cheapest
+        - fastest
+      description: Optional attributes that indicate the most profitable rates
+    create_label_rate_shopper_request_body:
+      title: create_label_rate_shopper_request_body
+      type: object
+      description: >
+        Request body for creating a label using the Rate Shopper. The Rate
+        Shopper
+
+        automatically selects the carrier and service based on your specified
+        strategy.
+
+
+        **Important Constraints:**
+
+        - You MUST provide shipment details inline in the `shipment` object
+
+        - You MUST NOT set `shipment_id` (inline shipment only)
+
+        - You MUST NOT include `carrier_id`, `service_code`, or
+        `shipping_rule_id`
+          in the shipment (Rate Shopper selects these automatically)
+        - Only carriers configured in your wallet will be considered
+
+        - This endpoint is not available in sandbox mode
+      additionalProperties: false
+      required:
+        - shipment
+      properties:
+        shipment:
+          description: >
+            The shipment details for which to create a label. Must be provided
+            inline.
+
+            The carrier_id, service_code, and shipping_rule_id are not included
+            as these
+
+            will be automatically determined by the Rate Shopper based on your
+            strategy.
+          allOf:
+            - $ref: '#/components/schemas/partial_shipment_for_rate_shopper'
+        is_return_label:
+          type: boolean
+          description: >
+            Indicates whether this is a return label.  You may also want to set
+            the `rma_number` so you know what is being returned.
+        rma_number:
+          type: string
+          nullable: true
+          description: >
+            An optional Return Merchandise Authorization number.  This field is
+            useful for return labels.  You can set it to any string value.
+        charge_event:
+          allOf:
+            - $ref: '#/components/schemas/label_charge_event'
+          description: |
+            The label charge event.
+        outbound_label_id:
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          writeOnly: true
+          description: >
+            The `label_id` of the original (outgoing) label that the return
+            label is for. This associates the two labels together, which is
+
+            required by some carriers.
+        test_label:
+          writeOnly: true
+          type: boolean
+          default: false
+          deprecated: true
+          description: >-
+            Indicate if this label is being used only for testing purposes. If
+            true, then no charge will be added to your account.
+        validate_address:
+          writeOnly: true
+          default: no_validation
+          allOf:
+            - $ref: '#/components/schemas/validate_address'
+        label_download_type:
+          writeOnly: true
+          default: url
+          allOf:
+            - $ref: '#/components/schemas/label_download_type'
+        label_format:
+          default: pdf
+          allOf:
+            - $ref: '#/components/schemas/label_format'
+          description: >
+            The file format that you want the label to be in.  We recommend
+            `pdf` format because it is supported by all carriers, whereas some
+            carriers do not support the `png` or `zpl` formats.
+        display_scheme:
+          default: label
+          allOf:
+            - $ref: '#/components/schemas/display_scheme'
+          description: The display format that the label should be shown in.
+        label_layout:
+          default: 4x6
+          allOf:
+            - $ref: '#/components/schemas/label_layout'
+          description: >
+            The layout (size) that you want the label to be in.  The
+            `label_format` determines which sizes are allowed.  `4x6` is
+            supported for all label formats, whereas `letter` (8.5" x 11") is
+            only supported for `pdf` format.
+        label_image_id:
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/image_id'
+          description: >-
+            The label image resource that was used to create a custom label
+            image.
+    partial_shipment_for_rate_shopper:
+      title: partial_shipment_for_rate_shopper
+      type: object
+      description: >
+        The information necessary to ship a package for Rate Shopper, such as
+        the origin, the destination, and the package dimensions and weight.
+
+
+        **Note:** This schema excludes carrier_id, service_code, and
+        shipping_rule_id as these are automatically selected by the Rate Shopper
+        based on your chosen strategy.
+      additionalProperties: false
+      properties:
+        shipment_id:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: A string that uniquely identifies the shipment
+        external_order_id:
+          type: string
+          nullable: true
+          description: ID that the Order Source assigned
+        items:
+          type: array
+          default: []
+          items:
+            allOf:
+              - $ref: '#/components/schemas/shipment_item'
+          description: >
+            Describe the packages included in this shipment as related to
+            potential metadata that was imported from
+
+            external order sources
+        tax_identifiers:
+          type: array
+          nullable: true
+          items:
+            allOf:
+              - $ref: '#/components/schemas/tax_identifier'
+        external_shipment_id:
+          type: string
+          maxLength: 50
+          nullable: true
+          description: >
+            A unique user-defined key to identify a shipment.  This can be used
+            to retrieve the shipment.
+
+
+            > **Warning:** The `external_shipment_id` is limited to 50
+            characters. Any additional characters will be truncated.
+        shipment_number:
+          type: string
+          maxLength: 50
+          nullable: true
+          description: >
+            A non-unique user-defined number used to identify a shipment.  If
+            undefined, this will match the external_shipment_id of the shipment.
+
+
+            > **Warning:** The `shipment_number` is limited to 50 characters.
+            Any additional characters will be truncated.
+        ship_date:
+          allOf:
+            - $ref: '#/components/schemas/date'
+          description: >
+            The date that the shipment was (or will be) shipped.  ShipEngine
+            will take the day of week into consideration. For example, if the
+            carrier does not operate on Sundays, then a package that would have
+            shipped on Sunday will ship on Monday instead.
+        created_at:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/date_time'
+          description: The date and time that the shipment was created in ShipEngine.
+        modified_at:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/date_time'
+          description: The date and time that the shipment was created or last modified.
+        shipment_status:
+          readOnly: true
+          default: pending
+          allOf:
+            - $ref: '#/components/schemas/shipment_status'
+          description: The current status of the shipment
+        ship_to:
+          allOf:
+            - $ref: '#/components/schemas/shipping_address_to'
+          description: The recipient's mailing address
+        ship_from:
+          allOf:
+            - $ref: '#/components/schemas/shipping_address'
+          description: >
+            The shipment's origin address. If you frequently ship from the same
+            location, consider [creating a
+            warehouse](https://www.shipengine.com/docs/reference/create-warehouse/). 
+            Then you can simply specify the `warehouse_id` rather than the
+            complete address each time.
+        warehouse_id:
+          nullable: true
+          default: null
+          allOf:
+            - $ref: '#/components/schemas/se_id'
+          description: >
+            The
+            [warehouse](https://www.shipengine.com/docs/shipping/ship-from-a-warehouse/)
+            that the shipment is being shipped from.  Either `warehouse_id` or
+            `ship_from` must be specified.
+        return_to:
+          allOf:
+            - $ref: '#/components/schemas/shipping_address'
+          description: >
+            The return address for this shipment.  Defaults to the `ship_from`
+            address.
+        is_return:
+          type: boolean
+          nullable: true
+          default: false
+          description: >
+            An optional indicator if the shipment is intended to be a return.
+            Defaults to false if not provided.
+        confirmation:
+          default: none
+          allOf:
+            - $ref: '#/components/schemas/delivery_confirmation'
+          description: >-
+            The type of delivery confirmation that is required for this
+            shipment.
+        customs:
+          nullable: true
+          default: null
+          allOf:
+            - $ref: '#/components/schemas/international_shipment_options'
+          description: >
+            Customs information.  This is usually only needed for international
+            shipments.
+        advanced_options:
+          allOf:
+            - $ref: '#/components/schemas/advanced_shipment_options'
+          description: Advanced shipment options.  These are entirely optional.
+        insurance_provider:
+          default: none
+          allOf:
+            - $ref: '#/components/schemas/insurance_provider'
+          description: >
+            The insurance provider to use for any insured packages in the
+            shipment.
+        tags:
+          type: array
+          readOnly: true
+          default: []
+          minItems: 0
+          items:
+            allOf:
+              - $ref: '#/components/schemas/tag'
+          description: >
+            Arbitrary tags associated with this shipment.  Tags can be used to
+            categorize shipments, and shipments can be queried by their tags.
+        order_source_code:
+          allOf:
+            - $ref: '#/components/schemas/order_source_name'
+        packages:
+          type: array
+          minItems: 1
+          items:
+            allOf:
+              - $ref: '#/components/schemas/package'
+          description: >
+            The packages in the shipment.
+
+
+            > **Note:** Some carriers only allow one package per shipment.  If
+            you attempt to create a multi-package shipment for a carrier that
+            doesn't allow it, an error will be returned.
+        total_weight:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/weight'
+          description: The combined weight of all packages in the shipment
+        comparison_rate_type:
+          nullable: true
+          type: string
+          description: >-
+            Calculate a rate for this shipment with the requested carrier using
+            a ratecard that differs from the default.  Only supported for UPS
+            and USPS.
+          example: retail
+        zone:
+          type: integer
+          format: int32
+          nullable: true
+          readOnly: true
+          minimum: 0
+          example: 6
+          description: >
+            Certain carriers base [their
+            rates](https://blog.stamps.com/2017/09/08/usps-postal-zones/) off of
+
+            custom zones that vary depending upon the ship_to and ship_from
+            location
+    create_label_rate_shopper_response_body:
+      title: create_label_rate_shopper_response_body
+      type: object
+      description: >
+        The response from creating a label using the Rate Shopper. Includes all
+        standard
+
+        label information plus the rate_shopper_id indicating which strategy was
+        used.
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/label'
+      properties:
+        rate_shopper_id:
+          description: >
+            The rate selection strategy that was used to create this label. This
+            will
+
+            match the rate_shopper_id provided in the request path.
+          readOnly: true
+          allOf:
+            - title: rate_attributes
+              type: string
+              enum:
+                - best_value
+                - cheapest
+                - fastest
+              description: Optional attributes that indicate the most profitable rates
     create_label_from_shipment_request_body:
       title: create_label_from_shipment_request_body
       type: object
@@ -12436,14 +12958,6 @@ components:
         - has_warnings
         - unknown
       description: The possible validation status values
-    rate_attributes:
-      title: rate_attributes
-      type: string
-      enum:
-        - best_value
-        - cheapest
-        - fastest
-      description: Optional attributes that indicate the most profitable rates
     rate_response_status:
       title: rate_response_status
       type: string
