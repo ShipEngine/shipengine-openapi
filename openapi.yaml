@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202603111003
+  version: 1.1.202603171403
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -9486,6 +9486,14 @@ components:
           description: >-
             Ensures the shipment is immediately flagged for return to the sender
             if the initial delivery attempt fails.
+        regulated_content_type:
+          nullable: true
+          default: null
+          allOf:
+            - $ref: '#/components/schemas/regulated_content_type'
+          description: >-
+            Indicates the category of goods in the shipment that is subject to
+            special regulatory or compliance requirements.
     bill_to_party:
       title: bill_to_party
       type: string
@@ -9529,6 +9537,15 @@ components:
         amount:
           minimum: 0
           type: number
+    regulated_content_type:
+      title: regulated_content_type
+      type: string
+      enum:
+        - day_old_poultry
+        - other_live_animal
+      description: >-
+        Indicates the category of goods in the shipment that is subject to
+        special regulatory or compliance requirements.
     insurance_provider:
       title: insurance_provider
       type: string
