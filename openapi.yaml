@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202603171403
+  version: 1.1.202603260803
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -5840,8 +5840,6 @@ components:
       type: string
       enum:
         - label
-        - qr_code
-        - label_and_qr_code
         - paperless
         - label_and_paperless
       description: The display format that the label should be shown in.
@@ -9474,6 +9472,12 @@ components:
             implementation for passing customs-related data. For new
             integrations, please use the corresponding parameters within the
             shipment.customs object.
+        fragile:
+          type: boolean
+          default: false
+          description: >-
+            Indicates that the contents of the package are fragile and should be
+            handled with care.
         delivery-as-addressed:
           type: boolean
           default: false
