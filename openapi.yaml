@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: ShipEngine API
-  version: 1.1.202604060604
+  version: 1.1.202604070904
   termsOfService: 'https://www.shipengine.com/terms-of-service/'
   x-logo:
     url: 'https://shipengine.github.io/img/shipengine-logo-square.png'
@@ -1819,6 +1819,46 @@ paths:
             type: string
             format: date-time
           example: '2019-03-12T19:24:13.657Z'
+        - description: Only return labels with specific refund status/es.
+          name: refund_status
+          in: query
+          required: false
+          explode: false
+          schema:
+            type: array
+            items:
+              title: refund_status
+              type: string
+              enum:
+                - request_scheduled
+                - pending
+                - approved
+                - rejected
+                - excluded
+              description: >
+                The status of a Refund Assist request for eligible labels.
+
+
+                |Status              |Description
+
+                |:-------------------|:-----------------------------------------------------
+
+                |`request_scheduled` |The refund request has been scheduled but
+                not yet submitted
+
+                |`pending`           |The refund request has been submitted and
+                is awaiting approval
+
+                |`approved`          |The refund request has been approved by
+                the carrier
+
+                |`rejected`          |The refund request has been rejected by
+                the carrier
+
+                |`excluded`          |The refund request has been excluded by
+                the user. Labels in this status were not sent to the carrier for
+                a refund request.
+          example: 'pending,approved'
         - name: page
           in: query
           required: false
@@ -2326,6 +2366,43 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/void_label_response_body'
+        '400':
+          $ref: '#/components/responses/400_error_response'
+        '404':
+          $ref: '#/components/responses/404_error_response'
+        '500':
+          $ref: '#/components/responses/500_error_response'
+  '/v1/labels/{label_id}/cancel_refund':
+    summary: Cancel label refund request
+    description: >
+      Exclude labels from Refund Assist by canceling a scheduled refund request.
+      This endpoint allows you to prevent a label with "request_scheduled"
+      refund status from being included in an upcoming automatic refund request.
+    parameters:
+      - name: label_id
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/se_id'
+        description: Label ID
+    post:
+      summary: Cancel a label refund request
+      description: >-
+        Cancel a scheduled refund request for a label. Only labels with refund
+        status "request_scheduled" can be excluded from an upcoming refund
+        request.
+      tags:
+        - labels
+      operationId: cancel_label_refund
+      responses:
+        '200':
+          description: >-
+            The refund cancellation was successful. Returns the updated label
+            object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/cancel_refund_label_response_body'
         '400':
           $ref: '#/components/responses/400_error_response'
         '404':
@@ -8085,7 +8162,7 @@ components:
                 readOnly: true
                 type: string
                 nullable: true
-                description: ID that the Order Source assigne
+                description: ID that the Order Source assigned
               shipment:
                 writeOnly: true
                 allOf:
@@ -8365,7 +8442,7 @@ components:
                 nullable: true
                 description: >
                   Additional information some carriers may provide by which to
-                  identify a given label in their system. 
+                  identify a given label in their system.
                 items:
                   $ref: '#/components/schemas/alternative_identifier'
               tracking_url:
@@ -8382,6 +8459,24 @@ components:
                 allOf:
                   - $ref: '#/components/schemas/shipping_address_to'
                 description: The recipient's mailing address
+              void_type:
+                nullable: true
+                readOnly: true
+                allOf:
+                  - $ref: '#/components/schemas/void_type'
+                description: >
+                  Indicates how the label was voided. This field is `null` if
+                  the label has not been voided.
+                example: manual
+              refund_details:
+                nullable: true
+                readOnly: true
+                allOf:
+                  - $ref: '#/components/schemas/refund_details'
+                description: >
+                  Information about the Refund Assist request for this label.
+                  This field is `null` if the label is not eligible for Refund
+                  Assist.
       allOf:
         - $ref: '#/components/schemas/paged_list_response_body'
     create_label_request_body:
@@ -10027,7 +10122,7 @@ components:
           readOnly: true
           type: string
           nullable: true
-          description: ID that the Order Source assigne
+          description: ID that the Order Source assigned
         shipment:
           writeOnly: true
           allOf:
@@ -10299,7 +10394,7 @@ components:
           nullable: true
           description: >
             Additional information some carriers may provide by which to
-            identify a given label in their system. 
+            identify a given label in their system.
           items:
             $ref: '#/components/schemas/alternative_identifier'
         tracking_url:
@@ -10315,6 +10410,23 @@ components:
           allOf:
             - $ref: '#/components/schemas/shipping_address_to'
           description: The recipient's mailing address
+        void_type:
+          nullable: true
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/void_type'
+          description: >
+            Indicates how the label was voided. This field is `null` if the
+            label has not been voided.
+          example: manual
+        refund_details:
+          nullable: true
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/refund_details'
+          description: >
+            Information about the Refund Assist request for this label. This
+            field is `null` if the label is not eligible for Refund Assist.
     shipment:
       title: shipment
       type: object
@@ -10822,6 +10934,89 @@ components:
           example: '12345678912345678912'
           description: |
             The value of the alternative_identifier.
+    void_type:
+      title: void_type
+      type: string
+      enum:
+        - refund_assist
+        - manual
+      description: >-
+        Indicates how a label was voided. `refund_assist` means the label was
+        voided through the Refund Assist program, while `manual` means it was
+        voided manually by the user.
+    refund_details:
+      title: refund_details
+      type: object
+      description: >
+        Information about a Refund Assist label. This object contains details
+        about the refund request status and associated monetary amounts.
+      additionalProperties: false
+      properties:
+        refund_status:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/refund_status'
+          description: The current status of the refund request
+        request_date:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/date_time'
+          description: The date and time when the refund request was submitted
+        amount_paid:
+          readOnly: true
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/monetary_value'
+          description: The amount that was originally paid for the label
+        amount_requested:
+          readOnly: true
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/monetary_value'
+          description: The amount requested to be refunded
+        amount_approved:
+          readOnly: true
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/monetary_value'
+          description: The amount approved for refund by the carrier
+        amount_credited:
+          readOnly: true
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/monetary_value'
+          description: The amount that has been credited back to the account
+    refund_status:
+      title: refund_status
+      type: string
+      enum:
+        - request_scheduled
+        - pending
+        - approved
+        - rejected
+        - excluded
+      description: >
+        The status of a Refund Assist request for eligible labels.
+
+
+        |Status              |Description
+
+        |:-------------------|:-----------------------------------------------------
+
+        |`request_scheduled` |The refund request has been scheduled but not yet
+        submitted
+
+        |`pending`           |The refund request has been submitted and is
+        awaiting approval
+
+        |`approved`          |The refund request has been approved by the
+        carrier
+
+        |`rejected`          |The refund request has been rejected by the
+        carrier
+
+        |`excluded`          |The refund request has been excluded by the user.
+        Labels in this status were not sent to the carrier for a refund request.
     get_label_by_external_shipment_id_response_body:
       title: get_label_by_external_shipment_id_response_body
       type: object
@@ -11942,6 +12137,13 @@ components:
       description: >-
         The possible normalized reasons a label void request may not have been
         approved
+    cancel_refund_label_response_body:
+      title: cancel_refund_label_response_body
+      type: object
+      description: A cancel refund label response body
+      additionalProperties: false
+      allOf:
+        - $ref: '#/components/schemas/label'
     list_manifests_response_body:
       title: list_manifests_response_body
       type: object
