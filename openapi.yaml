@@ -342,7 +342,7 @@ paths:
                       address_line2: Suite 200
                       city_locality: Austin
                       state_province: TX
-                      postal_code: 78652
+                      postal_code: "78652"
                       address_residential_indicator: unknown
                     entities:
                       - type: person
@@ -421,7 +421,7 @@ paths:
                       address_line2: Suite 200
                       city_locality: Austin
                       state_province: TX
-                      postal_code: 78652
+                      postal_code: "78652"
                       country_code: US
                       address_residential_indicator: 'yes'
                     entities:
@@ -526,7 +526,7 @@ paths:
                     address_line1: 500 South Buena Vista Street
                     city_locality: Burbank
                     state_province: CA
-                    postal_code: 91521
+                    postal_code: "91521"
                     country_code: US
       responses:
         '200':
@@ -550,7 +550,7 @@ paths:
                         address_line3: null
                         city_locality: Burbank
                         state_province: CA
-                        postal_code: 91521
+                        postal_code: "91521"
                         country_code: US
                         address_residential_indicator: unknown
                       matched_address:
@@ -3363,7 +3363,7 @@ paths:
                       address_line2: Suite 201
                       city_locality: San Francisco
                       state_province: CA
-                      postal_code: 94110
+                      postal_code: "94110"
                       country_code: US
                       address_residential_indicator: 'yes'
       responses:
@@ -3395,7 +3395,7 @@ paths:
                         address_line2: Suite 200
                         city_locality: Austin
                         state_province: TX
-                        postal_code: 78652
+                        postal_code: "78652"
                         address_residential_indicator: unknown
                       packages:
                         - weight:
@@ -3452,7 +3452,7 @@ paths:
                           address_line2: Suite 200
                           city_locality: Austin
                           state_province: TX
-                          postal_code: 78652
+                          postal_code: "78652"
                       - type: person
                         score: 0.9519646137063122
                         text: Margie McMiller
@@ -3588,7 +3588,7 @@ paths:
                         address_line2: Suite 200
                         city_locality: Austin
                         state_province: TX
-                        postal_code: 78652
+                        postal_code: "78652"
                         address_residential_indicator: unknown
                       ship_from:
                         company_name: My Awesome Store
@@ -3597,7 +3597,7 @@ paths:
                         address_line2: Suite 201
                         city_locality: San Francisco
                         state_province: CA
-                        postal_code: 94110
+                        postal_code: "94110"
                         country_code: US
                         address_residential_indicator: 'yes'
                       packages:
@@ -3655,7 +3655,7 @@ paths:
                           address_line2: Suite 200
                           city_locality: Austin
                           state_province: TX
-                          postal_code: 78652
+                          postal_code: "78652"
                       - type: person
                         score: 0.9519646137063122
                         text: Margie McMiller
