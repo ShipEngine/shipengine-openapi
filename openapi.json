@@ -4718,7 +4718,7 @@
                         "address_line2": "Suite 200",
                         "city_locality": "Austin",
                         "state_province": "TX",
-                        "postal_code": 78652,
+                        "postal_code": "78652",
                         "address_residential_indicator": "unknown"
                       },
                       "entities": [
@@ -4820,7 +4820,7 @@
                         "address_line2": "Suite 200",
                         "city_locality": "Austin",
                         "state_province": "TX",
-                        "postal_code": 78652,
+                        "postal_code": "78652",
                         "country_code": "US",
                         "address_residential_indicator": "yes"
                       },
@@ -5458,7 +5458,7 @@
                       "address_line1": "500 South Buena Vista Street",
                       "city_locality": "Burbank",
                       "state_province": "CA",
-                      "postal_code": 91521,
+                      "postal_code": "91521",
                       "country_code": "US"
                     }
                   ]
@@ -5919,7 +5919,7 @@
                           "address_line3": null,
                           "city_locality": "Burbank",
                           "state_province": "CA",
-                          "postal_code": 91521,
+                          "postal_code": "91521",
                           "country_code": "US",
                           "address_residential_indicator": "unknown"
                         },
@@ -123740,7 +123740,7 @@
                         "address_line2": "Suite 201",
                         "city_locality": "San Francisco",
                         "state_province": "CA",
-                        "postal_code": 94110,
+                        "postal_code": "94110",
                         "country_code": "US",
                         "address_residential_indicator": "yes"
                       }
@@ -126249,7 +126249,7 @@
                           "address_line2": "Suite 200",
                           "city_locality": "Austin",
                           "state_province": "TX",
-                          "postal_code": 78652,
+                          "postal_code": "78652",
                           "address_residential_indicator": "unknown"
                         },
                         "packages": [
@@ -126321,7 +126321,7 @@
                             "address_line2": "Suite 200",
                             "city_locality": "Austin",
                             "state_province": "TX",
-                            "postal_code": 78652
+                            "postal_code": "78652"
                           }
                         },
                         {
@@ -126503,7 +126503,7 @@
                           "address_line2": "Suite 200",
                           "city_locality": "Austin",
                           "state_province": "TX",
-                          "postal_code": 78652,
+                          "postal_code": "78652",
                           "address_residential_indicator": "unknown"
                         },
                         "ship_from": {
@@ -126513,7 +126513,7 @@
                           "address_line2": "Suite 201",
                           "city_locality": "San Francisco",
                           "state_province": "CA",
-                          "postal_code": 94110,
+                          "postal_code": "94110",
                           "country_code": "US",
                           "address_residential_indicator": "yes"
                         },
@@ -126586,7 +126586,7 @@
                             "address_line2": "Suite 200",
                             "city_locality": "Austin",
                             "state_province": "TX",
-                            "postal_code": 78652
+                            "postal_code": "78652"
                           }
                         },
                         {
