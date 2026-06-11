@@ -28,7 +28,7 @@ info:
     ## Getting Started
 
     If you're new to REST APIs then be sure to read our [introduction to
-    REST](https://www.shipengine.com/docs/rest/) to understand the basics. 
+    REST](https://www.shipengine.com/docs/rest/) to understand the basics.
     Learn how to [authenticate yourself to
     ShipEngine](https://www.shipengine.com/docs/auth/), and then use our
     [sandbox environment](https://www.shipengine.com/docs/sandbox/) to kick the
@@ -330,7 +330,7 @@ paths:
                 text_only:
                   description: >
                     This response shows that the address-recognition API was
-                    able to recognize all the address entities in the text. 
+                    able to recognize all the address entities in the text.
                     Notice that the `country_code` is not populated and the
                     `address_residential_indicator` is "unknown", since neither
                     of these fields was included in the text.
@@ -409,7 +409,7 @@ paths:
                 some_known_fields:
                   description: >
                     This response is shows that the address-recognition API was
-                    able to recognize all the address entities in the text. 
+                    able to recognize all the address entities in the text.
                     Notice that the `country_code` and
                     `address_residential_indicator` fields are populated with
                     the values that were provided in the request.
@@ -3379,7 +3379,7 @@ paths:
                 text_only:
                   description: >
                     This response shows that the shipment-recognition API was
-                    able to recognize all the shipping entities in the text. 
+                    able to recognize all the shipping entities in the text.
                     Notice that the `ship_from` field is not populated, since it
                     wasn't included in the request or in the parsed text.
                   value:
@@ -3572,7 +3572,7 @@ paths:
                 some_known_fields:
                   description: >
                     This response is shows that the shipment-recognition API was
-                    able to recognize all the shipping entities in the text. 
+                    able to recognize all the shipping entities in the text.
                     Notice that the `ship_from` and `service_code` fields are
                     populated with the values that were provided in the request.
                   value:
@@ -4806,7 +4806,7 @@ components:
                           - image/jpeg
                         description: The image type
                     description: |
-                      The file type of the image. 
+                      The file type of the image.
                   image_data:
                     type: string
                     example: >-
@@ -4988,7 +4988,7 @@ components:
                 - image/jpeg
               description: The image type
           description: |
-            The file type of the image. 
+            The file type of the image.
         image_data:
           type: string
           example: >-
@@ -5746,7 +5746,7 @@ components:
         - A6
       description: >
         The available layouts (sizes) in which shipping labels can be
-        downloaded.  The label format determines which sizes are supported. 
+        downloaded.  The label format determines which sizes are supported.
         `4x6` is supported for all label formats, whereas `letter` (8.5" x 11")
         is only supported for `pdf` format.
     label_format:
@@ -5757,7 +5757,7 @@ components:
         - png
         - zpl
       description: >
-        The possible file formats in which shipping labels can be downloaded. 
+        The possible file formats in which shipping labels can be downloaded.
         We recommend `pdf` format because it is supported by all carriers,
         whereas some carriers do not support the `png` or `zpl` formats.
 
@@ -6264,7 +6264,7 @@ components:
       description: >
         A [package
         type](https://www.shipengine.com/docs/reference/list-carrier-packages/),
-        such as `thick_envelope`, `small_flat_rate_box`, `large_package`, etc. 
+        such as `thick_envelope`, `small_flat_rate_box`, `large_package`, etc.
         Use the code `package` for custom or unknown package types.
     dimensions:
       title: dimensions
@@ -8173,7 +8173,7 @@ components:
                   - $ref: '#/components/schemas/date'
                 readOnly: true
                 description: >
-                  The date that the package was (or will be) shipped. 
+                  The date that the package was (or will be) shipped.
                   ShipEngine will take the day of week into consideration. For
                   example, if the carrier does not operate on Sundays, then a
                   package that would have shipped on Sunday will ship on Monday
@@ -8429,7 +8429,7 @@ components:
                   The label's package(s).
 
 
-                  > **Note:** Some carriers only allow one package per label. 
+                  > **Note:** Some carriers only allow one package per label.
                   If you attempt to create a multi-package label for a carrier
                   that doesn't allow it, an error will be returned.
                 items:
@@ -8686,7 +8686,7 @@ components:
           description: >
             The shipment's origin address. If you frequently ship from the same
             location, consider [creating a
-            warehouse](https://www.shipengine.com/docs/reference/create-warehouse/). 
+            warehouse](https://www.shipengine.com/docs/reference/create-warehouse/).
             Then you can simply specify the `warehouse_id` rather than the
             complete address each time.
         warehouse_id:
@@ -9129,7 +9129,7 @@ components:
       title: invoice_additional_details
       type: object
       description: |
-        The additional information to put on commercial invoice 
+        The additional information to put on commercial invoice
       properties:
         freight_charge:
           allOf:
@@ -9366,7 +9366,7 @@ components:
           default: null
           description: >
             This field is used to [bill shipping costs to a third
-            party](https://www.shipengine.com/docs/shipping/bill-to-third-party/). 
+            party](https://www.shipengine.com/docs/shipping/bill-to-third-party/).
             This field must be used in conjunction with the
             `bill_to_country_code`, `bill_to_party`, and `bill_to_postal_code`
             fields.
@@ -9443,7 +9443,7 @@ components:
           default: null
           description: >
             Whether to use [UPS Ground Freight
-            pricing](https://www.shipengine.com/docs/shipping/ups-ground-freight/). 
+            pricing](https://www.shipengine.com/docs/shipping/ups-ground-freight/).
             If enabled, then a `freight_class` must also be specified.
         freight_class:
           type: string
@@ -10566,7 +10566,7 @@ components:
           description: >
             The shipment's origin address. If you frequently ship from the same
             location, consider [creating a
-            warehouse](https://www.shipengine.com/docs/reference/create-warehouse/). 
+            warehouse](https://www.shipengine.com/docs/reference/create-warehouse/).
             Then you can simply specify the `warehouse_id` rather than the
             complete address each time.
         warehouse_id:
@@ -10684,7 +10684,7 @@ components:
       title: tag
       type: object
       description: >
-        Tags are arbitrary strings that you can use to categorize shipments. 
+        Tags are arbitrary strings that you can use to categorize shipments.
         For example, you may want to use tags to distinguish between domestic
         and international shipments, or between insured and uninsured
         shipments.  Or maybe you want to create a tag for each of your customers
@@ -10919,7 +10919,7 @@ components:
       type: object
       description: >
         Additional information some carriers may provide by which to identify a
-        given label in their system. 
+        given label in their system.
       additionalProperties: false
       properties:
         type:
@@ -11294,7 +11294,7 @@ components:
           description: >
             The shipment's origin address. If you frequently ship from the same
             location, consider [creating a
-            warehouse](https://www.shipengine.com/docs/reference/create-warehouse/). 
+            warehouse](https://www.shipengine.com/docs/reference/create-warehouse/).
             Then you can simply specify the `warehouse_id` rather than the
             complete address each time.
         warehouse_id:
@@ -12197,7 +12197,7 @@ components:
       type: object
       description: >
         Used for combining packages into one scannable form that a carrier can
-        use when picking up a large 
+        use when picking up a large
 
         number of shipments
       additionalProperties: false
@@ -13093,6 +13093,7 @@ components:
         delivery_days:
           type: integer
           format: int32
+          nullable: true
           readOnly: true
           minimum: 1
           example: 5
@@ -13106,6 +13107,7 @@ components:
           readOnly: true
           description: Indicates if the rate is guaranteed.
         estimated_delivery_date:
+          nullable: true
           readOnly: true
           allOf:
             - $ref: '#/components/schemas/date'
@@ -13503,6 +13505,7 @@ components:
         delivery_days:
           type: integer
           format: int32
+          nullable: true
           readOnly: true
           minimum: 1
           example: 5
@@ -13516,6 +13519,7 @@ components:
           readOnly: true
           description: Indicates if the rate is guaranteed.
         estimated_delivery_date:
+          nullable: true
           readOnly: true
           allOf:
             - $ref: '#/components/schemas/date'
@@ -14427,7 +14431,7 @@ components:
       minLength: 1
       example: Fragile
       description: >
-        Tags are arbitrary strings that you can use to categorize shipments. 
+        Tags are arbitrary strings that you can use to categorize shipments.
         For example, you may want to use tags to distinguish between domestic
         and international shipments, or between insured and uninsured
         shipments.  Or maybe you want to create a tag for each of your customers
@@ -14655,7 +14659,7 @@ components:
 tags:
   - name: account
     description: |
-      For additional information about the ShipEngine account. 
+      For additional information about the ShipEngine account.
     x-displayName: Account
   - name: addresses
     description: >
@@ -14686,7 +14690,7 @@ tags:
     description: >
       A carrier account is a connection to a shipping carrier that allows you to
       create labels, track packages, and more.  You can connect your own carrier
-      accounts to ShipEngine, or use one of our built-in carrier accounts. 
+      accounts to ShipEngine, or use one of our built-in carrier accounts.
       [Learn more about carrier accounts
       here.](https://www.shipengine.com/docs/carriers/setup/)
     x-displayName: Carrier Accounts
