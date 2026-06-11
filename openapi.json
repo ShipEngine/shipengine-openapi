@@ -100224,6 +100224,7 @@
                                           "delivery_days": {
                                             "type": "integer",
                                             "format": "int32",
+                                            "nullable": true,
                                             "readOnly": true,
                                             "minimum": 1,
                                             "example": 5,
@@ -100235,6 +100236,7 @@
                                             "description": "Indicates if the rate is guaranteed."
                                           },
                                           "estimated_delivery_date": {
+                                            "nullable": true,
                                             "readOnly": true,
                                             "allOf": [
                                               {
@@ -100786,6 +100788,7 @@
                                           "delivery_days": {
                                             "type": "integer",
                                             "format": "int32",
+                                            "nullable": true,
                                             "readOnly": true,
                                             "minimum": 1,
                                             "example": 5,
@@ -100797,6 +100800,7 @@
                                             "description": "Indicates if the rate is guaranteed."
                                           },
                                           "estimated_delivery_date": {
+                                            "nullable": true,
                                             "readOnly": true,
                                             "allOf": [
                                               {
@@ -105319,6 +105323,7 @@
                             "description": "Indicates if the rate is guaranteed."
                           },
                           "estimated_delivery_date": {
+                            "nullable": true,
                             "readOnly": true,
                             "allOf": [
                               {
@@ -106302,6 +106307,7 @@
                           "description": "Indicates if the rate is guaranteed."
                         },
                         "estimated_delivery_date": {
+                          "nullable": true,
                           "readOnly": true,
                           "allOf": [
                             {
@@ -137210,6 +137216,7 @@
                                     "description": "Indicates if the rate is guaranteed."
                                   },
                                   "estimated_delivery_date": {
+                                    "nullable": true,
                                     "readOnly": true,
                                     "allOf": [
                                       {
@@ -137772,6 +137779,7 @@
                                     "description": "Indicates if the rate is guaranteed."
                                   },
                                   "estimated_delivery_date": {
+                                    "nullable": true,
                                     "readOnly": true,
                                     "allOf": [
                                       {
@@ -248903,6 +248911,7 @@
                                   "description": "Indicates if the rate is guaranteed."
                                 },
                                 "estimated_delivery_date": {
+                                  "nullable": true,
                                   "readOnly": true,
                                   "allOf": [
                                     {
@@ -249465,6 +249474,7 @@
                                   "description": "Indicates if the rate is guaranteed."
                                 },
                                 "estimated_delivery_date": {
+                                  "nullable": true,
                                   "readOnly": true,
                                   "allOf": [
                                     {
@@ -250242,6 +250252,7 @@
                               "description": "Indicates if the rate is guaranteed."
                             },
                             "estimated_delivery_date": {
+                              "nullable": true,
                               "readOnly": true,
                               "allOf": [
                                 {
@@ -250804,6 +250815,7 @@
                               "description": "Indicates if the rate is guaranteed."
                             },
                             "estimated_delivery_date": {
+                              "nullable": true,
                               "readOnly": true,
                               "allOf": [
                                 {
@@ -251572,6 +251584,7 @@
                       "description": "Indicates if the rate is guaranteed."
                     },
                     "estimated_delivery_date": {
+                      "nullable": true,
                       "readOnly": true,
                       "allOf": [
                         {
@@ -252134,6 +252147,7 @@
                       "description": "Indicates if the rate is guaranteed."
                     },
                     "estimated_delivery_date": {
+                      "nullable": true,
                       "readOnly": true,
                       "allOf": [
                         {
@@ -252885,6 +252899,7 @@
             "description": "Indicates if the rate is guaranteed."
           },
           "estimated_delivery_date": {
+            "nullable": true,
             "readOnly": true,
             "allOf": [
               {
@@ -259444,6 +259459,7 @@
                   "description": "Indicates if the rate is guaranteed."
                 },
                 "estimated_delivery_date": {
+                  "nullable": true,
                   "readOnly": true,
                   "allOf": [
                     {
@@ -259819,6 +259835,7 @@
             "description": "Indicates if the rate is guaranteed."
           },
           "estimated_delivery_date": {
+            "nullable": true,
             "readOnly": true,
             "allOf": [
               {
@@ -260379,6 +260396,7 @@
                 "description": "Indicates if the rate is guaranteed."
               },
               "estimated_delivery_date": {
+                "nullable": true,
                 "readOnly": true,
                 "allOf": [
                   {
@@ -288418,6 +288436,7 @@
                           "description": "Indicates if the rate is guaranteed."
                         },
                         "estimated_delivery_date": {
+                          "nullable": true,
                           "readOnly": true,
                           "allOf": [
                             {
@@ -288980,6 +288999,7 @@
                           "description": "Indicates if the rate is guaranteed."
                         },
                         "estimated_delivery_date": {
+                          "nullable": true,
                           "readOnly": true,
                           "allOf": [
                             {
