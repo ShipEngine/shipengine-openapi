@@ -1,3 +1,11 @@
+> [!WARNING]
+>
+> CAUTION!
+>
+> This repository is DEPRECATED. We make no guarantees that changes to the API will be reflected here.
+>
+> For the most up-to-date documentation go to https://docs.shipstation.com/.
+
 ![OpenAPI Logo](https://shipengine.github.io/img/openapi-logo.png) ShipEngine™ OpenAPI Definition
 ==============================================
 
@@ -22,7 +30,7 @@ View the ShipEngine API definition [online in your browser](https://shipengine.g
 
 
 ### ![Postman Logo](https://shipengine.github.io/img/postman-logo-small.png) Postman
-The official [Postman reference collection](https://documenter.getpostman.com/view/305204/SW7W5V6o) for ShipEngine.  Just import it into [Postman](https://getpostman.com) and immediately begin interacting with the ShipEngine API. 
+The official [Postman reference collection](https://documenter.getpostman.com/view/305204/SW7W5V6o) for ShipEngine.  Just import it into [Postman](https://getpostman.com) and immediately begin interacting with the ShipEngine API.
 
 
 New to ShipEngine? Download our [walkthrough collection instead](https://documenter.getpostman.com/view/305204/SW7XbA6V).
