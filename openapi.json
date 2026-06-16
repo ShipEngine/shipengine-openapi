@@ -34478,6 +34478,8 @@
                                             "enum": [
                                               "none",
                                               "shipsurance",
+                                              "parcelguard",
+                                              "x_cover",
                                               "carrier",
                                               "third_party"
                                             ],
@@ -39056,6 +39058,8 @@
                                     "enum": [
                                       "none",
                                       "shipsurance",
+                                      "parcelguard",
+                                      "x_cover",
                                       "carrier",
                                       "third_party"
                                     ],
@@ -41667,6 +41671,8 @@
                                           "enum": [
                                             "none",
                                             "shipsurance",
+                                            "parcelguard",
+                                            "x_cover",
                                             "carrier",
                                             "third_party"
                                           ],
@@ -46404,6 +46410,8 @@
                                           "enum": [
                                             "none",
                                             "shipsurance",
+                                            "parcelguard",
+                                            "x_cover",
                                             "carrier",
                                             "third_party"
                                           ],
@@ -51242,6 +51250,8 @@
                                           "enum": [
                                             "none",
                                             "shipsurance",
+                                            "parcelguard",
+                                            "x_cover",
                                             "carrier",
                                             "third_party"
                                           ],
@@ -55859,6 +55869,8 @@
                                 "enum": [
                                   "none",
                                   "shipsurance",
+                                  "parcelguard",
+                                  "x_cover",
                                   "carrier",
                                   "third_party"
                                 ],
@@ -58551,6 +58563,8 @@
                                           "enum": [
                                             "none",
                                             "shipsurance",
+                                            "parcelguard",
+                                            "x_cover",
                                             "carrier",
                                             "third_party"
                                           ],
@@ -63432,6 +63446,8 @@
                                           "enum": [
                                             "none",
                                             "shipsurance",
+                                            "parcelguard",
+                                            "x_cover",
                                             "carrier",
                                             "third_party"
                                           ],
@@ -68175,6 +68191,8 @@
                                           "enum": [
                                             "none",
                                             "shipsurance",
+                                            "parcelguard",
+                                            "x_cover",
                                             "carrier",
                                             "third_party"
                                           ],
@@ -73033,6 +73051,8 @@
                                           "enum": [
                                             "none",
                                             "shipsurance",
+                                            "parcelguard",
+                                            "x_cover",
                                             "carrier",
                                             "third_party"
                                           ],
@@ -96555,6 +96575,8 @@
                                         "enum": [
                                           "none",
                                           "shipsurance",
+                                          "parcelguard",
+                                          "x_cover",
                                           "carrier",
                                           "third_party"
                                         ],
@@ -99090,6 +99112,8 @@
                               "enum": [
                                 "none",
                                 "shipsurance",
+                                "parcelguard",
+                                "x_cover",
                                 "carrier",
                                 "third_party"
                               ],
@@ -103399,6 +103423,8 @@
                                           "enum": [
                                             "none",
                                             "shipsurance",
+                                            "parcelguard",
+                                            "x_cover",
                                             "carrier",
                                             "third_party"
                                           ],
@@ -111035,6 +111061,8 @@
                                         "enum": [
                                           "none",
                                           "shipsurance",
+                                          "parcelguard",
+                                          "x_cover",
                                           "carrier",
                                           "third_party"
                                         ],
@@ -114265,6 +114293,8 @@
                                       "enum": [
                                         "none",
                                         "shipsurance",
+                                        "parcelguard",
+                                        "x_cover",
                                         "carrier",
                                         "third_party"
                                       ],
@@ -116704,6 +116734,8 @@
                                         "enum": [
                                           "none",
                                           "shipsurance",
+                                          "parcelguard",
+                                          "x_cover",
                                           "carrier",
                                           "third_party"
                                         ],
@@ -120000,6 +120032,8 @@
                                   "enum": [
                                     "none",
                                     "shipsurance",
+                                    "parcelguard",
+                                    "x_cover",
                                     "carrier",
                                     "third_party"
                                   ],
@@ -123013,6 +123047,8 @@
                                 "enum": [
                                   "none",
                                   "shipsurance",
+                                  "parcelguard",
+                                  "x_cover",
                                   "carrier",
                                   "third_party"
                                 ],
@@ -125474,6 +125510,8 @@
                                   "enum": [
                                     "none",
                                     "shipsurance",
+                                    "parcelguard",
+                                    "x_cover",
                                     "carrier",
                                     "third_party"
                                   ],
@@ -128904,6 +128942,8 @@
                                   "enum": [
                                     "none",
                                     "shipsurance",
+                                    "parcelguard",
+                                    "x_cover",
                                     "carrier",
                                     "third_party"
                                   ],
@@ -131905,6 +131945,8 @@
                             "enum": [
                               "none",
                               "shipsurance",
+                              "parcelguard",
+                              "x_cover",
                               "carrier",
                               "third_party"
                             ],
@@ -134367,6 +134409,8 @@
                                   "enum": [
                                     "none",
                                     "shipsurance",
+                                    "parcelguard",
+                                    "x_cover",
                                     "carrier",
                                     "third_party"
                                   ],
@@ -169478,6 +169522,8 @@
                                   "enum": [
                                     "none",
                                     "shipsurance",
+                                    "parcelguard",
+                                    "x_cover",
                                     "carrier",
                                     "third_party"
                                   ],
@@ -173658,6 +173704,8 @@
                             "enum": [
                               "none",
                               "shipsurance",
+                              "parcelguard",
+                              "x_cover",
                               "carrier",
                               "third_party"
                             ],
@@ -176083,6 +176131,8 @@
                         "enum": [
                           "none",
                           "shipsurance",
+                          "parcelguard",
+                          "x_cover",
                           "carrier",
                           "third_party"
                         ],
@@ -178484,6 +178534,8 @@
                 "enum": [
                   "none",
                   "shipsurance",
+                  "parcelguard",
+                  "x_cover",
                   "carrier",
                   "third_party"
                 ],
@@ -181385,6 +181437,8 @@
         "enum": [
           "none",
           "shipsurance",
+          "parcelguard",
+          "x_cover",
           "carrier",
           "third_party"
         ],
@@ -184362,6 +184416,8 @@
                                 "enum": [
                                   "none",
                                   "shipsurance",
+                                  "parcelguard",
+                                  "x_cover",
                                   "carrier",
                                   "third_party"
                                 ],
@@ -188471,6 +188527,8 @@
                             "enum": [
                               "none",
                               "shipsurance",
+                              "parcelguard",
+                              "x_cover",
                               "carrier",
                               "third_party"
                             ],
@@ -192510,6 +192568,8 @@
                     "enum": [
                       "none",
                       "shipsurance",
+                      "parcelguard",
+                      "x_cover",
                       "carrier",
                       "third_party"
                     ],
@@ -194910,6 +194970,8 @@
                 "enum": [
                   "none",
                   "shipsurance",
+                  "parcelguard",
+                  "x_cover",
                   "carrier",
                   "third_party"
                 ],
@@ -198291,6 +198353,8 @@
                                 "enum": [
                                   "none",
                                   "shipsurance",
+                                  "parcelguard",
+                                  "x_cover",
                                   "carrier",
                                   "third_party"
                                 ],
@@ -202594,6 +202658,8 @@
                                 "enum": [
                                   "none",
                                   "shipsurance",
+                                  "parcelguard",
+                                  "x_cover",
                                   "carrier",
                                   "third_party"
                                 ],
@@ -206591,6 +206657,8 @@
                         "enum": [
                           "none",
                           "shipsurance",
+                          "parcelguard",
+                          "x_cover",
                           "carrier",
                           "third_party"
                         ],
@@ -209092,6 +209160,8 @@
                 "enum": [
                   "none",
                   "shipsurance",
+                  "parcelguard",
+                  "x_cover",
                   "carrier",
                   "third_party"
                 ],
@@ -211590,6 +211660,8 @@
                                 "enum": [
                                   "none",
                                   "shipsurance",
+                                  "parcelguard",
+                                  "x_cover",
                                   "carrier",
                                   "third_party"
                                 ],
@@ -215806,6 +215878,8 @@
                                 "enum": [
                                   "none",
                                   "shipsurance",
+                                  "parcelguard",
+                                  "x_cover",
                                   "carrier",
                                   "third_party"
                                 ],
@@ -219921,6 +219995,8 @@
                                 "enum": [
                                   "none",
                                   "shipsurance",
+                                  "parcelguard",
+                                  "x_cover",
                                   "carrier",
                                   "third_party"
                                 ],
@@ -224141,6 +224217,8 @@
                                 "enum": [
                                   "none",
                                   "shipsurance",
+                                  "parcelguard",
+                                  "x_cover",
                                   "carrier",
                                   "third_party"
                                 ],
@@ -240165,7 +240243,9 @@
                                 "type": "string",
                                 "enum": [
                                   "none",
-                                  "shipsurance",
+                                  "shipsurance",                                  
+                                  "parcelguard",
+                                  "x_cover",
                                   "carrier",
                                   "third_party"
                                 ],
@@ -242731,6 +242811,8 @@
                             "enum": [
                               "none",
                               "shipsurance",
+                              "parcelguard",
+                              "x_cover",
                               "carrier",
                               "third_party"
                             ],
@@ -245169,7 +245251,9 @@
                     "type": "string",
                     "enum": [
                       "none",
-                      "shipsurance",
+                      "shipsurance",                      
+                      "parcelguard",                      
+                      "x_cover",
                       "carrier",
                       "third_party"
                     ],
@@ -247766,7 +247850,9 @@
                     "enum": [
                       "none",
                       "shipsurance",
-                      "carrier",
+                      "parcelguard",
+                      "x_cover",
+                      "carrier",                     
                       "third_party"
                     ],
                     "description": "The possible insurance provider values"
@@ -254896,7 +254982,9 @@
                                   "enum": [
                                     "none",
                                     "shipsurance",
-                                    "carrier",
+                                    "parcelguard",
+                                    "x_cover",
+                                    "carrier",                                    
                                     "third_party"
                                   ],
                                   "description": "The possible insurance provider values"
@@ -257474,6 +257562,8 @@
                               "enum": [
                                 "none",
                                 "shipsurance",
+                                "parcelguard",
+                                "x_cover",
                                 "carrier",
                                 "third_party"
                               ],
@@ -263372,7 +263462,9 @@
                               "enum": [
                                 "none",
                                 "shipsurance",
-                                "carrier",
+                                "parcelguard",
+                                "x_cover",
+                                "carrier",                                
                                 "third_party"
                               ],
                               "description": "The possible insurance provider values"
@@ -266013,7 +266105,9 @@
                               "enum": [
                                 "none",
                                 "shipsurance",
-                                "carrier",
+                                "parcelguard",
+                                "x_cover",
+                                "carrier",                                
                                 "third_party"
                               ],
                               "description": "The possible insurance provider values"
@@ -268444,7 +268538,9 @@
                               "enum": [
                                 "none",
                                 "shipsurance",
-                                "carrier",
+                                "parcelguard",
+                                "x_cover",
+                                "carrier",                          
                                 "third_party"
                               ],
                               "description": "The possible insurance provider values"
@@ -271300,6 +271396,8 @@
                     "enum": [
                       "none",
                       "shipsurance",
+                      "parcelguard",
+                      "x_cover",
                       "carrier",
                       "third_party"
                     ],
@@ -274618,6 +274716,8 @@
                         "enum": [
                           "none",
                           "shipsurance",
+                          "parcelguard",
+                          "x_cover",
                           "carrier",
                           "third_party"
                         ],
@@ -277037,6 +277137,8 @@
                         "enum": [
                           "none",
                           "shipsurance",
+                          "parcelguard",
+                          "x_cover",
                           "carrier",
                           "third_party"
                         ],
@@ -279460,6 +279562,8 @@
                         "enum": [
                           "none",
                           "shipsurance",
+                          "parcelguard",
+                          "x_cover",
                           "carrier",
                           "third_party"
                         ],
@@ -281949,6 +282053,8 @@
                         "enum": [
                           "none",
                           "shipsurance",
+                          "parcelguard",
+                          "x_cover",
                           "carrier",
                           "third_party"
                         ],
@@ -284361,6 +284467,8 @@
                     "enum": [
                       "none",
                       "shipsurance",
+                      "parcelguard",
+                      "x_cover",
                       "carrier",
                       "third_party"
                     ],
@@ -286836,6 +286944,8 @@
                         "enum": [
                           "none",
                           "shipsurance",
+                          "parcelguard",
+                          "x_cover",
                           "carrier",
                           "third_party"
                         ],
